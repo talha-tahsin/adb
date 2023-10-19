@@ -33,8 +33,6 @@ class HomeController extends Controller
         return view('admin.user_panel');
     }
 
-    public function view_receiptEntry(){
-        return view('receipt.receipt_entry');
-    }
+    
 
 }

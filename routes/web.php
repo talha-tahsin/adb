@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PopulationController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\AdmitController;  
@@ -32,7 +33,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 }); 
 
 Route::group(['prefix' => '/',  'middleware' => 'entry_auth'], function(){
-    Route::get('receipt_entry', [HomeController::class, 'view_receiptEntry'])->name('receiptEntry');
+    Route::get('population', [PopulationController::class, 'view_population'])->name('population');
     Route::get('admit_entry', [AdmitController::class, 'view_admitEntry'])->name('admitEntry');
 });
 
