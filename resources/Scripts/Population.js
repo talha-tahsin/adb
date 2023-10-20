@@ -29,8 +29,8 @@ $(document).ready(function () {
 
 $(document).on('click', '#save_CommunityInfo', function () {
 
-    var createBy = "talha";
-    var createDate = "";
+    var created_by = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
     var xml_data = '';
 
     xml_data = '<head>';
@@ -89,6 +89,8 @@ $(document).on('click', '#save_CommunityInfo', function () {
             xml_data += '<DisbaleMale>' + m_disable + '</DisbaleMale>';
             xml_data += '<DisabledFemale>' + fe_disable + '</DisabledFemale>';
 
+            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+
             xml_data += '</row>';
         }
 
@@ -104,14 +106,14 @@ $(document).on('click', '#save_CommunityInfo', function () {
     console.log(xml_data);
 
     $.ajax({
-        url: "/CommunityList",
+        url: "/InsertCommunityPopulation",
         type: "POST",
-        data: { 'community_list' : xml_data },
+        data: { '_token' : token, 'xml_data' : xml_data },
         dataType: "JSON",
         cache: false,
         success: function (data) {
             // console.log(data);
-             
+             alert(data.message);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

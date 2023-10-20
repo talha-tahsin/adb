@@ -80,7 +80,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('population') }}" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="nav-icon far fa-circle "></i>
                   <p>Voucher Entry
                     <!-- <span class="right badge badge-danger">New</span> -->

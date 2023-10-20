@@ -9,19 +9,29 @@ class Population extends Model
 {
     use HasFactory;
 
-    protected $table = 'tab_receipt_master';
+    protected $table = 't01_populations';
 
     protected $fillable = [
-        'receipt_no',
-        'receipt_date',
-        'doctor_name',
-        'patient_name',
-        'patient_age',
-        'gender',
-        'blood_group',
-        'cont_number',
-        'address',
-        'entry_by',
-        'status',
+        
+        'CommunityId',
+        'MaleUnder5',
+        'Male5to14',
+        'Male15to19',
+        'Male20to49',
+        'Male50to65',
+        'Male65Up',
+        'FemaleUnder5',
+        'Female5to14',
+        'Female15to19',
+        'Female20to49',
+        'Female50to65',
+        'Female65Up' ,
+        'Totalmale',
+        'TotalFemale',
+        'TotalPopulation',
+        'DisbaleMale',
+        'DisabledFemale',
+        'Created_by',
+        
     ];
 }

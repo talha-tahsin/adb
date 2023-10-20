@@ -24,8 +24,9 @@ class PopulationController extends Controller
     {
         $xml = $request['xml_data'];
         $xmlStr = simplexml_load_string($xml);
+        // dd($xml);
 
-        foreach ($xmlStr->head->row as $key => $value) 
+        foreach ($xmlStr->row as $key => $value) 
         {
 
             $RequestData = array(
@@ -36,24 +37,21 @@ class PopulationController extends Controller
                 'Male20to49' => $value->Male20to49,
                 'Male50to65' => $value->Male50to65,
                 'Male65Up' => $value->Male65Up,
-                'Male20to49' => $value->Male20to49,
-
                 'FemaleUnder5' => $value->FemaleUnder5,
                 'Female5to14' => $value->Female5to14,
                 'Female15to19' => $value->Female15to19,
                 'Female20to49' => $value->Female20to49,
                 'Female50to65' => $value->Female50to65,
                 'Female65Up' => $value->Female65Up,
-
                 'Totalmale' => $value->Totalmale,
                 'TotalFemale' => $value->TotalFemale,
                 'TotalPopulation' => $value->TotalPopulation,
-
                 'DisbaleMale' => $value->DisbaleMale,
                 'DisabledFemale' => $value->DisabledFemale,
+                'Created_by' => $value->CreatedBy
             );
 
-            $InsertData = Population::insert($RequestData);
+            $InsertData = Population::create($RequestData);
             $InsertData->save();
         
         }
