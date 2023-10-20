@@ -60,7 +60,7 @@
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'all_entry')
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>BaseLine
                 <i class="fas fa-angle-left right"></i>
                 <!-- <span class="badge badge-info right">6</span> -->
@@ -76,13 +76,13 @@
               <li class="nav-item">
                 <a href="{{ route('admitEntry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Patient Admit Entry</p>
+                  <p>Household</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon far fa-circle "></i>
-                  <p>Voucher Entry
+                  <p>Land Tenure and Distribution
                     <!-- <span class="right badge badge-danger">New</span> -->
                   </p>
                 </a>
@@ -96,7 +96,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>Test Receipt 
+              <p>Example 
                 <i class="fas fa-angle-left right"></i>
                 <!-- <span class="badge badge-info right">6</span> -->
               </p>
@@ -105,7 +105,7 @@
               <li class="nav-item">
                 <a href="{{ route('ReceiptCheckPrint') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Receipt Check & Print</p>
+                  <p>Land Tenure and Distribution</p>
                 </a>
               </li>
               
