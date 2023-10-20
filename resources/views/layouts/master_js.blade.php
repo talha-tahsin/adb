@@ -1,6 +1,7 @@
 
 <!-- jQuery -->
 <script src="{{ mix('resources/plugins/jquery/jquery-3.6.0.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- jQuery -->
 <script src="{{ mix('resources/plugins/jquery/jquery.min.js') }}"></script>
 

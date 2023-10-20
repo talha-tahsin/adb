@@ -20,21 +20,20 @@ use App\Models\AccountCode;
 
 class UtilsController extends Controller
 {
-    public function getDoctorsList(){
+    public function getCommunityList(){
         
         $retStr = '';
-        $data = DB::table('tab_doctors')
-                    ->select('id', 'doctor_name', 'title')
-                    ->where('status', 'active')
-                    ->orderBy('doctor_name')
+        $data = DB::table('lookup_community')
+                    ->select('id', 'community_name')
+                    ->orderBy('community_name')
                     ->get();
 
-        $retStr .= '<option value="" selected disabled>Select Doctor</option>'; 
-        foreach($data as $v) {
-            $retStr .= '<option value="'.$v->doctor_name.'">'.$v->doctor_name.' ('.$v->title.')</option>';
-        }
+        // $retStr .= '<option value="" selected disabled>Select Doctor</option>'; 
+        // foreach($data as $v) {
+        //     $retStr .= '<option value="'.$v->doctor_name.'">'.$v->doctor_name.' ('.$v->title.')</option>';
+        // }
 
-        return $retStr;
+        return response()->json([ 'message' => $data ]);
 
     }
 

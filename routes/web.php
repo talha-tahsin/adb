@@ -34,6 +34,8 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
 Route::group(['prefix' => '/',  'middleware' => 'entry_auth'], function(){
     Route::get('population', [PopulationController::class, 'view_population'])->name('population');
+    Route::post('InsertCommunityPopulation', [PopulationController::class, 'insert_community_population'])
+           ->name('InsertPopulation');
     Route::get('admit_entry', [AdmitController::class, 'view_admitEntry'])->name('admitEntry');
 });
 
@@ -56,5 +58,5 @@ Route::get('/getPatient_detls', [ReceiptController::class, 'get_patient_detls'])
 
 // get all global function data 
 Route::get('/get_patient_list', [UtilsController::class, 'getPatientList'])->name('patientList');
-Route::get('/get_doctors_list', [UtilsController::class, 'getDoctorsList'])->name('doctorsList');
+Route::get('/CommunityList', [UtilsController::class, 'getCommunityList'])->name('CommunityList');
 Route::get('/get_medical_test', [UtilsController::class, 'getAllMedicalTest'])->name('getMedicalTest');

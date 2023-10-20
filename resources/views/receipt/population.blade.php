@@ -29,88 +29,80 @@
       <div class="container-fluid">
 
         <div class="row">
-
           <div class="col-md-12">
             <div class="card card-primary card-outline">
               <div class="card-body">
 
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
-                  <div class="form-group" id="table_row">
+                      <div class="row">
+                          <div class="col-md-12">
+                          <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
-                            <div class="row">
-                                <div class="col-md-1"></div>
+                            <thead>
+                                
+                                <tr style="background-color: #8ed6f2;">
+                                    <th rowspan="2" style="text-align:center;">Serial </th>
+                                    <th rowspan="2" style="text-align:left;">Name </th>
+                                    <th rowspan="2" style="text-align:center;">Select </th>
+                                    <th colspan="6" style="text-align:center;">Age Group Male</th>
+                                    <th colspan="6" style="text-align:center;">Age Group Female</th>
+                                    <th colspan="3" style="text-align:center;">Total Population </th>
+                                    <th colspan="2" style="text-align:center;">Disabled People </th>
+                                    
+                                </tr>
 
-                                <div class="col-md-12" style="margin: 10px 0px 0px 0px;">
-                                    <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
+                                <tr style="background-color: #99ccff;">
+                                    <th style="text-align:center;border-bottom: none;"> Under 5</th>
+                                    <th style="text-align:center;border-bottom: none;">5-14</th>
+                                    <th style="text-align:center;border-bottom: none;">15-19</th>
+                                    <th style="text-align:center;border-bottom: none;">20-49</th>
+                                    <th style="text-align:center;border-bottom: none;">50-65</th>
+                                    <th style="text-align:center;border-bottom: none;">65+</th>
 
-                                        <thead>
-                                            
-                                            <tr style="background-color: #8ed6f2;">
-                                                <th rowspan="2" style="text-align:center;">Serial </th>
-                                                <th rowspan="2" style="text-align:left;">Name </th>
-                                                <th rowspan="2" style="text-align:center;">Select </th>
-                                                <th colspan="6" style="text-align:center;">Age Group Male</th>
-                                                <th colspan="6" style="text-align:center;">Age Group Female</th>
-                                                <th colspan="3" style="text-align:center;">Total Population </th>
-                                                <th colspan="2" style="text-align:center;">Disabled People </th>
-                                                
-                                            </tr>
+                                    <th style="text-align:center;border-bottom: none;">Under 5</th>
+                                    <th style="text-align:center;border-bottom: none;">5-14</th>
+                                    <th style="text-align:center;border-bottom: none;">15-19</th>
+                                    <th style="text-align:center;border-bottom: none;">20-49</th>
+                                    <th style="text-align:center;border-bottom: none;">50-65</th>
+                                    <th style="text-align:center;border-bottom: none;">65+</th>
 
-                                            <tr style="background-color: #99ccff;">
-                                                <th style="text-align:center;border-bottom: none;"> Under 5</th>
-                                                <th style="text-align:center;border-bottom: none;">5-14</th>
-                                                <th style="text-align:center;border-bottom: none;">15-19</th>
-                                                <th style="text-align:center;border-bottom: none;">20-49</th>
-                                                <th style="text-align:center;border-bottom: none;">50-65</th>
-                                                <th style="text-align:center;border-bottom: none;">65+</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">In Total </th>
 
-                                                <th style="text-align:center;border-bottom: none;">Under 5</th>
-                                                <th style="text-align:center;border-bottom: none;">5-14</th>
-                                                <th style="text-align:center;border-bottom: none;">15-19</th>
-                                                <th style="text-align:center;border-bottom: none;">20-49</th>
-                                                <th style="text-align:center;border-bottom: none;">50-65</th>
-                                                <th style="text-align:center;border-bottom: none;">65+</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                </tr>
+                                
+                                
+                            </thead>
 
-                                                <th style="text-align:center;border-bottom: none;">Male</th>
-                                                <th style="text-align:center;border-bottom: none;">Female</th>
-                                                <th style="text-align:center;border-bottom: none;">In Total </th>
+                            <!-- <tfoot>
+                                <tr style="background-color: #f1f5f5;">
+                                    <td colspan="3" style="text-align: right;font-weight: bold;">Total</td>
+                                    <td id="total_amount" style="text-align: right;color: red;"></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tfoot>  -->
 
-                                                <th style="text-align:center;border-bottom: none;">Male</th>
-                                                <th style="text-align:center;border-bottom: none;">Female</th>
-                                            </tr>
-                                           
-                                           
-                                        </thead>
+                              <tbody id="table_body">
+                                  
+                              </tbody>
+                          </table>
 
-                                        <!-- <tfoot>
-                                            <tr style="background-color: #f1f5f5;">
-                                                <td colspan="3" style="text-align: right;font-weight: bold;">Total</td>
-                                                <td id="total_amount" style="text-align: right;color: red;"></td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        </tfoot>  -->
+                      </div>
+                      </div>
+                        <!-- // end table row -->
 
-                                        <tbody id="table_body">
-                                           
-                                        </tbody>
-
-                                    </table>
-                                </div>
-
-                                <div class="col-md-1"></div>
-                            </div>
-                            <!-- // end table row -->
-
-                            <div class="row">
-                                <div class="col-md-10"></div>
-                                <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                    <button type="submit" class="btn btn-primary" id="save_CommunityInfo" style="width: 100%;border-radius: 20px;color: black;">Save Community Info</button>
-                                </div>
-                                <div class="col-md-1"></div>
-                            </div>
-
+                        <div class="row">
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                                <button type="submit" class="btn btn-primary" id="save_CommunityInfo" style="width: 100%;border-radius: 20px;color: black;">Save Community Info</button>
+                            </div>  
                         </div>
+
+                      <!-- </div> -->
                         <!-- end main table div -->
 
     
@@ -120,9 +112,6 @@
             <!-- end car-primary -->
           </div>  
           <!-- end col-md-9 -->
-
-       
-          
 
         </div> 
         <!-- end main content row -->

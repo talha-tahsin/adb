@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tab_receipt_master', function (Blueprint $table) {
+        Schema::create('lookup_community', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tab_receipt_master');
+        Schema::dropIfExists('lookup_community');
     }
 };
