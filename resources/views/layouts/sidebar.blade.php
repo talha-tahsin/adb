@@ -58,19 +58,67 @@
 
         
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'all_entry')
-          <li class="nav-item">
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                BaseLine
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                   Societal Info
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('population') }}" class="nav-link">
+                      <i class="nav-icon fas fa-edit"></i>
+                      <p>Population</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-edit"></i>
+                      <p>Level 3</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-edit"></i>
+                      <p>Level 3</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Level 2</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>BaseLine
                 <i class="fas fa-angle-left right"></i>
-                <!-- <span class="badge badge-info right">6</span> -->
+               
               </p>
             </a>
            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('population') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p class="text">Population</p>
+                  <p class="text">Societal Information</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -83,13 +131,13 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon far fa-circle "></i>
                   <p>Land Tenure and Distribution
-                    <!-- <span class="right badge badge-danger">New</span> -->
+                    
                   </p>
                 </a>
               </li>
 
             </ul>
-          </li>
+          </li> -->
         @endif 
 
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'receipt_all')

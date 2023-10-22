@@ -57,6 +57,8 @@ Route::get('/getPatient_detls', [ReceiptController::class, 'get_patient_detls'])
 
 
 // get all global function data 
-Route::get('/get_patient_list', [UtilsController::class, 'getPatientList'])->name('patientList');
+Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId'])->name('watershedList');
+Route::get('/get_paraList', [UtilsController::class, 'getParaList'])->name('ParaList');
+
 Route::get('/CommunityList', [UtilsController::class, 'getCommunityList'])->name('CommunityList');
 Route::get('/get_medical_test', [UtilsController::class, 'getAllMedicalTest'])->name('getMedicalTest');

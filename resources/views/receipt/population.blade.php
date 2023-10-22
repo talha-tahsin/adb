@@ -35,8 +35,43 @@
 
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
-                      <div class="row">
-                          <div class="col-md-12">
+                  <div class="row"> 
+                    <!-- <div class="col-md-1"></div>  -->
+
+                    <div class="col-md-2" style="margin: 10px 0px 20px 0px;">
+                        <label class="control-label validate" for="community_id">
+                            <span style="color: red;">★&nbsp;</span>Watershed Id
+                        </label> 
+
+                        <select id="watershedId" name="watershedId" class="custom-select form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+
+                        </select>
+                    </div> 
+
+                    <!-- <div class="col-md-1"></div> -->
+
+                    <div class="col-md-2" style="margin: 10px 0px 20px 0px;">
+                        <label class="control-label validate" for="community_id">
+                            <span style="color: red;">★&nbsp;</span>Para
+                        </label> 
+
+                        <select id="para_list" name="para_list" class="custom-select form-control" style="border-radius: 5px;border:2px solid #898AEE;" >
+                           
+                        </select>
+                    </div> 
+
+                    <!-- <div class="col-md-1"></div> -->
+
+                    <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                        <button type="submit" class="btn btn-info" id="entryPopulation" style="width: 100%;border-radius: 20px;color: black;">Entry Community Population</button>
+                    </div>
+
+              </div> 
+              <!-- end row -->
+
+              <div class="form-group hide" id="table_div">
+                    <div class="row">
+                        <div class="col-md-12">
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
                             <thead>
@@ -91,19 +126,19 @@
                               </tbody>
                           </table>
 
-                      </div>
-                      </div>
+                    </div>
+                </div>
                         <!-- // end table row -->
 
                         <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="save_CommunityInfo" style="width: 100%;border-radius: 20px;color: black;">Save Community Info</button>
+                                <button type="submit" class="btn btn-primary" id="save_CommunityInfo" style="width: 100%;border-radius: 20px;color: black;">Save Population Info</button>
                             </div>  
                         </div>
 
-                      <!-- </div> -->
-                        <!-- end main table div -->
+            </div>
+          <!-- end main table div -->
 
     
               </div>  

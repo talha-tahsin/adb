@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 
-use App\Models\Doctor;
+use App\Models\LookupPara;
 use App\Models\AdmitMaster;
 use App\Models\HealthStatus;
 use App\Models\AdmitDetails;
@@ -22,56 +22,54 @@ class UtilsController extends Controller
 {
     public function getCommunityList(){
         
-        $retStr = '';
+        
         $data = DB::table('lookup_community')
                     ->select('id', 'community_name')
                     ->orderBy('community_name')
                     ->get();
 
-        // $retStr .= '<option value="" selected disabled>Select Doctor</option>'; 
-        // foreach($data as $v) {
-        //     $retStr .= '<option value="'.$v->doctor_name.'">'.$v->doctor_name.' ('.$v->title.')</option>';
-        // }
-
         return response()->json([ 'message' => $data ]);
 
     }
 
-    public function getPatientList(){
+    public function getWatershedId(){
+        
+        $data = DB::table('lookup_watershed')
+                    ->select('id', 'watershed_id')->orderBy('watershed_id')
+                    ->get();
         
         $retStr = '';
-        $data = DB::table('tab_admit_master')
-                    ->select('patient_id', 'patient_name')
-                    ->where('delete_row', '0')
-                    ->orderBy('patient_name')
-                    ->get();
+        $retStr .= '<option value="" selected disabled>Select Watershed Id</option>';
 
-        $retStr .= '<option value="" selected disabled>Select Patient </option>'; 
         foreach($data as $v) {
-            $retStr .= '<option value="'.$v->patient_id.'">'.$v->patient_name.' ('.$v->patient_id.')</option>';
+            $retStr .= '<option value="'.$v->watershed_id.'">'.$v->watershed_id.'</option>';
         }
 
         return $retStr;
 
     }
 
-    public function getAllMedicalTest(){
-        
-        $retStr = '';
-        $data = DB::table('tab_acc_codes')
-                    ->select('acc_code', 'acc_name_en')
-                    ->where('acc_code', 'like', '410%')
-                    ->where('acc_code_type', '=', 'child')
-                    ->orderBy('acc_name_en')
-                    ->get();
+    public function getParaList(Request $request)
+    {
+        $watershedId = $request['watershed_id'];
+        // dd($watershedId);
 
-        $retStr .= '<option value="" selected disabled>Select Test</option>'; 
+        $data = DB::table('lookup_para')
+                    ->select('para_id', 'para_name')
+                    ->where('watershed_id', $watershedId)->orderBy('para_name')
+                    ->get();
+                    
+        $retStr = '';
+        $retStr .= '<option value="" selected disabled>Select Para  </option>';
+
         foreach($data as $v) {
-            $retStr .= '<option value="'.$v->acc_code.'">'.$v->acc_name_en.' ('.$v->acc_code.')</option>';
+            $retStr .= '<option value="'.$v->para_id.'">'.$v->para_name.'</option>';
         }
 
         return $retStr;
 
     }
+
+  
     
 }

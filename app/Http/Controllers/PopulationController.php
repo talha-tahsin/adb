@@ -30,6 +30,8 @@ class PopulationController extends Controller
         {
 
             $RequestData = array(
+                'WatershedId' => $value->WatershedId,
+                'ParaId' => $value->ParaId,
                 'CommunityId' => $value->CommunityId,
                 'MaleUnder5' => $value->MaleUnder5,
                 'Male5to14' => $value->Male5to14,

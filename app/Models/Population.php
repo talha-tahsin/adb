@@ -13,6 +13,8 @@ class Population extends Model
 
     protected $fillable = [
         
+        'WatershedId',
+        'ParaId',
         'CommunityId',
         'MaleUnder5',
         'Male5to14',
