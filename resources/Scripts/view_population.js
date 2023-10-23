@@ -119,6 +119,9 @@ $(document).on('click', '#btn_edit', function () {
             {
                 $.each(data.message, function(i, v)
                 { 
+                    $('#cum_name').html(v.CommunityName);
+                    $('#row_id').val(v.id);
+
                     $('#maleUnder5').val(v.MaleUnder5);
                     $('#male5to14').val(v.Male5to14);
                     $('#male15to19').val(v.Male15to19);
@@ -187,97 +190,78 @@ $(document).on('click', '#btn_delte', function () {
 });
 
 
+$(document).on('click', '#updatePopulation', function () {
 
-$(document).on('click', '#save_CommunityInfo', function () {
-
-    var created_by = $('#userName').val();
+    var update_by = $('#userName').val();
+    var rowId = $('#row_id').val();
     var token = $("meta[name='csrf-token']").attr("content");
-    var watershed_id = $('#watershedId option:selected').val();
-    var paraId = $('#para_list option:selected').val();
+
     var xml_data = '';
 
-    xml_data = '<head>';
+    var m_under_5 = $('#maleUnder5').val();
+    var m_5_14 = $('#male5to14').val();
+    var m_15_19 = $('#male15to19').val();
+    var m_20_49 = $('#male20to49').val();
+    var m_50_65 = $('#male50to65').val();
+    var m_65_up = $('#male65Up').val();
 
-    $('#voucher_table > tbody > tr').each(function () {
+    var fe_under_5 = $('#femaleUnder5').val();
+    var fe_5_14 = $('#female5to14').val();
+    var fe_15_19 = $('#female15to19').val();
+    var fe_20_49 = $('#female20to49').val();
+    var fe_50_65 = $('#female50to65').val();
+    var fe_65_up = $('#female65Up').val();
 
-        var rowCheckbox = $(this).find("#check").prop("checked");
+    var m_total = $('#totalMale').val();
+    var fe_total = $('#totalFemale').val();
+    var grnd_total = $('#grndTotal').val();
 
-        if (rowCheckbox == true)
-        {
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var m_under_5 = $(this).find('#m_under_5').val();
-            var m_5_14 = $(this).find('#m_5_14').val();
-            var m_15_19 = $(this).find('#m_15_19').val();
-            var m_20_49 = $(this).find('#m_20_49').val();
-            var m_50_65 = $(this).find('#m_50_65').val();
-            var m_65_up = $(this).find('#m_65_up').val();
+    var m_disable = $('#disableMale').val();
+    var fe_disable = $('#disableFemale').val();
+        
 
-            var fe_under_5 = $(this).find('#fe_under_5').val();
-            var fe_5_14 = $(this).find('#fe_5_14').val();
-            var fe_15_19 = $(this).find('#fe_15_19').val();
-            var fe_20_49 = $(this).find('#fe_20_49').val();
-            var fe_50_65 = $(this).find('#fe_50_65').val();
-            var fe_65_up = $(this).find('#fe_65_up').val();
+    // first binding data as xml string
+    xml_data += '<row>';
 
-            var m_total = $(this).find('#m_total').val();
-            var fe_total = $(this).find('#fe_total').val();
-            var grnd_total = $(this).find('#grandTotal').val();
+    xml_data += '<MaleUnder5>' + m_under_5 + '</MaleUnder5>';
+    xml_data += '<Male5to14>' + m_5_14 + '</Male5to14>';
+    xml_data += '<Male15to19>' + m_15_19 + '</Male15to19>';
+    xml_data += '<Male20to49>' + m_20_49 + '</Male20to49>';
+    xml_data += '<Male50to65>' + m_50_65 + '</Male50to65>';
+    xml_data += '<Male65Up>' + m_65_up + '</Male65Up>';
 
-            var m_disable = $(this).find('#m_disable').val();
-            var fe_disable = $(this).find('#fe_disable').val();
+    xml_data += '<FemaleUnder5>' + fe_under_5 + '</FemaleUnder5>';
+    xml_data += '<Female5to14>' + fe_5_14 + '</Female5to14>';
+    xml_data += '<Female15to19>' + fe_15_19 + '</Female15to19>';
+    xml_data += '<Female20to49>' + fe_20_49 + '</Female20to49>';
+    xml_data += '<Female50to65>' + fe_50_65 + '</Female50to65>';
+    xml_data += '<Female65Up>' + fe_65_up + '</Female65Up>';
 
+    xml_data += '<Totalmale>' + m_total + '</Totalmale>';
+    xml_data += '<TotalFemale>' + fe_total + '</TotalFemale>';
+    xml_data += '<TotalPopulation>' + grnd_total + '</TotalPopulation>';
 
-            // first binding data as xml string
-            xml_data += '<row>';
+    xml_data += '<DisbaleMale>' + m_disable + '</DisbaleMale>';
+    xml_data += '<DisabledFemale>' + fe_disable + '</DisabledFemale>';
 
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
+    xml_data += '<UpdateBy>' + update_by + '</UpdateBy>';
 
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<MaleUnder5>' + m_under_5 + '</MaleUnder5>';
-            xml_data += '<Male5to14>' + m_5_14 + '</Male5to14>';
-            xml_data += '<Male15to19>' + m_15_19 + '</Male15to19>';
-            xml_data += '<Male20to49>' + m_20_49 + '</Male20to49>';
-            xml_data += '<Male50to65>' + m_50_65 + '</Male50to65>';
-            xml_data += '<Male65Up>' + m_65_up + '</Male65Up>';
-
-            xml_data += '<FemaleUnder5>' + fe_under_5 + '</FemaleUnder5>';
-            xml_data += '<Female5to14>' + fe_5_14 + '</Female5to14>';
-            xml_data += '<Female15to19>' + fe_15_19 + '</Female15to19>';
-            xml_data += '<Female20to49>' + fe_20_49 + '</Female20to49>';
-            xml_data += '<Female50to65>' + fe_50_65 + '</Female50to65>';
-            xml_data += '<Female65Up>' + fe_65_up + '</Female65Up>';
-
-            xml_data += '<Totalmale>' + m_total + '</Totalmale>';
-            xml_data += '<TotalFemale>' + fe_total + '</TotalFemale>';
-            xml_data += '<TotalPopulation>' + grnd_total + '</TotalPopulation>';
-
-            xml_data += '<DisbaleMale>' + m_disable + '</DisbaleMale>';
-            xml_data += '<DisabledFemale>' + fe_disable + '</DisabledFemale>';
-
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-            xml_data += '</row>';
-        }
-
-    });
-
-    xml_data += '</head>';
-
+    xml_data += '</row>';
+        
     
-    console.log(xml_data);
+    console.log(rowId, xml_data);
 
     $.ajax({
-        url: "/InsertCommunityPopulation",
+        url: "/update_population_details",
         type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
+        data: { '_token' : token, 'row_id' : rowId, 'xml_data' : xml_data },
         dataType: "JSON",
         cache: false,
         success: function (data) {
             // console.log(data);
-            $('#voucher_table td input[type=text]').val('');
-            $('#voucher_table td input[type=checkbox]').prop('checked', false);
-             alert(data.message);
+            $('#myModal').modal('hide');
+            $('#viewPopulation').click();
+            alert(data.message);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

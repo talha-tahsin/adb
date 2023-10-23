@@ -160,6 +160,43 @@ class PopulationController extends Controller
 
     }
 
+    public function update_population_details(Request $request){
+        
+        $row_id = $request['row_id'];
+        $xml = $request['xml_data'];
+        $xml = simplexml_load_string($xml);
+        // dd($xml);
+
+        $RequestData = array(
+          
+            'MaleUnder5' => $xml->MaleUnder5,
+            'Male5to14' => $xml->Male5to14,
+            'Male15to19' => $xml->Male15to19,
+            'Male20to49' => $xml->Male20to49,
+            'Male50to65' => $xml->Male50to65,
+            'Male65Up' => $xml->Male65Up,
+            'FemaleUnder5' => $xml->FemaleUnder5,
+            'Female5to14' => $xml->Female5to14,
+            'Female15to19' => $xml->Female15to19,
+            'Female20to49' => $xml->Female20to49,
+            'Female50to65' => $xml->Female50to65,
+            'Female65Up' => $xml->Female65Up,
+            'Totalmale' => $xml->Totalmale,
+            'TotalFemale' => $xml->TotalFemale,
+            'TotalPopulation' => $xml->TotalPopulation,
+            'DisbaleMale' => $xml->DisbaleMale,
+            'DisabledFemale' => $xml->DisabledFemale,
+        );
+        // dd($row_id);
+
+        $update = Population::findOrFail($row_id);
+        $update->fill($RequestData);
+        $update->save();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data Update Successfully..' ]);
+
+    }
+
     public function delete_population(Request $request){
         
         $userId = $request['user_id'];

@@ -41,7 +41,8 @@ Route::group(['prefix' => '/',  'middleware' => 'entry_auth'], function(){
 
 Route::get('view_population', [PopulationController::class, 'view_population'])->name('View.Population');
 Route::get('/get_population_list', [PopulationController::class, 'get_population_list'])->name('View.Population.List');
-Route::get('/get_population_details', [PopulationController::class, 'get_population_details'])->name('View.Population.List');
+Route::get('/get_population_details', [PopulationController::class, 'get_population_details'])->name('Get.Population.Details');
+Route::post('/update_population_details', [PopulationController::class, 'update_population_details'])->name('Update.Population.Details');
 Route::post('/delete_population', [PopulationController::class, 'delete_population'])->name('Delete.Population');
 
 

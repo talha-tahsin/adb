@@ -162,7 +162,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="myModalTitle">Community Population Update</h5>
+              <h5 class="modal-title" id="myModalTitle">Population Update for :  <strong id="cum_name" style="color: green;"></strong> </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -170,6 +170,7 @@
             <div class="modal-body">
               
             <input id="userName" value="'.$_SESSION['gluserName'].'" type="hidden">
+            <input id="row_id" name="row_id" value="" type="hidden">
 
            <div class="row">
               <div class="col-md-1"></div> 
@@ -275,14 +276,6 @@
               </div>
             </div>
             
-            <!-- <div class="row">
-              <div class="col-md-1"></div> 
-              <div class="col-md-5" style="margin: 0px 0px 10px 0px;">
-                <label class="control-label  validate" for="voucher_date">
-                <span style="color: red;">★&nbsp;</span>Total Female </label>
-                <input type="text" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;" name="totalFemale" id="totalFemale" value="" disabled>
-              </div>
-            </div> -->
 
             <div class="row">
               <div class="col-md-1"></div> 
@@ -314,7 +307,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" id="updatePopulation" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
