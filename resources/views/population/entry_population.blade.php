@@ -161,7 +161,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/Scripts/Population.js') }}"></script>
+<script src="{{ mix('resources/scripts/entry_population.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 

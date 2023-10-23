@@ -58,7 +58,7 @@
 
         
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'all_entry')
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -77,7 +77,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('population') }}" class="nav-link">
+                    <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-edit"></i>
                       <p>Population</p>
                     </a>
@@ -104,9 +104,9 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
 
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>BaseLine
@@ -116,28 +116,34 @@
             </a>
            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('population') }}" class="nav-link">
+                <a href="{{ route('Population.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p class="text">Societal Information</p>
+                  <p class="text">Population Entry</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('View.Population') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Population View</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Household Entry
+                    
+                  </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('admitEntry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Household</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon far fa-circle "></i>
-                  <p>Land Tenure and Distribution
-                    
-                  </p>
+                  <p>Household View</p>
                 </a>
               </li>
 
             </ul>
-          </li> -->
+          </li>
         @endif 
 
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'receipt_all')
@@ -260,7 +266,7 @@
 
           <li class="nav-header">Reports</li>
           <li class="nav-item">
-            <a href="{{ route('ledgerView') }}" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 View Ledger

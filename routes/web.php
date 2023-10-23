@@ -33,21 +33,17 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 }); 
 
 Route::group(['prefix' => '/',  'middleware' => 'entry_auth'], function(){
-    Route::get('population', [PopulationController::class, 'view_population'])->name('population');
+    Route::get('population_entry', [PopulationController::class, 'population_entry'])->name('Population.Entry');
     Route::post('InsertCommunityPopulation', [PopulationController::class, 'insert_community_population'])
            ->name('InsertPopulation');
     Route::get('admit_entry', [AdmitController::class, 'view_admitEntry'])->name('admitEntry');
 });
 
-Route::group(['prefix' => '/',  'middleware' => 'receipt_auth'], function(){
-    Route::post('insrt_receipt_entry', [ReceiptController::class, 'insertReceiptEntry'])->name('insrt_receipt_entry');
-});
+Route::get('view_population', [PopulationController::class, 'view_population'])->name('View.Population');
+Route::get('/get_population_list', [PopulationController::class, 'get_population_list'])->name('View.Population.List');
+Route::get('/get_population_details', [PopulationController::class, 'get_population_details'])->name('View.Population.List');
+Route::post('/delete_population', [PopulationController::class, 'delete_population'])->name('Delete.Population');
 
-Route::group(['prefix' => '/',  'middleware' => 'admit_auth'], function(){
-    Route::post('insrt_admit_entry', [AdmitController::class, 'AdmitEntry'])->name('insrt_admit_entry');
-}); 
-
-Route::get('/ledger_view', [LedgerViewController::class, 'view_ledger'])->name('ledgerView');
 
 // internal usecase get data function
 Route::get('/receipt_check_print', [ReceiptController::class, 'view_receiptCheckPrint'])->name('ReceiptCheckPrint');

@@ -1,7 +1,8 @@
 
 
 
-document.title = 'Population';
+
+document.title = 'View Population ';
 
 $(document).ready(function () {
 
@@ -69,22 +70,130 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
-$(document).on('click', '#entryPopulation', function () {
+$(document).on('click', '#viewPopulation', function () {
 
-    watershed_id = $('#watershedId option:selected').val();
-    paraId = $('#para_list option:selected').val();
+    var Watershed_Id = $('#watershedId option:selected').val();
+    var Para_Id = $('#para_list option:selected').val();
+    // console.log(Watershed_Id);
 
-    if(watershed_id && paraId)
+    if(Watershed_Id && Para_Id)
     {
-        $('#table_div').removeClass('hide');
+        $.ajax({
+            url: "/get_population_list",
+            type: "GET",
+            data: { 'watershed_id' : Watershed_Id, 'para_id' : Para_Id },
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                $('#table_div').removeClass('hide');
+                $('#table_body').html(data);
+                $('#voucher_table').DataTable();
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+
+        
     }
 
 });
+
+$(document).on('click', '#btn_edit', function () {
+
+    var row_id = $(this).attr('row_id');
+    
+    $.ajax({
+        url: "/get_population_details",
+        type: "GET",
+        data: { 'row_id' : row_id},
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            console.log(data);
+            
+            $('#myModal').modal({backdrop : 'static', keyboard : false});
+
+            if(typeof data.message.MaleUnder5 == 'undefined')
+            {
+                $.each(data.message, function(i, v)
+                { 
+                    $('#maleUnder5').val(v.MaleUnder5);
+                    $('#male5to14').val(v.Male5to14);
+                    $('#male15to19').val(v.Male15to19);
+                    $('#male20to49').val(v.Male20to49);
+                    $('#male50to65').val(v.Male50to65);
+                    $('#male65Up').val(v.Male65Up);
+
+                    $('#femaleUnder5').val(v.FemaleUnder5);
+                    $('#female5to14').val(v.Female5to14);
+                    $('#female15to19').val(v.Female15to19);
+                    $('#female20to49').val(v.Female20to49);
+                    $('#female50to65').val(v.Female50to65);
+                    $('#female65Up').val(v.Female65Up);
+
+                    $('#totalMale').val(v.Totalmale);
+                    $('#totalFemale').val(v.TotalFemale);
+                    $('#grndTotal').val(v.TotalPopulation);
+
+                    $('#disableMale').val(v.DisbaleMale);
+                    $('#disableFemale').val(v.DisabledFemale);
+                });
+                
+            }
+            else
+            {
+                console.log("Nothing...");
+            }
+           
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+});
+
+$(document).on('click', '#btn_delte', function () {
+
+    var user_id = $(this).attr('row_id');
+    var token = $("meta[name='csrf-token']").attr("content");
+    console.log(user_id);
+
+    //var confirm = confirm('Are you sure ? '); 
+
+    if(user_id )
+    {
+        $.ajax({
+            url: "/delete_population",
+            type: "POST",
+            data: { '_token' : token, 'user_id' : user_id },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                alert(data.message);
+                $('#viewPopulation').click();
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+
+        
+    }
+
+});
+
+
 
 $(document).on('click', '#save_CommunityInfo', function () {
 
     var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershedId option:selected').val();
+    var paraId = $('#para_list option:selected').val();
     var xml_data = '';
 
     xml_data = '<head>';
@@ -179,198 +288,61 @@ $(document).on('click', '#save_CommunityInfo', function () {
 
 });
 
-function insertTableRow(comntyName, comuntyId) {
-
-    var appendString = '';
-    var rowCount = $('#voucher_table > tbody > tr').length;
-    rowCount++;
-
-    // console.log(accountName);
-
-    appendString += '<tr comnty_id="' + comuntyId + '">';
-    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    //appendString += '<td>'+ofcName+'</td>';
-    appendString += '<td style="width: 60px;text-align: left;">' + comntyName + '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="checkbox" class="checkbox" id="check" name="check" value="1" style="text-align: center;" >';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_under_5" class="form-control m_num" name="m_under_5" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_5_14" class="form-control m_num" name="m_5_14" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_15_19" class="form-control m_num" name="m_15_19" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_20_49" class="form-control m_num" name="m_20_49" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_50_65" class="form-control m_num" name="m_50_65" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_65_up" class="form-control m_num" name="m_65_up" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_under_5" class="form-control fe_num" name="fe_under_5" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_5_14" class="form-control fe_num" name="fe_5_14" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_15_19" class="form-control fe_num" name="fe_15_19" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_20_49" class="form-control fe_num" name="fe_20_49" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_50_65" class="form-control fe_num" name="fe_50_65" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_65_up" class="form-control fe_num" name="fe_65_up" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_total" class="form-control total" name="m_total" value="" style="width: 50px;text-align: center;" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_total" class="form-control total" name="fe_total" value="" style="width: 50px;text-align: center;" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="grandTotal" class="form-control " name="grandTotal" value="" style="width: 50px;text-align: center;" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_disable" class="form-control " name="m_disable" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_disable" class="form-control " name="fe_disable" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    //appendString += '<td style="text-align: center;">';
-    //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';
-    //appendString += '</td>';
-
-    appendString += '</tr>';
-
-
-    $('#voucher_table > tbody:last-child').append(appendString);
-    // $("#voucher_table tr:last").scrollintoview();
-    removeTableRow();
-}
 
 $(document).on('change', '.m_num', function () {
 
-    var row = $(this).closest('tr'); 
+    var row = $(this).val(); 
     var total = 0;
     var grandTotal = 0;
 
     // current row and calculate the total
-    row.find('.m_num').each(function () {
+    $('.m_num').each(function () {
         var value = parseFloat($(this).val());
         if (!isNaN(value)) {
             total += value;
         }
     });
 
-    row.find('#m_total').val(total);
+    $('#totalMale').val(total);
 
-    row.find('.total').each(function () {
+    $('.total').each(function () {
         var rowTotal = parseFloat($(this).val());
         if (!isNaN(rowTotal)) {
             grandTotal += rowTotal;
         }
     });
 
-    row.find('#grandTotal').val(grandTotal);
+    $('#grndTotal').val(grandTotal);
 
 });
 
 $(document).on('change', '.fe_num', function () {
 
-    var row = $(this).closest('tr'); 
+    var row = $(this).val(); 
     var total = 0;
     var grandTotal = 0;
 
     // current row and calculate the total
-    row.find('.fe_num').each(function () {
+    $('.fe_num').each(function () {
         var value = parseFloat($(this).val());
         if (!isNaN(value)) {
             total += value;
         }
     });
 
-    row.find('#fe_total').val(total);
+    $('#totalFemale').val(total);
 
-    row.find('.total').each(function () {
+    $('.total').each(function () {
         var rowTotal = parseFloat($(this).val());
         if (!isNaN(rowTotal)) {
             grandTotal += rowTotal;
         }
     });
 
-    row.find('#grandTotal').val(grandTotal);
+    $('#grndTotal').val(grandTotal);
 
 });
 
-function removeTableRow() {
-
-    $(document).on('click', '.removeHead', function () {
-
-        $(this).parent().parent().remove();
-        reOrderTable();
-
-        if ($('#amount').length == '0') {
-            $('#total_amount').text((0).toFixed(2));
-        }
-
-        // $('#amount').trigger('change');
-        var totalAmount = 0;
-        $('#voucher_table > tbody > tr').each(function () {
-
-            var tem_total = $(this).find('#amount').val();
-
-            if (tem_total == undefined || tem_total == null || tem_total == '') tem_total = 0;
-
-            totalAmount += parseFloat(tem_total);
-
-        });
-
-        // console.log("888..", totalAmount);
-
-        if (totalAmount == '' || totalAmount == null || totalAmount == undefined)
-            $('#total_amount').text('0.00');
-        else
-            $('#total_amount').text(totalAmount.toFixed(2));
-
-    });
-}
-
-function reOrderTable() {
-    var sl = 1;
-    $('#voucher_table > tbody > tr').each(function () {
-        $(this).find('.sl').html(sl);
-        sl++;
-    });
-    counter = sl - 1;
-}
 
 function gotoUrl(path, params, method, target = ''){
 
@@ -407,34 +379,5 @@ function gotoUrl(path, params, method, target = ''){
     form.submit();
 }
 
-// Function to convert XML to JSON
-function xmlToJson(xml) {
-  try {
-    var obj = {};
-    if (xml.children.length > 0) {
-      for (var i = 0; i < xml.children.length; i++) {
-        var item = xml.children.item(i);
-        var nodeName = item.nodeName;
-
-        if (typeof (obj[nodeName]) == "undefined") {
-          obj[nodeName] = xml2json(item);
-        } else {
-          if (typeof (obj[nodeName].push) == "undefined") {
-            var old = obj[nodeName];
-
-            obj[nodeName] = [];
-            obj[nodeName].push(old);
-          }
-          obj[nodeName].push(xml2json(item));
-        }
-      }
-    } else {
-      obj = xml.textContent;
-    }
-    return obj;
-  } catch (e) {
-      console.log(e.message);
-  }
-}
 
 

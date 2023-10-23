@@ -16,6 +16,7 @@ class Population extends Model
         'WatershedId',
         'ParaId',
         'CommunityId',
+        'CommunityName',
         'MaleUnder5',
         'Male5to14',
         'Male15to19',
