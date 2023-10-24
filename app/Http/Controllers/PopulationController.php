@@ -30,72 +30,64 @@ class PopulationController extends Controller
         $xmlStr = simplexml_load_string($xml);
         // dd($xml);
 
-        
-        DB::beginTransaction();
+        try {
+                DB::beginTransaction();
 
-        foreach ($xmlStr->row as $key => $value) 
-        {
-            $checkWatershedId = $value->WatershedId;
-            $checkParaId = $value->ParaId;
-            $checkCommunityId = $value->CommunityId;
+                foreach ($xmlStr->row as $key => $value) 
+                {
+                    $checkWatershedId = $value->WatershedId;
+                    $checkParaId = $value->ParaId;
+                    $checkCommunityId = $value->CommunityId;
+                    
+                    // dd($checkCommunityId);
+
+                    $RequestData = array(
+                        'WatershedId' => $value->WatershedId,
+                        'ParaId' => $value->ParaId,
+                        'CommunityId' => $value->CommunityId,
+                        'CommunityName' => $value->CommunityName,
+                        'MaleUnder5' => $value->MaleUnder5,
+                        'Male5to14' => $value->Male5to14,
+                        'Male15to19' => $value->Male15to19,
+                        'Male20to49' => $value->Male20to49,
+                        'Male50to65' => $value->Male50to65,
+                        'Male65Up' => $value->Male65Up,
+                        'FemaleUnder5' => $value->FemaleUnder5,
+                        'Female5to14' => $value->Female5to14,
+                        'Female15to19' => $value->Female15to19,
+                        'Female20to49' => $value->Female20to49,
+                        'Female50to65' => $value->Female50to65,
+                        'Female65Up' => $value->Female65Up,
+                        'Totalmale' => $value->Totalmale,
+                        'TotalFemale' => $value->TotalFemale,
+                        'TotalPopulation' => $value->TotalPopulation,
+                        'DisbaleMale' => $value->DisbaleMale,
+                        'DisabledFemale' => $value->DisabledFemale,
+                        'Created_by' => $value->CreatedBy
+                    );
+                    
+                    $InsertData = Population::insertOrIgnore($RequestData);
             
-            // dd($checkCommunityId);
-
-            $RequestData = array(
-                'WatershedId' => $value->WatershedId,
-                'ParaId' => $value->ParaId,
-                'CommunityId' => $value->CommunityId,
-                'CommunityName' => $value->CommunityName,
-                'MaleUnder5' => $value->MaleUnder5,
-                'Male5to14' => $value->Male5to14,
-                'Male15to19' => $value->Male15to19,
-                'Male20to49' => $value->Male20to49,
-                'Male50to65' => $value->Male50to65,
-                'Male65Up' => $value->Male65Up,
-                'FemaleUnder5' => $value->FemaleUnder5,
-                'Female5to14' => $value->Female5to14,
-                'Female15to19' => $value->Female15to19,
-                'Female20to49' => $value->Female20to49,
-                'Female50to65' => $value->Female50to65,
-                'Female65Up' => $value->Female65Up,
-                'Totalmale' => $value->Totalmale,
-                'TotalFemale' => $value->TotalFemale,
-                'TotalPopulation' => $value->TotalPopulation,
-                'DisbaleMale' => $value->DisbaleMale,
-                'DisabledFemale' => $value->DisabledFemale,
-                'Created_by' => $value->CreatedBy
-            );
-
-            $check = DB::table('t01_populations')
-                            ->select('id')
-                            ->where('WatershedId', $checkWatershedId)
-                            ->where('ParaId', $checkParaId)
-                            ->where('CommunityId', $checkCommunityId)
-                            ->exists();
-
-            // dd($check);
-
-            if($check)
-            { 
-                $message = "Opps!! $value->CommunityName Community Already Exist in the Record, You Can not Insert Again But Update. Please, Deselect this Community and Insert Your Data Again ";
-                DB::rollBack();
-                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
-            } 
-            else 
-            {
-                $InsertData = Population::create($RequestData);
-                $InsertData->save();
-                DB::commit();
+                    // DB::table('t01_populations')
+                    //                 ->select('id')
+                    //                 ->where('WatershedId', $checkWatershedId)
+                    //                 ->where('ParaId', $checkParaId)
+                    //                 ->where('CommunityId', $checkCommunityId)
+                    //                 ->get();
+                        
+                    DB::commit();
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully..' ]);
+                }
             }
-        
-        }
+            catch (\Exception $e) 
+            {
+                DB::rollBack();
+                $message = "Opps!! Something is wrong and data not saved..";
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
 
-        if ($InsertData) { 
-            return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully..' ]);
-        }
-        else {
-            return response()->json([ 'status' => 'ERROR', 'message' => 'Data not save, something went wrong..' ]);
-        }
+                
+            
     }
 
     public function get_population_list(Request $request)
