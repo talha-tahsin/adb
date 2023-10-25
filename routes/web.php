@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PopulationController;
 use App\Http\Controllers\UserRoleController;
-use App\Http\Controllers\ReceiptController;
-use App\Http\Controllers\AdmitController;  
-use App\Http\Controllers\ChartofAccountController;
-use App\Http\Controllers\LedgerViewController;
+
+use App\Http\Controllers\PopulationController;
+use App\Http\Controllers\HouseholdController;
+use App\Http\Controllers\LandController;
+
+
 use App\Http\Controllers\UtilsController;
 
 
@@ -28,28 +29,59 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::get('user_role', [UserRoleController::class, 'get_userRole'])->name('user_role');
     Route::post('updt_role', [UserRoleController::class, 'updt_userRole'])->name('updt_role');
     Route::post('delte_role', [UserRoleController::class, 'delte_userRole'])->name('delte_role');
-
-    Route::get('chartof_accounts', [ChartofAccountController::class, 'view_chartofAccounts'])->name('chartofAccounts');
 }); 
 
-Route::group(['prefix' => '/',  'middleware' => 'entry_auth'], function(){
-    Route::get('population_entry', [PopulationController::class, 'population_entry'])->name('Population.Entry');
-    Route::post('InsertCommunityPopulation', [PopulationController::class, 'insert_community_population'])
-           ->name('InsertPopulation');
-    Route::get('admit_entry', [AdmitController::class, 'view_admitEntry'])->name('admitEntry');
-});
+/** Start :: Population Usecase */
+    // View Page Route 
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('population_entry', [PopulationController::class, 'population_entry'])->name('Population.Entry');
+        Route::get('view_population', [PopulationController::class, 'view_population'])->name('View.Population');
+    });
 
-Route::get('view_population', [PopulationController::class, 'view_population'])->name('View.Population');
-Route::get('/get_population_list', [PopulationController::class, 'get_population_list'])->name('View.Population.List');
-Route::get('/get_population_details', [PopulationController::class, 'get_population_details'])->name('Get.Population.Details');
-Route::post('/update_population_details', [PopulationController::class, 'update_population_details'])->name('Update.Population.Details');
-Route::post('/delete_population', [PopulationController::class, 'delete_population'])->name('Delete.Population');
+    // GET Method Route 
+    Route::get('/get_population_list', [PopulationController::class, 'get_population_list']);
+    Route::get('/get_population_details', [PopulationController::class, 'get_population_details']);
 
+    // POST Method Route 
+    Route::post('/insert_populatioin_entry', [PopulationController::class, 'insert_community_population']);
+    Route::post('/update_population_details', [PopulationController::class, 'update_population_details']);
+    Route::post('/delete_population', [PopulationController::class, 'delete_population']);
 
-// internal usecase get data function
-Route::get('/receipt_check_print', [ReceiptController::class, 'view_receiptCheckPrint'])->name('ReceiptCheckPrint');
-Route::get('/getReceipt_list', [ReceiptController::class, 'get_receipt_list'])->name('getReceiptList');
-Route::get('/getPatient_detls', [ReceiptController::class, 'get_patient_detls'])->name('getPatient_detls');
+/** End :: Population */
+
+/** Start :: Household View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('household_entry', [HouseholdController::class, 'view_household_entry'])->name('View.Entry.Household');
+        Route::get('view_household', [HouseholdController::class, 'get_household_view'])->name('View.Household.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_household_info_list', [HouseholdController::class, 'get_household_info_list']);
+    Route::get('/get_household_info_edit', [HouseholdController::class, 'get_household_info_edit']);
+
+    // POST Method Route
+    Route::post('/entry_household_info', [HouseholdController::class, 'entry_household_info']);
+    Route::post('/update_household_info', [HouseholdController::class, 'update_household_info']);
+    Route::post('/delete_household_info', [HouseholdController::class, 'delete_household_info']);
+
+/** End :: Household  */
+
+/** Start :: Land View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('land_entry', [LandController::class, 'view_land_entry'])->name('View.Land.Entry');
+        Route::get('view_land_info', [LandController::class, 'view_land_info'])->name('View.Land.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_land_info_list', [LandController::class, 'get_land_info_list']);
+    Route::get('/get_land_info_edit', [LandController::class, 'get_land_info_edit']);
+
+    // POST Method Route
+    Route::post('/entry_land_info', [LandController::class, 'entry_household_info']);
+    Route::post('/update_land_info', [LandController::class, 'update_household_info']);
+    Route::post('/delete_land_info', [LandController::class, 'delete_household_info']);
+
+/** End :: Household  */
 
 
 

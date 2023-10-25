@@ -1,7 +1,7 @@
 
 
 
-document.title = 'Population';
+document.title = 'Entry Population';
 
 $(document).ready(function () {
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
         success: function (data) {
             // console.log(data);
              $.each(data.message, function (i, v) {
-                insertTableRow(v.community_name, v.id);
+                insertTableRow(v.community_name, v.community_id);
              });
         },
         error: function(xhr, ajaxOptions, thrownError) {
@@ -163,7 +163,7 @@ $(document).on('click', '#save_CommunityInfo', function () {
     console.log(xml_data);
 
     $.ajax({
-        url: "/InsertCommunityPopulation",
+        url: "/insert_populatioin_entry",
         type: "POST",
         data: { '_token' : token, 'xml_data' : xml_data },
         dataType: "JSON",

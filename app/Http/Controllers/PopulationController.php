@@ -66,7 +66,7 @@ class PopulationController extends Controller
                         'Created_by' => $value->CreatedBy
                     );
                     
-                    $InsertData = Population::insertOrIgnore($RequestData);
+                    $InsertData = Population::insert($RequestData);
             
                     // DB::table('t01_populations')
                     //                 ->select('id')
@@ -152,7 +152,8 @@ class PopulationController extends Controller
 
     }
 
-    public function update_population_details(Request $request){
+    public function update_population_details(Request $request)
+    {
         
         $row_id = $request['row_id'];
         $xml = $request['xml_data'];

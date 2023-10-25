@@ -11,7 +11,7 @@ class EntryAuth
     public function handle(Request $request, Closure $next)
     {
         if(!empty(auth()->user()->role)){
-            if(auth()->user()->role == 'admin' || auth()->user()->role == 'all_entry'){
+            if(auth()->user()->role == 'admin' || auth()->user()->role == 'user'){
                return $next($request);
             }
         }

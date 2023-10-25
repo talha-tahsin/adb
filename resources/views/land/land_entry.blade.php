@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="font-family: Serif;">Community Wise Population Entry</h1>
+            <h1 class="m-0" style="font-family: Serif;">Land entry</h1>
           </div><!-- /.col -->
           <div class="col-sm-6"></div><!-- /.col -->
         </div><!-- /.row -->
@@ -63,7 +63,7 @@
                     <!-- <div class="col-md-1"></div> -->
 
                     <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                        <button type="submit" class="btn btn-info" id="entryPopulation" style="width: 100%;border-radius: 20px;color: black;">Entry Community Population</button>
+                        <button type="submit" class="btn btn-info" id="entryPopulation" style="width: 100%;border-radius: 20px;color: black;">Entry Community Household</button>
                     </div>
 
               </div> 
@@ -71,7 +71,7 @@
 
               <div class="form-group hide" id="table_div">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin: 20px 0px 20px 0px;">
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
                             <thead>
@@ -80,34 +80,15 @@
                                     <th rowspan="2" style="text-align:center;">Serial </th>
                                     <th rowspan="2" style="text-align:left;">Name </th>
                                     <th rowspan="2" style="text-align:center;">Select </th>
-                                    <th colspan="6" style="text-align:center;">Age Group Male</th>
-                                    <th colspan="6" style="text-align:center;">Age Group Female</th>
-                                    <th colspan="3" style="text-align:center;">Total Population </th>
-                                    <th colspan="2" style="text-align:center;">Disabled People </th>
-                                    
+                                    <th colspan="4" style="text-align:center;">Type of Household</th>
+                                    <th rowspan="2" style="text-align:center;">Number Of Household </th>
                                 </tr>
 
                                 <tr style="background-color: #99ccff;">
-                                    <th style="text-align:center;border-bottom: none;"> Under 5</th>
-                                    <th style="text-align:center;border-bottom: none;">5-14</th>
-                                    <th style="text-align:center;border-bottom: none;">15-19</th>
-                                    <th style="text-align:center;border-bottom: none;">20-49</th>
-                                    <th style="text-align:center;border-bottom: none;">50-65</th>
-                                    <th style="text-align:center;border-bottom: none;">65+</th>
-
-                                    <th style="text-align:center;border-bottom: none;">Under 5</th>
-                                    <th style="text-align:center;border-bottom: none;">5-14</th>
-                                    <th style="text-align:center;border-bottom: none;">15-19</th>
-                                    <th style="text-align:center;border-bottom: none;">20-49</th>
-                                    <th style="text-align:center;border-bottom: none;">50-65</th>
-                                    <th style="text-align:center;border-bottom: none;">65+</th>
-
-                                    <th style="text-align:center;border-bottom: none;">Male</th>
-                                    <th style="text-align:center;border-bottom: none;">Female</th>
-                                    <th style="text-align:center;border-bottom: none;">In Total </th>
-
-                                    <th style="text-align:center;border-bottom: none;">Male</th>
-                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Jhupri</th>
+                                    <th style="text-align:center;border-bottom: none;">Kacha</th>
+                                    <th style="text-align:center;border-bottom: none;">Semi Pacca</th>
+                                    <th style="text-align:center;border-bottom: none;">Pacca</th>
                                 </tr>
                                 
                                 
@@ -133,7 +114,7 @@
                         <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="save_CommunityInfo" style="width: 100%;border-radius: 20px;color: black;">Save Population Info</button>
+                                <button type="submit" class="btn btn-primary" id="btn_household_entry" style="width: 100%;border-radius: 20px;color: black;">Save Household Info</button>
                             </div>  
                         </div>
 
@@ -161,7 +142,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/population_entry.js') }}"></script>
+<script src="{{ mix('resources/scripts/land_entry.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 

@@ -24,7 +24,7 @@ class UtilsController extends Controller
         
         
         $data = DB::table('lookup_community')
-                    ->select('id', 'community_name')
+                    ->select('id', 'community_id', 'community_name')
                     ->orderBy('community_name')
                     ->get();
 

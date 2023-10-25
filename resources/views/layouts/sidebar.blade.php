@@ -47,7 +47,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('chartofAccounts') }}" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create <small>(Chart of Accounts)</small></p>
                 </a>
@@ -57,7 +57,7 @@
         @endif 
 
         
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'all_entry')
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'user')
         <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -105,11 +105,11 @@
               </li>
             </ul>
           </li> -->
-
+          <li class="nav-header">BaseLine</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>BaseLine
+              <p>Societal Information 
                 <i class="fas fa-angle-left right"></i>
                
               </p>
@@ -118,32 +118,99 @@
               <li class="nav-item">
                 <a href="{{ route('Population.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p class="text">Population Entry</p>
+                  <p class="text">Population</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{ route('View.Entry.Household') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Household</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Land</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Occupation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Livelihood</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Income</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Expenditure</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Economic Status</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Education</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Health</p>
+                </a>
+              </li>
+             
+
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>View
+                <i class="fas fa-angle-left right"></i>
+               
+              </p>
+            </a>
+           <ul class="nav nav-treeview">
+              
               <li class="nav-item">
                 <a href="{{ route('View.Population') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Population View</p>
+                  <p>Population</p>
                 </a>
               </li>
+             
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('View.Household.Info') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Household Entry
-                    
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admitEntry') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Household View</p>
+                  <p>Household</p>
                 </a>
               </li>
 
             </ul>
           </li>
+
         @endif 
 
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'receipt_all')
@@ -313,30 +380,6 @@
             </ul>
           </li>
 
-          
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
-              <p>
-                Search
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/search/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Search</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/search/enhanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Enhanced</p>
-                </a>
-              </li>
-            </ul>
-          </li>
 
         </ul>
       </nav>
