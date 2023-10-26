@@ -5,9 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserRoleController;
 
+use App\Http\Controllers\SocietalViewController;
 use App\Http\Controllers\PopulationController;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\LandController;
+use App\Http\Controllers\OccupationController;
 
 
 use App\Http\Controllers\UtilsController;
@@ -34,8 +36,8 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 /** Start :: Population Usecase */
     // View Page Route 
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-        Route::get('population_entry', [PopulationController::class, 'population_entry'])->name('Population.Entry');
-        Route::get('view_population', [PopulationController::class, 'view_population'])->name('View.Population');
+        Route::get('population_entry', [SocietalViewController::class, 'population_entry'])->name('Population.Entry');
+        Route::get('view_population', [SocietalViewController::class, 'view_population'])->name('View.Population');
     });
 
     // GET Method Route 
@@ -51,8 +53,8 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
 /** Start :: Household View Page Route */
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-        Route::get('household_entry', [HouseholdController::class, 'view_household_entry'])->name('View.Entry.Household');
-        Route::get('view_household', [HouseholdController::class, 'get_household_view'])->name('View.Household.Info');
+        Route::get('household_entry', [SocietalViewController::class, 'view_household_entry'])->name('View.Entry.Household');
+        Route::get('view_household', [SocietalViewController::class, 'get_household_view'])->name('View.Household.Info');
     });
 
     // GET Method Route 
@@ -60,7 +62,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::get('/get_household_info_edit', [HouseholdController::class, 'get_household_info_edit']);
 
     // POST Method Route
-    Route::post('/entry_household_info', [HouseholdController::class, 'entry_household_info']);
+    Route::post('/entry_household_info', [HouseholdController::class, 'store_household_info']);
     Route::post('/update_household_info', [HouseholdController::class, 'update_household_info']);
     Route::post('/delete_household_info', [HouseholdController::class, 'delete_household_info']);
 
@@ -68,8 +70,8 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
 /** Start :: Land View Page Route */
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-        Route::get('land_entry', [LandController::class, 'view_land_entry'])->name('View.Land.Entry');
-        Route::get('view_land_info', [LandController::class, 'view_land_info'])->name('View.Land.Info');
+        Route::get('land_entry', [SocietalViewController::class, 'view_land_entry'])->name('View.Land.Entry');
+        Route::get('view_land_info', [SocietalViewController::class, 'view_land_info'])->name('View.Land.Info');
     });
 
     // GET Method Route 
@@ -77,9 +79,26 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::get('/get_land_info_edit', [LandController::class, 'get_land_info_edit']);
 
     // POST Method Route
-    Route::post('/entry_land_info', [LandController::class, 'entry_household_info']);
-    Route::post('/update_land_info', [LandController::class, 'update_household_info']);
-    Route::post('/delete_land_info', [LandController::class, 'delete_household_info']);
+    Route::post('/store_land_info', [LandController::class, 'store_land_info']);
+    Route::post('/update_land_info', [LandController::class, 'update_land_info']);
+    Route::post('/delete_land_info', [LandController::class, 'delete_land_info']);
+
+/** End :: Household  */
+
+/** Start :: Occupation View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('occupation_entry', [SocietalViewController::class, 'view_occupation_entry'])->name('View.Occupation.Entry');
+        //Route::get('view_occupation_info', [SocietalViewController::class, 'view_occupation_info'])->name('View.Occupation.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_occupation_info_list', [OccupationController::class, 'get_occupation_info_list']);
+    Route::get('/get_occupation_info_edit', [OccupationController::class, 'get_occupation_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_occupation_info', [OccupationController::class, 'store_occupation_info']);
+    Route::post('/update_occupation_info', [OccupationController::class, 'update_occupation_info']);
+    Route::post('/delete_occupation_info', [OccupationController::class, 'delete_occupation_info']);
 
 /** End :: Household  */
 

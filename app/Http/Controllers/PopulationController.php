@@ -15,14 +15,6 @@ use App\Models\Population;
 
 class PopulationController extends Controller
 {
-    
-    public function population_entry(){
-        return view('population.entry_population');
-    }
-
-    public function view_population(){
-        return view('population.view_population');
-    }
 
     public function insert_community_population(Request $request)
     {
@@ -31,17 +23,18 @@ class PopulationController extends Controller
         // dd($xml);
 
         try {
+                $cnt = 0;
                 DB::beginTransaction();
 
                 foreach ($xmlStr->row as $key => $value) 
                 {
-                    $checkWatershedId = $value->WatershedId;
-                    $checkParaId = $value->ParaId;
-                    $checkCommunityId = $value->CommunityId;
+                    $exist_watershed_id = $value->WatershedId;
+                    $exist_para_id = $value->ParaId;
+                    $exist_community_id = $value->CommunityId;
                     
                     // dd($checkCommunityId);
 
-                    $RequestData = array(
+                    $save_data = array(
                         'WatershedId' => $value->WatershedId,
                         'ParaId' => $value->ParaId,
                         'CommunityId' => $value->CommunityId,
@@ -63,26 +56,44 @@ class PopulationController extends Controller
                         'TotalPopulation' => $value->TotalPopulation,
                         'DisbaleMale' => $value->DisbaleMale,
                         'DisabledFemale' => $value->DisabledFemale,
-                        'Created_by' => $value->CreatedBy
+                        'created_by' => $value->CreatedBy,
                     );
                     
-                    $InsertData = Population::insert($RequestData);
-            
-                    // DB::table('t01_populations')
-                    //                 ->select('id')
-                    //                 ->where('WatershedId', $checkWatershedId)
-                    //                 ->where('ParaId', $checkParaId)
-                    //                 ->where('CommunityId', $checkCommunityId)
-                    //                 ->get();
-                        
-                    DB::commit();
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully..' ]);
+                    $check = DB::table('tbl_population')->select('id')
+                                        ->where('WatershedId', $exist_watershed_id)
+                                        ->where('ParaId', $exist_para_id)
+                                        ->where('CommunityId', $exist_community_id)
+                                        ->count();
+
+                    if($check == 0)
+                    {
+                        $store = Population::create($save_data);
+                        $duplicate = false;
+                    }
+                    else
+                    {
+                        $cnt++;
+                        $duplicate = true;
+                    }
                 }
+
+                DB::commit();
+
+                if($duplicate && $cnt > 0)
+                { 
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => ''.$cnt.' row found already exsits, Data saved without this..' ]);
+                }
+                else
+                { 
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate..' ]);
+                }
+
             }
             catch (\Exception $e) 
             {
                 DB::rollBack();
-                $message = "Opps!! Something is wrong and data not saved..";
+                $message = "Opps!! Something is wrong, data not saved and rollback..";
+
                 return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
             }
 
@@ -96,7 +107,7 @@ class PopulationController extends Controller
         $para_id = $request['para_id'];
         // dd($watershed_id);
 
-        $data = DB::table('t01_populations')
+        $data = DB::table('tbl_population')
                         ->where('WatershedId', $watershed_id) 
                         ->where('ParaId', $para_id)           
                         ->get();
@@ -143,7 +154,7 @@ class PopulationController extends Controller
         
         $rowId = $request['row_id'];
 
-        $sql_data = DB::table('t01_populations')
+        $sql_data = DB::table('tbl_population')
                         ->where('id', $rowId)
                         ->get();
 

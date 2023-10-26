@@ -9,7 +9,7 @@ class Population extends Model
 {
     use HasFactory;
 
-    protected $table = 't01_populations';
+    protected $table = 'tbl_population';
 
     protected $fillable = [
         
@@ -34,7 +34,7 @@ class Population extends Model
         'TotalPopulation',
         'DisbaleMale',
         'DisabledFemale',
-        'Created_by',
+        'created_by',
         
     ];
 }

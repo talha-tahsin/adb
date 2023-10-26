@@ -14,16 +14,8 @@ use App\Models\Household;
 
 class HouseholdController extends Controller
 {
-    
-    public function view_household_entry(){
-        return view('household.household_entry');
-    }
 
-    public function get_household_view(){
-        return view('household.view_household');
-    }
-
-    public function entry_household_info(Request $request)
+    public function store_household_info(Request $request)
     {
         $xml = $request['xml_data'];
         $xmlStr = simplexml_load_string($xml);

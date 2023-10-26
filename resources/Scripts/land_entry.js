@@ -24,22 +24,6 @@ $(document).ready(function () {
         }
     });
 
-    $.ajax({
-        url: "/CommunityList",
-        type: "GET",
-        data: { 'community_list' : 'get_data' },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-             $.each(data.message, function (i, v) {
-                insertTableRow(v.community_name, v.community_id);
-             });
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
 
 });
 
@@ -69,25 +53,43 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
-$(document).on('click', '#entryPopulation', function () {
+$(document).on('click', '#get_communities', function () {
 
     var Watershed_Id = $('#watershedId option:selected').val();
     var Para_Id = $('#para_list option:selected').val();
 
     if(Watershed_Id && Para_Id)
     {
-        $('#table_div').removeClass('hide');
+        
+        $.ajax({
+            url: "/CommunityList",
+            type: "GET",
+            data: { 'community_list' : 'get_data' },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                $('#table_div').removeClass('hide');
+                $.each(data.message, function (i, v) {
+                insertTableRow(v.community_name, v.community_id);
+                });
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
     }
 
 });
 
-$(document).on('click', '#save_CommunityInfo', function () {
+$(document).on('click', '#btn_store', function () {
 
     var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershedId option:selected').val();
     var paraId = $('#para_list option:selected').val();
     var xml_data = '';
+
 
     xml_data = '<head>';
 
@@ -99,26 +101,20 @@ $(document).on('click', '#save_CommunityInfo', function () {
         {
             var tr_comnty_id = $(this).attr('comnty_id');
             var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
-            var m_under_5 = $(this).find('#m_under_5').val();
-            var m_5_14 = $(this).find('#m_5_14').val();
-            var m_15_19 = $(this).find('#m_15_19').val();
-            var m_20_49 = $(this).find('#m_20_49').val();
-            var m_50_65 = $(this).find('#m_50_65').val();
-            var m_65_up = $(this).find('#m_65_up').val();
 
-            var fe_under_5 = $(this).find('#fe_under_5').val();
-            var fe_5_14 = $(this).find('#fe_5_14').val();
-            var fe_15_19 = $(this).find('#fe_15_19').val();
-            var fe_20_49 = $(this).find('#fe_20_49').val();
-            var fe_50_65 = $(this).find('#fe_50_65').val();
-            var fe_65_up = $(this).find('#fe_65_up').val();
+            var Landless = $(this).find('#Landless').val();
+            var Self_owned = $(this).find('#Self_owned').val();
+            var Community_Land = $(this).find('#Community_Land').val();
+            var Lease = $(this).find('#Lease').val();
+            var Sharecropping = $(this).find('#Sharecropping').val();
+            var Occupation_Land = $(this).find('#Occupation_Land').val();
 
-            var m_total = $(this).find('#m_total').val();
-            var fe_total = $(this).find('#fe_total').val();
-            var grnd_total = $(this).find('#grandTotal').val();
-
-            var m_disable = $(this).find('#m_disable').val();
-            var fe_disable = $(this).find('#fe_disable').val();
+            var Grove_Land = $(this).find('#Grove_Land').val();
+            var Valley = $(this).find('#Valley').val();
+            var Plain_Land = $(this).find('#Plain_Land').val();
+            var Hilly = $(this).find('#Hilly').val();
+            var Mixed = $(this).find('#Mixed').val();
+            var Profit = $(this).find('#Profit option:selected').val();
 
 
             // first binding data as xml string
@@ -126,29 +122,22 @@ $(document).on('click', '#save_CommunityInfo', function () {
 
             xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
             xml_data += '<ParaId>' + paraId + '</ParaId>';
-
             xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
             xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
-            xml_data += '<MaleUnder5>' + m_under_5 + '</MaleUnder5>';
-            xml_data += '<Male5to14>' + m_5_14 + '</Male5to14>';
-            xml_data += '<Male15to19>' + m_15_19 + '</Male15to19>';
-            xml_data += '<Male20to49>' + m_20_49 + '</Male20to49>';
-            xml_data += '<Male50to65>' + m_50_65 + '</Male50to65>';
-            xml_data += '<Male65Up>' + m_65_up + '</Male65Up>';
 
-            xml_data += '<FemaleUnder5>' + fe_under_5 + '</FemaleUnder5>';
-            xml_data += '<Female5to14>' + fe_5_14 + '</Female5to14>';
-            xml_data += '<Female15to19>' + fe_15_19 + '</Female15to19>';
-            xml_data += '<Female20to49>' + fe_20_49 + '</Female20to49>';
-            xml_data += '<Female50to65>' + fe_50_65 + '</Female50to65>';
-            xml_data += '<Female65Up>' + fe_65_up + '</Female65Up>';
+            xml_data += '<Landless>' + Landless + '</Landless>';
+            xml_data += '<Self_owned>' + Self_owned + '</Self_owned>';
+            xml_data += '<Community_Land>' + Community_Land + '</Community_Land>';
+            xml_data += '<Lease>' + Lease + '</Lease>';
+            xml_data += '<Sharecropping>' + Sharecropping + '</Sharecropping>';
+            xml_data += '<Occupation_Land>' + Occupation_Land + '</Occupation_Land>';
 
-            xml_data += '<Totalmale>' + m_total + '</Totalmale>';
-            xml_data += '<TotalFemale>' + fe_total + '</TotalFemale>';
-            xml_data += '<TotalPopulation>' + grnd_total + '</TotalPopulation>';
-
-            xml_data += '<DisbaleMale>' + m_disable + '</DisbaleMale>';
-            xml_data += '<DisabledFemale>' + fe_disable + '</DisabledFemale>';
+            xml_data += '<Grove_Land>' + Grove_Land + '</Grove_Land>';
+            xml_data += '<Valley>' + Valley + '</Valley>';
+            xml_data += '<Plain_Land>' + Plain_Land + '</Plain_Land>';
+            xml_data += '<Hilly>' + Hilly + '</Hilly>';
+            xml_data += '<Mixed>' + Mixed + '</Mixed>';
+            xml_data += '<Profit>' + Profit + '</Profit>';
 
             xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
 
@@ -163,7 +152,7 @@ $(document).on('click', '#save_CommunityInfo', function () {
     console.log(xml_data);
 
     $.ajax({
-        url: "/insert_populatioin_entry",
+        url: "/store_land_info",
         type: "POST",
         data: { '_token' : token, 'xml_data' : xml_data },
         dataType: "JSON",
@@ -207,72 +196,61 @@ function insertTableRow(comntyName, comuntyId) {
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="m_under_5" class="form-control m_num" name="m_under_5" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Landless" class="form-control" name="Landless" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="m_5_14" class="form-control m_num" name="m_5_14" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Self_owned" class="form-control" name="Self_owned" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="m_15_19" class="form-control m_num" name="m_15_19" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Community_Land" class="form-control" name="Community_Land" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="m_20_49" class="form-control m_num" name="m_20_49" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Lease" class="form-control" name="Lease" value="" style="width: 70px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="m_50_65" class="form-control m_num" name="m_50_65" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Sharecropping" class="form-control" name="Sharecropping" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="m_65_up" class="form-control m_num" name="m_65_up" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Occupation_Land" class="form-control" name="Occupation_Land" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="fe_under_5" class="form-control fe_num" name="fe_under_5" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Grove_Land" class="form-control" name="Grove_Land" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="fe_5_14" class="form-control fe_num" name="fe_5_14" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Valley" class="form-control" name="Valley" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="fe_15_19" class="form-control fe_num" name="fe_15_19" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Plain_Land" class="form-control" name="Plain_Land" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="fe_20_49" class="form-control fe_num" name="fe_20_49" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Hilly" class="form-control" name="Hilly" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="fe_50_65" class="form-control fe_num" name="fe_50_65" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="Mixed" class="form-control" name="Mixed" value="" style="width: 80px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="fe_65_up" class="form-control fe_num" name="fe_65_up" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<select type="text" id="Profit" name="Profit" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="1">Self/Own</option>';
+    appendString += '<option value="2">Common/Equal</option>';
+    appendString += '<option value="3">Partial</option>';
+    appendString += '<option value="4">Ratio</option>';
+    appendString += '</select>';
     appendString += '</td>';
 
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_total" class="form-control total" name="m_total" value="" style="width: 50px;text-align: center;" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_total" class="form-control total" name="fe_total" value="" style="width: 50px;text-align: center;" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="grandTotal" class="form-control " name="grandTotal" value="" style="width: 50px;text-align: center;" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="m_disable" class="form-control " name="m_disable" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fe_disable" class="form-control " name="fe_disable" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
+   
+    
 
     //appendString += '<td style="text-align: center;">';
     //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';

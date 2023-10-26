@@ -34,6 +34,7 @@
               <div class="card-body">
 
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
+                  <!-- <input type="hidden" name="userName" id="created_timestamp" value="{{ date("Y-m-d H:i:s",time()) }}" /> -->
 
                   <div class="row"> 
                     <!-- <div class="col-md-1"></div>  -->
@@ -63,7 +64,7 @@
                     <!-- <div class="col-md-1"></div> -->
 
                     <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                        <button type="submit" class="btn btn-info" id="entryPopulation" style="width: 100%;border-radius: 20px;color: black;">Entry Community Household</button>
+                        <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get Entry for Communities</button>
                     </div>
 
               </div> 
@@ -77,18 +78,27 @@
                             <thead>
                                 
                                 <tr style="background-color: #8ed6f2;">
-                                    <th rowspan="2" style="text-align:center;">Serial </th>
-                                    <th rowspan="2" style="text-align:left;">Name </th>
+                                    <th rowspan="2" style="text-align:center;">Serial</th>
+                                    <th rowspan="2" style="text-align:left;">Name</th>
                                     <th rowspan="2" style="text-align:center;">Select </th>
-                                    <th colspan="4" style="text-align:center;">Type of Household</th>
-                                    <th rowspan="2" style="text-align:center;">Number Of Household </th>
+                                    <th colspan="5" style="text-align:center;">Land Holding</th>
+                                    <th rowspan="2" style="text-align:center;">Total Land</th>
+                                    <th colspan="5" style="text-align:center;">Land type</th>
+                                    <th rowspan="2" style="text-align:center;">Profit Distribution</th>
                                 </tr>
 
                                 <tr style="background-color: #99ccff;">
-                                    <th style="text-align:center;border-bottom: none;">Jhupri</th>
-                                    <th style="text-align:center;border-bottom: none;">Kacha</th>
-                                    <th style="text-align:center;border-bottom: none;">Semi Pacca</th>
-                                    <th style="text-align:center;border-bottom: none;">Pacca</th>
+                                    <th style="text-align:center;border-bottom: none;">Landless</th>
+                                    <th style="text-align:center;border-bottom: none;">Self-owned</th>
+                                    <th style="text-align:center;border-bottom: none;">Community Land</th>
+                                    <th style="text-align:center;border-bottom: none;">Lease</th>
+                                    <th style="text-align:center;border-bottom: none;">Sharecropping</th>
+
+                                    <th style="text-align:center;border-bottom: none;">Grove Land</th>
+                                    <th style="text-align:center;border-bottom: none;">Valley</th>
+                                    <th style="text-align:center;border-bottom: none;">Plain Land</th>
+                                    <th style="text-align:center;border-bottom: none;">Hilly</th>
+                                    <th style="text-align:center;border-bottom: none;">Mixed</th>
                                 </tr>
                                 
                                 
@@ -114,7 +124,7 @@
                         <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_household_entry" style="width: 100%;border-radius: 20px;color: black;">Save Household Info</button>
+                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
                             </div>  
                         </div>
 

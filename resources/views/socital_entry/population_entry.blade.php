@@ -63,7 +63,7 @@
                     <!-- <div class="col-md-1"></div> -->
 
                     <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                        <button type="submit" class="btn btn-info" id="entryPopulation" style="width: 100%;border-radius: 20px;color: black;">Entry Community Population</button>
+                        <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
                     </div>
 
               </div> 
@@ -71,7 +71,7 @@
 
               <div class="form-group hide" id="table_div">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin: 20px 0px 10px 0px;">
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
                             <thead>
@@ -133,7 +133,7 @@
                         <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="save_CommunityInfo" style="width: 100%;border-radius: 20px;color: black;">Save Population Info</button>
+                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Population Info</button>
                             </div>  
                         </div>
 
