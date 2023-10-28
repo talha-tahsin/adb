@@ -41,9 +41,14 @@ class SocietalViewController extends Controller
         return view('societal_entry.livelihood_entry');
     }
 
-    // Livelihood
+    // Income
     public function view_income_entry(){
         return view('societal_entry.income_entry');
+    }
+
+    // Expenditure
+    public function view_expenditure_entry(){
+        return view('societal_entry.expenditure_entry');
     }
 
 }

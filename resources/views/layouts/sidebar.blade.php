@@ -155,7 +155,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                <a href="{{ route('View.Expenditure.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Expenditure</p>
                 </a>

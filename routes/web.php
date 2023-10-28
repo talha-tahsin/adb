@@ -13,6 +13,7 @@ use App\Http\Controllers\Societal\LandController;
 use App\Http\Controllers\Societal\OccupationController;
 use App\Http\Controllers\Societal\LivelihoodController;
 use App\Http\Controllers\Societal\IncomeController;
+use App\Http\Controllers\Societal\ExpenditureController;
 
 use App\Http\Controllers\UtilsController;
 
@@ -138,6 +139,22 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
+/** Start :: Expenditure View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('expenditure_entry', [SocietalViewController::class, 'view_expenditure_entry'])->name('View.Expenditure.Entry');
+        //Route::get('view_occupation_info', [SocietalViewController::class, 'view_occupation_info'])->name('View.Occupation.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_expenditure_info_list', [ExpenditureController::class, 'get_expenditure_info_list']);
+    Route::get('/get_expenditure_info_edit', [ExpenditureController::class, 'get_expenditure_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_expenditure_info', [ExpenditureController::class, 'store_expenditure_info']);
+    Route::post('/update_expenditure_info', [ExpenditureController::class, 'update_expenditure_info']);
+    Route::post('/delete_expenditure_info', [ExpenditureController::class, 'delete_expenditure_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 
 // get all utils (global) function data 
