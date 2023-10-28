@@ -5,15 +5,18 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserRoleController;
 
-use App\Http\Controllers\SocietalViewController;
-use App\Http\Controllers\PopulationController;
-use App\Http\Controllers\HouseholdController;
-use App\Http\Controllers\LandController;
-use App\Http\Controllers\OccupationController;
-
+/** :: Societal Controller :: */
+use App\Http\Controllers\Societal\SocietalViewController;
+use App\Http\Controllers\Societal\PopulationController;
+use App\Http\Controllers\Societal\HouseholdController;
+use App\Http\Controllers\Societal\LandController;
+use App\Http\Controllers\Societal\OccupationController;
+use App\Http\Controllers\Societal\LivelihoodController;
+use App\Http\Controllers\Societal\IncomeController;
 
 use App\Http\Controllers\UtilsController;
 
+// ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 Route::get('/', [HomeController::class, 'view_dashboard'])->name('dashboard');
 Route::get('/dashboard', [HomeController::class, 'view_dashboard'])->name('dashboard');
@@ -33,8 +36,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::post('delte_role', [UserRoleController::class, 'delte_userRole'])->name('delte_role');
 }); 
 
-/** Start :: Population Usecase */
-    // View Page Route 
+/** Start :: Population View Page */
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
         Route::get('population_entry', [SocietalViewController::class, 'population_entry'])->name('Population.Entry');
         Route::get('view_population', [SocietalViewController::class, 'view_population'])->name('View.Population');
@@ -49,7 +51,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::post('/update_population_details', [PopulationController::class, 'update_population_details']);
     Route::post('/delete_population', [PopulationController::class, 'delete_population']);
 
-/** End :: Population */
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Household View Page Route */
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
@@ -66,7 +68,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::post('/update_household_info', [HouseholdController::class, 'update_household_info']);
     Route::post('/delete_household_info', [HouseholdController::class, 'delete_household_info']);
 
-/** End :: Household  */
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Land View Page Route */
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
@@ -83,7 +85,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::post('/update_land_info', [LandController::class, 'update_land_info']);
     Route::post('/delete_land_info', [LandController::class, 'delete_land_info']);
 
-/** End :: Household  */
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Occupation View Page Route */
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
@@ -100,11 +102,45 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::post('/update_occupation_info', [OccupationController::class, 'update_occupation_info']);
     Route::post('/delete_occupation_info', [OccupationController::class, 'delete_occupation_info']);
 
-/** End :: Household  */
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: Livelihood View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('livelihood_entry', [SocietalViewController::class, 'view_livelihood_entry'])->name('View.Livelihood.Entry');
+        //Route::get('view_occupation_info', [SocietalViewController::class, 'view_occupation_info'])->name('View.Occupation.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_livelihood_info_list', [LivelihoodController::class, 'get_livelihood_info_list']);
+    Route::get('/get_livelihood_info_edit', [LivelihoodController::class, 'get_livelihood_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_livelihood_info', [LivelihoodController::class, 'store_livelihood_info']);
+    Route::post('/update_livelihood_info', [LivelihoodController::class, 'update_livelihood_info']);
+    Route::post('/delete_livelihood_info', [LivelihoodController::class, 'delete_livelihood_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: Income View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('income_entry', [SocietalViewController::class, 'view_income_entry'])->name('View.Income.Entry');
+        //Route::get('view_occupation_info', [SocietalViewController::class, 'view_occupation_info'])->name('View.Occupation.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_income_info_list', [IncomeController::class, 'get_income_info_list']);
+    Route::get('/get_income_info_edit', [IncomeController::class, 'get_income_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_income_info', [IncomeController::class, 'store_income_info']);
+    Route::post('/update_income_info', [IncomeController::class, 'update_income_info']);
+    Route::post('/delete_income_info', [IncomeController::class, 'delete_income_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 
 
-// get all global function data 
+// get all utils (global) function data 
 Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId'])->name('watershedList');
 Route::get('/get_paraList', [UtilsController::class, 'getParaList'])->name('ParaList');
 

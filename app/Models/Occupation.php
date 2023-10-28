@@ -30,6 +30,9 @@ class Occupation extends Model
         'handicraft',
         'others',
         'created_by',
+        'created_at',
+        'updated_by',
+        'updated_at',
         
     ];
 }

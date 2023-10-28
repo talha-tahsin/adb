@@ -323,7 +323,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/view_population.js') }}"></script>
+<script src="{{ mix('resources/scripts/societal_view/view_population.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 <!-- DataTables  & Plugins -->

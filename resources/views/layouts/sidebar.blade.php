@@ -143,21 +143,21 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                <a href="{{ route('View.Livelihood.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Livelihood</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                <a href="{{ route('View.Income.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Monthly Income</p>
+                  <p>Income</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('View.Land.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Monthly Expenditure</p>
+                  <p>Expenditure</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -253,7 +253,7 @@
           </li>
         @endif
           
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'admit_all')  
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'test')  
 
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -292,7 +292,7 @@
 
         @endif
 
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'voucher_all')
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'test')
 
           <li class="nav-item">
             <a href="#" class="nav-link">

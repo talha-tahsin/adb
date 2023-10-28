@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Household extends Model
+class Income extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_household';
+    protected $table = 'tbl_income';
 
     protected $fillable = [
         
@@ -17,15 +17,21 @@ class Household extends Model
         'para_id',
         'community_id',
         'community_name',
-        'jhupri_house',
-        'kacha_house',
-        'semi_pacca_house',
-        'pacca_house',
-        'total_house',
+        'avg_per_house',
+        'income_1to6',
+        'income_7to10',
+        'income_11to15',
+        'income_16to20',
+        'income_21to25',
+        'income_26to30',
+        'income_30Up',
+        'male',
+        'female',
         'created_by',
         'created_at',
         'updated_by',
         'updated_at',
         
     ];
+
 }

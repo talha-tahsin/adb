@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="font-family: Serif;">Household entry</h1>
+            <h1 class="m-0" style="font-family: Serif;">Income Entry</h1>
           </div><!-- /.col -->
           <div class="col-sm-6"></div><!-- /.col -->
         </div><!-- /.row -->
@@ -63,7 +63,7 @@
                     <!-- <div class="col-md-1"></div> -->
 
                     <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                        <button type="submit" class="btn btn-info" id="entryPopulation" style="width: 100%;border-radius: 20px;color: black;">Entry Community Household</button>
+                        <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
                     </div>
 
               </div> 
@@ -71,26 +71,26 @@
 
               <div class="form-group hide" id="table_div">
                     <div class="row">
-                        <div class="col-md-12" style="margin: 20px 0px 20px 0px;">
+                        <div class="col-md-12" style="margin: 20px 0px 10px 0px;">
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
                             <thead>
                                 
                                 <tr style="background-color: #8ed6f2;">
-                                    <th rowspan="2" style="text-align:center;">Serial </th>
-                                    <th rowspan="2" style="text-align:left;">Name </th>
-                                    <th rowspan="2" style="text-align:center;">Select </th>
-                                    <th colspan="4" style="text-align:center;">Type of Household</th>
-                                    <th rowspan="2" style="text-align:center;">Number Of Household </th>
+                                    <th style="text-align:center;">Serial </th>
+                                    <th style="text-align:left;">Name </th>
+                                    <th style="text-align:center;">Select </th>
+                                    <th style="text-align:center;">Average working people per house</th>
+                                    <th style="text-align:center;">1-6000</th>
+                                    <th style="text-align:center;">7-10000</th>
+                                    <th style="text-align:center;">11000-15000</th>
+                                    <th style="text-align:center;">16000-20000</th>
+                                    <th style="text-align:center;">21000-25000</th>
+                                    <th style="text-align:center;">26000-30000</th>
+                                    <th style="text-align:center;">30000(+)</th>
+                                    <th style="text-align:center;">Male</th>
+                                    <th style="text-align:center;">Feamle</th>
                                 </tr>
-
-                                <tr style="background-color: #99ccff;">
-                                    <th style="text-align:center;border-bottom: none;">Jhupri</th>
-                                    <th style="text-align:center;border-bottom: none;">Kacha</th>
-                                    <th style="text-align:center;border-bottom: none;">Semi Pacca</th>
-                                    <th style="text-align:center;border-bottom: none;">Pacca</th>
-                                </tr>
-                                
                                 
                             </thead>
 
@@ -114,7 +114,7 @@
                         <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_household_entry" style="width: 100%;border-radius: 20px;color: black;">Save Household Info</button>
+                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
                             </div>  
                         </div>
 
@@ -166,7 +166,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/household_entry.js') }}"></script>
+<script src="{{ mix('resources/scripts/societal_entry/income_entry.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 

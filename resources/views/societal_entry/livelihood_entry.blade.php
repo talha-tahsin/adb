@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="font-family: Serif;">Community Wise Population Entry</h1>
+            <h1 class="m-0" style="font-family: Serif;">Livelihood Entry</h1>
           </div><!-- /.col -->
           <div class="col-sm-6"></div><!-- /.col -->
         </div><!-- /.row -->
@@ -80,36 +80,46 @@
                                     <th rowspan="2" style="text-align:center;">Serial </th>
                                     <th rowspan="2" style="text-align:left;">Name </th>
                                     <th rowspan="2" style="text-align:center;">Select </th>
-                                    <th colspan="6" style="text-align:center;">Age Group Male</th>
-                                    <th colspan="6" style="text-align:center;">Age Group Female</th>
-                                    <th colspan="3" style="text-align:center;">Total Population </th>
-                                    <th colspan="2" style="text-align:center;">Disabled People </th>
-                                    
+                                    <th colspan="2" style="text-align:center;">Jhum</th>
+                                    <th colspan="2" style="text-align:center;">Plain land</th>
+                                    <th colspan="2" style="text-align:center;">Orchard</th>
+                                    <th colspan="2" style="text-align:center;">Fuel Wood</th>
+                                    <th colspan="2" style="text-align:center;">Wage labour</th>
+                                    <th colspan="2" style="text-align:center;">Poultry </th>
+                                    <th colspan="2" style="text-align:center;">Livestock</th>
+                                    <th colspan="2" style="text-align:center;">Aquaculture</th>
+                                    <th colspan="2" style="text-align:center;">Service Holder</th>
+                                    <th colspan="2" style="text-align:center;">Business</th>
+                                    <th colspan="2" style="text-align:center;">Handicraft</th>
+                                    <th colspan="2" style="text-align:center;">Other</th>
                                 </tr>
 
                                 <tr style="background-color: #99ccff;">
-                                    <th style="text-align:center;border-bottom: none;"> Under 5</th>
-                                    <th style="text-align:center;border-bottom: none;">5-14</th>
-                                    <th style="text-align:center;border-bottom: none;">15-19</th>
-                                    <th style="text-align:center;border-bottom: none;">20-49</th>
-                                    <th style="text-align:center;border-bottom: none;">50-65</th>
-                                    <th style="text-align:center;border-bottom: none;">65+</th>
-
-                                    <th style="text-align:center;border-bottom: none;">Under 5</th>
-                                    <th style="text-align:center;border-bottom: none;">5-14</th>
-                                    <th style="text-align:center;border-bottom: none;">15-19</th>
-                                    <th style="text-align:center;border-bottom: none;">20-49</th>
-                                    <th style="text-align:center;border-bottom: none;">50-65</th>
-                                    <th style="text-align:center;border-bottom: none;">65+</th>
-
                                     <th style="text-align:center;border-bottom: none;">Male</th>
                                     <th style="text-align:center;border-bottom: none;">Female</th>
-                                    <th style="text-align:center;border-bottom: none;">In Total </th>
-
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
+                                    <th style="text-align:center;border-bottom: none;">Male</th>
+                                    <th style="text-align:center;border-bottom: none;">Female</th>
                                     <th style="text-align:center;border-bottom: none;">Male</th>
                                     <th style="text-align:center;border-bottom: none;">Female</th>
                                 </tr>
-                                
                                 
                             </thead>
 
@@ -133,7 +143,7 @@
                         <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Population Info</button>
+                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
                             </div>  
                         </div>
 
@@ -176,7 +186,8 @@
 </div>
 
 
-  </div>
+
+    </div>
 </section>
 
   
@@ -184,7 +195,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/population_entry.js') }}"></script>
+<script src="{{ mix('resources/scripts/societal_entry/livelihood_entry.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 
