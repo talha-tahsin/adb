@@ -19,25 +19,21 @@ class LandController extends Controller
     public function store_land_info(Request $request)
     {
         $xml = $request['xml_data'];
-        $xmlStr = simplexml_load_string($xml);
+        $xmlstr = simplexml_load_string($xml);
 
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
-        // dd($date);
 
         try {
-                $cnt = 0;
+                $dupCount = 0;
+                $cname = '';
                 DB::beginTransaction();
 
-                foreach ($xmlStr->row as $key => $value) 
-                {
-                    $exist_watershed_id = $value->WatershedId;
-                    $exist_para_id = $value->ParaId;
-                    $exist_community_id = $value->CommunityId;
-                    
+                foreach ($xmlstr->row as $value) 
+                { 
                     // dd($checkCommunityId);
 
-                    $save_data = array(
+                    $store_data = array(
                         'watershed_id' => $value->WatershedId,
                         'para_id' => $value->ParaId,
                         'community_id' => $value->CommunityId,
@@ -58,22 +54,37 @@ class LandController extends Controller
                         'created_by' => $value->CreatedBy,
                         'created_at' => $created_at,
                     );
+
+                    // check duplicate record for community
+                    $exist_watershed_id = $value->WatershedId;
+                    $exist_para_id = $value->ParaId;
+                    $exist_community_id = $value->CommunityId;
             
-                    $check = DB::table('tbl_land')->select('id')
+                    $found = DB::table('tbl_land')->select('id')
                                     ->where('watershed_id', $exist_watershed_id)
                                     ->where('para_id', $exist_para_id)
                                     ->where('community_id', $exist_community_id)
                                     ->count();
 
-                    if($check == 0)
-                    {
-                        $store = Land::create($save_data);
-                        $duplicate = false;
+                    $get_community =json_encode($value->CommunityName);
+                    $jsonData = json_decode($get_community, TRUE);
+                    $tem_cname = $jsonData[0];
+
+                    if($found == 0){
+                        // $store = Land::insert($store_data);
+                        DB::table('tbl_land')->insert($store_data);
                     }
                     else
                     {
-                        $cnt++;
-                        $duplicate = true;
+                        $dupCount++;
+
+                        if($cname == ''){
+                            $cname = $tem_cname;
+                        }
+                        else{
+                            $cname = $cname.', '.$tem_cname;
+                        }
+                        $found = 0;
                     }
                     
                     
@@ -81,15 +92,17 @@ class LandController extends Controller
 
                 DB::commit();
 
-                if($duplicate)
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => ''.$cnt.' row found already exsits, Data saved without this..' ]);
-                else
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate..' ]);
+                if($dupCount > 0){ 
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para, Rest of Data saved successfully...' ]);
+                }
+                else{ 
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate...' ]);
+                }
             }
             catch (\Exception $e) 
             {
                 DB::rollBack();
-                $message = "Opps!! Something is wrong and data not saved..";
+                $message = "Opps!! Something is wrong, data not saved and rollback..";
                 return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
             }
 

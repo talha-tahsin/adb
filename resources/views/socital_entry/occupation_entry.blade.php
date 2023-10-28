@@ -124,20 +124,44 @@
           <!-- end main table div -->
 
     
-              </div>  
-              <!-- end card body -->
-            </div>  
-            <!-- end car-primary -->
-          </div>  
-          <!-- end col-md-9 -->
+      </div>  
+      <!-- end card body -->
+    </div>  
+    <!-- end car-primary -->
+  </div>  
+  <!-- end col-md-9 -->
 
-        </div> 
-        <!-- end main content row -->
+</div> 
+<!-- end main content row -->
+
+<!-- Popup Message Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h5 id="success_msg"><h5>
+        <h5 id="error_msg"><h5>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
-        </div>
-    </section>
+    </div>
+</section>
 
   
 @endsection

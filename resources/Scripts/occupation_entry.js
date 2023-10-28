@@ -147,6 +147,10 @@ $(document).on('click', '#btn_store', function () {
     
     console.log(xml_data);
 
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
     $.ajax({
         url: "/store_occupation_info",
         type: "POST",
@@ -155,13 +159,16 @@ $(document).on('click', '#btn_store', function () {
         cache: false,
         success: function (data) {
             // console.log(data);
-            if(data.status){
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
                 $('#voucher_table td input[type=text]').val('');
                 $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                alert(data.message);
+                // alert(data.message);
             }
             else{
-                alert(data.message);
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html(data.message);
             }
             
         },

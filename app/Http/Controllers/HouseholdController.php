@@ -18,21 +18,20 @@ class HouseholdController extends Controller
     public function store_household_info(Request $request)
     {
         $xml = $request['xml_data'];
-        $xmlStr = simplexml_load_string($xml);
+        $xmlstr = simplexml_load_string($xml);
         // dd($xml);
+        $timestamp = time();
+        $created_at = date("Y-m-d H:i:s", $timestamp);
 
         try {
+                $dupCount = 0;
+                $cname = '';
                 DB::beginTransaction();
 
-                foreach ($xmlStr->row as $key => $value) 
+                foreach ($xmlstr->row as $value) 
                 {
-                    $checkWatershedId = $value->WatershedId;
-                    $checkParaId = $value->ParaId;
-                    $checkCommunityId = $value->CommunityId;
-                    
-                    // dd($checkCommunityId);
 
-                    $RequestData = array(
+                    $store_data = array(
                         'watershed_id' => $value->WatershedId,
                         'para_id' => $value->ParaId,
                         'community_id' => $value->CommunityId,
@@ -42,26 +41,58 @@ class HouseholdController extends Controller
                         'semi_pacca_house' => $value->SemiPaccaType,
                         'pacca_house' => $value->PaccaType,
                         'total_house' => $value->TotalHouse,
-                        'created_by' => $value->CreatedBy
+                        'created_by' => $value->CreatedBy,
+                        'created_at' => $created_at
                     );
-                    
-                    $request_insert = Household::insert($RequestData);
             
-                    // DB::table('t01_populations')
-                    //                 ->select('id')
-                    //                 ->where('WatershedId', $checkWatershedId)
-                    //                 ->where('ParaId', $checkParaId)
-                    //                 ->where('CommunityId', $checkCommunityId)
-                    //                 ->get();
+                    // check duplicate record 
+                    $exist_watershed_id = $value->WatershedId;
+                    $exist_para_id = $value->ParaId;
+                    $exist_community_id = $value->CommunityId;
+
+                    $found = DB::table('tbl_household')->select('id')
+                                        ->where('watershed_id', $exist_watershed_id)
+                                        ->where('para_id', $exist_para_id)
+                                        ->where('community_id', $exist_community_id)
+                                        ->count();
+
+                    $get_community =json_encode($value->CommunityName);
+                    $jsonData = json_decode($get_community, TRUE);
+                    $tem_cname = $jsonData[0];
+
+                    if($found == 0){
+                        // $store = Household::insert($store_data);
+                        DB::table('tbl_household')->insert($store_data);
+                    }
+                    else
+                    {
+                        $dupCount++;
+
+                        if($cname == ''){
+                            $cname = $tem_cname;
+                        }
+                        else{
+                            $cname = $cname.', '.$tem_cname;
+                        }
+                        $found = 0;
+                    }
                         
-                    DB::commit();
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Household Info save successfully..' ]);
                 }
+
+                DB::commit();
+
+                if($dupCount > 0){ 
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para, Rest of Data saved successfully...' ]);
+                }
+                else{ 
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate...' ]);
+                }
+
             }
             catch (\Exception $e) 
             {
                 DB::rollBack();
-                $message = "Opps!! Something is wrong and data not saved..";
+                $message = "Opps!! Something is wrong, data not saved and rollback..";
                 return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
             }
 

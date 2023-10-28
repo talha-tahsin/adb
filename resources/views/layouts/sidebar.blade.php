@@ -109,7 +109,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>Societal Info
+              <p>Societal Entry
                 <i class="fas fa-angle-left right"></i>
                
               </p>
@@ -187,7 +187,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>View
+              <p>Societal View 
                 <i class="fas fa-angle-left right"></i>
                
               </p>
@@ -224,7 +224,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('ReceiptCheckPrint') }}" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Land Tenure and Distribution</p>
                 </a>

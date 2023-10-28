@@ -114,8 +114,8 @@ $(document).on('click', '#btn_store', function () {
             var Plain_Land = $(this).find('#Plain_Land').val();
             var Hilly = $(this).find('#Hilly').val();
             var Mixed = $(this).find('#Mixed').val();
-            var Profit = $(this).find('#Profit option:selected').val();
-
+            var ProfitVal = $(this).find('#Profit option:selected').val();
+            var ProfitName = $(this).find('#Profit option:selected').text();
 
             // first binding data as xml string
             xml_data += '<row>';
@@ -137,7 +137,8 @@ $(document).on('click', '#btn_store', function () {
             xml_data += '<Plain_Land>' + Plain_Land + '</Plain_Land>';
             xml_data += '<Hilly>' + Hilly + '</Hilly>';
             xml_data += '<Mixed>' + Mixed + '</Mixed>';
-            xml_data += '<Profit>' + Profit + '</Profit>';
+            xml_data += '<Profit>' + ProfitVal + '</Profit>';
+            xml_data += '<ProfitName>' + ProfitName + '</ProfitName>';
 
             xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
 
@@ -151,6 +152,10 @@ $(document).on('click', '#btn_store', function () {
     
     console.log(xml_data);
 
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
     $.ajax({
         url: "/store_land_info",
         type: "POST",
@@ -159,13 +164,16 @@ $(document).on('click', '#btn_store', function () {
         cache: false,
         success: function (data) {
             // console.log(data);
-            if(data.status){
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
                 $('#voucher_table td input[type=text]').val('');
                 $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                alert(data.message);
+                // alert(data.message);
             }
             else{
-                alert(data.message);
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html(data.message);
             }
             
         },
@@ -242,8 +250,8 @@ function insertTableRow(comntyName, comuntyId) {
     appendString += '<td>';
     appendString += '<select type="text" id="Profit" name="Profit" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
     appendString += '<option value="" selected disabled> Select </option>';
-    appendString += '<option value="1">Self/Own</option>';
-    appendString += '<option value="2">Common/Equal</option>';
+    appendString += '<option value="1">Self</option>';
+    appendString += '<option value="2">Common</option>';
     appendString += '<option value="3">Partial</option>';
     appendString += '<option value="4">Ratio</option>';
     appendString += '</select>';
