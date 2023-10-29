@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="font-family: Serif;">Expenditure Entry</h1>
+            <h1 class="m-0" style="font-family: Serif;">Economic Status Entry</h1>
           </div><!-- /.col -->
           <div class="col-sm-6"></div><!-- /.col -->
         </div><!-- /.row -->
@@ -77,19 +77,25 @@
                             <thead>
                                 
                                 <tr style="background-color: #8ed6f2;">
-                                    <th style="text-align:center;">Serial </th>
-                                    <th style="text-align:left;">Name </th>
-                                    <th style="text-align:center;">Select </th>
-                                    <th style="text-align:center;">Average working people per house</th>
-                                    <th style="text-align:center;">1-6000</th>
-                                    <th style="text-align:center;">7-10000</th>
-                                    <th style="text-align:center;">11000-15000</th>
-                                    <th style="text-align:center;">16000-20000</th>
-                                    <th style="text-align:center;">21000-25000</th>
-                                    <th style="text-align:center;">26000-30000</th>
-                                    <th style="text-align:center;">30000(+)</th>
-                                    <th style="text-align:center;">Male</th>
-                                    <th style="text-align:center;">Feamle</th>
+                                    <th rowspan="2" style="text-align:center;">Serial </th>
+                                    <th rowspan="2" style="text-align:left;">Name </th>
+                                    <th rowspan="2" style="text-align:center;">Select </th>
+                                    <th colspan="4" style="text-align:center;">Number of House</th>
+                                    <th colspan="6" style="text-align:center;">No. of HHs. Growing Sufficient Food from their own lands</th>
+                                </tr>
+
+                                <tr style="background-color: #99ccff;">
+                                    <th style="text-align:center;border-bottom: none;">Very Poor</th>
+                                    <th style="text-align:center;border-bottom: none;">Poor</th>
+                                    <th style="text-align:center;border-bottom: none;">Middle Class</th>
+                                    <th style="text-align:center;border-bottom: none;">Better Off</th>
+
+                                    <th style="text-align:center;border-bottom: none;">- 3 months</th>
+                                    <th style="text-align:center;border-bottom: none;">3-6 months</th>
+                                    <th style="text-align:center;border-bottom: none;">6-9 months</th>
+                                    <th style="text-align:center;border-bottom: none;">9-12 months</th>
+                                    <th style="text-align:center;border-bottom: none;">12 Months +</th>
+
                                 </tr>
                                 
                             </thead>
@@ -118,8 +124,7 @@
                             </div>  
                         </div>
 
-              </div>
-              
+            </div>
           <!-- end main table div -->
 
     
@@ -167,7 +172,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/societal_entry/expenditure_entry.js') }}"></script>
+<script src="{{ mix('resources/scripts/societal_entry/economic_entry.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 

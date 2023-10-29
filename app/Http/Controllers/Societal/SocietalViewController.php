@@ -51,4 +51,14 @@ class SocietalViewController extends Controller
         return view('societal_entry.expenditure_entry');
     }
 
+    // Economic
+    public function view_economic_entry(){
+        return view('societal_entry.economic_entry');
+    }
+
+    // Education
+    public function view_education_entry(){
+        return view('societal_entry.education_entry');
+    }
+
 }

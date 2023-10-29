@@ -14,6 +14,8 @@ use App\Http\Controllers\Societal\OccupationController;
 use App\Http\Controllers\Societal\LivelihoodController;
 use App\Http\Controllers\Societal\IncomeController;
 use App\Http\Controllers\Societal\ExpenditureController;
+use App\Http\Controllers\Societal\EconomicController;
+use App\Http\Controllers\Societal\EducationController;
 
 use App\Http\Controllers\UtilsController;
 
@@ -156,6 +158,39 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
+/** Start :: Economic View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('economic_entry', [SocietalViewController::class, 'view_economic_entry'])->name('View.Economic.Entry');
+        //Route::get('view_economic_info', [SocietalViewController::class, 'view_economic_info'])->name('View.Economic.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_economic_info_list', [EconomicController::class, 'get_economic_info_list']);
+    Route::get('/get_economic_info_edit', [EconomicController::class, 'get_economic_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_economic_info', [EconomicController::class, 'store_economic_info']);
+    Route::post('/update_economic_info', [EconomicController::class, 'update_economic_info']);
+    Route::post('/delete_economic_info', [EconomicController::class, 'delete_economic_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: Education View Page Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('education_entry', [SocietalViewController::class, 'view_education_entry'])->name('View.Education.Entry');
+    //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+});
+
+// GET Method Route 
+Route::get('/get_education_info_list', [EducationController::class, 'get_education_info_list']);
+Route::get('/get_education_info_edit', [EducationController::class, 'get_education_info_edit']);
+
+// POST Method Route
+Route::post('/store_education_info', [EducationController::class, 'store_education_info']);
+Route::post('/update_education_info', [EducationController::class, 'update_education_info']);
+Route::post('/delete_education_info', [EducationController::class, 'delete_education_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 // get all utils (global) function data 
 Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId'])->name('watershedList');

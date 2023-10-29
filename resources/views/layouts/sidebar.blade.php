@@ -161,14 +161,14 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                <a href="{{ route('View.Economic.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Economic Status</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                <a href="{{ route('View.Education.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Education</p>
                 </a>
