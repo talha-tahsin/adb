@@ -128,40 +128,59 @@ $(document).on('click', '#btn_store', function () {
         var totalMale = $('#voucher_table > tbody > tr').find('#totalMale').val();
         var totalFemale = $('#voucher_table > tbody > tr').find('#totalFemale').val();
 
+        var row = {
+            'WatershedId' : watershed_id,
+            'ParaId' : paraId,
+            'ParaName' : paraName,
+            'maleReadWrite' : maleReadWrite,
+            'femaleReadWrite' : femaleReadWrite,
+            'malePrimary' : malePrimary,
+            'femalePrimary' : femalePrimary,
+            'maleSsc' : maleSsc,
+            'femaleSsc' : femaleSsc,
+            'maleHsc' : maleHsc,
+            'femaleHsc' : femaleHsc,
+            'maleGraduate' : maleGraduate,
+            'femaleGraduate' : femaleGraduate,
+            'malePost' : malePost,
+            'femalePost' : femalePost,
+            'totalMale' : totalMale,
+            'totalFemale' : totalFemale,
+            'CreatedBy' : created_by
+
+        };
+
+        // xml_data += '<row>';
+
+        // xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+        // xml_data += '<ParaId>' + paraId + '</ParaId>';
+        // xml_data += '<ParaName>' + paraName + '</ParaName>';
+
+        // xml_data += '<maleReadWrite>' + maleReadWrite + '</maleReadWrite>';
+        // xml_data += '<femaleReadWrite>' + femaleReadWrite + '</femaleReadWrite>';
+        // xml_data += '<malePrimary>' + malePrimary + '</malePrimary>';
+        // xml_data += '<femalePrimary>' + femalePrimary + '</femalePrimary>';
 
 
-        // first binding data as xml string
-        xml_data += '<row>';
+        // xml_data += '<maleSsc>' + maleSsc + '</maleSsc>';
+        // xml_data += '<femaleSsc>' + femaleSsc + '</femaleSsc>';
+        // xml_data += '<maleHsc>' + maleHsc + '</maleHsc>';
+        // xml_data += '<femaleHsc>' + femaleHsc + '</femaleHsc>';
 
-        xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-        xml_data += '<ParaId>' + paraId + '</ParaId>';
-        xml_data += '<ParaName>' + paraName + '</ParaName>';
+        // xml_data += '<maleGraduate>' + maleGraduate + '</maleGraduate>';
+        // xml_data += '<femaleGraduate>' + femaleGraduate + '</femaleGraduate>';
+        // xml_data += '<malePost>' + malePost + '</malePost>';
+        // xml_data += '<femalePost>' + femalePost + '</femalePost>';
 
-        xml_data += '<maleReadWrite>' + maleReadWrite + '</maleReadWrite>';
-        xml_data += '<femaleReadWrite>' + femaleReadWrite + '</femaleReadWrite>';
-        xml_data += '<malePrimary>' + malePrimary + '</malePrimary>';
-        xml_data += '<femalePrimary>' + femalePrimary + '</femalePrimary>';
+        // xml_data += '<totalMale>' + totalMale + '</totalMale>';
+        // xml_data += '<totalFemale>' + totalFemale + '</totalFemale>';
 
+        // xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
 
-        xml_data += '<maleSsc>' + maleSsc + '</maleSsc>';
-        xml_data += '<femaleSsc>' + femaleSsc + '</femaleSsc>';
-        xml_data += '<maleHsc>' + maleHsc + '</maleHsc>';
-        xml_data += '<femaleHsc>' + femaleHsc + '</femaleHsc>';
-
-        xml_data += '<maleGraduate>' + maleGraduate + '</maleGraduate>';
-        xml_data += '<femaleGraduate>' + femaleGraduate + '</femaleGraduate>';
-        xml_data += '<malePost>' + malePost + '</malePost>';
-        xml_data += '<femalePost>' + femalePost + '</femalePost>';
-
-        xml_data += '<totalMale>' + totalMale + '</totalMale>';
-        xml_data += '<totalFemale>' + totalFemale + '</totalFemale>';
-
-        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-        xml_data += '</row>';
+        // xml_data += '</row>';
 
         
-        console.log(xml_data);
+        console.log(row);
 
         // clear model message value for every ajax call provide single accurate message
         $('#success_msg').html('');
@@ -170,7 +189,7 @@ $(document).on('click', '#btn_store', function () {
         $.ajax({
             url: "/store_education_part1_info",
             type: "POST",
-            data: { '_token' : token, 'xml_data' : xml_data },
+            data: { '_token' : token, 'json_data' : JSON.stringify(row) },
             dataType: "JSON",
             cache: false,
             success: function (data) {

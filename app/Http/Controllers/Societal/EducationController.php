@@ -18,9 +18,10 @@ class EducationController extends Controller
     
     public function store_education_part1_info(Request $request)
     {
-        $xml = $request['xml_data'];
-        $xmlstr = simplexml_load_string($xml);
-  
+        $xml = $request['json_data'];
+        // $value = simplexml_load_string($xml);
+        $value = json_decode($xml);
+        
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
 
@@ -29,64 +30,62 @@ class EducationController extends Controller
                 $newCount = 0;
                 $cname = '';
                 DB::beginTransaction();
+    
+                $store_data = array(
+                    'watershed_id' => $value->WatershedId,
+                    'para_id' => $value->ParaId,
+                    'para_name' => $value->ParaName,
+                    'male_read_write' => $value->maleReadWrite,
+                    'female_read_write' => $value->femaleReadWrite,
+                    'male_primary' => $value->malePrimary,
+                    'female_primary' => $value->femalePrimary,
+                    'male_ssc' => $value->maleSsc,
+                    'female_ssc' => $value->femaleSsc,
+                    'male_hsc' => $value->maleHsc,
+                    'female_hsc' => $value->femaleHsc,
+                    'male_graduation' => $value->maleGraduate,
+                    'female_graduation' => $value->femaleGraduate,
+                    'male_post' => $value->malePost,
+                    'female_post' => $value->femalePost,
+                    'male_total' => $value->totalMale,
+                    'female_total' => $value->totalFemale,
+                    'created_by' => $value->CreatedBy,
+                    'created_at' => $created_at,
+                );
 
-                foreach ($xmlstr as $value) 
-                { 
-                    $store_data = array(
-                        'watershed_id' => $value->WatershedId,
-                        'para_id' => $value->ParaId,
-                        'para_name' => $value->ParaName,
-                        'male_read_write' => $value->maleReadWrite,
-                        'female_read_write' => $value->femaleReadWrite,
-                        'male_primary' => $value->malePrimary,
-                        'female_primary' => $value->femalePrimary,
-                        'male_ssc' => $value->maleSsc,
-                        'female_ssc' => $value->femaleSsc,
-                        'male_hsc' => $value->maleHsc,
-                        'female_hsc' => $value->femaleHsc,
-                        'male_graduation' => $value->maleGraduate,
-                        'female_graduation' => $value->femaleGraduate,
-                        'male_post' => $value->malePost,
-                        'female_post' => $value->femalePost,
-                        'male_total' => $value->totalMale,
-                        'female_total' => $value->totalFemale,
-                        'created_by' => $value->CreatedBy,
-                        'created_at' => $created_at,
-                    );
+                // check duplicate record for community
+                $exist_watershed_id = $value->WatershedId;
+                $exist_para_id = $value->ParaId;
+        
+                $found = DB::table('tbl_literacy')->select('id')
+                                ->where('watershed_id', $exist_watershed_id)
+                                ->where('para_id', $exist_para_id)
+                                ->count();
+                
+                // $get_para =json_encode($value->ParaName);
+                // $jsonData = json_decode($get_para, TRUE);
+                // $tem_cname = $jsonData[0];
+                $tem_cname = $value->ParaName;
+                
 
-                    // check duplicate record for community
-                    $exist_watershed_id = $value->WatershedId;
-                    $exist_para_id = $value->ParaId;
-            
-                    $found = DB::table('tbl_literacy')->select('id')
-                                    ->where('watershed_id', $exist_watershed_id)
-                                    ->where('para_id', $exist_para_id)
-                                    ->count();
-                 
-                    $get_para =json_encode($value->ParaName);
-                    $jsonData = json_decode($get_para, TRUE);
-                    $tem_cname = $jsonData[0];
-
-                    if($found == 0){
-                        // $store = Economic::insert($store_data);
-                        DB::table('tbl_literacy')->insert($store_data);
-                        $newCount++;
-                    }
-                    else
-                    {
-                        $dupCount++;
-
-                        if($cname == ''){
-                            $cname = $tem_cname;
-                        }
-                        else{
-                            $cname = $cname.', '.$tem_cname;
-                        }
-                        $found = 0;
-                    }
-                    
-                    
+                if($found == 0){
+                    // $store = Economic::insert($store_data);
+                    DB::table('tbl_literacy')->insert($store_data);
+                    $newCount++;
                 }
+                else
+                {
+                    $dupCount++;
+
+                    if($cname == ''){
+                        $cname = $tem_cname;
+                    }
+                    else{
+                        $cname = $cname.', '.$tem_cname;
+                    }
+                    $found = 0;
+                }
+                    
 
                 DB::commit();
 
