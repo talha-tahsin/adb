@@ -58,6 +58,7 @@
 
         
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'user')
+        
         <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -66,6 +67,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -105,13 +107,13 @@
               </li>
             </ul>
           </li> -->
+
           <li class="nav-header">BaseLine</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>Societal Entry
                 <i class="fas fa-angle-left right"></i>
-               
               </p>
             </a>
            <ul class="nav nav-treeview">
@@ -167,14 +169,38 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="{{ route('View.Education.Entry') }}" class="nav-link">
+              <!-- <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Education</p>
                 </a>
-              </li>
+              </li> -->
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Education
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="{{ route('View.EducationPart1.Entry') }}" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>Part 1</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('View.EducationPart2.Entry') }}" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>Part 2</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
               <li class="nav-item">
-                <a href="{{ route('View.Land.Entry') }}" class="nav-link">
+                <a href="{{ route('View.Health.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Health</p>
                 </a>

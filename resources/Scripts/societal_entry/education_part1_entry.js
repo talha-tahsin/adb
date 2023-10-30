@@ -1,7 +1,7 @@
 
 
 
-document.title = 'Economic Entry';
+document.title = 'Education Part 1 Entry';
 
 $(document).ready(function () {
 
@@ -54,6 +54,16 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
+$('#radioDiv input[type=radio]').change(function(){
+    if($(this).val() == '0'){
+        $('#alt_income_trainig').prop('disabled', true);
+    }
+    else {
+        $('#alt_income_trainig').prop('disabled', false);
+    }
+
+});
+
 // $(document).on('click', '#get_communities', function () {
 
 //     var Watershed_Id = $('#watershedId option:selected').val();
@@ -88,95 +98,108 @@ $(document).on('click', '#btn_store', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershedId option:selected').val();
     var paraId = $('#para_list option:selected').val();
+    var paraName = $('#para_list option:selected').text();
     var xml_data = '';
 
-    xml_data = '<head>';
+    if(watershed_id == '' || watershed_id == null || watershed_id == undefined){
+        alert("Please Select watershed id");
+    }
+    else if (paraId == '' || paraId == null || paraId == undefined){
+        alert("Please Select para id...");
+    }
+    else
+    {
 
-    $('#voucher_table > tbody > tr').each(function () {
+        var maleReadWrite = $('#voucher_table > tbody > tr').find("#maleReadWrite").val();
+        var femaleReadWrite = $('#voucher_table > tbody > tr').find('#femaleReadWrite').val();
+        var malePrimary = $('#voucher_table > tbody > tr').find('#malePrimary').val();
+        var femalePrimary = $('#voucher_table > tbody > tr').find('#femalePrimary').val();
 
-        var rowCheckbox = $(this).find("#check").prop("checked");
+        var maleSsc = $('#voucher_table > tbody > tr').find('#maleSsc').val();
+        var femaleSsc = $('#voucher_table > tbody > tr').find('#femaleSsc').val();
+        var maleHsc = $('#voucher_table > tbody > tr').find('#maleHsc').val();
+        var femaleHsc = $('#voucher_table > tbody > tr').find('#femaleHsc').val();
 
-        if (rowCheckbox == true)
-        {
-            
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
-           
-            var very_poor = $(this).find('#very_poor').val();
-            var poor = $(this).find('#poor').val();
-            var middle_class = $(this).find('#middle_class').val();
-            var better_of = $(this).find('#better_of').val();
+        var maleGraduate = $('#voucher_table > tbody > tr').find('#maleGraduate').val();
+        var femaleGraduate = $('#voucher_table > tbody > tr').find('#femaleGraduate').val();
+        var malePost = $('#voucher_table > tbody > tr').find('#malePost').val();
+        var femalePost = $('#voucher_table > tbody > tr').find('#femalePost').val();
 
-            var Less3Month = $(this).find('#Less3Month').val();
-            var Month3to6 = $(this).find('#Month3to6').val();
-            var Month6to9 = $(this).find('#Month6to9').val();
-            var Month9to12 = $(this).find('#Month9to12').val();
-            var Up12Month = $(this).find('#Up12Month').val();
+        var totalMale = $('#voucher_table > tbody > tr').find('#totalMale').val();
+        var totalFemale = $('#voucher_table > tbody > tr').find('#totalFemale').val();
 
-            // first binding data as xml string
-            xml_data += '<row>';
 
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
 
-            xml_data += '<VeryPoor>' + very_poor + '</VeryPoor>';
-            xml_data += '<Poor>' + poor + '</Poor>';
-            xml_data += '<MiddleClass>' + middle_class + '</MiddleClass>';
-            xml_data += '<BetterOff>' + better_of + '</BetterOff>';
+        // first binding data as xml string
+        xml_data += '<row>';
 
-            xml_data += '<Less3Month>' + Less3Month + '</Less3Month>';
-            xml_data += '<Month3to6>' + Month3to6 + '</Month3to6>';
-            xml_data += '<Month6to9>' + Month6to9 + '</Month6to9>';
-            xml_data += '<Month9to12>' + Month9to12 + '</Month9to12>';
-            xml_data += '<Up12Month>' + Up12Month + '</Up12Month>';
+        xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+        xml_data += '<ParaId>' + paraId + '</ParaId>';
+        xml_data += '<ParaName>' + paraName + '</ParaName>';
 
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+        xml_data += '<maleReadWrite>' + maleReadWrite + '</maleReadWrite>';
+        xml_data += '<femaleReadWrite>' + femaleReadWrite + '</femaleReadWrite>';
+        xml_data += '<malePrimary>' + malePrimary + '</malePrimary>';
+        xml_data += '<femalePrimary>' + femalePrimary + '</femalePrimary>';
 
-            xml_data += '</row>';
-        }
 
-    });
+        xml_data += '<maleSsc>' + maleSsc + '</maleSsc>';
+        xml_data += '<femaleSsc>' + femaleSsc + '</femaleSsc>';
+        xml_data += '<maleHsc>' + maleHsc + '</maleHsc>';
+        xml_data += '<femaleHsc>' + femaleHsc + '</femaleHsc>';
 
-    xml_data += '</head>';
+        xml_data += '<maleGraduate>' + maleGraduate + '</maleGraduate>';
+        xml_data += '<femaleGraduate>' + femaleGraduate + '</femaleGraduate>';
+        xml_data += '<malePost>' + malePost + '</malePost>';
+        xml_data += '<femalePost>' + femalePost + '</femalePost>';
 
+        xml_data += '<totalMale>' + totalMale + '</totalMale>';
+        xml_data += '<totalFemale>' + totalFemale + '</totalFemale>';
+
+        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+
+        xml_data += '</row>';
+
+        
+        console.log(xml_data);
+
+        // clear model message value for every ajax call provide single accurate message
+        $('#success_msg').html('');
+        $('#error_msg').html('');
+
+        $.ajax({
+            url: "/store_education_part1_info",
+            type: "POST",
+            data: { '_token' : token, 'xml_data' : xml_data },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == 'SUCCESS'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! Data store Succesfully.</span><p>'+ data.message+'</p>' );
+                    $('#voucher_table td input[type=text]').val('');
+                    $('#voucher_table td input[type=checkbox]').prop('checked', false);
+                    // alert(data.message);
+                }
+                else if (data.status == 'EXIST'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html('<span style="color: red;">Sorry '+created_by+' ! Data not possible to store. </span><p>'+ data.message+'</p>' );
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red;">'+data.message+'</span>');
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+
+    }
+        
     
-    console.log(xml_data);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
-
-    $.ajax({
-        url: "/store_economic_info",
-        type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! Data store Succesfully.</span><p>'+ data.message+'</p>' );
-                $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
-            }
-            else if (data.status == 'EXIST'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: red;">Sorry '+created_by+' ! Data not possible to store. </span><p>'+ data.message+'</p>' );
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html('<span style="color: red;">'+data.message+'</span>');
-            }
-            
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
 
 
 
@@ -194,10 +217,10 @@ function insertTableRow() {
     appendString += '<td class="sl" style="width: 50px;text-align: center;">1</td>';
     appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Literate (can read & write) </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="maleReadWrite" class="form-control maleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="femaleReadWrite" class="form-control femaleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
@@ -205,10 +228,10 @@ function insertTableRow() {
     appendString += '<td class="sl" style="width: 50px;text-align: center;">2</td>';
     appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Primary </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="malePrimary" class="form-control maleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="femalePrimary" class="form-control femaleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
@@ -216,10 +239,10 @@ function insertTableRow() {
     appendString += '<td class="sl" style="width: 50px;text-align: center;">3</td>';
     appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Secondary (SSC) </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="maleSsc" class="form-control maleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="femaleSsc" class="form-control femaleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
@@ -227,10 +250,10 @@ function insertTableRow() {
     appendString += '<td class="sl" style="width: 50px;text-align: center;">4</td>';
     appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Higher secondary (HSC)</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="maleHsc" class="form-control maleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="femaleHsc" class="form-control femaleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
@@ -238,10 +261,10 @@ function insertTableRow() {
     appendString += '<td class="sl" style="width: 50px;text-align: center;">5</td>';
     appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Graduate </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="maleGraduate" class="form-control maleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="femaleGraduate" class="form-control femaleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
@@ -249,10 +272,10 @@ function insertTableRow() {
     appendString += '<td class="sl" style="width: 50px;text-align: center;">6</td>';
     appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Postgraduate </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="malePost" class="form-control maleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="femalePost" class="form-control femaleTot" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
@@ -260,10 +283,10 @@ function insertTableRow() {
     appendString += '<td class="sl" style="width: 50px;text-align: center;">6</td>';
     appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Total </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0" disabled>';
+    appendString += '<input type="text" id="totalMale" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0" disabled>';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0" disabled>';
+    appendString += '<input type="text" id="totalFemale" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0" disabled>';
     appendString += '</td>';
     appendString += '</tr>';
 
@@ -273,57 +296,57 @@ function insertTableRow() {
     removeTableRow();
 }
 
-$(document).on('change', '.m_num', function () {
+$(document).on('change', '.maleTot', function () {
 
-    var row = $(this).closest('tr'); 
+    // var row = $(this).closest('tr'); 
     var total = 0;
     var grandTotal = 0;
 
     // current row and calculate the total
-    row.find('.m_num').each(function () {
+    $('.maleTot').each(function () {
         var value = parseFloat($(this).val());
         if (!isNaN(value)) {
             total += value;
         }
     });
 
-    row.find('#m_total').val(total);
+    $('#totalMale').val(total);
 
-    row.find('.total').each(function () {
-        var rowTotal = parseFloat($(this).val());
-        if (!isNaN(rowTotal)) {
-            grandTotal += rowTotal;
-        }
-    });
+    // row.find('.total').each(function () {
+    //     var rowTotal = parseFloat($(this).val());
+    //     if (!isNaN(rowTotal)) {
+    //         grandTotal += rowTotal;
+    //     }
+    // });
 
-    row.find('#grandTotal').val(grandTotal);
+    // row.find('#grandTotal').val(grandTotal);
 
 });
 
-$(document).on('change', '.fe_num', function () {
+$(document).on('change', '.femaleTot', function () {
 
-    var row = $(this).closest('tr'); 
+    // var row = $(this).closest('tr'); 
     var total = 0;
     var grandTotal = 0;
 
     // current row and calculate the total
-    row.find('.fe_num').each(function () {
+    $('.femaleTot').each(function () {
         var value = parseFloat($(this).val());
         if (!isNaN(value)) {
             total += value;
         }
     });
 
-    row.find('#fe_total').val(total);
+    $('#totalFemale').val(total);
 
-    row.find('.total').each(function () {
-        var rowTotal = parseFloat($(this).val());
-        if (!isNaN(rowTotal)) {
-            grandTotal += rowTotal;
-        }
-    });
+    // row.find('.total').each(function () {
+    //     var rowTotal = parseFloat($(this).val());
+    //     if (!isNaN(rowTotal)) {
+    //         grandTotal += rowTotal;
+    //     }
+    // });
 
-    row.find('#grandTotal').val(grandTotal);
+    // row.find('#grandTotal').val(grandTotal);
 
 });
 

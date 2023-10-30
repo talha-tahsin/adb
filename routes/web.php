@@ -177,7 +177,8 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
 /** Start :: Education View Page Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('education_entry', [SocietalViewController::class, 'view_education_entry'])->name('View.Education.Entry');
+    Route::get('education_part1_entry', [SocietalViewController::class, 'view_education_part1_entry'])->name('View.EducationPart1.Entry');
+    Route::get('education_part2_entry', [SocietalViewController::class, 'view_education_part2_entry'])->name('View.EducationPart2.Entry');
     //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
 });
 
@@ -186,11 +187,29 @@ Route::get('/get_education_info_list', [EducationController::class, 'get_educati
 Route::get('/get_education_info_edit', [EducationController::class, 'get_education_info_edit']);
 
 // POST Method Route
-Route::post('/store_education_info', [EducationController::class, 'store_education_info']);
+Route::post('/store_education_part1_info', [EducationController::class, 'store_education_part1_info']);
 Route::post('/update_education_info', [EducationController::class, 'update_education_info']);
 Route::post('/delete_education_info', [EducationController::class, 'delete_education_info']);
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: Health View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('health_entry', [SocietalViewController::class, 'view_health_entry'])->name('View.Health.Entry');
+        //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_health_info_list', [HealthController::class, 'get_health_info_list']);
+    Route::get('/get_health_info_edit', [HealthController::class, 'get_health_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_health_info', [HealthController::class, 'store_health_info']);
+    Route::post('/update_health_info', [HealthController::class, 'update_health_info']);
+    Route::post('/delete_health_info', [HealthController::class, 'delete_health_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
 
 // get all utils (global) function data 
 Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId'])->name('watershedList');

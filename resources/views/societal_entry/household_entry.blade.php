@@ -111,12 +111,12 @@
                 </div>
                         <!-- // end table row -->
 
-                        <div class="row">
-                            <div class="col-md-10"></div>
-                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_household_entry" style="width: 100%;border-radius: 20px;color: black;">Save Household Info</button>
-                            </div>  
-                        </div>
+              <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                      <button type="submit" class="btn btn-primary" id="btn_household_entry" style="width: 100%;border-radius: 20px;color: black;">Save Household Info</button>
+                  </div>  
+              </div>
 
             </div>
           <!-- end main table div -->
