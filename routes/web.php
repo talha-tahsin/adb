@@ -191,6 +191,8 @@ Route::post('/store_education_part1_info', [EducationController::class, 'store_e
 Route::post('/update_education_info', [EducationController::class, 'update_education_info']);
 Route::post('/delete_education_info', [EducationController::class, 'delete_education_info']);
 
+Route::post('/store_education_part2_info', [EducationController::class, 'store_education_part2_info']);
+
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Health View Page Route */
@@ -212,8 +214,8 @@ Route::post('/delete_education_info', [EducationController::class, 'delete_educa
 
 
 // get all utils (global) function data 
-Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId'])->name('watershedList');
-Route::get('/get_paraList', [UtilsController::class, 'getParaList'])->name('ParaList');
+Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId']);
+Route::get('/get_paraList', [UtilsController::class, 'getParaList']);
 
-Route::get('/CommunityList', [UtilsController::class, 'getCommunityList'])->name('CommunityList');
-Route::get('/get_medical_test', [UtilsController::class, 'getAllMedicalTest'])->name('getMedicalTest');
+Route::get('/CommunityList', [UtilsController::class, 'getCommunityList']);
+Route::get('/get_training_list', [UtilsController::class, 'get_training_list']);

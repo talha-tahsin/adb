@@ -1,15 +1,13 @@
 
 
 
-document.title = 'Economic Part 2 Entry';
+document.title = 'Education Part 2 Entry';
 
 $(document).ready(function () {
 
     console.log("hello talha.."); 
 
     $('#para_list').prop('disabled', true);
-
-    insertTableRow();
 
     $.ajax({
         url: "/get_watershedId",
@@ -54,43 +52,43 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
-$('#radioDiv input[type=radio]').change(function(){
-    if($(this).val() == '0'){
-        $('#alt_income_trainig').prop('disabled', true);
-    }
-    else {
-        $('#alt_income_trainig').prop('disabled', false);
-    }
-
-});
-
-// $(document).on('click', '#get_communities', function () {
-
-//     var Watershed_Id = $('#watershedId option:selected').val();
-//     var Para_Id = $('#para_list option:selected').val();
-
-//     if(Watershed_Id && Para_Id)
-//     { 
-//         $.ajax({
-//             url: "/CommunityList",
-//             type: "GET",
-//             data: { 'community_list' : 'get_data' },
-//             dataType: "JSON",
-//             cache: false,
-//             success: function (data) {
-//                 // console.log(data);
-//                 $('#table_div').removeClass('hide');
-//                  $.each(data.message, function (i, v) {
-//                     insertTableRow(v.community_name, v.community_id);
-//                  });
-//             },
-//             error: function(xhr, ajaxOptions, thrownError) {
-//                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-//             }
-//         });
+// $('#radioDiv input[type=radio]').change(function(){
+//     if($(this).val() == '0'){
+//         $('#alt_income_trainig').prop('disabled', true);
+//     }
+//     else {
+//         $('#alt_income_trainig').prop('disabled', false);
 //     }
 
 // });
+
+$(document).on('click', '#get_communities', function () {
+
+    var Watershed_Id = $('#watershedId option:selected').val();
+    var Para_Id = $('#para_list option:selected').val();
+
+    if(Watershed_Id && Para_Id)
+    { 
+        $.ajax({
+            url: "/get_training_list",
+            type: "GET",
+            data: { 'training_list' : 'get_data' },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                console.log(data);
+                $('#table_div').removeClass('hide');
+                $.each(data.message, function (i, v) {
+                    insertTableRow(v.training_name, v.training_id);
+                });
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }
+
+});
 
 $(document).on('click', '#btn_store', function () {
 
@@ -99,52 +97,65 @@ $(document).on('click', '#btn_store', function () {
     var watershed_id = $('#watershedId option:selected').val();
     var paraId = $('#para_list option:selected').val();
     var xml_data = '';
+    var count = 0;
 
     xml_data = '<head>';
 
-    $('#voucher_table > tbody > tr').each(function () {
+    $('#training_table > tbody > tr').each(function () {
 
         var rowCheckbox = $(this).find("#check").prop("checked");
 
         if (rowCheckbox == true)
         {
             
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
+            var tr_training_id = $(this).attr('comnty_id');
+            var tr_training_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
            
-            var very_poor = $(this).find('#very_poor').val();
-            var poor = $(this).find('#poor').val();
-            var middle_class = $(this).find('#middle_class').val();
-            var better_of = $(this).find('#better_of').val();
+            var training_receive = $(this).find('#training_receive').val();
+            var is_useful = $(this).find('#is_useful option:selected').val();
+            var is_future = $(this).find('#is_future option:selected').val();
+            var women_percentage = $(this).find('#women_percentage').val();
 
-            var Less3Month = $(this).find('#Less3Month').val();
-            var Month3to6 = $(this).find('#Month3to6').val();
-            var Month6to9 = $(this).find('#Month6to9').val();
-            var Month9to12 = $(this).find('#Month9to12').val();
-            var Up12Month = $(this).find('#Up12Month').val();
+            var govt = $(this).find('#govt option:selected').val();
+            var ngo = $(this).find('#ngo option:selected').val();
+            var developer = $(this).find('#developer option:selected').val();
 
-            // first binding data as xml string
-            xml_data += '<row>';
+            if(training_receive == '' || is_useful == '' || is_future == '' || women_percentage == '')
+            {
+                alert("Please fill up all the field...");
+                count++;
+            }
+            else if (govt == '' || ngo == '' || developer == '')
+            {
+                alert("Please fill up all the field...");
+                count++;
+            }
+            else
+            {
+                count = 0;
+                // first binding data as xml string
+                xml_data += '<row>';
 
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
+                xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+                xml_data += '<ParaId>' + paraId + '</ParaId>';
+                xml_data += '<training_id>' + tr_training_id + '</training_id>';
+                xml_data += '<training_name>' + tr_training_name + '</training_name>';
 
-            xml_data += '<VeryPoor>' + very_poor + '</VeryPoor>';
-            xml_data += '<Poor>' + poor + '</Poor>';
-            xml_data += '<MiddleClass>' + middle_class + '</MiddleClass>';
-            xml_data += '<BetterOff>' + better_of + '</BetterOff>';
+                xml_data += '<training_receive>' + training_receive + '</training_receive>';
+                xml_data += '<is_useful>' + is_useful + '</is_useful>';
+                xml_data += '<is_future>' + is_future + '</is_future>';
+                xml_data += '<women_percentage>' + women_percentage + '</women_percentage>';
 
-            xml_data += '<Less3Month>' + Less3Month + '</Less3Month>';
-            xml_data += '<Month3to6>' + Month3to6 + '</Month3to6>';
-            xml_data += '<Month6to9>' + Month6to9 + '</Month6to9>';
-            xml_data += '<Month9to12>' + Month9to12 + '</Month9to12>';
-            xml_data += '<Up12Month>' + Up12Month + '</Up12Month>';
+                xml_data += '<govt>' + govt + '</govt>';
+                xml_data += '<ngo>' + ngo + '</ngo>';
+                xml_data += '<developer>' + developer + '</developer>';
 
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+                xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
 
-            xml_data += '</row>';
+                xml_data += '</row>';
+            }
+
+            
         }
 
     });
@@ -154,131 +165,119 @@ $(document).on('click', '#btn_store', function () {
     
     console.log(xml_data);
 
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
+    if(count == 0)
+    {
+        // clear model message value for every ajax call provide single accurate message
+        $('#success_msg').html('');
+        $('#error_msg').html('');
 
-    $.ajax({
-        url: "/store_economic_info",
-        type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! Data store Succesfully.</span><p>'+ data.message+'</p>' );
-                $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
+        $.ajax({
+            url: "/store_education_part2_info",
+            type: "POST",
+            data: { '_token' : token, 'xml_data' : xml_data },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == 'SUCCESS'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! Data store Succesfully.</span><p>'+ data.message+'</p>' );
+                    $('#voucher_table td input[type=text]').val('');
+                    $('#voucher_table td input[type=checkbox]').prop('checked', false);
+                    // alert(data.message);
+                }
+                else if (data.status == 'EXIST'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html('<span style="color: red;">Sorry '+created_by+' ! Data not possible to store. </span><p>'+ data.message+'</p>' );
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red;">'+data.message+'</span>');
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
-            else if (data.status == 'EXIST'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: red;">Sorry '+created_by+' ! Data not possible to store. </span><p>'+ data.message+'</p>' );
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html('<span style="color: red;">'+data.message+'</span>');
-            }
-            
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-
+        });
+    }
+     
 
 
 });
 
-function insertTableRow() {
+function insertTableRow(comntyName, comuntyId) {
 
     var appendString = '';
-    var rowCount = $('#voucher_table > tbody > tr').length;
+    var rowCount = $('#training_table > tbody > tr').length;
     rowCount++;
 
     // console.log(accountName);
 
-    appendString += '<tr>';
-    appendString += '<td class="sl" style="width: 50px;text-align: center;">1</td>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Literate (can read & write) </td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
+    appendString += '<tr comnty_id="' + comuntyId + '">';
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
+    appendString += '<td comnty_name="' + comntyName + '" style="width: 400px;text-align: left;">' + comntyName + '</td>';
 
-    appendString += '<tr>';
-    appendString += '<td class="sl" style="width: 50px;text-align: center;">2</td>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Primary </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="checkbox" class="checkbox" id="check" name="check" value="1" style="text-align: center;" >';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td class="sl" style="width: 50px;text-align: center;">3</td>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Secondary (SSC) </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="training_receive" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td class="sl" style="width: 50px;text-align: center;">4</td>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Higher secondary (HSC)</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<select type="text" id="is_useful" name="is_useful" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Yes">Yes</option>';
+    appendString += '<option value="No">No</option>';
+    appendString += '</select>';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td class="sl" style="width: 50px;text-align: center;">5</td>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Graduate </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<select type="text" id="is_future" name="is_future" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Yes">Yes</option>';
+    appendString += '<option value="No">No</option>';
+    appendString += '</select>';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td class="sl" style="width: 50px;text-align: center;">6</td>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Postgraduate </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="women_percentage" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td class="sl" style="width: 50px;text-align: center;">6</td>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Total </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0" disabled>';
+    appendString += '<select type="text" id="govt" name="govt" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Yes">Yes</option>';
+    appendString += '<option value="No">No</option>';
+    appendString += '</select>';
     appendString += '</td>';
+
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0" disabled>';
+    appendString += '<select type="text" id="ngo" name="ngo" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Yes">Yes</option>';
+    appendString += '<option value="No">No</option>';
+    appendString += '</select>';
     appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<select type="text" id="developer" name="developer" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Yes">Yes</option>';
+    appendString += '<option value="No">No</option>';
+    appendString += '</select>';
+    appendString += '</td>';
+
+    //appendString += '<td style="text-align: center;">';
+    //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';
+    //appendString += '</td>';
+
     appendString += '</tr>';
 
 
-    $('#voucher_table > tbody:last-child').append(appendString);
+    $('#training_table > tbody:last-child').append(appendString);
     // $("#voucher_table tr:last").scrollintoview();
     removeTableRow();
 }

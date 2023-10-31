@@ -106,12 +106,12 @@
                                   <!-- end div col-6 -->
 
                                   <div class="col-md-6" style="margin: 20px 0px 10px 0px;">
-                                    <h4>(b) Is there any alternative income generation training program for women in your para? </h4>
+                                    <h4>(b) Any alternative income generation training program for women ? </h4>
 
                                     <div class="row">
                                       <!-- <div class="col-md-1"></div> -->
                                       <div class ="col-md-10" id="radioDiv" style="margin: 10px 0px 0px 0px;">
-                                        <label class="control-label validate">if yes mention the list ? &nbsp;&nbsp;</label>
+                                        <label class="control-label validate">if yes mention the Name ? &nbsp;&nbsp;</label>
                                         <label class="radio"><input type="radio" name="optradio" class="btn_radio" value="0" checked>&nbsp;No &nbsp;&nbsp;</label>
                                         <label class="radio"><input type="radio" name="optradio" class="btn_radio" value="1">&nbsp;Yes</label>
                                       </div>
@@ -120,7 +120,7 @@
                                     <div class="row">
                                       <!-- <div class="col-md-1"></div> -->
                                       <div class ="col-md-12" id="radioDiv" style="margin: 10px 0px 0px 0px;">
-                                        <textarea id="alt_income_trainig" class="form-control" rows="3" placeholder="Please write like : 1) Name 2) Name 3) Name " disabled></textarea>
+                                        <textarea id="alt_income_training" class="form-control" rows="3" placeholder="Please write like : 1) Name 2) Name 3) Name " disabled></textarea>
                                       </div>
                                     </div>
 

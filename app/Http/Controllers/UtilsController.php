@@ -70,6 +70,18 @@ class UtilsController extends Controller
 
     }
 
+    public function get_training_list()
+    {
+
+        $data = DB::table('lookup_training')
+                    ->select('training_id', 'training_name')
+                    ->orderBy('training_name')
+                    ->get();
+
+        return response()->json([ 'message' => $data ]);
+
+    }
+
   
     
 }

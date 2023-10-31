@@ -62,17 +62,17 @@
 
                           <!-- <div class="col-md-1"></div> -->
 
-                          <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                              <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
-                          </div> -->
+                          <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                              <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get Form Table for Entry</button>
+                          </div>
 
                         </div> 
                         <!-- end row -->
 
-                        <div class="form-group" id="table_div">
+                        <div class="form-group hide" id="table_div">
                           <div class="row">
                               <div class="col-md-12" style="margin: 20px 0px 10px 0px;">
-                                <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="section_b">
+                                <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="training_table">
 
                                   <thead>
                                       
@@ -81,18 +81,16 @@
                                           <th rowspan="2" style="text-align:left;">Training on </th>
                                           <th rowspan="2" style="text-align:center;">Select </th>
                                           <th rowspan="2" style="text-align:center;">Number of training received </th>
-                                          <th colspan="2" style="text-align:center;">Were these training useful</th>
-                                          <th colspan="2" style="text-align:center;">Do you want these type of training in future</th>
+                                          <th colspan="1" style="text-align:center;">Were these training useful</th>
+                                          <th colspan="1" style="text-align:center;">Do you want these type of training in future</th>
                                           <th rowspan="2" style="text-align:center;">Percentage of women participation</th>
                                           <th colspan="3" style="text-align:center;">Organization Involved</th>
                                           
                                       </tr>
 
                                       <tr style="background-color: #99ccff;">
-                                          <th style="text-align:center;border-bottom: none;">Yes</th>
-                                          <th style="text-align:center;border-bottom: none;">No</th>
-                                          <th style="text-align:center;border-bottom: none;">Yes</th>
-                                          <th style="text-align:center;border-bottom: none;">No</th>
+                                          <th style="text-align:center;border-bottom: none;">Select</th>
+                                          <th style="text-align:center;border-bottom: none;">Select</th>
 
                                           <th style="text-align:center;border-bottom: none;">Govt.</th>
                                           <th style="text-align:center;border-bottom: none;">NGO</th>
@@ -137,6 +135,32 @@
           </div>
       </div>
       <!-- /end main row -->
+
+
+<!-- Popup Message Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h5 id="success_msg"><h5>
+        <h5 id="error_msg"><h5>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
     </div>

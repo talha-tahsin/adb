@@ -105,10 +105,9 @@ class EconomicController extends Controller
                 DB::rollBack();
                 $message = "Opps!! Something is wrong, data not saved and rollback..";
                 return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
-            }
-
-                
+            }     
             
     }
+    
 
 }

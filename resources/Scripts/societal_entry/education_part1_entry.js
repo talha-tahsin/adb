@@ -56,10 +56,10 @@ $(document).on('change', '#watershedId', function () {
 
 $('#radioDiv input[type=radio]').change(function(){
     if($(this).val() == '0'){
-        $('#alt_income_trainig').prop('disabled', true);
+        $('#alt_income_training').prop('disabled', true);
     }
     else {
-        $('#alt_income_trainig').prop('disabled', false);
+        $('#alt_income_training').prop('disabled', false);
     }
 
 });
@@ -99,7 +99,7 @@ $(document).on('click', '#btn_store', function () {
     var watershed_id = $('#watershedId option:selected').val();
     var paraId = $('#para_list option:selected').val();
     var paraName = $('#para_list option:selected').text();
-    var xml_data = '';
+    var incomeTraining = $('#alt_income_training').val();
 
     if(watershed_id == '' || watershed_id == null || watershed_id == undefined){
         alert("Please Select watershed id");
@@ -146,39 +146,10 @@ $(document).on('click', '#btn_store', function () {
             'femalePost' : femalePost,
             'totalMale' : totalMale,
             'totalFemale' : totalFemale,
+            'incomeTraining' : incomeTraining,
             'CreatedBy' : created_by
 
         };
-
-        // xml_data += '<row>';
-
-        // xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-        // xml_data += '<ParaId>' + paraId + '</ParaId>';
-        // xml_data += '<ParaName>' + paraName + '</ParaName>';
-
-        // xml_data += '<maleReadWrite>' + maleReadWrite + '</maleReadWrite>';
-        // xml_data += '<femaleReadWrite>' + femaleReadWrite + '</femaleReadWrite>';
-        // xml_data += '<malePrimary>' + malePrimary + '</malePrimary>';
-        // xml_data += '<femalePrimary>' + femalePrimary + '</femalePrimary>';
-
-
-        // xml_data += '<maleSsc>' + maleSsc + '</maleSsc>';
-        // xml_data += '<femaleSsc>' + femaleSsc + '</femaleSsc>';
-        // xml_data += '<maleHsc>' + maleHsc + '</maleHsc>';
-        // xml_data += '<femaleHsc>' + femaleHsc + '</femaleHsc>';
-
-        // xml_data += '<maleGraduate>' + maleGraduate + '</maleGraduate>';
-        // xml_data += '<femaleGraduate>' + femaleGraduate + '</femaleGraduate>';
-        // xml_data += '<malePost>' + malePost + '</malePost>';
-        // xml_data += '<femalePost>' + femalePost + '</femalePost>';
-
-        // xml_data += '<totalMale>' + totalMale + '</totalMale>';
-        // xml_data += '<totalFemale>' + totalFemale + '</totalFemale>';
-
-        // xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-        // xml_data += '</row>';
-
         
         console.log(row);
 
@@ -199,6 +170,7 @@ $(document).on('click', '#btn_store', function () {
                     $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! Data store Succesfully.</span><p>'+ data.message+'</p>' );
                     $('#voucher_table td input[type=text]').val('');
                     $('#voucher_table td input[type=checkbox]').prop('checked', false);
+                    $('#income_training').val('');
                     // alert(data.message);
                 }
                 else if (data.status == 'EXIST'){
