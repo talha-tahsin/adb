@@ -123,38 +123,38 @@ $(document).on('click', '#btn_store', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var created_by = $('#userName').val();
 
-    var watershed_id = $('#watershedId option:selected').val();
-    var para_id = $('#para_list option:selected').val();
-    var para_name = $('#para_list option:selected').text();
-    var community_id = $('#community option:selected').val();
-    var community_name = $('#community option:selected').text();
+    watershed_id = $('#watershedId option:selected').val();
+    para_id = $('#para_list option:selected').val();
+    para_name = $('#para_list option:selected').text();
+    community_id = $('#community option:selected').val();
+    community_name = $('#community option:selected').text();
 
-    var jhum_male = $('#jhum_male').val();
-    var jhum_female = $('#jhum_female').val();
-    var plain_land_male = $('#plain_land_male').val();
-    var plain_land_female = $('#plain_land_female').val();
-    var orchard_male = $('#orchard_male').val();
-    var orchard_female = $('#orchard_female').val();
-    var fuel_wood_male = $('#fuel_wood_male').val();
-    var fuel_wood_female = $('#fuel_wood_female').val();
+    jhum_male = $('#jhum_male').val();
+    jhum_female = $('#jhum_female').val();
+    plain_land_male = $('#plain_land_male').val();
+    plain_land_female = $('#plain_land_female').val();
+    orchard_male = $('#orchard_male').val();
+    orchard_female = $('#orchard_female').val();
+    fuel_wood_male = $('#fuel_wood_male').val();
+    fuel_wood_female = $('#fuel_wood_female').val();
 
-    var wage_labour_male = $('#wage_labour_male').val();
-    var wage_labour_female = $('#wage_labour_female').val();
-    var poultry_male = $('#poultry_male').val();
-    var poultry_female = $('#poultry_female').val();
-    var livestock_male = $('#livestock_male').val();
-    var livestock_female = $('#livestock_female').val();
-    var aquaculture_male = $('#aquaculture_male').val();
-    var aquaculture_female = $('#aquaculture_female').val();
+    wage_labour_male = $('#wage_labour_male').val();
+    wage_labour_female = $('#wage_labour_female').val();
+    poultry_male = $('#poultry_male').val();
+    poultry_female = $('#poultry_female').val();
+    livestock_male = $('#livestock_male').val();
+    livestock_female = $('#livestock_female').val();
+    aquaculture_male = $('#aquaculture_male').val();
+    aquaculture_female = $('#aquaculture_female').val();
 
-    var service_male = $('#service_male').val();
-    var service_female = $('#service_female').val();
-    var business_male = $('#business_male').val();
-    var business_female = $('#business_female').val();
-    var handicraft_male = $('#handicraft_male').val();
-    var handicraft_female = $('#handicraft_female').val();
-    var other_male = $('#other_male').val();
-    var other_female = $('#other_female').val();
+    service_male = $('#service_male').val();
+    service_female = $('#service_female').val();
+    business_male = $('#business_male').val();
+    business_female = $('#business_female').val();
+    handicraft_male = $('#handicraft_male').val();
+    handicraft_female = $('#handicraft_female').val();
+    other_male = $('#other_male').val();
+    other_female = $('#other_female').val();
 
     jsonObj = {
         'watershed_id' : watershed_id,
@@ -196,30 +196,30 @@ $(document).on('click', '#btn_store', function () {
      $('#success_msg').html('');
      $('#error_msg').html('');
 
-    $.ajax({
-        url: "/store_livelihood_info",
-        type: "POST",
-        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! .</span><p>'+ data.message+'</p>' );
-                // alert(data.message);
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html(data.message);
-            }
+    // $.ajax({
+    //     url: "/store_livelihood_info",
+    //     type: "POST",
+    //     data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
+    //     dataType: "JSON",
+    //     cache: false,
+    //     success: function (data) {
+    //         // console.log(data);
+    //         if(data.status == 'SUCCESS'){
+    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
+    //             $('#success_msg').html(data.message);
+    //             $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! .</span><p>'+ data.message+'</p>' );
+    //             // alert(data.message);
+    //         }
+    //         else{
+    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
+    //             $('#error_msg').html(data.message);
+    //         }
             
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+    //     },
+    //     error: function(xhr, ajaxOptions, thrownError) {
+    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    //     }
+    // });
 
 
 
