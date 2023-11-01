@@ -189,7 +189,6 @@ $(document).on('click', '#btn_store', function () {
         'created_by' : created_by,
 
     };
-   
     
     console.log(jsonObj);
 
@@ -208,8 +207,7 @@ $(document).on('click', '#btn_store', function () {
             if(data.status == 'SUCCESS'){
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html(data.message);
-                $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
+                $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! .</span><p>'+ data.message+'</p>' );
                 // alert(data.message);
             }
             else{
