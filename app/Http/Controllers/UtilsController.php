@@ -22,7 +22,6 @@ class UtilsController extends Controller
 {
     public function getCommunityList(){
         
-        
         $data = DB::table('lookup_community')
                     ->select('id', 'community_id', 'community_name')
                     ->orderBy('community_name')
@@ -64,6 +63,24 @@ class UtilsController extends Controller
 
         foreach($data as $v) {
             $retStr .= '<option value="'.$v->para_id.'">'.$v->para_name.'</option>';
+        }
+
+        return $retStr;
+
+    }
+
+    public function get_community_list(){
+        
+        $data = DB::table('lookup_community')
+                    ->select('id', 'community_id', 'community_name')
+                    ->orderBy('community_name')
+                    ->get();
+        
+        $retStr = '';
+        $retStr .= '<option value="" selected disabled>Select Community</option>';
+
+        foreach($data as $v) {
+            $retStr .= '<option value="'.$v->community_id.'">'.$v->community_name.'</option>';
         }
 
         return $retStr;

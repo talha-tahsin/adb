@@ -15,5 +15,15 @@ use App\Models\Livelihood;
 
 class LivelihoodController extends Controller
 {
-    //
+    public function store_livelihood_info(Request $request)
+    {
+        $xml = $request['json_data'];
+        $value = json_decode($xml);
+
+        dd($value);
+        
+        $timestamp = time();
+        $created_at = date("Y-m-d H:i:s", $timestamp);
+
+    }
 }

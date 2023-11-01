@@ -7,6 +7,12 @@ $(document).ready(function () {
 
     console.log("hello talha.."); 
 
+    $('#watershedId').select2();
+    $('#para_list').select2();
+    $('#community').select2();
+  
+    $('.select2').css({'border': '2px solid #898AEE', 'border-radius': '5px'});
+
     $('#para_list').prop('disabled', true);
 
     $.ajax({
@@ -52,12 +58,47 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
-$(document).on('click', '#get_communities', function () {
+$(document).on('change', '#para_list', function () {
+
+    var para_list = $('#para_list option:selected').val();
+    // console.log(watershedId);
+
+    if(para_list)
+    {
+        $.ajax({
+            url: "/get_community_list",
+            type: "GET",
+            data: { 'get_community' : 'get_data' },
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                $('#community').prop('disabled', false);
+                $('#community').html(data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }
+
+});
+
+$(document).on('click', '#get_entry_form', function () {
 
     var Watershed_Id = $('#watershedId option:selected').val();
     var Para_Id = $('#para_list option:selected').val();
+    var Community_Id = $('#community option:selected').val();
 
-    if(Watershed_Id && Para_Id)
+    if(Para_Id == '' || Para_Id == null || Para_Id == undefined)
+    {
+        alert("Please Select Para...");
+    }
+    else if(Community_Id == '' || Community_Id == null || Community_Id == undefined)
+    {
+        alert("Please Select Community...");
+    }
+    else
     { 
         $.ajax({
             url: "/CommunityList",
@@ -68,9 +109,6 @@ $(document).on('click', '#get_communities', function () {
             success: function (data) {
                 // console.log(data);
                 $('#table_div').removeClass('hide');
-                 $.each(data.message, function (i, v) {
-                    insertTableRow(v.community_name, v.community_id);
-                 });
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -82,79 +120,87 @@ $(document).on('click', '#get_communities', function () {
 
 $(document).on('click', '#btn_store', function () {
 
-    var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
+    var created_by = $('#userName').val();
+
     var watershed_id = $('#watershedId option:selected').val();
-    var paraId = $('#para_list option:selected').val();
-    var xml_data = '';
+    var para_id = $('#para_list option:selected').val();
+    var para_name = $('#para_list option:selected').text();
+    var community_id = $('#community option:selected').val();
+    var community_name = $('#community option:selected').text();
 
-    xml_data = '<head>';
+    var jhum_male = $('#jhum_male').val();
+    var jhum_female = $('#jhum_female').val();
+    var plain_land_male = $('#plain_land_male').val();
+    var plain_land_female = $('#plain_land_female').val();
+    var orchard_male = $('#orchard_male').val();
+    var orchard_female = $('#orchard_female').val();
+    var fuel_wood_male = $('#fuel_wood_male').val();
+    var fuel_wood_female = $('#fuel_wood_female').val();
 
-    $('#voucher_table > tbody > tr').each(function () {
+    var wage_labour_male = $('#wage_labour_male').val();
+    var wage_labour_female = $('#wage_labour_female').val();
+    var poultry_male = $('#poultry_male').val();
+    var poultry_female = $('#poultry_female').val();
+    var livestock_male = $('#livestock_male').val();
+    var livestock_female = $('#livestock_female').val();
+    var aquaculture_male = $('#aquaculture_male').val();
+    var aquaculture_female = $('#aquaculture_female').val();
 
-        var rowCheckbox = $(this).find("#check").prop("checked");
+    var service_male = $('#service_male').val();
+    var service_female = $('#service_female').val();
+    var business_male = $('#business_male').val();
+    var business_female = $('#business_female').val();
+    var handicraft_male = $('#handicraft_male').val();
+    var handicraft_female = $('#handicraft_female').val();
+    var other_male = $('#other_male').val();
+    var other_female = $('#other_female').val();
 
-        if (rowCheckbox == true)
-        {
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
-           
-            var v_jhum = $(this).find('#jhum').val();
-            var v_plainLand = $(this).find('#plain_land').val();
-            var v_orchard = $(this).find('#orchard').val();
-            var v_fuel = $(this).find('#fuel_wood').val();
-            var v_wage = $(this).find('#wage_labour').val();
+    jsonObj = {
+        'watershed_id' : watershed_id,
+        'para_id' : para_id,
+        'para_name' : para_name,
+        'community_id' : community_id,
+        'community_name' : community_name,
+        'jhum_male' : jhum_male,
+        'jhum_female' : jhum_female,
+        'plain_land_male' : plain_land_male,
+        'plain_land_female' : plain_land_female,
+        'orchard_male' : orchard_male,
+        'orchard_female' : orchard_female,
+        'fuel_wood_male' : fuel_wood_male,
+        'fuel_wood_female' : fuel_wood_female,
+        'wage_labour_male' : wage_labour_male,
+        'wage_labour_female' : wage_labour_female,
+        'poultry_male' : poultry_male,
+        'poultry_female' : poultry_female,
+        'livestock_male' : livestock_male,
+        'livestock_female' : livestock_female,
+        'aquaculture_male' : aquaculture_male,
+        'aquaculture_female' : aquaculture_female,
+        'service_male' : service_male,
+        'service_female' : service_female,
+        'business_male' : business_male,
+        'business_female' : business_female,
+        'handicraft_male' : handicraft_male,
+        'handicraft_female' : handicraft_female,
+        'other_male' : other_male,
+        'other_female' : other_female,
+        'created_by' : created_by,
 
-            var v_poultry = $(this).find('#poultry').val();
-            var v_livestock = $(this).find('#livestock').val();
-            var v_aquaculture = $(this).find('#aquaculture').val();
-            var v_service_holder = $(this).find('#service_holder').val();
-            var v_business = $(this).find('#business').val();
-            var v_handicraft = $(this).find('#handicraft').val();
-            var v_others = $(this).find('#others').val();
-
-            // first binding data as xml string
-            xml_data += '<row>';
-
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
-
-            xml_data += '<Jhum>' + v_jhum + '</Jhum>';
-            xml_data += '<PlainLand>' + v_plainLand + '</PlainLand>';
-            xml_data += '<Orchard>' + v_orchard + '</Orchard>';
-            xml_data += '<FuelWood>' + v_fuel + '</FuelWood>';
-            xml_data += '<WageLabour>' + v_wage + '</WageLabour>';
-
-            xml_data += '<Poultry>' + v_poultry + '</Poultry>';
-            xml_data += '<Livestock>' + v_livestock + '</Livestock>';
-            xml_data += '<AquaCulture>' + v_aquaculture + '</AquaCulture>';
-            xml_data += '<ServiceHolder>' + v_service_holder + '</ServiceHolder>';
-            xml_data += '<Business>' + v_business + '</Business>';
-            xml_data += '<HandiCraft>' + v_handicraft + '</HandiCraft>';
-            xml_data += '<Others>' + v_others + '</Others>';
-
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-            xml_data += '</row>';
-        }
-
-    });
-
-    xml_data += '</head>';
-
+    };
+   
     
-    console.log(xml_data);
+    console.log(jsonObj);
 
      // clear model message value for every ajax call provide single accurate message
      $('#success_msg').html('');
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_occupation_info",
+        url: "/store_livelihood_info",
         type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
+        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
         dataType: "JSON",
         cache: false,
         success: function (data) {

@@ -217,6 +217,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 // get all utils (global) function data 
 Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId']);
 Route::get('/get_paraList', [UtilsController::class, 'getParaList']);
+Route::get('/get_community_list', [UtilsController::class, 'get_community_list']);
 
 Route::get('/CommunityList', [UtilsController::class, 'getCommunityList']);
 Route::get('/get_training_list', [UtilsController::class, 'get_training_list']);
