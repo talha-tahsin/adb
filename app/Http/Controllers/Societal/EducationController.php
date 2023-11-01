@@ -29,6 +29,7 @@ class EducationController extends Controller
                 $dupCount = 0;
                 $newCount = 0;
                 $cname = '';
+                
                 DB::beginTransaction();
     
                 $store_data = array(
@@ -62,10 +63,7 @@ class EducationController extends Controller
                                 ->where('watershed_id', $exist_watershed_id)
                                 ->where('para_id', $exist_para_id)
                                 ->count();
-                
-                // $get_para =json_encode($value->ParaName);
-                // $jsonData = json_decode($get_para, TRUE);
-                // $tem_cname = $jsonData[0];
+  
                 $tem_cname = $value->ParaName;
                 
 
@@ -181,10 +179,10 @@ class EducationController extends Controller
                 DB::commit();
 
                 if($dupCount > 0 && $newCount == 0){ 
-                    return response()->json([ 'status' => 'EXIST', 'message' => 'Becasue, ['.$cname.'] community has already exsits for the selected watershed and para...' ]);
+                    return response()->json([ 'status' => 'EXIST', 'message' => 'Becasue, ['.$cname.'] training has already exsits for the selected watershed and para...' ]);
                 }
                 else if ($dupCount > 0 && $newCount > 0){
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'But ['.$cname.'] community already exsits and can not possible to store...' ]);
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'But ['.$cname.'] training already exsits and can not possible to store...' ]);
                 }
                 else{ 
                     return response()->json([ 'status' => 'SUCCESS', 'message' => 'No Data found as duplicate...' ]);

@@ -82,6 +82,18 @@ class UtilsController extends Controller
 
     }
 
+    public function get_health_center_list()
+    {
+
+        $data = DB::table('lookup_health_center')
+                    ->select('center_id', 'center_name')
+                    ->orderBy('center_name')
+                    ->get();
+
+        return response()->json([ 'message' => $data ]);
+
+    }
+
   
     
 }

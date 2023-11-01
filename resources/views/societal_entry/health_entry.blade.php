@@ -62,14 +62,14 @@
 
                           <!-- <div class="col-md-1"></div> -->
 
-                          <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                              <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
-                          </div> -->
+                          <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                              <button type="submit" class="btn btn-info" id="get_entry_form" style="width: 100%;border-radius: 20px;color: black;">Get Table Form for Entry</button>
+                          </div>
 
                         </div> 
                         <!-- end row -->
 
-                          <div class="form-group" id="table_div">
+                          <div class="form-group hide" id="table_div">
 
                             <div class="row">
                               
@@ -112,6 +112,7 @@
                                       <thead>
                                           
                                           <tr style="background-color: #8ed6f2;">
+                                              <th style="text-align: center;">Serial</th>
                                               <th style="text-align: left;">Name of the Diseases</th>
                                               <th style="text-align: center;">Ranking</th>
                                           </tr>
@@ -132,6 +133,13 @@
                                   <!-- end div col-6 -->
                             </div>
 
+                        <div class="row">
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
+                            </div>  
+                        </div>
+
                          </div>
                          <!-- end form-group -->
 
@@ -141,6 +149,30 @@
           </div>
       </div>
       <!-- /end main row -->
+
+<!-- Popup Message Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h5 id="success_msg"><h5>
+        <h5 id="error_msg"><h5>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
 
     </div>

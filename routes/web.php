@@ -16,6 +16,7 @@ use App\Http\Controllers\Societal\IncomeController;
 use App\Http\Controllers\Societal\ExpenditureController;
 use App\Http\Controllers\Societal\EconomicController;
 use App\Http\Controllers\Societal\EducationController;
+use App\Http\Controllers\Societal\HealthController;
 
 use App\Http\Controllers\UtilsController;
 
@@ -176,22 +177,22 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Education View Page Route */
-Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('education_part1_entry', [SocietalViewController::class, 'view_education_part1_entry'])->name('View.EducationPart1.Entry');
-    Route::get('education_part2_entry', [SocietalViewController::class, 'view_education_part2_entry'])->name('View.EducationPart2.Entry');
-    //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
-});
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('education_part1_entry', [SocietalViewController::class, 'view_education_part1_entry'])->name('View.EducationPart1.Entry');
+        Route::get('education_part2_entry', [SocietalViewController::class, 'view_education_part2_entry'])->name('View.EducationPart2.Entry');
+        //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+    });
 
-// GET Method Route 
-Route::get('/get_education_info_list', [EducationController::class, 'get_education_info_list']);
-Route::get('/get_education_info_edit', [EducationController::class, 'get_education_info_edit']);
+    // GET Method Route 
+    Route::get('/get_education_info_list', [EducationController::class, 'get_education_info_list']);
+    Route::get('/get_education_info_edit', [EducationController::class, 'get_education_info_edit']);
 
-// POST Method Route
-Route::post('/store_education_part1_info', [EducationController::class, 'store_education_part1_info']);
-Route::post('/update_education_info', [EducationController::class, 'update_education_info']);
-Route::post('/delete_education_info', [EducationController::class, 'delete_education_info']);
+    // POST Method Route
+    Route::post('/store_education_part1_info', [EducationController::class, 'store_education_part1_info']);
+    Route::post('/update_education_info', [EducationController::class, 'update_education_info']);
+    Route::post('/delete_education_info', [EducationController::class, 'delete_education_info']);
 
-Route::post('/store_education_part2_info', [EducationController::class, 'store_education_part2_info']);
+    Route::post('/store_education_part2_info', [EducationController::class, 'store_education_part2_info']);
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
@@ -219,3 +220,4 @@ Route::get('/get_paraList', [UtilsController::class, 'getParaList']);
 
 Route::get('/CommunityList', [UtilsController::class, 'getCommunityList']);
 Route::get('/get_training_list', [UtilsController::class, 'get_training_list']);
+Route::get('/get_health_center_list', [UtilsController::class, 'get_health_center_list']);

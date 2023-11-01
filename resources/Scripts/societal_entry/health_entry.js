@@ -9,9 +9,6 @@ $(document).ready(function () {
 
     $('#para_list').prop('disabled', true);
 
-    insertTableRow();
-    insertDiseasesTable();
-
     $.ajax({
         url: "/get_watershedId",
         type: "GET",
@@ -65,33 +62,37 @@ $('#radioDiv input[type=radio]').change(function(){
 
 });
 
-// $(document).on('click', '#get_communities', function () {
+$(document).on('click', '#get_entry_form', function () {
 
-//     var Watershed_Id = $('#watershedId option:selected').val();
-//     var Para_Id = $('#para_list option:selected').val();
+    var Watershed_Id = $('#watershedId option:selected').val();
+    var Para_Id = $('#para_list option:selected').val();
 
-//     if(Watershed_Id && Para_Id)
-//     { 
-//         $.ajax({
-//             url: "/CommunityList",
-//             type: "GET",
-//             data: { 'community_list' : 'get_data' },
-//             dataType: "JSON",
-//             cache: false,
-//             success: function (data) {
-//                 // console.log(data);
-//                 $('#table_div').removeClass('hide');
-//                  $.each(data.message, function (i, v) {
-//                     insertTableRow(v.community_name, v.community_id);
-//                  });
-//             },
-//             error: function(xhr, ajaxOptions, thrownError) {
-//                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-//             }
-//         });
-//     }
+    if(Watershed_Id && Para_Id)
+    { 
+        $.ajax({
+            url: "/get_health_center_list",
+            type: "GET",
+            data: { 'center_list' : 'get_data' },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                $('#table_div').removeClass('hide');
+                insertDiseasesTable();
+                $.each(data.message, function (i, v) {
+                    insertTableRow(v.center_name, v.center_id);
+                });
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
 
-// });
+       
+
+    }
+
+});
 
 $(document).on('click', '#btn_store', function () {
 
@@ -99,58 +100,74 @@ $(document).on('click', '#btn_store', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershedId option:selected').val();
     var paraId = $('#para_list option:selected').val();
+    var paraName = $('#para_list option:selected').text();
     var xml_data = '';
 
     xml_data = '<head>';
 
     $('#voucher_table > tbody > tr').each(function () {
 
-        var rowCheckbox = $(this).find("#check").prop("checked");
-
-        if (rowCheckbox == true)
-        {
             
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
-           
-            var very_poor = $(this).find('#very_poor').val();
-            var poor = $(this).find('#poor').val();
-            var middle_class = $(this).find('#middle_class').val();
-            var better_of = $(this).find('#better_of').val();
+        var center_id = $(this).attr('center_id');
+        var center_name = $(this).find('td:eq(0)').text(); //$(this).closest('tr').find('td:eq(1)').text();
+        
+        var people_percentage = $(this).find('#people_percentage').val();
+        var distance = $(this).find('#distance').val();
+        var service_reason = $(this).find('#service_reason').val();
 
-            var Less3Month = $(this).find('#Less3Month').val();
-            var Month3to6 = $(this).find('#Month3to6').val();
-            var Month6to9 = $(this).find('#Month6to9').val();
-            var Month9to12 = $(this).find('#Month9to12').val();
-            var Up12Month = $(this).find('#Up12Month').val();
+        // first binding data as xml string
+        xml_data += '<row>';
 
-            // first binding data as xml string
-            xml_data += '<row>';
+        xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+        xml_data += '<ParaId>' + paraId + '</ParaId>';
+        xml_data += '<paraName>' + paraName + '</paraName>';
+        xml_data += '<center_id>' + center_id + '</center_id>';
+        xml_data += '<center_name>' + center_name + '</center_name>';
 
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
+        xml_data += '<people_percentage>' + people_percentage + '</people_percentage>';
+        xml_data += '<distance>' + distance + '</distance>';
+        xml_data += '<service_reason>' + service_reason + '</service_reason>';
 
-            xml_data += '<VeryPoor>' + very_poor + '</VeryPoor>';
-            xml_data += '<Poor>' + poor + '</Poor>';
-            xml_data += '<MiddleClass>' + middle_class + '</MiddleClass>';
-            xml_data += '<BetterOff>' + better_of + '</BetterOff>';
+        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
 
-            xml_data += '<Less3Month>' + Less3Month + '</Less3Month>';
-            xml_data += '<Month3to6>' + Month3to6 + '</Month3to6>';
-            xml_data += '<Month6to9>' + Month6to9 + '</Month6to9>';
-            xml_data += '<Month9to12>' + Month9to12 + '</Month9to12>';
-            xml_data += '<Up12Month>' + Up12Month + '</Up12Month>';
-
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-            xml_data += '</row>';
-        }
+        xml_data += '</row>';
+        
 
     });
 
     xml_data += '</head>';
+
+    // var diseases_id = $('#diseases_table > tbody > tr').find('td:eq(0)').text();
+    // var diseases_name = $('#diseases_table > tbody > tr').find('td:eq(1)').text();
+
+    var diarrhoeal = $('#diseases_table > tbody > tr').find("#diarrhoeal").val();
+    var heat_stroke = $('#diseases_table > tbody > tr').find('#heat_stroke').val();
+    var malaria = $('#diseases_table > tbody > tr').find('#malaria').val();
+    var dengue = $('#diseases_table > tbody > tr').find('#dengue').val();
+
+    var typhoid = $('#diseases_table > tbody > tr').find('#typhoid').val();
+    var zika_fever = $('#diseases_table > tbody > tr').find('#zika_fever').val();
+    var skin_diseases = $('#diseases_table > tbody > tr').find('#skin_diseases').val();
+    var others = $('#diseases_table > tbody > tr').find('#others').val();
+
+    var taking_medicine = $('#tendency_of_medicine').val();
+
+    var row = {
+        'WatershedId' : watershed_id,
+        'ParaId' : paraId,
+        'ParaName' : paraName,
+        'diarrhoeal' : diarrhoeal,
+        'heat_stroke' : heat_stroke,
+        'malaria' : malaria,
+        'dengue' : dengue,
+        'typhoid' : typhoid,
+        'zika_fever' : zika_fever,
+        'skin_diseases' : skin_diseases,
+        'others' : others,
+        'taking_medicine' : taking_medicine,
+        'CreatedBy' : created_by
+
+    };
 
     
     console.log(xml_data);
@@ -160,9 +177,9 @@ $(document).on('click', '#btn_store', function () {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_economic_info",
+        url: "/store_health_info",
         type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
+        data: { '_token' : token, 'xml_data' : xml_data, 'ranking' : JSON.stringify(row) },
         dataType: "JSON",
         cache: false,
         success: function (data) {
@@ -193,7 +210,7 @@ $(document).on('click', '#btn_store', function () {
 
 });
 
-function insertTableRow() {
+function insertTableRow(center_name, center_id) {
 
     var appendString = '';
     var rowCount = $('#voucher_table > tbody > tr').length;
@@ -201,82 +218,21 @@ function insertTableRow() {
 
     // console.log(accountName);
 
-    appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Health Centres</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
+    appendString += '<tr center_id="'+center_id+'" >';
+    appendString += '<td style="width: 400px;text-align: left;">'+center_name+'</td>';
 
-    appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Community Clinic (govt.)</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="people_percentage" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Upazila Hospital</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="distance" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">District Hospital </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="service_reason" class="form-control" value="" style="width: 250px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
 
-    appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">Private Hospital </td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '</tr>';
-
-    appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 400px;text-align: left;">NGO-Facilitated Center </td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
     appendString += '</tr>';
 
 
@@ -294,58 +250,66 @@ function insertDiseasesTable() {
     // console.log(accountName);
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Diarrhoeal</td>';
+    appendString += '<td style="width: 100px;text-align: center;">1</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Diarrhoeal</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="diarrhoeal" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Heat Stroke</td>';
+    appendString += '<td style="width: 100px;text-align: center;">2</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Heat Stroke</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="heat_stroke" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Malaria</td>';
+    appendString += '<td style="width: 100px;text-align: center;">3</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Malaria</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="malaria" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Dengue </td>';
+    appendString += '<td style="width: 100px;text-align: center;">4</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Dengue </td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="dengue" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Typhoid</td>';
+    appendString += '<td style="width: 100px;text-align: center;">5</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Typhoid</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="typhoid" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Zika Fever</td>';
+    appendString += '<td style="width: 100px;text-align: center;">6</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Zika Fever</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="zika_fever" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Skin Diseases</td>';
+    appendString += '<td style="width: 100px;text-align: center;">7</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Skin Diseases</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="skin_diseases" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
     appendString += '<tr>';
-    appendString += '<td comnty_name="" style="width: 500px;text-align: left;">Others</td>';
+    appendString += '<td style="width: 100px;text-align: center;">8</td>';
+    appendString += '<td style="width: 400px;text-align: left;">Others</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="others" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '</tr>';
 
