@@ -169,13 +169,6 @@
                 </a>
               </li>
 
-              <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Education</p>
-                </a>
-              </li> -->
-
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -203,6 +196,20 @@
                 <a href="{{ route('View.Health.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Health</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('View.Water.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Water</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('View.Sanitation.Entry') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sanitation</p>
                 </a>
               </li>
              

@@ -113,6 +113,21 @@ $(document).on('click', '#btn_store', function () {
             var v_handicraft = $(this).find('#handicraft').val();
             var v_others = $(this).find('#others').val();
 
+            // automation set value 0 if any field leave empty or null
+            if(v_jhum == '' || v_jhum == null || v_jhum == undefined) v_jhum = 0;
+            if(v_plainLand == '' || v_plainLand == null || v_plainLand == undefined) v_plainLand = 0;
+            if(v_orchard == '' || v_orchard == null || v_orchard == undefined) v_orchard = 0;
+            if(v_fuel == '' || v_fuel == null || v_fuel == undefined) v_fuel = 0;
+            if(v_wage == '' || v_wage == null || v_wage == undefined) v_wage = 0;
+
+            if(v_poultry == '' || v_poultry == null || v_poultry == undefined) v_poultry = 0;
+            if(v_livestock == '' || v_livestock == null || v_livestock == undefined) v_livestock = 0;
+            if(v_aquaculture == '' || v_aquaculture == null || v_aquaculture == undefined) v_aquaculture = 0;
+            if(v_service_holder == '' || v_service_holder == null || v_service_holder == undefined) v_service_holder = 0;
+            if(v_business == '' || v_business == null || v_business == undefined) v_business = 0;
+            if(v_handicraft == '' || v_handicraft == null || v_handicraft == undefined) v_handicraft = 0;
+            if(v_others == '' || v_others == null || v_others == undefined) v_others = 0;
+
             // first binding data as xml string
             xml_data += '<row>';
 

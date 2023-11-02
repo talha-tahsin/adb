@@ -17,6 +17,7 @@ use App\Http\Controllers\Societal\ExpenditureController;
 use App\Http\Controllers\Societal\EconomicController;
 use App\Http\Controllers\Societal\EducationController;
 use App\Http\Controllers\Societal\HealthController;
+use App\Http\Controllers\Societal\WaterController;
 
 use App\Http\Controllers\UtilsController;
 
@@ -114,7 +115,8 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
         //Route::get('view_occupation_info', [SocietalViewController::class, 'view_occupation_info'])->name('View.Occupation.Info');
     });
 
-    // GET Method Route 
+    // GET Method Route
+    Route::get('/check_livelihood_duplicate', [LivelihoodController::class, 'check_duplicate_record']); 
     Route::get('/get_livelihood_info_list', [LivelihoodController::class, 'get_livelihood_info_list']);
     Route::get('/get_livelihood_info_edit', [LivelihoodController::class, 'get_livelihood_info_edit']);
 
@@ -213,11 +215,48 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
+/** Start :: Water View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('water_entry', [SocietalViewController::class, 'view_water_entry'])->name('View.Water.Entry');
+        //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_water_duplicate', [WaterController::class, 'check_duplicate_record']);
+    Route::get('/get_water_info_list', [WaterController::class, 'get_water_info_list']);
+    Route::get('/get_water_info_edit', [WaterController::class, 'get_water_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_water_info', [WaterController::class, 'store_water_info']);
+    Route::post('/update_water_info', [WaterController::class, 'update_water_info']);
+    Route::post('/delete_water_info', [WaterController::class, 'delete_water_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: Sanitation View Page Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('sanitation_entry', [SocietalViewController::class, 'view_sanitation_entry'])->name('View.Sanitation.Entry');
+    //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+});
+
+// GET Method Route 
+Route::get('/get_sanitation_duplicate', [SanitationController::class, 'check_duplicate_record']);
+Route::get('/get_sanitation_info_list', [SanitationController::class, 'get_sanitation_info_list']);
+Route::get('/get_sanitation_info_edit', [SanitationController::class, 'get_sanitation_info_edit']);
+
+// POST Method Route
+Route::post('/store_sanitation_info', [SanitationController::class, 'store_sanitation_info']);
+Route::post('/update_sanitation_info', [SanitationController::class, 'update_sanitation_info']);
+Route::post('/delete_sanitation_info', [SanitationController::class, 'delete_sanitation_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
 
 // get all utils (global) function data 
 Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId']);
 Route::get('/get_paraList', [UtilsController::class, 'getParaList']);
 Route::get('/get_community_list', [UtilsController::class, 'get_community_list']);
+
 
 Route::get('/CommunityList', [UtilsController::class, 'getCommunityList']);
 Route::get('/get_training_list', [UtilsController::class, 'get_training_list']);

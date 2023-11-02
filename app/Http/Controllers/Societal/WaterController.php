@@ -11,33 +11,33 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 
-use App\Models\Livelihood;
+use App\Models\Water;
 
-class LivelihoodController extends Controller
+class WaterController extends Controller
 {
-
+    
     public function check_duplicate_record(Request $request)
     {
         $exsits_watershed_id = $request['watershed_id'];
         $exsits_para_id = $request['para_id'];
-        $exsits_community_id = $request['community_id'];
+        $exsits_source_id = $request['water_source_id'];
 
-        $found = DB::table('tbl_livelihood')->select('id')
+        $found = DB::table('tbl_water')->select('id')
                         ->where('watershed_id', $exsits_watershed_id)
                         ->where('para_id', $exsits_para_id)
-                        ->where('community_id', $exsits_community_id)
+                        ->where('source_id', $exsits_source_id)
                         ->count();
         
         if($found == 0){
             return response()->json([ 'status' => 'SUCCESS', 'message' => 'No data found according to inputs..' ]);
         }
         else{
-            return response()->json([ 'status' => 'ERROR', 'message' => 'This community record already exsits, can not allow for entry...' ]);
+            return response()->json([ 'status' => 'ERROR', 'message' => 'This Para and source record already exsits, can not allow for entry...' ]);
         }
 
     }
 
-    public function store_livelihood_info(Request $request)
+    public function store_water_info(Request $request)
     {
         $xml = $request['json_data'];
         $value = json_decode($xml);
@@ -64,38 +64,19 @@ class LivelihoodController extends Controller
                 'watershed_id' => $value->watershed_id,
                 'para_id' => $value->para_id,
                 'para_name' => $value->para_name,
-                'community_id' => $value->community_id,
-                'community_name' => $value->community_name,
-                'jhum_male' => $value->jhum_male,
-                'jhum_female' => $value->jhum_female,
-                'plain_land_male' => $value->plain_land_male,
-                'plain_land_female' => $value->plain_land_female,
-                'orchard_male' => $value->orchard_male,
-                'orchard_female' => $value->orchard_female,
-                'fuel_wood_male' => $value->fuel_wood_male,
-                'fuel_wood_female' => $value->fuel_wood_female,
-                'wage_labour_male' => $value->wage_labour_male,
-                'wage_labour_female' => $value->wage_labour_female,
-                'poultry_male' => $value->poultry_male,
-                'poultry_female' => $value->poultry_female,
-                'livestock_male' => $value->livestock_male,
-                'livestock_female' => $value->livestock_female,
-                'aquaculture_male' => $value->aquaculture_male,
-                'aquaculture_female' => $value->aquaculture_female,
-                'service_male' => $value->service_male,
-                'service_female' => $value->service_female,
-                'business_male' => $value->business_male,
-                'business_female' => $value->business_female,
-                'handicraft_male' => $value->handicraft_male,
-                'handicraft_female' => $value->handicraft_female,
-                'other_male' => $value->other_male,
-                'other_female' => $value->other_female,
+                'source_id' => $value->source_id,
+                'source_name' => $value->source_name,
+                'preferred_source' => $value->preferred_source,
+                'drinking_water_number' => $value->drinking_water_number,
+                'distance' => $value->distance,
+                'availability' => $value->availability,
+                'quality' => $value->quality,
                 'created_by' => $value->created_by,
                 'created_at' => $created_at,
             );
             
             // $store = Economic::insert($store_data);
-            DB::table('tbl_livelihood')->insert($store_data);
+            DB::table('tbl_water')->insert($store_data);
 
             DB::commit();
             

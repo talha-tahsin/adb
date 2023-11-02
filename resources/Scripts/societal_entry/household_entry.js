@@ -106,6 +106,12 @@ $(document).on('click', '#btn_household_entry', function () {
             var pacca_type = $(this).find('#pacca_type').val();
             var numOfHouse = $(this).find('#numOfHouse').val();
 
+            // automation set value 0 if any field leave empty or null 
+            if(jhupri_type == '' || jhupri_type == null || jhupri_type == undefined) jhupri_type = 0;
+            if(kacha_type == '' || kacha_type == null || kacha_type == undefined) kacha_type = 0;
+            if(semi_pacca == '' || semi_pacca == null || semi_pacca == undefined) semi_pacca = 0;
+            if(pacca_type == '' || pacca_type == null || pacca_type == undefined) pacca_type = 0;
+
             // first binding data as xml string
             xml_data += '<row>';
 

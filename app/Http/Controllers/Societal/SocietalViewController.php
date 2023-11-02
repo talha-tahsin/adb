@@ -70,4 +70,14 @@ class SocietalViewController extends Controller
         return view('societal_entry.health_entry');
     }
 
+    // Health
+    public function view_water_entry(){
+        return view('societal_entry.water_entry');
+    }
+
+    // Sanitation
+    public function view_sanitation_entry(){
+        return view('societal_entry.sanitation_entry');
+    }
+
 }

@@ -101,14 +101,20 @@ $(document).on('click', '#get_entry_form', function () {
     else
     { 
         $.ajax({
-            url: "/CommunityList",
+            url: "/check_livelihood_duplicate",
             type: "GET",
-            data: { 'community_list' : 'get_data' },
+            data: { 'watershed_id' : Watershed_Id, 'para_id' : Para_Id, 'community_id' : Community_Id},
             dataType: "JSON",
             cache: false,
             success: function (data) {
                 // console.log(data);
-                $('#table_div').removeClass('hide');
+                if(data.status == 'SUCCESS'){
+                    $('#table_div').removeClass('hide');
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+                }  
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -196,30 +202,30 @@ $(document).on('click', '#btn_store', function () {
      $('#success_msg').html('');
      $('#error_msg').html('');
 
-    // $.ajax({
-    //     url: "/store_livelihood_info",
-    //     type: "POST",
-    //     data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
-    //     dataType: "JSON",
-    //     cache: false,
-    //     success: function (data) {
-    //         // console.log(data);
-    //         if(data.status == 'SUCCESS'){
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#success_msg').html(data.message);
-    //             $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! .</span><p>'+ data.message+'</p>' );
-    //             // alert(data.message);
-    //         }
-    //         else{
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#error_msg').html(data.message);
-    //         }
+    $.ajax({
+        url: "/store_livelihood_info",
+        type: "POST",
+        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                // alert(data.message);
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
             
-    //     },
-    //     error: function(xhr, ajaxOptions, thrownError) {
-    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    //     }
-    // });
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 
 
 

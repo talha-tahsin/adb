@@ -120,6 +120,24 @@ $(document).on('click', '#btn_store', function () {
             var m_disable = $(this).find('#m_disable').val();
             var fe_disable = $(this).find('#fe_disable').val();
 
+            // automation set value 0 if any field leave empty or null 
+            if(m_under_5 == '' || m_under_5 == null || m_under_5 == undefined) m_under_5 = 0;
+            if(m_5_14 == '' || m_5_14 == null || m_5_14 == undefined) m_5_14 = 0;
+            if(m_15_19 == '' || m_15_19 == null || m_15_19 == undefined) m_15_19 = 0;
+            if(m_20_49 == '' || m_20_49 == null || m_20_49 == undefined) m_20_49 = 0;
+            if(m_50_65 == '' || m_50_65 == null || m_50_65 == undefined) m_50_65 = 0;
+            if(m_65_up == '' || m_65_up == null || m_65_up == undefined) m_65_up = 0;
+
+            if(fe_under_5 == '' || fe_under_5 == null || fe_under_5 == undefined) fe_under_5 = 0;
+            if(fe_5_14 == '' || fe_5_14 == null || fe_5_14 == undefined) fe_5_14 = 0;
+            if(fe_15_19 == '' || fe_15_19 == null || fe_15_19 == undefined) fe_15_19 = 0;
+            if(fe_20_49 == '' || fe_20_49 == null || fe_20_49 == undefined) fe_20_49 = 0;
+            if(fe_50_65 == '' || fe_50_65 == null || fe_50_65 == undefined) fe_50_65 = 0;
+            if(fe_65_up == '' || fe_65_up == null || fe_65_up == undefined) fe_65_up = 0;
+
+            if(m_disable == '' || m_disable == null || m_disable == undefined) m_disable = 0;
+            if(fe_disable == '' || fe_disable == null || fe_disable == undefined) fe_disable = 0;
+
 
             // first binding data as xml string
             xml_data += '<row>';
