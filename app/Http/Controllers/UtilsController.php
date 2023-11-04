@@ -11,12 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\LookupPara;
-use App\Models\AdmitMaster;
-use App\Models\HealthStatus;
-use App\Models\AdmitDetails;
-use App\Models\ReceiptMaster;
-use App\Models\ReceiptDetails;
-use App\Models\AccountCode;
+
 
 class UtilsController extends Controller
 {
@@ -99,8 +94,7 @@ class UtilsController extends Controller
 
     }
 
-    public function get_health_center_list()
-    {
+    public function get_health_center_list(){
 
         $data = DB::table('lookup_health_center')
                     ->select('center_id', 'center_name')
@@ -108,6 +102,28 @@ class UtilsController extends Controller
                     ->get();
 
         return response()->json([ 'message' => $data ]);
+
+    }
+
+    public function get_latrine_type(){
+
+        $data = DB::table('lookup_latrine_list')
+                    ->select('id','latrine_type_id', 'latrine_type_name')
+                    ->orderBy('latrine_type_name')
+                    ->get();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => $data ]);
+
+    }
+
+    public function get_transportation_list(){
+
+        $data = DB::table('lookup_transportation')
+                    ->select('id','transportation_id', 'transportation_name')
+                    ->orderBy('transportation_name')
+                    ->get();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => $data ]);
 
     }
 

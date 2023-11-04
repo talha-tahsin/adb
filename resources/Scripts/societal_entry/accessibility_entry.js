@@ -1,7 +1,7 @@
 
 
 
-document.title = 'Sanitation Entry';
+document.title = 'Accessibility Entry';
 
 $(document).ready(function () {
 
@@ -24,6 +24,30 @@ $(document).ready(function () {
         success: function (data) {
             // console.log(data);
             $('#watershedId').html(data);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    $.ajax({
+        url: "/get_transportation",
+        type: "GET",
+        data: { 'latrineList' : 'get_data'},
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#table_div').removeClass('hide');
+                $.each(data.message, function (i, v) {
+                    insertTableRow(v.transportation_name, v.transportation_id);
+                 });
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }  
         },
         error: function(xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -58,18 +82,6 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
-$(document).on('change', '#para_list', function () {
-
-    var para_list = $('#para_list option:selected').val();
-    // console.log(watershedId);
-
-    if(para_list)
-    {
-        $('#water_source').prop('disabled', false);
-        
-    }
-
-});
 
 $(document).on('click', '#get_entry_form', function () {
 
@@ -194,22 +206,19 @@ function insertTableRow(center_name, center_id) {
     appendString += '<tr center_id="'+center_id+'" >';
 
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    appendString += '<td style="width: 300px;text-align: left;">'+center_name+'</td>';
+    appendString += '<td style="width: 500px;text-align: left;">'+center_name+'</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="own" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<select type="text" id="Profit" name="Profit" class="form-control" value="" style="width: 200px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="1">Good</option>';
+    appendString += '<option value="2">Bad</option>';
+    appendString += '<option value="3">Medium</option>';
+    appendString += '</select>';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="shared" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="total" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '</tr>';

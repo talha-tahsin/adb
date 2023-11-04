@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="font-family: Serif;">Sanitation Info Entry</h1>
+            <h1 class="m-0" style="font-family: Serif;">Accessibility Info Entry</h1>
           </div><!-- /.col -->
           <div class="col-sm-6"></div><!-- /.col -->
         </div><!-- /.row -->
@@ -77,22 +77,12 @@
                                       
                                       <tr style="background-color: #8ed6f2;">
                                           <th style="text-align: center;">Serial</th>
-                                          <th style="text-align: left;">Latrine type</th>
-                                          <th style="text-align: center;">Household Owned</th>
-                                          <th style="text-align: center;">Shared</th>
-                                          <th style="text-align: center;">Total</th>
+                                          <th style="text-align: left;">Transportation mode</th>
+                                          <th style="text-align: center;">Condition</th>
                                           <th style="text-align: center;">Comments</th>
                                       </tr>
                                       
                                   </thead>
-
-                                  <!-- <tfoot>
-                                      <tr style="background-color: #f1f5f5;">
-                                          <td colspan="3" style="text-align: right;font-weight: bold;">Total</td>
-                                          <td id="total_amount" style="text-align: right;color: red;"></td>
-                                          <td>&nbsp;</td>
-                                      </tr>
-                                  </tfoot>  -->
 
                                   <tbody id="table_body"></tbody>
 
@@ -102,39 +92,7 @@
                           <!-- end div col-7 -->
 
                           <div class="col-md-5" style="margin: 20px 0px 10px 0px;">
-                            
-                          <h4>(b) Number of users per latrine </h4>
-                            <div class="col-md-4" style="margin: 10px 0px 10px 0px;">
-                              <label class="control-label  validate" for="orchard_female">
-                              <span style="color: red;">★&nbsp;</span>Write the Number</label>
-                              <input type="text" name="orchard_female" id="orchard_female" class="form-control" placeholder="Integer Number Only" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
-                            </div> 
-              
-
-                            <br>
-                          <h4>(c)	Are community people aware on washing hands, using sandals  </h4>
-
-                            <div class="col-md-4" style="margin: 10px 0px 10px 0px;">
-                              <label class="control-label  validate" for="orchard_female">
-                              <span style="color: red;">★&nbsp;</span>Male</label>
-                              <select id="availability" name="availability" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
-                                <option value="" selected disabled>Select </option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                              </select>
-                            </div>
-                            
-                            <div class="col-md-4" style="margin: 10px 0px 10px 0px;">
-                              <label class="control-label  validate" for="orchard_female">
-                              <span style="color: red;">★&nbsp;</span>Female</label>
-                              <select id="availability" name="availability" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
-                                <option value="" selected disabled>Select </option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                              </select>
-                            </div> 
-
-
+                            @include('societal_entry.accessibility_right_side')
                           </div>
                           <!-- end div col-6 -->
                     </div>
@@ -194,7 +152,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/societal_entry/sanitation_entry.js') }}"></script>
+<script src="{{ mix('resources/scripts/societal_entry/accessibility_entry.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 

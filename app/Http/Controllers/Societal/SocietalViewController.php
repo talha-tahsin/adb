@@ -80,4 +80,9 @@ class SocietalViewController extends Controller
         return view('societal_entry.sanitation_entry');
     }
 
+    // Accessibility
+    public function view_accessibility_entry(){
+        return view('societal_entry.accessibility_entry');
+    }
+
 }

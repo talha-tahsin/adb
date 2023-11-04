@@ -251,6 +251,24 @@ Route::post('/delete_sanitation_info', [SanitationController::class, 'delete_san
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
+/** Start :: Accessibility View Page Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('accessibility_entry', [SocietalViewController::class, 'view_accessibility_entry'])->name('View.Accessibility.Entry');
+    //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+});
+
+// GET Method Route 
+Route::get('/get_accessibility_duplicate', [AccessibilityController::class, 'check_duplicate_record']);
+Route::get('/get_accessibility_info_list', [AccessibilityController::class, 'get_accessibility_info_list']);
+Route::get('/get_accessibility_info_edit', [AccessibilityController::class, 'get_accessibility_info_edit']);
+
+// POST Method Route
+Route::post('/store_accessibility_info', [AccessibilityController::class, 'store_accessibility_info']);
+Route::post('/update_accessibility_info', [AccessibilityController::class, 'update_accessibility_info']);
+Route::post('/delete_accessibility_info', [AccessibilityController::class, 'delete_accessibility_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
 
 // get all utils (global) function data 
 Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId']);
@@ -261,3 +279,5 @@ Route::get('/get_community_list', [UtilsController::class, 'get_community_list']
 Route::get('/CommunityList', [UtilsController::class, 'getCommunityList']);
 Route::get('/get_training_list', [UtilsController::class, 'get_training_list']);
 Route::get('/get_health_center_list', [UtilsController::class, 'get_health_center_list']);
+Route::get('/get_latrine_type', [UtilsController::class, 'get_latrine_type']);
+Route::get('/get_transportation', [UtilsController::class, 'get_transportation_list']);

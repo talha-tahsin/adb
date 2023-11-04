@@ -69,7 +69,7 @@
                         </div> 
                         <!-- end row -->
 
-                          <div class="form-group hide" id="table_div">
+                        <div class="form-group hide" id="table_div">
 
                             <div class="row">
                               
@@ -133,15 +133,15 @@
                                   <!-- end div col-6 -->
                             </div>
 
-                        <div class="row">
-                            <div class="col-md-10"></div>
-                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
-                            </div>  
-                        </div>
+                            <div class="row">
+                                <div class="col-md-10"></div>
+                                <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                                    <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
+                                </div>  
+                            </div>
 
-                         </div>
-                         <!-- end form-group -->
+                        </div>
+                        <!-- end form-group -->
 
 
                   </div>
