@@ -75,6 +75,7 @@ $(document).on('click', '#get_entry_form', function () {
 
     var Watershed_Id = $('#watershedId option:selected').val();
     var Para_Id = $('#para_list option:selected').val();
+    $("#voucher_table > tbody").empty();
 
     if(Para_Id == '' || Para_Id == null || Para_Id == undefined)
     {
@@ -85,7 +86,8 @@ $(document).on('click', '#get_entry_form', function () {
         alert("Please Select Watershed...");
     }
     else
-    { 
+    {
+
         $.ajax({
             url: "/get_latrine_type",
             type: "GET",
@@ -113,7 +115,44 @@ $(document).on('click', '#get_entry_form', function () {
 
 });
 
-$(document).on('click', '#btn_store', function () {
+function insertTableRow(center_name, center_id) {
+
+    var appendString = '';
+    var rowCount = $('#voucher_table > tbody > tr').length;
+    rowCount++;
+
+    // console.log(accountName);
+
+    appendString += '<tr center_id="'+center_id+'" >';
+
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
+    appendString += '<td style="width: 300px;text-align: left;">'+center_name+'</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="own" class="form-control count" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="shared" class="form-control count" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="total" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0" disabled>';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="Write Comments">';
+    appendString += '</td>';
+
+    appendString += '</tr>';
+
+
+    $('#voucher_table > tbody:last-child').append(appendString);
+    // $("#voucher_table tr:last").scrollintoview();
+    // removeTableRow();
+}
+
+$(document).on('click', '#btn_store1', function () {
 
     var token = $("meta[name='csrf-token']").attr("content");
     var created_by = $('#userName').val();
@@ -122,28 +161,96 @@ $(document).on('click', '#btn_store', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    source_id = $('#water_source option:selected').val();
-    source_name = $('#water_source option:selected').text();
+    xml_data = '<head>';
 
-    preferred_source = $('#preferred_source').val();
-    drinking_water_number = $('#drinking_water_number').val();
+    $('#voucher_table > tbody > tr').each(function () {
 
-    distance = $('#distance option:selected').val();
-    availability = $('#availability option:selected').val();
-    quality = $('#quality option:selected').val();
+        var latrineType_id = $(this).attr('center_id');
+        var latrineType_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
+        
+        var own = $(this).find('#own').val();
+        var shared = $(this).find('#shared').val();
+        var total = $(this).find('#total').val();
+        var comments = $(this).find('#comments').val();
+
+        // first binding data as xml string
+        xml_data += '<row>';
+
+        xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+        xml_data += '<para_id>' + para_id + '</para_id>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
+
+        xml_data += '<latrineType_id>' + latrineType_id + '</latrineType_id>';
+        xml_data += '<latrineType_name>' + latrineType_name + '</latrineType_name>';
+
+        xml_data += '<own>' + own + '</own>';
+        xml_data += '<shared>' + shared + '</shared>';
+        xml_data += '<total>' + total + '</total>';
+        xml_data += '<comments>' + comments + '</comments>';
+
+        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+
+        xml_data += '</row>';
+        
+    });
+
+    xml_data += '</head>';
+    
+    console.log(xml_data);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_sanitation1_info",
+        type: "POST",
+        data: { '_token' : token, 'xml_data' : xml_data },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#voucher_table td input[type=text]').val('');
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+});
+
+$(document).on('click', '#btn_store2', function () {
+
+    var token = $("meta[name='csrf-token']").attr("content");
+    var created_by = $('#userName').val();
+
+    watershed_id = $('#watershedId option:selected').val();
+    para_id = $('#para_list option:selected').val();
+    para_name = $('#para_list option:selected').text();
+
+    per_latrine_user = $('#per_latrine_user').val();
+    male_awareness = $('#male_awareness option:selected').val();
+    female_awareness = $('#female_awareness option:selected').val();
     
 
     jsonObj = {
+
         'watershed_id' : watershed_id,
         'para_id' : para_id,
         'para_name' : para_name,
-        'source_id' : source_id,
-        'source_name' : source_name,
-        'preferred_source' : preferred_source,
-        'drinking_water_number' : drinking_water_number,
-        'distance' : distance,
-        'availability' : availability,
-        'quality' : quality,
+        'per_latrine_user' : per_latrine_user,
+        'male_awareness' : male_awareness,
+        'female_awareness' : female_awareness,
         'created_by' : created_by,
 
     };
@@ -155,7 +262,7 @@ $(document).on('click', '#btn_store', function () {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_water_info",
+        url: "/store_sanitation2_info",
         type: "POST",
         data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
         dataType: "JSON",
@@ -166,6 +273,10 @@ $(document).on('click', '#btn_store', function () {
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html(data.message);
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+
+                $('#per_latrine_user').val('');
+                $('#male_awareness').val('').change();
+                $('#female_awareness').val('').change();
                 // alert(data.message);
             }
             else{
@@ -183,44 +294,6 @@ $(document).on('click', '#btn_store', function () {
 
 });
 
-function insertTableRow(center_name, center_id) {
-
-    var appendString = '';
-    var rowCount = $('#voucher_table > tbody > tr').length;
-    rowCount++;
-
-    // console.log(accountName);
-
-    appendString += '<tr center_id="'+center_id+'" >';
-
-    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    appendString += '<td style="width: 300px;text-align: left;">'+center_name+'</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="own" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="shared" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="total" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0" disabled>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '</tr>';
-
-
-    $('#voucher_table > tbody:last-child').append(appendString);
-    // $("#voucher_table tr:last").scrollintoview();
-    // removeTableRow();
-}
-
-
 
 function clearInput() {
 
@@ -229,6 +302,24 @@ function clearInput() {
     $('#drinking_water_number').val('');
 
 }
+
+$(document).on('change', '.count', function () {
+
+    var row = $(this).closest('tr'); 
+    var total = 0;
+
+    // current row and calculate the total
+    row.find('.count').each(function () {
+        var value = parseFloat($(this).val());
+        if (!isNaN(value)) {
+            total += value;
+        }
+    });
+
+    row.find('#total').val(total);
+
+
+});
 
 
 

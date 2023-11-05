@@ -66,11 +66,11 @@
               <!-- end row -->
               
                 <div class="form-group hide" id="table_div">
-
+                <hr style="border-bottom: 2px solid Gray;">
                     <div class="row">
                       
-                          <div class="col-md-7" style="margin: 20px 0px 10px 0px;">
-                            <h4>(a) Sanitation Information</h4>
+                          <div class="col-md-7" style="margin: 10px 0px 10px 0px;">
+                            <h4>(1) Sanitation Information</h4>
                               <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
                                   <thead>
@@ -86,38 +86,42 @@
                                       
                                   </thead>
 
-                                  <!-- <tfoot>
-                                      <tr style="background-color: #f1f5f5;">
-                                          <td colspan="3" style="text-align: right;font-weight: bold;">Total</td>
-                                          <td id="total_amount" style="text-align: right;color: red;"></td>
-                                          <td>&nbsp;</td>
-                                      </tr>
-                                  </tfoot>  -->
-
                                   <tbody id="table_body"></tbody>
 
                               </table>
+
+                              <div class="row">
+                                <div class="col-md-9"></div>
+                                <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                                    <button type="submit" class="btn btn-primary" id="btn_store1" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
+                                </div>  
+                              </div>
                               
                           </div>
                           <!-- end div col-7 -->
 
                           <div class="col-md-5" style="margin: 20px 0px 10px 0px;">
                             
-                          <h4>(b) Number of users per latrine </h4>
-                            <div class="col-md-4" style="margin: 10px 0px 10px 0px;">
-                              <label class="control-label  validate" for="orchard_female">
-                              <span style="color: red;">★&nbsp;</span>Write the Number</label>
-                              <input type="text" name="orchard_female" id="orchard_female" class="form-control" placeholder="Integer Number Only" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
+                            <!-- <h4>(2) Number of users per latrine </h4> -->
+                            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
+                              <label class="control-label  validate" for="per_latrine_user">
+                               (2) Number of users per latrine </label>
+                            </div>  
+                            <div class="col-md-4" style="margin: 0px 0px 10px 0px;">   
+                              <input type="text" name="per_latrine_user" id="per_latrine_user" class="form-control" placeholder="Integer Number Only" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                             </div> 
               
 
                             <br>
-                          <h4>(c)	Are community people aware on washing hands, using sandals  </h4>
+                            <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
+                              <label class="control-label  validate" for="orchard_female">
+                              (3)	Are community people aware on washing hands, using sandals</label>
+                            </div> 
 
                             <div class="col-md-4" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label  validate" for="orchard_female">
                               <span style="color: red;">★&nbsp;</span>Male</label>
-                              <select id="availability" name="availability" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                              <select id="male_awareness" name="male_awareness" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
                                 <option value="" selected disabled>Select </option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -127,24 +131,26 @@
                             <div class="col-md-4" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label  validate" for="orchard_female">
                               <span style="color: red;">★&nbsp;</span>Female</label>
-                              <select id="availability" name="availability" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                              <select id="female_awareness" name="female_awareness" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
                                 <option value="" selected disabled>Select </option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                               </select>
                             </div> 
 
+                            <div class="row">
+                              <div class="col-md-8"></div>
+                              <div class="col-md-4" style="margin: 20px 0px 30px 0px;">
+                                  <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
+                              </div>  
+                            </div>
+
 
                           </div>
                           <!-- end div col-6 -->
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-10"></div>
-                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                            <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
-                        </div>  
-                    </div>
+                   
 
                 </div>
                 <!-- end form-group -->

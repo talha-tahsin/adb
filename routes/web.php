@@ -18,6 +18,8 @@ use App\Http\Controllers\Societal\EconomicController;
 use App\Http\Controllers\Societal\EducationController;
 use App\Http\Controllers\Societal\HealthController;
 use App\Http\Controllers\Societal\WaterController;
+use App\Http\Controllers\Societal\SanitationController;
+use App\Http\Controllers\Societal\AccessibilityController;
 
 use App\Http\Controllers\UtilsController;
 
@@ -234,38 +236,43 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Sanitation View Page Route */
-Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('sanitation_entry', [SocietalViewController::class, 'view_sanitation_entry'])->name('View.Sanitation.Entry');
-    //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
-});
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('sanitation_entry', [SocietalViewController::class, 'view_sanitation_entry'])->name('View.Sanitation.Entry');
+        //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+    });
 
-// GET Method Route 
-Route::get('/get_sanitation_duplicate', [SanitationController::class, 'check_duplicate_record']);
-Route::get('/get_sanitation_info_list', [SanitationController::class, 'get_sanitation_info_list']);
-Route::get('/get_sanitation_info_edit', [SanitationController::class, 'get_sanitation_info_edit']);
+    // GET Method Route 
+    Route::get('/get_sanitation_duplicate', [SanitationController::class, 'check_duplicate_record']);
+    Route::get('/get_sanitation_info_list', [SanitationController::class, 'get_sanitation_info_list']);
+    Route::get('/get_sanitation_info_edit', [SanitationController::class, 'get_sanitation_info_edit']);
 
-// POST Method Route
-Route::post('/store_sanitation_info', [SanitationController::class, 'store_sanitation_info']);
-Route::post('/update_sanitation_info', [SanitationController::class, 'update_sanitation_info']);
-Route::post('/delete_sanitation_info', [SanitationController::class, 'delete_sanitation_info']);
+    // POST Method Route
+    Route::post('/store_sanitation1_info', [SanitationController::class, 'store_sanitation1_info']);
+    Route::post('/store_sanitation2_info', [SanitationController::class, 'store_sanitation2_info']);
+
+    Route::post('/update_sanitation_info', [SanitationController::class, 'update_sanitation_info']);
+    Route::post('/delete_sanitation_info', [SanitationController::class, 'delete_sanitation_info']);
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Accessibility View Page Route */
-Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('accessibility_entry', [SocietalViewController::class, 'view_accessibility_entry'])->name('View.Accessibility.Entry');
-    //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
-});
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('accessibility_entry', [SocietalViewController::class, 'view_accessibility_entry'])->name('View.Accessibility.Entry');
+        //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
+    });
 
-// GET Method Route 
-Route::get('/get_accessibility_duplicate', [AccessibilityController::class, 'check_duplicate_record']);
-Route::get('/get_accessibility_info_list', [AccessibilityController::class, 'get_accessibility_info_list']);
-Route::get('/get_accessibility_info_edit', [AccessibilityController::class, 'get_accessibility_info_edit']);
+    // GET Method Route 
+    Route::get('/get_accessibility_duplicate', [AccessibilityController::class, 'check_duplicate_record']);
+    Route::get('/get_accessibility_info_list', [AccessibilityController::class, 'get_accessibility_info_list']);
+    Route::get('/get_accessibility_info_edit', [AccessibilityController::class, 'get_accessibility_info_edit']);
 
-// POST Method Route
-Route::post('/store_accessibility_info', [AccessibilityController::class, 'store_accessibility_info']);
-Route::post('/update_accessibility_info', [AccessibilityController::class, 'update_accessibility_info']);
-Route::post('/delete_accessibility_info', [AccessibilityController::class, 'delete_accessibility_info']);
+    // POST Method Route
+    Route::post('/store_accessibility1_info', [AccessibilityController::class, 'store_accessibility1_info']);
+    Route::post('/store_accessibility2_info', [AccessibilityController::class, 'store_accessibility2_info']);
+    Route::post('/store_accessibility3_info', [AccessibilityController::class, 'store_accessibility3_info']);
+
+    Route::post('/update_accessibility_info', [AccessibilityController::class, 'update_accessibility_info']);
+    Route::post('/delete_accessibility_info', [AccessibilityController::class, 'delete_accessibility_info']);
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
@@ -279,5 +286,6 @@ Route::get('/get_community_list', [UtilsController::class, 'get_community_list']
 Route::get('/CommunityList', [UtilsController::class, 'getCommunityList']);
 Route::get('/get_training_list', [UtilsController::class, 'get_training_list']);
 Route::get('/get_health_center_list', [UtilsController::class, 'get_health_center_list']);
+
 Route::get('/get_latrine_type', [UtilsController::class, 'get_latrine_type']);
 Route::get('/get_transportation', [UtilsController::class, 'get_transportation_list']);

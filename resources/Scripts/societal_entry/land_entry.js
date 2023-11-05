@@ -167,6 +167,8 @@ $(document).on('click', '#btn_store', function () {
             if(data.status == 'SUCCESS'){
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html(data.message);
+
+                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
                 $('#voucher_table td input[type=text]').val('');
                 $('#voucher_table td input[type=checkbox]').prop('checked', false);
                 // alert(data.message);
@@ -248,7 +250,7 @@ function insertTableRow(comntyName, comuntyId) {
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<select type="text" id="Profit" name="Profit" class="form-control" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<select type="text" id="Profit" name="Profit" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
     appendString += '<option value="" selected disabled> Select </option>';
     appendString += '<option value="1">Self</option>';
     appendString += '<option value="2">Common</option>';
@@ -256,9 +258,6 @@ function insertTableRow(comntyName, comuntyId) {
     appendString += '<option value="4">Ratio</option>';
     appendString += '</select>';
     appendString += '</td>';
-
-   
-    
 
     //appendString += '<td style="text-align: center;">';
     //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';
@@ -368,69 +367,5 @@ function reOrderTable() {
     counter = sl - 1;
 }
 
-function gotoUrl(path, params, method, target = ''){
-
-    method = method || "post";
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-    form.setAttribute("target", target);
-    if (typeof params === 'string') {
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", 'data');
-        hiddenField.setAttribute("value", params);
-        form.appendChild(hiddenField);
-    }
-    else {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var hiddenField = document.createElement("input");
-                hiddenField.setAttribute("type", "hidden");
-                hiddenField.setAttribute("name", key);
-                if(typeof params[key] === 'object'){
-                    hiddenField.setAttribute("value", JSON.stringify(params[key]));
-                }
-                else{
-                    hiddenField.setAttribute("value", params[key]);
-                }
-                form.appendChild(hiddenField);
-            }
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-}
-
-// Function to convert XML to JSON
-function xmlToJson(xml) {
-  try {
-    var obj = {};
-    if (xml.children.length > 0) {
-      for (var i = 0; i < xml.children.length; i++) {
-        var item = xml.children.item(i);
-        var nodeName = item.nodeName;
-
-        if (typeof (obj[nodeName]) == "undefined") {
-          obj[nodeName] = xml2json(item);
-        } else {
-          if (typeof (obj[nodeName].push) == "undefined") {
-            var old = obj[nodeName];
-
-            obj[nodeName] = [];
-            obj[nodeName].push(old);
-          }
-          obj[nodeName].push(xml2json(item));
-        }
-      }
-    } else {
-      obj = xml.textContent;
-    }
-    return obj;
-  } catch (e) {
-      console.log(e.message);
-  }
-}
 
 

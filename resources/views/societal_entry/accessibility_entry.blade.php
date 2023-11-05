@@ -66,11 +66,12 @@
               <!-- end row -->
               
                 <div class="form-group hide" id="table_div">
+                <hr style="border-bottom: 2px solid Maroon;">
 
                     <div class="row">
                       
-                          <div class="col-md-7" style="margin: 20px 0px 10px 0px;">
-                            <h4>(a) Sanitation Information</h4>
+                          <div class="col-md-7" style="margin: 10px 0px 10px 0px;">
+                            <h4>(1) Sanitation Information</h4>
                               <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
                                   <thead>
@@ -87,9 +88,74 @@
                                   <tbody id="table_body"></tbody>
 
                               </table>
-                              
+
+                              <div class="row">
+                                <div class="col-md-9"></div>
+                                <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                                    <button type="submit" class="btn btn-primary" id="btn_store1" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
+                                </div>
+                              </div>
+
+                              <h4>(2) Status of the telecommunication facilities </h4>
+
+                        <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="telecom_table">
+                            <thead>
+                                <tr style="background-color: #8ed6f2;">
+                                    <th colspan="3" style="text-align: center;">Percentage of people with mobile phone</th>
+                                    <th colspan="3" style="text-align: center;">Percentage of people with a smartphone</th>
+                                    <th colspan="3" style="text-align: center;">Percentage of people with an internet connection</th>
+                                    <th rowspan="2" style="text-align: center;">Remarks</th>
+                                </tr>
+
+                                <tr>
+                                    <th style="text-align:center;border-bottom: none;">Less 20%</th>
+                                    <th style="text-align:center;border-bottom: none;">20-40%</th>
+                                    <th style="text-align:center;border-bottom: none;">Up 40%</th>
+
+                                    <th style="text-align:center;border-bottom: none;">Less 20%</th>
+                                    <th style="text-align:center;border-bottom: none;">20-40%</th>
+                                    <th style="text-align:center;border-bottom: none;">Up 40%</th>
+
+                                    <th style="text-align:center;border-bottom: none;">Less 20%</th>
+                                    <th style="text-align:center;border-bottom: none;">20-40%</th>
+                                    <th style="text-align:center;border-bottom: none;">Up 40%</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody id="table_body">
+
+                              <tr>
+                                <td style="text-align: center;width: 10%"><input type="text" id="phone_less20" class="form-control" placeholder="0"></td> 
+                                <td style="text-align: center;width: 10%"><input type="text" id="phone_20to40" class="form-control" placeholder="0"></td> 
+                                <td style="text-align: center;width: 10%"><input type="text" id="phone_up40" class="form-control" placeholder="0"></td>
+
+                                <td style="text-align: center;width: 10%"><input type="text" id="anroid_less20" class="form-control" placeholder="0"></td> 
+                                <td style="text-align: center;width: 10%"><input type="text" id="anroid_20to40" class="form-control" placeholder="0"></td> 
+                                <td style="text-align: center;width: 10%"><input type="text" id="anroid_up40" class="form-control" placeholder="0"></td>
+
+                                <td style="text-align: center;width: 10%"><input type="text" id="intertnet_less20" class="form-control" placeholder="0"></td> 
+                                <td style="text-align: center;width: 10%"><input type="text" id="intertnet_20to40" class="form-control" placeholder="0"></td> 
+                                <td style="text-align: center;width: 10%"><input type="text" id="intertnet_up40" class="form-control" placeholder="0"></td>
+
+                                <td style="text-align: center;width: 20%"><input type="text" id="remarks" class="form-control" placeholder="0"></td>
+                              </tr>
+
+                            </tbody>
+
+                          </table>
+
+                          <div class="row">
+                              <div class="col-md-9"></div>
+                              <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                                  <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
+                              </div>  
                           </div>
-                          <!-- end div col-7 -->
+  
+                        
+                              
+                    </div>
+                    <!-- end div col-7 -->
 
                           <div class="col-md-5" style="margin: 20px 0px 10px 0px;">
                             @include('societal_entry.accessibility_right_side')
@@ -97,15 +163,11 @@
                           <!-- end div col-6 -->
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-10"></div>
-                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                            <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info</button>
-                        </div>  
-                    </div>
+                   
 
                 </div>
                 <!-- end form-group -->
+                
 
     
       </div>  
