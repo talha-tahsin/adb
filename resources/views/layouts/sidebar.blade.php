@@ -251,6 +251,60 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Water Resources
+                <i class="fas fa-angle-left right"></i>
+               
+              </p>
+            </a>
+           <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('View.Population') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Entry 1</p>
+                </a>
+              </li>
+             
+              <li class="nav-item">
+                <a href="{{ route('View.Household.Info') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Entry 2</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Livestock
+                <i class="fas fa-angle-left right"></i>
+               
+              </p>
+            </a>
+           <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('View.Population') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Part 1</p>
+                </a>
+              </li>
+             
+              <li class="nav-item">
+                <a href="{{ route('View.Household.Info') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Part 2</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
         @endif 
 
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'receipt_all')
