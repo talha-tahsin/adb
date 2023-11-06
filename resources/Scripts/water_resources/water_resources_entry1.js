@@ -192,17 +192,33 @@ $(document).on('click', '#btn_store', function () {
     depth_on = $('#depth_on').val();
     depth_djf = $('#depth_djf').val();
 
-    var xml = '<purpose>';
-        if( $('#drinking').prop('checked') ) xml += '<drinking>'+ $('#drinking:checked').val() +'</drinking>';
-        if( $('#domestic').prop('checked') ) xml += '<domestic>'+ $('#domestic:checked').val() +'</domestic>';
-        if( $('#irrigation').prop('checked') ) xml += '<irrigation>'+ $('#irrigation:checked').val() +'</irrigation>';
-        if( $('#cattle').prop('checked') ) xml += '<cattle>'+ $('#cattle:checked').val() +'</cattle>';
-        if( $('#other').prop('checked') ) xml += '<other>'+ $('#other:checked').val() +'</other>';
-    xml += '</purpose>';
+    drink_val = $('#drinking:checked').val();
+    domestic_val = $('#domestic:checked').val();
+    irrigation_val = $('#irrigation:checked').val();
+    cattle_val = $('#cattle:checked').val();
+    other_val = $('#other:checked').val();
 
-    // var xmlDoc = $.parseXML(xml);
+    // if( !$('#drinking').prop('checked') ) var drink_val = '';
 
-    console.log(xml);
+    var jsonObj2 = {
+        'purpose' : {
+            'drinking' : drink_val,
+            'domestic' : domestic_val,
+            'irrigation' : irrigation_val,
+            'cattle' : cattle_val,
+            'other' : other_val
+         }
+    };
+
+    // var xml = '<purpose>';
+    //     if( $('#drinking').prop('checked') ) xml += '<drinking>'+ $('#drinking:checked').val() +'</drinking>';
+    //     if( $('#domestic').prop('checked') ) xml += '<domestic>'+ $('#domestic:checked').val() +'</domestic>';
+    //     if( $('#irrigation').prop('checked') ) xml += '<irrigation>'+ $('#irrigation:checked').val() +'</irrigation>';
+    //     if( $('#cattle').prop('checked') ) xml += '<cattle>'+ $('#cattle:checked').val() +'</cattle>';
+    //     if( $('#other').prop('checked') ) xml += '<other>'+ $('#other:checked').val() +'</other>';
+    // xml += '</purpose>';
+
+    console.log(jsonObj2);
 
     jsonObj = {
         'watershed_id' : watershed_id,
@@ -234,7 +250,7 @@ $(document).on('click', '#btn_store', function () {
     $.ajax({
         url: "/store_resources_entry1",
         type: "POST",
-        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj), 'xml_data' : xml },
+        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj), 'json_data2' : JSON.stringify(jsonObj2) },
         dataType: "JSON",
         cache: false,
         success: function (data) {

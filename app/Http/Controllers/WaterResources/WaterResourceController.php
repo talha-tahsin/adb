@@ -24,7 +24,8 @@ class WaterResourceController extends Controller
         $jsonData = $request['json_data'];
         $value = json_decode($jsonData);
 
-        $v_xml = $request['xml_data'];
+        $v_xml = $request['json_data2'];
+        // $v_purpose = json_decode($v_xml);
         // $xmlstr = simplexml_load_string($v_xml);
 
         // dd($value,$v_xml, $xmlstr);

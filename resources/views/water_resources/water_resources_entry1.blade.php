@@ -77,11 +77,11 @@
                 <hr style="border-bottom: 2px solid black;">
                     <div class="row">
 
-                        <div class="col-md-4" style="margin: 10px 0px 10px 0px;">
+                        <div class="col-md-3" style="margin: 10px 0px 10px 0px;">
 
                           <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6" style="margin: 0px 0px 10px 0px;">
+                            <!-- <div class="col-md-2"></div> -->
+                            <div class="col-md-8" style="margin: 0px 0px 10px 0px;">
                               <label class="control-label validate" for="name">
                               <span style="color: red;">★&nbsp;</span>Name</label>
                               <input type="text" name="name" id="name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
@@ -89,8 +89,8 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
+                            <!-- <div class="col-md-2"></div> -->
+                            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="location_north">
                               <span style="color: red;">★&nbsp;</span>Location (Northing)</label>
                               <input type="text" name="location_north" id="location_north" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
@@ -98,8 +98,8 @@
                           </div> 
                             
                           <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
+                            <!-- <div class="col-md-2"></div> -->
+                            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="location_south">
                               <span style="color: red;">★&nbsp;</span>Location (Southing)</label>
                               <input type="text" name="location_south" id="location_south" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
@@ -108,8 +108,8 @@
                           <!-- end row -->
 
                           <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
+                            <!-- <div class="col-md-2"></div> -->
+                            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="source">
                               <span style="color: red;">★&nbsp;</span>Source</label>
                               <input type="text" name="source" id="source" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
@@ -118,8 +118,8 @@
                           <!-- end row -->
 
                           <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
+                            <!-- <div class="col-md-2"></div> -->
+                            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="outlet">
                               <span style="color: red;">★&nbsp;</span>Outlet</label>
                               <input type="text" name="outlet" id="outlet" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
@@ -128,8 +128,8 @@
                           <!-- end row -->
 
                           <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
+                            <!-- <div class="col-md-2"></div> -->
+                            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="distance">
                               <span style="color: red;">★&nbsp;</span>Distance From para center</label>
                               <input type="text" name="distance" id="distance" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
@@ -140,7 +140,7 @@
                       </div>
                       <!-- end of col-md-4 -->
 
-                      <div class="col-md-7" style="margin: 20px 0px 10px 0px;">
+                      <div class="col-md-8" style="margin: 20px 0px 10px 0px;">
 
                           <!-- <h4>(3.1)	Connecting road in the para and distance from para center? </h4> -->
 
@@ -159,11 +159,11 @@
                                 <tr>
                                   <td style="text-align: center;width: 5%">1</td> 
                                   <td style="text-align: left;width: 20%">March | April | May</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="availability_mam" class="form-control" placeholder="Write in Foot">
                                   </td>
                                   <td style="text-align: left;width: 20%">March | April | May</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="depth_mam" class="form-control" placeholder="Write in Foot">
                                   </td>
                                 </tr>
@@ -171,11 +171,11 @@
                                 <tr>
                                   <td style="text-align: center;width: 5%">2</td> 
                                   <td style="text-align: left;width: 20%">June | July | August | September</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="availability_jjas" class="form-control" placeholder="Write in Foot">
                                   </td>
                                   <td style="text-align: left;width: 20%">June | July | August | September</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="depth_jjas" class="form-control" placeholder="Write in Foot">
                                   </td>
                                 </tr>
@@ -183,11 +183,11 @@
                                 <tr>
                                   <td style="text-align: center;width: 5%">3</td> 
                                   <td style="text-align: left;width: 20%">October | November</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="availability_on" class="form-control" placeholder="Write in Foot">
                                   </td>
                                   <td style="text-align: left;width: 20%">October | November</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="depth_on" class="form-control" placeholder="Write in Foot">
                                   </td>
                                 </tr>
@@ -195,11 +195,11 @@
                                 <tr>
                                   <td style="text-align: center;width: 5%">4</td> 
                                   <td style="text-align: left;width: 20%">December | January | February</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="availability_djf" class="form-control" placeholder="Write in Foot">
                                   </td>
                                   <td style="text-align: left;width: 20%">December | January | February</td> 
-                                  <td style="text-align: center;width: 10%">
+                                  <td style="text-align: center;width: 20%">
                                     <input type="text" id="depth_djf" class="form-control" placeholder="Write in Foot">
                                   </td>
                                 </tr>
