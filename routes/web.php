@@ -21,6 +21,10 @@ use App\Http\Controllers\Societal\WaterController;
 use App\Http\Controllers\Societal\SanitationController;
 use App\Http\Controllers\Societal\AccessibilityController;
 
+/** :: Water Resources Controller :: */
+use App\Http\Controllers\WaterResources\WaterResourceController;
+
+
 use App\Http\Controllers\UtilsController;
 
 // ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
@@ -273,6 +277,27 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
     Route::post('/update_accessibility_info', [AccessibilityController::class, 'update_accessibility_info']);
     Route::post('/delete_accessibility_info', [AccessibilityController::class, 'delete_accessibility_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: Water Resources View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('water_resource_entry1', [WaterResourceController::class, 'water_resource_entry1'])->name('View.Water.Resources.Entry1');
+        Route::get('water_resource_entry2', [WaterResourceController::class, 'water_resource_entry2'])->name('View.Water.Resources.Entry2');
+        //Route::get('view_education_info', [WaterResourceController::class, 'view_education_info'])->name('View.education.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_accessibility_duplicate', [WaterResourceController::class, 'check_duplicate_record']);
+    Route::get('/get_accessibility_info_list', [WaterResourceController::class, 'get_accessibility_info_list']);
+    Route::get('/get_accessibility_info_edit', [WaterResourceController::class, 'get_accessibility_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_resources_entry1', [WaterResourceController::class, 'store_resources_entry1']);
+    Route::post('/store_resources_info', [WaterResourceController::class, 'store_resources_info']);
+
+    Route::post('/update_resources_info', [WaterResourceController::class, 'update_resources_info']);
+    Route::post('/delete_resources_info', [WaterResourceController::class, 'delete_resources_info']);
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
