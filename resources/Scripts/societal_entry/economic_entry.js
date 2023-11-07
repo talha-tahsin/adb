@@ -96,17 +96,6 @@ $(document).on('click', '#btn_store', function () {
 
         if (rowCheckbox == true)
         {
-            // var inputVal = $(this).find('.integer').val();
-            
-            // if(inputVal == ''){
-            //     alert("Please input all feild..");
-            // } 
-            // else if(!/^\d+$/.test(inputVal)) {
-            //     alert("Please input only integer number..");
-            // }
-            // else {
-            //     alert("okay...");
-            // }
 
             var tr_comnty_id = $(this).attr('comnty_id');
             var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
@@ -121,6 +110,16 @@ $(document).on('click', '#btn_store', function () {
             var Month6to9 = $(this).find('#Month6to9').val();
             var Month9to12 = $(this).find('#Month9to12').val();
             var Up12Month = $(this).find('#Up12Month').val();
+
+            if(very_poor == '' || very_poor == null || very_poor == undefined) very_poor = 0;
+            if(poor == '' || poor == null || poor == undefined) poor = 0;
+            if(middle_class == '' || middle_class == null || middle_class == undefined) middle_class = 0;
+            if(better_of == '' || better_of == null || better_of == undefined) better_of = 0;
+            if(Less3Month == '' || Less3Month == null || Less3Month == undefined) Less3Month = 0;
+            if(Month3to6 == '' || Month3to6 == null || Month3to6 == undefined) Month3to6 = 0;
+            if(Month6to9 == '' || Month6to9 == null || Month6to9 == undefined) Month6to9 = 0;
+            if(Month9to12 == '' || Month9to12 == null || Month9to12 == undefined) Month9to12 = 0;
+            if(Up12Month == '' || Up12Month == null || Up12Month == undefined) Up12Month = 0;
 
             // first binding data as xml string
             xml_data += '<row>';

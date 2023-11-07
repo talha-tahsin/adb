@@ -1,7 +1,7 @@
 
 
 
-document.title = 'Water Resources Entry- 1';
+document.title = 'Water Resources';
 
 $(document).ready(function () {
 
@@ -277,7 +277,7 @@ $(document).on('click', '#btn_store', function () {
 
 });
 
-$(document).on('click', '#btn_store3', function () {
+$(document).on('click', '#btn_store2', function () {
 
     var token = $("meta[name='csrf-token']").attr("content");
     var created_by = $('#userName').val();
@@ -286,27 +286,23 @@ $(document).on('click', '#btn_store3', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    national_highway = $('#national_highway').val();
-    regional_highway = $('#regional_highway').val();
-    zilla_road = $('#zilla_road').val();
-    local_road = $('#local_road').val();
+    current_state = $('#current_state').val();
+    existing_conversation = $('#existing_conversation').val();
+    tech_used_for_transport = $('#tech_used_for_transport').val();
+    recommendation = $('#recommendation').val();
 
     main_transportation = $('#main_transportation option:selected').val();
     goods_transportation = $('#goods_transportation option:selected').val();
 
     jsonObj = {
-
         'watershed_id' : watershed_id,
         'para_id' : para_id,
         'para_name' : para_name,
-        'national_highway' : national_highway,
-        'regional_highway' : regional_highway,
-        'zilla_road' : zilla_road,
-        'local_road' : local_road,
-        'main_transportation' : main_transportation,
-        'goods_transportation' : goods_transportation,
+        'current_state' : current_state,
+        'existing_conversation' : existing_conversation,
+        'tech_used_for_transport' : tech_used_for_transport,
+        'recommendation' : recommendation,
         'created_by' : created_by,
-
     };
     
     console.log(jsonObj);
@@ -316,7 +312,7 @@ $(document).on('click', '#btn_store3', function () {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_accessibility3_info",
+        url: "/store_resources_entry2",
         type: "POST",
         data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
         dataType: "JSON",

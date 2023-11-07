@@ -56,21 +56,6 @@
                         </select>
                     </div> 
 
-                    <div class ="col-md-2" style="margin: 10px 0px 10px 0px;">
-                        <label class="control-label validate" >
-                          <span style="color: red;">★&nbsp;</span>Water Source </label>
-
-                        <select id="water_source" name="water_source" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;" disabled>
-                          <option value="" selected disabled>Select Source</option>
-                          <option value="1001">Tube Well</option>
-                          <option value="1002">Ring well</option>
-                          <option value="1003">Dug well</option>
-                          <option value="1004">Gravity Feed System</option>
-                          <option value="1005">Springs</option>
-                        </select>
-
-                    </div>
-
                     <!-- <div class="col-md-1"></div> -->
 
                     <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
@@ -80,13 +65,41 @@
               </div> 
               <!-- end row -->
               
-              <div class="form-group hide" id="table_div">
+              <div class="form-group " id="table_div">
                 <hr style="border-bottom: 2px solid black;">
                     <div class="row">
                         <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 
                         <h4> (a) Average number and distance from the source</h4>
-                        <div class="row">
+                            <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
+
+                                <thead>
+                                    
+                                    <tr style="background-color: #8ed6f2;">
+                                        <th style="text-align: left;">Serial</th>
+                                        <th style="text-align: left;">Water Source</th>
+                                        <th style="text-align: center;">Preferred Source</th>
+                                        <th style="text-align: center;">No. of Drinking Water Source</th>
+                                        <th style="text-align: center;">Distance (m)</th>
+                                        <th style="text-align: center;">Availability</th>
+                                        <th style="text-align: center;">Quality</th>
+                                    </tr>
+                                    
+                                </thead>
+
+                                <!-- <tfoot>
+                                    <tr style="background-color: #f1f5f5;">
+                                        <td colspan="3" style="text-align: right;font-weight: bold;">Total</td>
+                                        <td id="total_amount" style="text-align: right;color: red;"></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </tfoot>  -->
+
+                                <tbody id="table_body"></tbody>
+
+                            </table>
+
+                        <!-- <div class="row">
                          
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="preferred_source">
@@ -119,13 +132,13 @@
 
                           </div> 
                             
-                        </div>
+                        </div> -->
                         <!-- end row -->
 
-                        <br><br>
+                        <!-- <br><br>
                         <h4> (b)	Availability of the water sources during the dry period ?</h4>
                         <div class="row">
-                          <!-- <div class="col-md-1"></div> -->
+                     
                           
                           <div class ="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" >
@@ -161,13 +174,9 @@
                               <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
                           </div> 
                           
-                          <!-- <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label  validate" for="fuel_wood_female">
-                          <span style="color: red;">★&nbsp;</span>Fuel wood collection (Female)</label>
-                          <input type="text" name="fuel_wood_female" id="fuel_wood_female" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
-                          </div>                            -->
+                                           
                             
-                        </div>
+                        </div> -->
                         <!-- end row -->
 
                     </div>

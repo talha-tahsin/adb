@@ -117,6 +117,21 @@ $(document).on('click', '#btn_store', function () {
             var ProfitVal = $(this).find('#Profit option:selected').val();
             var ProfitName = $(this).find('#Profit option:selected').text();
 
+            if(Landless == '' || Landless == null || Landless == undefined) Landless = 0;
+            if(Self_owned == '' || Self_owned == null || Self_owned == undefined) Self_owned = 0;
+            if(Community_Land == '' || Community_Land == null || Community_Land == undefined) Community_Land = 0;
+            if(Lease == '' || Lease == null || Lease == undefined) Lease = 0;
+            if(Sharecropping == '' || Sharecropping == null || Sharecropping == undefined) Sharecropping = 0;
+            if(Occupation_Land == '' || Occupation_Land == null || Occupation_Land == undefined) Occupation_Land = 0;
+
+            if(Grove_Land == '' || Grove_Land == null || Grove_Land == undefined) Grove_Land = 0;
+            if(Valley == '' || Valley == null || Valley == undefined) Valley = 0;
+            if(Plain_Land == '' || Plain_Land == null || Plain_Land == undefined) Plain_Land = 0;
+            if(Hilly == '' || Hilly == null || Hilly == undefined) Hilly = 0;
+            if(Mixed == '' || Mixed == null || Mixed == undefined) Mixed = 0;
+            if(ProfitVal == '' || ProfitVal == null || ProfitVal == undefined) ProfitVal = 0;
+            if(ProfitName == '' || ProfitName == null || ProfitName == undefined) ProfitName = "";
+
             // first binding data as xml string
             xml_data += '<row>';
 

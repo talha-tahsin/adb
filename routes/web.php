@@ -294,7 +294,7 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
     // POST Method Route
     Route::post('/store_resources_entry1', [WaterResourceController::class, 'store_resources_entry1']);
-    Route::post('/store_resources_info', [WaterResourceController::class, 'store_resources_info']);
+    Route::post('/store_resources_entry2', [WaterResourceController::class, 'store_resources_entry2']);
 
     Route::post('/update_resources_info', [WaterResourceController::class, 'update_resources_info']);
     Route::post('/delete_resources_info', [WaterResourceController::class, 'delete_resources_info']);

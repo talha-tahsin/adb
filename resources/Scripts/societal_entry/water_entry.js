@@ -58,18 +58,6 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
-$(document).on('change', '#para_list', function () {
-
-    var para_list = $('#para_list option:selected').val();
-    // console.log(watershedId);
-
-    if(para_list)
-    {
-        $('#water_source').prop('disabled', false);
-        
-    }
-
-});
 
 $(document).on('click', '#get_entry_form', function () {
 
@@ -111,6 +99,66 @@ $(document).on('click', '#get_entry_form', function () {
 
 });
 
+function insertTableRow(center_name, center_id) {
+
+    var appendString = '';
+    var rowCount = $('#voucher_table > tbody > tr').length;
+    rowCount++;
+
+    // console.log(accountName);
+
+    appendString += '<tr center_id="'+center_id+'" >';
+    appendString += '<td style="width: 400px;text-align: left;">'+center_name+'</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="preferred_source" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="distance" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="drinking_water_number" class="form-control" value="" style="width: 250px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<select type="text" id="distance" name="distance" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select Distance</option>';
+    appendString += '<option value="Less than 50 (meter)">Less than 50 (meter)</option>';
+    appendString += '<option value="50-100 (meter)">50-100 (meter)</option>';
+    appendString += '<option value="100-250 (meter)">100-250 (meter)</option>';
+    appendString += '<option value="250-500 (meter)">250-500 (meter)</option>';
+    appendString += '<option value="Above 500 (meter)">Above 500 (meter)</option>';
+    appendString += '</select>';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<select type="text" id="availability" name="availability" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Low">Low</option>';
+    appendString += '<option value="Medium">Medium</option>';
+    appendString += '<option value="High">High</option>';
+    appendString += '</select>';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<select type="text" id="quality" name="quality" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Bad">Bad</option>';
+    appendString += '<option value="Medium">Medium</option>';
+    appendString += '<option value="Good">Good</option>';
+    appendString += '</select>';
+    appendString += '</td>';
+
+    appendString += '</tr>';
+
+
+    $('#voucher_table > tbody:last-child').append(appendString);
+    // $("#voucher_table tr:last").scrollintoview();
+    removeTableRow();
+}
+
 $(document).on('click', '#btn_store', function () {
 
     var token = $("meta[name='csrf-token']").attr("content");
@@ -120,42 +168,64 @@ $(document).on('click', '#btn_store', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    source_id = $('#water_source option:selected').val();
-    source_name = $('#water_source option:selected').text();
+    xml_data = '<head>';
 
-    preferred_source = $('#preferred_source').val();
-    drinking_water_number = $('#drinking_water_number').val();
+    $('#voucher_table > tbody > tr').each(function () {
 
-    distance = $('#distance option:selected').val();
-    availability = $('#availability option:selected').val();
-    quality = $('#quality option:selected').val();
+        var rowCheckbox = $(this).find("#check").prop("checked");
+
+        if (rowCheckbox == true)
+        {
+            var source_id = $(this).attr('comnty_id');
+            var source_name = $(this).find('td:eq(1)').text(); 
+            
+            var preferred_source = $(this).find('#preferred_source').val();
+            var drinking_water_number = $(this).find('#drinking_water_number').val();
+            var distance = $(this).find('#distance option:selected').val();
+            var availability = $(this).find('#availability option:selected').val();
+            var quality = $(this).find('#quality option:selected').val();
+
+            // automation set value 0 if any field leave empty or null 
+            if(preferred_source == '' || preferred_source == null || preferred_source == undefined) preferred_source = 0;
+            if(drinking_water_number == '' || drinking_water_number == null || drinking_water_number == undefined) drinking_water_number = 0;
+            if(distance == '' || distance == null || distance == undefined) distance = 0;
+            if(availability == '' || availability == null || availability == undefined) availability = 0;
+
+            // first binding data as xml string
+            xml_data += '<row>';
+
+            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+            xml_data += '<ParaId>' + paraId + '</ParaId>';
+
+            xml_data += '<source_id>' + source_id + '</source_id>';
+            xml_data += '<source_name>' + source_name + '</source_name>';
+
+            xml_data += '<preferred_source>' + preferred_source + '</preferred_source>';
+            xml_data += '<drinking_water_number>' + drinking_water_number + '</drinking_water_number>';
+            xml_data += '<distance>' + distance + '</distance>';
+            xml_data += '<availability>' + availability + '</availability>';
+            xml_data += '<quality>' + quality + '</quality>';
+
+            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+
+            xml_data += '</row>';
+        }
+
+    });
+
+    xml_data += '</head>';
+
     
-
-    jsonObj = {
-        'watershed_id' : watershed_id,
-        'para_id' : para_id,
-        'para_name' : para_name,
-        'source_id' : source_id,
-        'source_name' : source_name,
-        'preferred_source' : preferred_source,
-        'drinking_water_number' : drinking_water_number,
-        'distance' : distance,
-        'availability' : availability,
-        'quality' : quality,
-        'created_by' : created_by,
-
-    };
+    console.log(xml_data);
     
-    console.log(jsonObj);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
+    // clear model message value for every ajax call provide single accurate message
+    $('#success_msg').html('');
+    $('#error_msg').html('');
 
     $.ajax({
         url: "/store_water_info",
         type: "POST",
-        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
+        data: { '_token' : token, 'xml_data' : xml_data },
         dataType: "JSON",
         cache: false,
         success: function (data) {

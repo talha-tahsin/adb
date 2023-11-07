@@ -269,7 +269,7 @@
               </li>
              
               <li class="nav-item">
-                <a href="{{ route('View.Household.Info') }}" class="nav-link">
+                <a href="{{ route('View.Water.Resources.Entry2') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Entry 2</p>
                 </a>

@@ -111,6 +111,15 @@ $(document).on('click', '#btn_store', function () {
             var v_male = $(this).find('#male').val();
             var v_female = $(this).find('#female').val();
 
+            if(avgPerHouse == '' || avgPerHouse == null || avgPerHouse == undefined) avgPerHouse = 0;
+            if(v_1to6 == '' || v_1to6 == null || v_1to6 == undefined) v_1to6 = 0;
+            if(v_7to10 == '' || v_7to10 == null || v_7to10 == undefined) v_7to10 = 0;
+            if(v_11to15 == '' || v_11to15 == null || v_11to15 == undefined) v_11to15 = 0;
+            if(v_16to20 == '' || v_16to20 == null || v_16to20 == undefined) v_16to20 = 0;
+            if(v_21to25 == '' || v_21to25 == null || v_21to25 == undefined) v_21to25 = 0;
+            if(v_26to30 == '' || v_26to30 == null || v_26to30 == undefined) v_26to30 = 0;
+            if(v_30Up == '' || v_30Up == null || v_30Up == undefined) v_30Up = 0;
+
             // first binding data as xml string
             xml_data += '<row>';
 

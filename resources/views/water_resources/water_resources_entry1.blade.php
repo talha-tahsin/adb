@@ -250,7 +250,7 @@
                         <div class="row">
                             <div class="col-md-9"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
+                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info Details</button>
                             </div>  
                         </div>
 

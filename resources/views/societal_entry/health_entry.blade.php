@@ -99,6 +99,7 @@
                                           <tbody id="table_body"></tbody>
 
                                       </table>
+                                      
                                       <h4>(c) How many people (%) receive or have a tendency to receive ethno medicine? </h4>
                                       <input type="text" id="tendency_of_medicine" class="form-control col-md-4" placeholder="Write with percentage (%)" style="border-radius: 5px;border:2px solid #898AEE;">
                                   </div>
