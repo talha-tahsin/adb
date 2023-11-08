@@ -66,9 +66,9 @@
 
                     <!-- <div class="col-md-1"></div> -->
 
-                    <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                    <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
                         <button type="submit" class="btn btn-info" id="get_entry_form" style="width: 100%;border-radius: 20px;color: black;">Get Form Details for Entry</button>
-                    </div>
+                    </div> -->
 
               </div> 
               <!-- end row -->
@@ -83,7 +83,7 @@
                             <!-- <div class="col-md-2"></div> -->
                             <div class="col-md-8" style="margin: 0px 0px 10px 0px;">
                               <label class="control-label validate" for="name">
-                              <span style="color: red;">★&nbsp;</span>Name</label>
+                              <span style="color: green;">★&nbsp;</span>Name</label>
                               <input type="text" name="name" id="name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                             </div>
                           </div>
@@ -92,7 +92,7 @@
                             <!-- <div class="col-md-2"></div> -->
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="location_north">
-                              <span style="color: red;">★&nbsp;</span>Location (Northing)</label>
+                              <span style="color: green;">★&nbsp;</span>Location (Northing)</label>
                               <input type="text" name="location_north" id="location_north" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                             </div> 
                           </div> 
@@ -101,7 +101,7 @@
                             <!-- <div class="col-md-2"></div> -->
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="location_south">
-                              <span style="color: red;">★&nbsp;</span>Location (Southing)</label>
+                              <span style="color: green;">★&nbsp;</span>Location (Southing)</label>
                               <input type="text" name="location_south" id="location_south" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                             </div> 
                           </div>
@@ -111,7 +111,7 @@
                             <!-- <div class="col-md-2"></div> -->
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="source">
-                              <span style="color: red;">★&nbsp;</span>Source</label>
+                              <span style="color: green;">★&nbsp;</span>Source</label>
                               <input type="text" name="source" id="source" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                             </div> 
                           </div>
@@ -121,7 +121,7 @@
                             <!-- <div class="col-md-2"></div> -->
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="outlet">
-                              <span style="color: red;">★&nbsp;</span>Outlet</label>
+                              <span style="color: green;">★&nbsp;</span>Outlet</label>
                               <input type="text" name="outlet" id="outlet" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                             </div> 
                           </div>
@@ -131,7 +131,7 @@
                             <!-- <div class="col-md-2"></div> -->
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="distance">
-                              <span style="color: red;">★&nbsp;</span>Distance From para center</label>
+                              <span style="color: green;">★&nbsp;</span>Distance From para center</label>
                               <input type="text" name="distance" id="distance" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                             </div> 
                           </div>

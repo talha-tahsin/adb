@@ -127,6 +127,39 @@ class UtilsController extends Controller
 
     }
 
+    public function get_water_source(){
+
+        $data = DB::table('key_water_source')
+                    ->select('id','water_source_id', 'water_source_name')
+                    ->orderBy('water_source_name')
+                    ->get();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => $data ]);
+
+    }
+
+    public function get_livestock_type(){
+
+        $data = DB::table('key_livestock')
+                    ->select('id','livestock_id', 'livestock_name')
+                    ->orderBy('livestock_name')
+                    ->get();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => $data ]);
+
+    }
+
+    public function get_farm_item(){
+
+        $data = DB::table('key_farm_item')
+                    ->select('id','item_id', 'item_name')
+                    ->orderBy('id')
+                    ->get();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => $data ]);
+
+    }
+
 
   
     

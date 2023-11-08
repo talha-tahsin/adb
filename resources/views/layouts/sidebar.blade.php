@@ -279,11 +279,19 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{ route('View.livestock.Entry') }}" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>Livestock
+                <!-- <span class="badge badge-info right">2</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>Livestock
+              <p>Fisheries 
                 <i class="fas fa-angle-left right"></i>
-               
               </p>
             </a>
            <ul class="nav nav-treeview">

@@ -1,7 +1,7 @@
 
 
 
-document.title = 'Accessibility Entry';
+document.title = 'Livestock Entry';
 
 $(document).ready(function () {
 
@@ -30,29 +30,54 @@ $(document).ready(function () {
         }
     });
 
-    // $.ajax({
-    //     url: "/get_transportation",
-    //     type: "GET",
-    //     data: { 'latrineList' : 'get_data'},
-    //     dataType: "JSON",
-    //     cache: false,
-    //     success: function (data) {
-    //         console.log(data);
-    //         if(data.status == 'SUCCESS'){
-    //             $('#table_div').removeClass('hide');
-    //             $.each(data.message, function (i, v) {
-    //                 insertTableRow(v.transportation_name, v.transportation_id);
-    //              });
-    //         }
-    //         else{
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-    //         }  
-    //     },
-    //     error: function(xhr, ajaxOptions, thrownError) {
-    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    //     }
-    // });
+    $.ajax({
+        url: "/get_livestock_type",
+        type: "GET",
+        data: { 'latrineList' : 'get_data'},
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#table_div').removeClass('hide');
+                $.each(data.message, function (i, v) {
+                    insertTableRow(v.livestock_name, v.livestock_id);
+                    insertTableRow2(v.livestock_name, v.livestock_id);
+                });
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }  
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    $.ajax({
+        url: "/get_farm_item",
+        type: "GET",
+        data: { 'latrineList' : 'get_data'},
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#table_div').removeClass('hide');
+                $.each(data.message, function (i, v) {
+                    insertTableRow3(v.item_name, v.item_id);
+                });
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }  
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 
 });
 
@@ -99,7 +124,7 @@ $(document).on('click', '#get_entry_form', function () {
     else
     { 
         $.ajax({
-            url: "/get_transportation",
+            url: "/get_livestock_type",
             type: "GET",
             data: { 'latrineList' : 'get_data'},
             dataType: "JSON",
@@ -136,19 +161,14 @@ function insertTableRow(center_name, center_id) {
     appendString += '<tr center_id="'+center_id+'" >';
 
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    appendString += '<td style="width: 500px;text-align: left;">'+center_name+'</td>';
+    appendString += '<td style="width: 200px;text-align: left;">'+center_name+'</td>';
 
     appendString += '<td>';
-    appendString += '<select type="text" id="condition" name="condition" class="form-control resetSelect" value="" style="width: 200px;text-align: center;border-radius: 5px;">';
-    appendString += '<option value="" selected disabled> Select </option>';
-    appendString += '<option value="1">Good</option>';
-    appendString += '<option value="2">Bad</option>';
-    appendString += '<option value="3">Medium</option>';
-    appendString += '</select>';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field...">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="Write your comments">';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field...">';
     appendString += '</td>';
 
     appendString += '</tr>';
@@ -236,6 +256,35 @@ $(document).on('click', '#btn_store1', function () {
 
 });
 
+function insertTableRow2(center_name, center_id) {
+
+    var appendString = '';
+    var rowCount = $('#diseases_table > tbody > tr').length;
+    rowCount++;
+
+    // console.log(accountName);
+
+    appendString += '<tr center_id="'+center_id+'" >';
+
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
+    appendString += '<td style="width: 200px;text-align: left;">'+center_name+'</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field...">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field...">';
+    appendString += '</td>';
+
+    appendString += '</tr>';
+
+
+    $('#diseases_table > tbody:last-child').append(appendString);
+    // $("#voucher_table tr:last").scrollintoview();
+    // removeTableRow();
+}
+
 $(document).on('click', '#btn_store2', function () {
 
     var token = $("meta[name='csrf-token']").attr("content");
@@ -314,6 +363,35 @@ $(document).on('click', '#btn_store2', function () {
 
 
 });
+
+function insertTableRow3(center_name, center_id) {
+
+    var appendString = '';
+    var rowCount = $('#farm_house_cost > tbody > tr').length;
+    rowCount++;
+
+    // console.log(accountName);
+
+    appendString += '<tr center_id="'+center_id+'" >';
+
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
+    appendString += '<td style="width: 200px;text-align: left;">'+center_name+'</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field">';
+    appendString += '</td>';
+
+    appendString += '</tr>';
+
+
+    $('#farm_house_cost > tbody:last-child').append(appendString);
+    // $("#voucher_table tr:last").scrollintoview();
+    // removeTableRow();
+}
 
 $(document).on('click', '#btn_store3', function () {
 

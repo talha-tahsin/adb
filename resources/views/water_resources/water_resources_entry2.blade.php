@@ -56,14 +56,14 @@
 
                     <!-- <div class="col-md-1"></div> -->
 
-                    <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                    <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
                         <button type="submit" class="btn btn-info" id="get_entry_form" style="width: 100%;border-radius: 20px;color: black;">Get Form Details for Entry</button>
-                    </div>
+                    </div> -->
 
               </div> 
               <!-- end row -->
               
-              <div class="form-group " id="table_div">
+              <div class="form-group" id="table_div">
                 <hr style="border-bottom: 2px solid black;">
                     <div class="row">
 
@@ -74,7 +74,7 @@
                             <div class="col-md-8" style="margin: 0px 0px 10px 0px;">
                               <label class="control-label validate" for="current_state">
                               (1)	What is the current state of the rivers and other waterbodies?  </label>
-                              <input type="text" name="current_state" id="current_state" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
+                              <input type="text" name="current_state" id="current_state" class="form-control" style="border-radius: 5px;border: 2px solid #EEB889;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
                             </div>
                           </div>
 
@@ -83,7 +83,7 @@
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="existing_conversation">
                               (2) What are the existing conservation measures for water resource management?</label>
-                              <input type="text" name="existing_conversation" id="existing_conversation" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
+                              <input type="text" name="existing_conversation" id="existing_conversation" class="form-control" style="border-radius: 5px;border: 2px solid #EEB889;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
                             </div> 
                           </div> 
                             
@@ -92,7 +92,7 @@
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="tech_used_for_transport">
                               (3) What are the technologies used to transport drinking water and store?</label>
-                              <input type="text" name="tech_used_for_transport" id="tech_used_for_transport" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
+                              <input type="text" name="tech_used_for_transport" id="tech_used_for_transport" class="form-control" style="border-radius: 5px;border: 2px solid #EEB889;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
                             </div> 
                           </div>
                           <!-- end row -->
@@ -102,7 +102,7 @@
                             <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
                               <label class="control-label validate" for="recommendation">
                               (4) Any recommendation to improve water availability</label>
-                              <input type="text" name="recommendation" id="recommendation" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
+                              <input type="text" name="recommendation" id="recommendation" class="form-control" style="border-radius: 5px;border: 2px solid #EEB889;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Relevent as Question...">
                             </div> 
                           </div>
                           <!-- end row -->

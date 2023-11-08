@@ -16,69 +16,55 @@ use App\Models\Water;
 class WaterController extends Controller
 {
     
-    public function check_duplicate_record(Request $request)
-    {
-        $exsits_watershed_id = $request['watershed_id'];
-        $exsits_para_id = $request['para_id'];
-        $exsits_source_id = $request['water_source_id'];
-
-        $found = DB::table('tbl_water')->select('id')
-                        ->where('watershed_id', $exsits_watershed_id)
-                        ->where('para_id', $exsits_para_id)
-                        ->where('source_id', $exsits_source_id)
-                        ->count();
-        
-        if($found == 0){
-            return response()->json([ 'status' => 'SUCCESS', 'message' => 'No data found according to inputs..' ]);
-        }
-        else{
-            return response()->json([ 'status' => 'ERROR', 'message' => 'This Para and source record already exsits, can not allow for entry...' ]);
-        }
-
-    }
 
     public function store_water_info(Request $request)
     {
-        $xml = $request['json_data'];
-        $value = json_decode($xml);
-        // dd($value);
+        $xml = $request['xml_data'];
+        $xmlstr = simplexml_load_string($xml);
+        // dd($xmlstr->row);
         
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
 
-        // $validator = Validator::make($value, [
-        //     'jhum_male' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:11',
-        // ]);
+         // check dupliacte record in database ::
+         $found = DB::table('tbl_water')->select('id')
+                                ->where('watershed_id', $xmlstr->row->watershed_id)
+                                ->where('para_id', $xmlstr->row->para_id)
+                                ->where('source_id', $xmlstr->row->source_id)
+                                ->count();
 
-        // if ($validator->fails()){
-        //     return response()->json(['status' => 'ERROR', 
-        //         'message' => strval(implode("<br>",$validator->errors()->all()))
-        //     ]);
-        // }
+        if($found > 0){
+            $message = 'Data already exsits for this watershed and para, not possible to store...';
+            return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+        }
 
         try 
         {
             DB::beginTransaction();
 
-            $store_data = array(
-                'watershed_id' => $value->watershed_id,
-                'para_id' => $value->para_id,
-                'para_name' => $value->para_name,
-                'source_id' => $value->source_id,
-                'source_name' => $value->source_name,
-                'preferred_source' => $value->preferred_source,
-                'drinking_water_number' => $value->drinking_water_number,
-                'distance' => $value->distance,
-                'availability' => $value->availability,
-                'quality' => $value->quality,
-                'created_by' => $value->created_by,
-                'created_at' => $created_at,
-            );
-            
-            // $store = Economic::insert($store_data);
-            DB::table('tbl_water')->insert($store_data);
+            foreach ($xmlstr->row as $value) 
+            {
 
-            DB::commit();
+                $store_data = array(
+                    'watershed_id' => $value->watershed_id,
+                    'para_id' => $value->para_id,
+                    'para_name' => $value->para_name,
+                    'source_id' => $value->source_id,
+                    'source_name' => $value->source_name,
+                    'preferred_source' => $value->preferred_source,
+                    'drinking_water_number' => $value->drinking_water_number,
+                    'distance' => $value->distance,
+                    'availability' => $value->availability,
+                    'quality' => $value->quality,
+                    'created_by' => $value->created_by,
+                    'created_at' => $created_at,
+                );
+                
+                // $store = Economic::insert($store_data);
+                DB::table('tbl_water')->insert($store_data);
+
+                DB::commit();
+            }
             
             return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
             

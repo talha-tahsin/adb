@@ -10,6 +10,14 @@ $(document).ready(function () {
     $('#watershedId').select2();
     $('#para_list').select2();
     $('#community').select2();
+
+    $(document).on('change', '#watershedId', function(){
+        $("#watershedId").siblings().children().children().css('background-color', 'transparent');
+    });
+
+    $(document).on('change', '#para_list', function(){
+        $("#para_list").siblings().children().children().css('background-color', 'transparent');
+    });
   
     $('.select2').css({'border': '2px solid #898AEE', 'border-radius': '5px'});
 
@@ -30,29 +38,7 @@ $(document).ready(function () {
         }
     });
 
-    // $.ajax({
-    //     url: "/get_transportation",
-    //     type: "GET",
-    //     data: { 'latrineList' : 'get_data'},
-    //     dataType: "JSON",
-    //     cache: false,
-    //     success: function (data) {
-    //         console.log(data);
-    //         if(data.status == 'SUCCESS'){
-    //             $('#table_div').removeClass('hide');
-    //             $.each(data.message, function (i, v) {
-    //                 insertTableRow(v.transportation_name, v.transportation_id);
-    //              });
-    //         }
-    //         else{
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-    //         }  
-    //     },
-    //     error: function(xhr, ajaxOptions, thrownError) {
-    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    //     }
-    // });
+
 
 });
 
@@ -82,11 +68,6 @@ $(document).on('change', '#watershedId', function () {
 
 });
 
-$(document).on('change', '#para_list', function () {
-
-    $('#type').prop('disabled', false);
-
-});
 
 $(document).on('click', '#get_entry_form', function () {
 
@@ -175,103 +156,117 @@ $(document).on('click', '#btn_store', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    catname = $('#name').val();
-    location_north = $('#location_north').val();
-    location_south = $('#location_south').val();
-    source = $('#source').val();
-    outlet = $('#outlet').val();
-    distance = $('#distance').val();
+    if(watershed_id == '' || watershed_id == null || watershed_id == undefined){
+        alert("Please Select Watershed id first....");
+        $("#watershedId").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else if(para_id == '' || para_id == null || para_id == undefined){
+        alert("Please Select Para first....");
+        $("#para_list").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else
+    {
 
-    availability_mam = $('#availability_mam').val();
-    availability_jjas = $('#availability_jjas').val();
-    availability_on = $('#availability_on').val();
-    availability_djf = $('#availability_djf').val();
+        catname = $('#name').val();
+        location_north = $('#location_north').val();
+        location_south = $('#location_south').val();
+        source = $('#source').val();
+        outlet = $('#outlet').val();
+        distance = $('#distance').val();
 
-    depth_mam = $('#depth_mam').val();
-    depth_jjas = $('#depth_jjas').val();
-    depth_on = $('#depth_on').val();
-    depth_djf = $('#depth_djf').val();
+        availability_mam = $('#availability_mam').val();
+        availability_jjas = $('#availability_jjas').val();
+        availability_on = $('#availability_on').val();
+        availability_djf = $('#availability_djf').val();
 
-    drink_val = $('#drinking:checked').val();
-    domestic_val = $('#domestic:checked').val();
-    irrigation_val = $('#irrigation:checked').val();
-    cattle_val = $('#cattle:checked').val();
-    other_val = $('#other:checked').val();
+        depth_mam = $('#depth_mam').val();
+        depth_jjas = $('#depth_jjas').val();
+        depth_on = $('#depth_on').val();
+        depth_djf = $('#depth_djf').val();
 
-    // if( !$('#drinking').prop('checked') ) var drink_val = '';
+        drink_val = $('#drinking:checked').val();
+        domestic_val = $('#domestic:checked').val();
+        irrigation_val = $('#irrigation:checked').val();
+        cattle_val = $('#cattle:checked').val();
+        other_val = $('#other:checked').val();
 
-    var jsonObj2 = {
-        'purpose' : {
-            'drinking' : drink_val,
-            'domestic' : domestic_val,
-            'irrigation' : irrigation_val,
-            'cattle' : cattle_val,
-            'other' : other_val
-         }
-    };
+        // if( !$('#drinking').prop('checked') ) var drink_val = '';
 
-    // var xml = '<purpose>';
-    //     if( $('#drinking').prop('checked') ) xml += '<drinking>'+ $('#drinking:checked').val() +'</drinking>';
-    //     if( $('#domestic').prop('checked') ) xml += '<domestic>'+ $('#domestic:checked').val() +'</domestic>';
-    //     if( $('#irrigation').prop('checked') ) xml += '<irrigation>'+ $('#irrigation:checked').val() +'</irrigation>';
-    //     if( $('#cattle').prop('checked') ) xml += '<cattle>'+ $('#cattle:checked').val() +'</cattle>';
-    //     if( $('#other').prop('checked') ) xml += '<other>'+ $('#other:checked').val() +'</other>';
-    // xml += '</purpose>';
-
-    console.log(jsonObj2);
-
-    jsonObj = {
-        'watershed_id' : watershed_id,
-        'para_id' : para_id,
-        'para_name' : para_name,
-        'catname' : catname,
-        'location_north' : location_north,
-        'location_south' : location_south,
-        'source' : source,
-        'outlet' : outlet,
-        'distance' : distance,
-        'availability_mam' : availability_mam,
-        'availability_jjas' : availability_jjas,
-        'availability_on' : availability_on,
-        'availability_djf' : availability_djf,
-        'depth_mam' : depth_mam,
-        'depth_jjas' : depth_jjas,
-        'depth_on' : depth_on,
-        'depth_djf' : depth_djf,
-        'created_by' : created_by,
-    };
-    
-    console.log(jsonObj);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
-
-    $.ajax({
-        url: "/store_resources_entry1",
-        type: "POST",
-        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj), 'json_data2' : JSON.stringify(jsonObj2) },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-                $('#water_table td input[type=text]').val('');
-                // alert(data.message);
+        var jsonObj2 = {
+            'purpose' : {
+                'drinking' : drink_val,
+                'domestic' : domestic_val,
+                'irrigation' : irrigation_val,
+                'cattle' : cattle_val,
+                'other' : other_val
             }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+        };
+
+        // var xml = '<purpose>';
+        //     if( $('#drinking').prop('checked') ) xml += '<drinking>'+ $('#drinking:checked').val() +'</drinking>';
+        //     if( $('#domestic').prop('checked') ) xml += '<domestic>'+ $('#domestic:checked').val() +'</domestic>';
+        //     if( $('#irrigation').prop('checked') ) xml += '<irrigation>'+ $('#irrigation:checked').val() +'</irrigation>';
+        //     if( $('#cattle').prop('checked') ) xml += '<cattle>'+ $('#cattle:checked').val() +'</cattle>';
+        //     if( $('#other').prop('checked') ) xml += '<other>'+ $('#other:checked').val() +'</other>';
+        // xml += '</purpose>';
+
+        console.log(jsonObj2);
+
+        jsonObj = {
+            'watershed_id' : watershed_id,
+            'para_id' : para_id,
+            'para_name' : para_name,
+            'catname' : catname,
+            'location_north' : location_north,
+            'location_south' : location_south,
+            'source' : source,
+            'outlet' : outlet,
+            'distance' : distance,
+            'availability_mam' : availability_mam,
+            'availability_jjas' : availability_jjas,
+            'availability_on' : availability_on,
+            'availability_djf' : availability_djf,
+            'depth_mam' : depth_mam,
+            'depth_jjas' : depth_jjas,
+            'depth_on' : depth_on,
+            'depth_djf' : depth_djf,
+            'created_by' : created_by,
+        };
+        
+        console.log(jsonObj);
+
+        // clear model message value for every ajax call provide single accurate message
+        $('#success_msg').html('');
+        $('#error_msg').html('');
+
+        $.ajax({
+            url: "/store_resources_entry1",
+            type: "POST",
+            data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj), 'json_data2' : JSON.stringify(jsonObj2) },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == 'SUCCESS'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html(data.message);
+                    $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                    // Initial field values
+                    $('#water_table td input[type=text]').val('');
+                    window.location.reload(true);
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
-            
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+        });
+
+    }
 
 
 
@@ -286,70 +281,74 @@ $(document).on('click', '#btn_store2', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    current_state = $('#current_state').val();
-    existing_conversation = $('#existing_conversation').val();
-    tech_used_for_transport = $('#tech_used_for_transport').val();
-    recommendation = $('#recommendation').val();
+    if(watershed_id == '' || watershed_id == null || watershed_id == undefined){
+        alert("Please Select Watershed id first....");
+        $("#watershedId").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else if(para_id == '' || para_id == null || para_id == undefined){
+        alert("Please Select Para first....");
+        $("#para_list").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else
+    {
+        current_state = $('#current_state').val();
+        existing_conversation = $('#existing_conversation').val();
+        tech_used_for_transport = $('#tech_used_for_transport').val();
+        recommendation = $('#recommendation').val();
 
-    main_transportation = $('#main_transportation option:selected').val();
-    goods_transportation = $('#goods_transportation option:selected').val();
+        main_transportation = $('#main_transportation option:selected').val();
+        goods_transportation = $('#goods_transportation option:selected').val();
 
-    jsonObj = {
-        'watershed_id' : watershed_id,
-        'para_id' : para_id,
-        'para_name' : para_name,
-        'current_state' : current_state,
-        'existing_conversation' : existing_conversation,
-        'tech_used_for_transport' : tech_used_for_transport,
-        'recommendation' : recommendation,
-        'created_by' : created_by,
-    };
+        jsonObj = {
+            'watershed_id' : watershed_id,
+            'para_id' : para_id,
+            'para_name' : para_name,
+            'current_state' : current_state,
+            'existing_conversation' : existing_conversation,
+            'tech_used_for_transport' : tech_used_for_transport,
+            'recommendation' : recommendation,
+            'created_by' : created_by,
+        };
+        
+        console.log(jsonObj);
+
+        // clear model message value for every ajax call provide single accurate message
+        $('#success_msg').html('');
+        $('#error_msg').html('');
+
+        $.ajax({
+            url: "/store_resources_entry2",
+            type: "POST",
+            data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == 'SUCCESS'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html(data.message);
+                    $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+
+                    $('#transportation_table td input[type=text]').val('');
+                    $('#main_transportation').val('').change();
+                    $('#goods_transportation').val('').change();
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+
+    }
     
-    console.log(jsonObj);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
-
-    $.ajax({
-        url: "/store_resources_entry2",
-        type: "POST",
-        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-
-                $('#transportation_table td input[type=text]').val('');
-                $('#main_transportation').val('').change();
-                $('#goods_transportation').val('').change();
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-            }
-            
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-
 
 
 });
-
-function clearInput() {
-
-    $('#water_source').val('').change();
-    $('#preferred_source').val('');
-    $('#drinking_water_number').val('');
-
-}
 
 
 

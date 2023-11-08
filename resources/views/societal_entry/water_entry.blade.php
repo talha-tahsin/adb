@@ -65,7 +65,7 @@
               </div> 
               <!-- end row -->
               
-              <div class="form-group " id="table_div">
+              <div class="form-group hide" id="table_div">
                 <hr style="border-bottom: 2px solid black;">
                     <div class="row">
                         <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
@@ -99,96 +99,18 @@
 
                             </table>
 
-                        <!-- <div class="row">
-                         
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="preferred_source">
-                          <span style="color: red;">★&nbsp;</span>Preferred Source</label>
-                          <input type="text" name="preferred_source" id="preferred_source" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Write Preferred Source">
-                          </div> 
-
-                          <div class="col-md-1"></div> 
-                          
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="drinking_water_number">
-                          <span style="color: red;">★&nbsp;</span>No. of Drinking Water Source</label>
-                          <input type="text" name="drinking_water_number" id="drinking_water_number" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
-                          </div>
-
-                          <div class="col-md-1"></div>
-                          
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="distance">
-                          <span style="color: red;">★&nbsp;</span>Distance (Meter)</label>
-
-                            <select id="distance" name="distance" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Distance</option>
-                              <option value="Less than 50 (meter)">Less than 50 (meter)</option>
-                              <option value="50-100 (meter)">50-100 (meter)</option>
-                              <option value="100-250 (meter)">100-250 (meter)</option>
-                              <option value="250-500 (meter)">250-500 (meter)</option>
-                              <option value="Above 500 (meter)">Above 500 (meter)</option>
-                            </select>
-
-                          </div> 
-                            
-                        </div> -->
-                        <!-- end row -->
-
-                        <!-- <br><br>
-                        <h4> (b)	Availability of the water sources during the dry period ?</h4>
-                        <div class="row">
-                     
-                          
-                          <div class ="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" >
-                            <span style="color:red;">★&nbsp;</span>Availability</label>
-
-                            <select id="availability" name="availability" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Source</option>
-                              <option value="Low">Low</option>
-                              <option value="Medium">Medium</option>
-                              <option value="High">High</option>
-                            </select>
-
-                          </div>
-
-                          <div class="col-md-1"></div> 
-                          
-                          <div class ="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" >
-                            <span style="color:red;">★&nbsp;</span>Quality</label>
-
-                            <select id="quality" name="quality" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Quality</option>
-                              <option value="Bad">Bad</option>
-                              <option value="Medium">Medium</option>
-                              <option value="Good">Good</option>
-                            </select>
-
-                          </div>
-
-                          <div class="col-md-1"></div>
-
-                          <div class="col-md-2" style="margin: 40px 0px 10px 0px;">
-                              <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
-                          </div> 
-                          
-                                           
-                            
-                        </div> -->
-                        <!-- end row -->
+                        
 
                     </div>
                 </div>
                         <!-- // end table row -->
 
-                        <!-- <div class="row">
-                            <div class="col-md-9"></div>
-                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
-                            </div>  
-                        </div> -->
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                            <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info Details</button>
+                        </div>  
+                    </div>
 
             </div>
           <!-- end main table div -->

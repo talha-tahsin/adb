@@ -63,28 +63,25 @@ $(document).on('click', '#get_entry_form', function () {
 
     var Watershed_Id = $('#watershedId option:selected').val();
     var Para_Id = $('#para_list option:selected').val();
-    var water_source_id = $('#water_source option:selected').val();
 
-    if(Para_Id == '' || Para_Id == null || Para_Id == undefined)
-    {
+    if(Para_Id == '' || Para_Id == null || Para_Id == undefined){
         alert("Please Select Para...");
-    }
-    else if(water_source_id == '' || water_source_id == null || water_source_id == undefined)
-    {
-        alert("Please Select Community...");
     }
     else
     { 
         $.ajax({
-            url: "/get_water_duplicate",
+            url: "/get_water_source",
             type: "GET",
-            data: { 'watershed_id' : Watershed_Id, 'para_id' : Para_Id, 'water_source_id' : water_source_id },
+            data: { 'water_source' : 'get_data' },
             dataType: "JSON",
             cache: false,
             success: function (data) {
                 // console.log(data);
                 if(data.status == 'SUCCESS'){
                     $('#table_div').removeClass('hide');
+                    $.each(data.message, function (i, v) {
+                        insertTableRow(v.water_source_name, v.water_source_id);
+                     });
                 }
                 else{
                     $('#myModal').modal({backdrop : 'static', keyboard : false});
@@ -108,22 +105,19 @@ function insertTableRow(center_name, center_id) {
     // console.log(accountName);
 
     appendString += '<tr center_id="'+center_id+'" >';
-    appendString += '<td style="width: 400px;text-align: left;">'+center_name+'</td>';
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
+    appendString += '<td style="width: 300px;text-align: left;">'+center_name+'</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="preferred_source" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="preferred_source" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="distance" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="drinking_water_number" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="drinking_water_number" class="form-control" value="" style="width: 250px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<select type="text" id="distance" name="distance" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<select type="text" id="distance" name="distance" class="form-control resetSelect" value="" style="width: 250px;text-align: center;border-radius: 5px;">';
     appendString += '<option value="" selected disabled> Select Distance</option>';
     appendString += '<option value="Less than 50 (meter)">Less than 50 (meter)</option>';
     appendString += '<option value="50-100 (meter)">50-100 (meter)</option>';
@@ -134,7 +128,7 @@ function insertTableRow(center_name, center_id) {
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<select type="text" id="availability" name="availability" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<select type="text" id="availability" name="availability" class="form-control resetSelect" value="" style="width: 200px;text-align: center;border-radius: 5px;">';
     appendString += '<option value="" selected disabled> Select </option>';
     appendString += '<option value="Low">Low</option>';
     appendString += '<option value="Medium">Medium</option>';
@@ -143,7 +137,7 @@ function insertTableRow(center_name, center_id) {
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<select type="text" id="quality" name="quality" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<select type="text" id="quality" name="quality" class="form-control resetSelect" value="" style="width: 200px;text-align: center;border-radius: 5px;">';
     appendString += '<option value="" selected disabled> Select </option>';
     appendString += '<option value="Bad">Bad</option>';
     appendString += '<option value="Medium">Medium</option>';
@@ -156,7 +150,7 @@ function insertTableRow(center_name, center_id) {
 
     $('#voucher_table > tbody:last-child').append(appendString);
     // $("#voucher_table tr:last").scrollintoview();
-    removeTableRow();
+    // removeTableRow();
 }
 
 $(document).on('click', '#btn_store', function () {
@@ -172,44 +166,41 @@ $(document).on('click', '#btn_store', function () {
 
     $('#voucher_table > tbody > tr').each(function () {
 
-        var rowCheckbox = $(this).find("#check").prop("checked");
+        var source_id = $(this).attr('center_id');
+        var source_name = $(this).find('td:eq(1)').text(); 
+        
+        var preferred_source = $(this).find('#preferred_source').val();
+        var drinking_water_number = $(this).find('#drinking_water_number').val();
+        var distance = $(this).find('#distance option:selected').val();
+        var availability = $(this).find('#availability option:selected').val();
+        var quality = $(this).find('#quality option:selected').val();
 
-        if (rowCheckbox == true)
-        {
-            var source_id = $(this).attr('comnty_id');
-            var source_name = $(this).find('td:eq(1)').text(); 
-            
-            var preferred_source = $(this).find('#preferred_source').val();
-            var drinking_water_number = $(this).find('#drinking_water_number').val();
-            var distance = $(this).find('#distance option:selected').val();
-            var availability = $(this).find('#availability option:selected').val();
-            var quality = $(this).find('#quality option:selected').val();
+        // automation set value 0 if any field leave empty or null 
+        if(preferred_source == '' || preferred_source == null || preferred_source == undefined) preferred_source = 0;
+        if(drinking_water_number == '' || drinking_water_number == null || drinking_water_number == undefined) drinking_water_number = 0;
+        if(distance == '' || distance == null || distance == undefined) distance = 0;
+        if(availability == '' || availability == null || availability == undefined) availability = 0;
 
-            // automation set value 0 if any field leave empty or null 
-            if(preferred_source == '' || preferred_source == null || preferred_source == undefined) preferred_source = 0;
-            if(drinking_water_number == '' || drinking_water_number == null || drinking_water_number == undefined) drinking_water_number = 0;
-            if(distance == '' || distance == null || distance == undefined) distance = 0;
-            if(availability == '' || availability == null || availability == undefined) availability = 0;
+        // first binding data as xml string
+        xml_data += '<row>';
 
-            // first binding data as xml string
-            xml_data += '<row>';
+        xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+        xml_data += '<para_id>' + para_id + '</para_id>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
 
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
+        xml_data += '<source_id>' + source_id + '</source_id>';
+        xml_data += '<source_name>' + source_name + '</source_name>';
 
-            xml_data += '<source_id>' + source_id + '</source_id>';
-            xml_data += '<source_name>' + source_name + '</source_name>';
+        xml_data += '<preferred_source>' + preferred_source + '</preferred_source>';
+        xml_data += '<drinking_water_number>' + drinking_water_number + '</drinking_water_number>';
+        xml_data += '<distance>' + distance + '</distance>';
+        xml_data += '<availability>' + availability + '</availability>';
+        xml_data += '<quality>' + quality + '</quality>';
 
-            xml_data += '<preferred_source>' + preferred_source + '</preferred_source>';
-            xml_data += '<drinking_water_number>' + drinking_water_number + '</drinking_water_number>';
-            xml_data += '<distance>' + distance + '</distance>';
-            xml_data += '<availability>' + availability + '</availability>';
-            xml_data += '<quality>' + quality + '</quality>';
+        xml_data += '<created_by>' + created_by + '</created_by>';
 
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+        xml_data += '</row>';
 
-            xml_data += '</row>';
-        }
 
     });
 
@@ -234,7 +225,9 @@ $(document).on('click', '#btn_store', function () {
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html(data.message);
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-                // alert(data.message);
+                
+                $('#voucher_table td input[type=text]').val('');
+                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

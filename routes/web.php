@@ -23,6 +23,8 @@ use App\Http\Controllers\Societal\AccessibilityController;
 
 /** :: Water Resources Controller :: */
 use App\Http\Controllers\WaterResources\WaterResourceController;
+/** :: Livestock Controller :: */
+use App\Http\Controllers\Livestock\LivestockController;
 
 
 use App\Http\Controllers\UtilsController;
@@ -228,7 +230,6 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     });
 
     // GET Method Route 
-    Route::get('/get_water_duplicate', [WaterController::class, 'check_duplicate_record']);
     Route::get('/get_water_info_list', [WaterController::class, 'get_water_info_list']);
     Route::get('/get_water_info_edit', [WaterController::class, 'get_water_info_edit']);
 
@@ -288,7 +289,6 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     });
 
     // GET Method Route 
-    Route::get('/get_accessibility_duplicate', [WaterResourceController::class, 'check_duplicate_record']);
     Route::get('/get_accessibility_info_list', [WaterResourceController::class, 'get_accessibility_info_list']);
     Route::get('/get_accessibility_info_edit', [WaterResourceController::class, 'get_accessibility_info_edit']);
 
@@ -298,6 +298,25 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
     Route::post('/update_resources_info', [WaterResourceController::class, 'update_resources_info']);
     Route::post('/delete_resources_info', [WaterResourceController::class, 'delete_resources_info']);
+
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: Livestock View Page Route */
+    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+        Route::get('livestock_entry', [LivestockController::class, 'livestock_entry'])->name('View.livestock.Entry');
+        //Route::get('view_education_info', [WaterlivestockController::class, 'view_education_info'])->name('View.education.Info');
+    });
+
+    // GET Method Route 
+    Route::get('/get_accessibility_info_list', [LivestockController::class, 'get_accessibility_info_list']);
+    Route::get('/get_accessibility_info_edit', [LivestockController::class, 'get_accessibility_info_edit']);
+
+    // POST Method Route
+    Route::post('/store_livestocks_entry1', [LivestockController::class, 'store_livestock_entry1']);
+    Route::post('/store_livestocks_entry2', [LivestockController::class, 'store_livestock_entry2']);
+
+    Route::post('/update_livestocks_info', [LivestockController::class, 'update_livestock_info']);
+    Route::post('/delete_livestocks_info', [LivestockController::class, 'delete_livestock_info']);
 
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
@@ -314,3 +333,7 @@ Route::get('/get_health_center_list', [UtilsController::class, 'get_health_cente
 
 Route::get('/get_latrine_type', [UtilsController::class, 'get_latrine_type']);
 Route::get('/get_transportation', [UtilsController::class, 'get_transportation_list']);
+Route::get('/get_water_source', [UtilsController::class, 'get_water_source']);
+
+Route::get('/get_livestock_type', [UtilsController::class, 'get_livestock_type']);
+Route::get('/get_farm_item', [UtilsController::class, 'get_farm_item']);
