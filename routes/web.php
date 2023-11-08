@@ -308,12 +308,13 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     });
 
     // GET Method Route 
-    Route::get('/get_accessibility_info_list', [LivestockController::class, 'get_accessibility_info_list']);
-    Route::get('/get_accessibility_info_edit', [LivestockController::class, 'get_accessibility_info_edit']);
+    Route::get('/get_livestock_list', [LivestockController::class, 'get_livestock_list']);
+    Route::get('/get_livestock_edit', [LivestockController::class, 'get_livestock_edit']);
 
     // POST Method Route
-    Route::post('/store_livestocks_entry1', [LivestockController::class, 'store_livestock_entry1']);
-    Route::post('/store_livestocks_entry2', [LivestockController::class, 'store_livestock_entry2']);
+    Route::post('/store_livestock_entry1', [LivestockController::class, 'store_livestock_entry1']);
+    Route::post('/store_livestock_entry2', [LivestockController::class, 'store_livestock_entry2']);
+    Route::post('/store_livestock_entry3', [LivestockController::class, 'store_livestock_entry3']);
 
     Route::post('/update_livestocks_info', [LivestockController::class, 'update_livestock_info']);
     Route::post('/delete_livestocks_info', [LivestockController::class, 'delete_livestock_info']);

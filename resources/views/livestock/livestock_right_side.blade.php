@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-md-9"></div>
           <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-              <button type="submit" class="btn btn-primary" id="btn_store3" style="width: 100%;border-radius: 20px;color: black;">Save Info Details</button>
+              <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 20px;color: black;">Save Info Details</button>
           </div>
         </div>
 
@@ -43,7 +43,7 @@
         <div class="row">
           <div class="col-md-9"></div>
           <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-              <button type="submit" class="btn btn-primary" id="btn_store4" style="width: 100%;border-radius: 20px;color: black;">Save Info Details</button>
+              <button type="submit" class="btn btn-primary" id="btn_store3" style="width: 100%;border-radius: 20px;color: black;">Save Info Details</button>
           </div>
         </div>
                             

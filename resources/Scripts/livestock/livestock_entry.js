@@ -5,7 +5,15 @@ document.title = 'Livestock Entry';
 
 $(document).ready(function () {
 
-    console.log("hello talha.."); 
+    console.log("hello talha..");
+    
+    $(document).on('change', '#watershedId', function(){
+        $("#watershedId").siblings().children().children().css('background-color', 'transparent');
+    });
+
+    $(document).on('change', '#para_list', function(){
+        $("#para_list").siblings().children().children().css('background-color', 'transparent');
+    });
 
     $('#watershedId').select2();
     $('#para_list').select2();
@@ -164,11 +172,11 @@ function insertTableRow(center_name, center_id) {
     appendString += '<td style="width: 200px;text-align: left;">'+center_name+'</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field...">';
+    appendString += '<input type="text" id="nos" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field...">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field...">';
+    appendString += '<input type="text" id="unit_value" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field...">';
     appendString += '</td>';
 
     appendString += '</tr>';
@@ -188,70 +196,82 @@ $(document).on('click', '#btn_store1', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    xml_data = '<head>';
+    if(watershed_id == '' || watershed_id == null || watershed_id == undefined){
+        alert("Please Select Watershed id first....");
+        $("#watershedId").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else if(para_id == '' || para_id == null || para_id == undefined){
+        alert("Please Select Para first....");
+        $("#para_list").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else
+    {
 
-    $('#voucher_table > tbody > tr').each(function () {
+        xml_data = '<head>';
 
-        var transportation_id = $(this).attr('center_id');
-        var transportation_name = $(this).find('td:eq(1)').text(); 
-        
-        var condition = $(this).find('#condition').val();
-        var comments = $(this).find('#comments').val();
+        $('#voucher_table > tbody > tr').each(function () {
 
-        // first binding data as xml string
-        xml_data += '<row>';
-
-        xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
-        xml_data += '<para_id>' + para_id + '</para_id>';
-        xml_data += '<para_name>' + para_name + '</para_name>';
-
-        xml_data += '<transportation_id>' + transportation_id + '</transportation_id>';
-        xml_data += '<transportation_name>' + transportation_name + '</transportation_name>';
-
-        xml_data += '<condition>' + condition + '</condition>';
-        xml_data += '<comments>' + comments + '</comments>';
-
-        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-        xml_data += '</row>';
-        
-    });
-
-    xml_data += '</head>';
-    
-    console.log(xml_data);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
-
-    $.ajax({
-        url: "/store_accessibility1_info",
-        type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-
-                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
-                $('#voucher_table td input[type=text]').val('');
-                // alert(data.message);
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-            }
+            var livestock_id = $(this).attr('center_id');
+            var livestock_name = $(this).find('td:eq(1)').text(); 
             
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+            var nos = $(this).find('#nos').val();
+            var unit_value = $(this).find('#unit_value').val();
+
+            // first binding data as xml string
+            xml_data += '<row>';
+
+            xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+            xml_data += '<para_id>' + para_id + '</para_id>';
+            xml_data += '<para_name>' + para_name + '</para_name>';
+
+            xml_data += '<livestock_id>' + livestock_id + '</livestock_id>';
+            xml_data += '<livestock_name>' + livestock_name + '</livestock_name>';
+            xml_data += '<nos>' + nos + '</nos>';
+            xml_data += '<unit_value>' + unit_value + '</unit_value>';
+
+            xml_data += '<created_by>' + created_by + '</created_by>';
+
+            xml_data += '</row>';
+            
+        });
+
+        xml_data += '</head>';
+        
+        console.log(xml_data);
+
+        // clear model message value for every ajax call provide single accurate message
+        $('#success_msg').html('');
+        $('#error_msg').html('');
+
+        $.ajax({
+            url: "/store_livestock_entry1",
+            type: "POST",
+            data: { '_token' : token, 'xml_data' : xml_data },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == 'SUCCESS'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html(data.message);
+                    $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                    // Initial values
+                    $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
+                    $('#voucher_table td input[type=text]').val('');
+                    window.location.reload(true);
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+
+    }
 
 
 });
@@ -270,11 +290,11 @@ function insertTableRow2(center_name, center_id) {
     appendString += '<td style="width: 200px;text-align: left;">'+center_name+'</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field...">';
+    appendString += '<input type="text" id="diseases_name" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field...">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field...">';
+    appendString += '<input type="text" id="mechanism" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field...">';
     appendString += '</td>';
 
     appendString += '</tr>';
@@ -294,71 +314,79 @@ $(document).on('click', '#btn_store2', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    phone_less20 = $('#phone_less20').val();
-    phone_20to40 = $('#phone_20to40').val();
-    phone_up40 = $('#phone_up40').val();
+    if(watershed_id == '' || watershed_id == null || watershed_id == undefined){
+        alert("Please Select Watershed id first....");
+        $("#watershedId").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else if(para_id == '' || para_id == null || para_id == undefined){
+        alert("Please Select Para first....");
+        $("#para_list").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else
+    {
 
-    anroid_less20 = $('#anroid_less20').val();
-    anroid_20to40 = $('#anroid_20to40').val();
-    anroid_up40 = $('#anroid_up40').val();
+        xml_data = '<head>';
 
-    intertnet_less20 = $('#intertnet_less20').val();
-    intertnet_20to40 = $('#intertnet_20to40').val();
-    intertnet_up40 = $('#intertnet_up40').val();
+        $('#diseases_table > tbody > tr').each(function () {
 
-    remarks = $('#remarks').val();
-
-
-    jsonObj = {
-
-        'watershed_id' : watershed_id,
-        'para_id' : para_id,
-        'para_name' : para_name,
-        'phone_less20' : phone_less20,
-        'phone_20to40' : phone_20to40,
-        'phone_up40' : phone_up40,
-        'anroid_less20' : anroid_less20,
-        'anroid_20to40' : anroid_20to40,
-        'anroid_up40' : anroid_up40,
-        'intertnet_less20' : intertnet_less20,
-        'intertnet_20to40' : intertnet_20to40,
-        'intertnet_up40' : intertnet_up40,
-        'remarks' : remarks,
-        'created_by' : created_by,
-
-    };
-    
-    console.log(jsonObj);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
-
-    $.ajax({
-        url: "/store_accessibility2_info",
-        type: "POST",
-        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-                $('#telecom_table td input[type=text]').val('');
-                // alert(data.message);
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-            }
+            var livestock_id = $(this).attr('center_id');
+            var livestock_name = $(this).find('td:eq(1)').text(); 
             
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+            var diseases_name = $(this).find('#diseases_name').val();
+            var mechanism = $(this).find('#mechanism').val();
+
+            // first binding data as xml string
+            xml_data += '<row>';
+
+            xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+            xml_data += '<para_id>' + para_id + '</para_id>';
+            xml_data += '<para_name>' + para_name + '</para_name>';
+
+            xml_data += '<livestock_id>' + livestock_id + '</livestock_id>';
+            xml_data += '<livestock_name>' + livestock_name + '</livestock_name>';
+            xml_data += '<diseases_name>' + diseases_name + '</diseases_name>';
+            xml_data += '<mechanism>' + mechanism + '</mechanism>';
+
+            xml_data += '<created_by>' + created_by + '</created_by>';
+
+            xml_data += '</row>';
+            
+        });
+
+        xml_data += '</head>';
+        
+        console.log(xml_data);
+
+        // clear model message value for every ajax call provide single accurate message
+        $('#success_msg').html('');
+        $('#error_msg').html('');
+
+        $.ajax({
+            url: "/store_livestock_entry2",
+            type: "POST",
+            data: { '_token' : token, 'xml_data' : xml_data },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == 'SUCCESS'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html(data.message);
+                    $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                    $('#diseases_table td input[type=text]').val('');
+                    // alert(data.message);
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }   
 
 
 
@@ -378,11 +406,11 @@ function insertTableRow3(center_name, center_id) {
     appendString += '<td style="width: 200px;text-align: left;">'+center_name+'</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field">';
+    appendString += '<input type="text" id="unit_cost" class="form-control" value="" style="width: 200px;text-align: left;" placeholder="Please fill up this field">';
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="comments" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field">';
+    appendString += '<input type="text" id="total_cost" class="form-control" value="" style="width: 250px;text-align: left;" placeholder="Please fill up this field">';
     appendString += '</td>';
 
     appendString += '</tr>';
@@ -402,62 +430,78 @@ $(document).on('click', '#btn_store3', function () {
     para_id = $('#para_list option:selected').val();
     para_name = $('#para_list option:selected').text();
 
-    national_highway = $('#national_highway').val();
-    regional_highway = $('#regional_highway').val();
-    zilla_road = $('#zilla_road').val();
-    local_road = $('#local_road').val();
+    if(watershed_id == '' || watershed_id == null || watershed_id == undefined){
+        alert("Please Select Watershed id first....");
+        $("#watershedId").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else if(para_id == '' || para_id == null || para_id == undefined){
+        alert("Please Select Para first....");
+        $("#para_list").siblings().children().children().css('background-color', '#FFCECE');
+    }
+    else
+    {
+        xml_data = '<head>';
 
-    main_transportation = $('#main_transportation option:selected').val();
-    goods_transportation = $('#goods_transportation option:selected').val();
+        $('#farm_house_cost > tbody > tr').each(function () {
 
-    jsonObj = {
-
-        'watershed_id' : watershed_id,
-        'para_id' : para_id,
-        'para_name' : para_name,
-        'national_highway' : national_highway,
-        'regional_highway' : regional_highway,
-        'zilla_road' : zilla_road,
-        'local_road' : local_road,
-        'main_transportation' : main_transportation,
-        'goods_transportation' : goods_transportation,
-        'created_by' : created_by,
-
-    };
-    
-    console.log(jsonObj);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
-
-    $.ajax({
-        url: "/store_accessibility3_info",
-        type: "POST",
-        data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-
-                $('#transportation_table td input[type=text]').val('');
-                $('#main_transportation').val('').change();
-                $('#goods_transportation').val('').change();
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-            }
+            var farm_item_id = $(this).attr('center_id');
+            var farm_item_name = $(this).find('td:eq(1)').text(); 
             
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+            var unit_cost = $(this).find('#unit_cost').val();
+            var total_cost = $(this).find('#total_cost').val();
+
+            // first binding data as xml string
+            xml_data += '<row>';
+
+            xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+            xml_data += '<para_id>' + para_id + '</para_id>';
+            xml_data += '<para_name>' + para_name + '</para_name>';
+
+            xml_data += '<farm_item_id>' + farm_item_id + '</farm_item_id>';
+            xml_data += '<farm_item_name>' + farm_item_name + '</farm_item_name>';
+            xml_data += '<unit_cost>' + unit_cost + '</unit_cost>';
+            xml_data += '<total_cost>' + total_cost + '</total_cost>';
+
+            xml_data += '<created_by>' + created_by + '</created_by>';
+
+            xml_data += '</row>';
+            
+        });
+
+        xml_data += '</head>';
+        
+        console.log(xml_data);
+
+        // clear model message value for every ajax call provide single accurate message
+        $('#success_msg').html('');
+        $('#error_msg').html('');
+
+        $.ajax({
+            url: "/store_livestock_entry3",
+            type: "POST",
+            data: { '_token' : token, 'xml_data' : xml_data },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == 'SUCCESS'){
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#success_msg').html(data.message);
+                    $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                    $('#farm_house_cost td input[type=text]').val('');
+                    // window.location.reload(true);
+                }
+                else{
+                    $('#myModal').modal({backdrop : 'static', keyboard : false});
+                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+                }
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }   
 
 
 
