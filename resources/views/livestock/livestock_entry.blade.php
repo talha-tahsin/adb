@@ -58,15 +58,15 @@
 
                     <!-- <div class="col-md-1"></div> -->
 
-                    <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                    <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
                         <button type="submit" class="btn btn-info" id="get_entry_form" style="width: 100%;border-radius: 20px;color: black;">Get Form Details for Entry</button>
-                    </div>
+                    </div> -->
 
               </div> 
               <!-- end row -->
               
                 <div class="form-group " id="table_div">
-                <hr style="border-bottom: 2px solid Maroon;">
+                <hr style="border-bottom: 2px solid  #979a9a;">
 
                     <div class="row">
                       

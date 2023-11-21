@@ -26,6 +26,9 @@ use App\Http\Controllers\WaterResources\WaterResourceController;
 /** :: Livestock Controller :: */
 use App\Http\Controllers\Livestock\LivestockController;
 
+/** :: Para Boundary Controller :: */
+use App\Http\Controllers\ParaBoundaryController;
+
 
 use App\Http\Controllers\UtilsController;
 
@@ -302,10 +305,9 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Livestock View Page Route */
-    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-        Route::get('livestock_entry', [LivestockController::class, 'livestock_entry'])->name('View.livestock.Entry');
-        //Route::get('view_education_info', [WaterlivestockController::class, 'view_education_info'])->name('View.education.Info');
-    });
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('livestock_entry', [LivestockController::class, 'livestock_entry'])->name('View.livestock.Entry');
+    //Route::get('view_education_info', [WaterlivestockController::class, 'view_education_info'])->name('View.education.Info');
 
     // GET Method Route 
     Route::get('/get_livestock_list', [LivestockController::class, 'get_livestock_list']);
@@ -318,9 +320,27 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 
     Route::post('/update_livestocks_info', [LivestockController::class, 'update_livestock_info']);
     Route::post('/delete_livestocks_info', [LivestockController::class, 'delete_livestock_info']);
-
+});
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
+/** Start :: Para Boundary Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('basic-info-of-para-boundary', [ParaBoundaryController::class, 'show_basic_info'])->name('Para.Boundary.Basic.Info');
+    Route::get('gps-point-of-para-boundary', [ParaBoundaryController::class, 'show_gps_point'])->name('Para.Boundary.GPS.Point');
+
+    // GET Method Route 
+    Route::get('/get_livestock_list', [ParaBoundaryController::class, 'get_livestock_list']);
+    Route::get('/get_livestock_edit', [ParaBoundaryController::class, 'get_livestock_edit']);
+
+    // POST Method Route
+    Route::post('/store_livestock_entry1', [ParaBoundaryController::class, 'store_livestock_entry1']);
+    Route::post('/store_livestock_entry2', [ParaBoundaryController::class, 'store_livestock_entry2']);
+    Route::post('/store_livestock_entry3', [ParaBoundaryController::class, 'store_livestock_entry3']);
+
+    Route::post('/update_livestocks_info', [ParaBoundaryController::class, 'update_livestock_info']);
+    Route::post('/delete_livestocks_info', [ParaBoundaryController::class, 'delete_livestock_info']);
+});
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 // get all utils (global) function data 
 Route::get('/get_watershedId', [UtilsController::class, 'getWatershedId']);

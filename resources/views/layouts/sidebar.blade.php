@@ -57,7 +57,7 @@
         @endif 
 
         
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'user')
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'user' || Auth::user()->role == 'entry')
         
         <!-- <li class="nav-item">
             <a href="#" class="nav-link">
@@ -216,7 +216,7 @@
               <li class="nav-item">
                 <a href="{{ route('View.Accessibility.Entry') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>1.5.2	Accessibility</p>
+                  <p>Accessibility</p>
                 </a>
               </li>
              
@@ -310,8 +310,24 @@
                 </a>
               </li>
 
+              
+
             </ul>
           </li>
+
+          <li class="nav-header">Para Boundary</li>
+            <li class="nav-item">
+              <a href="{{ route('Para.Boundary.Basic.Info') }}" class="nav-link">
+                <i class="nav-icon far fa-calendar-alt"></i>
+                <p>Table P1 : Basic Info</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('Para.Boundary.GPS.Point') }}" class="nav-link">
+                <i class="nav-icon far fa-calendar-alt"></i>
+                <p>Table P2 : GPS Points</p>
+              </a>
+            </li>
 
         @endif 
 

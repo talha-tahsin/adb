@@ -13,7 +13,7 @@ class UserAuth
     {
         if(!empty(auth()->user()->role))
         {
-            if(auth()->user()->role == 'admin' || auth()->user()->role == 'user')
+            if(auth()->user()->role == 'admin' || auth()->user()->role == 'user' || auth()->user()->role == 'entry')
             {
                return $next($request);
             }
