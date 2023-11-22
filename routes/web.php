@@ -28,6 +28,8 @@ use App\Http\Controllers\Livestock\LivestockController;
 
 /** :: Para Boundary Controller :: */
 use App\Http\Controllers\ParaBoundaryController;
+/** :: VCF Boundary Controller :: */
+use App\Http\Controllers\VCFBoundaryController;
 
 
 use App\Http\Controllers\UtilsController;
@@ -329,16 +331,35 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('gps-point-of-para-boundary', [ParaBoundaryController::class, 'show_gps_point'])->name('Para.Boundary.GPS.Point');
 
     // GET Method Route 
-    Route::get('/get_livestock_list', [ParaBoundaryController::class, 'get_livestock_list']);
-    Route::get('/get_livestock_edit', [ParaBoundaryController::class, 'get_livestock_edit']);
+    Route::get('get_livestock_list', [ParaBoundaryController::class, 'get_livestock_list']);
+    Route::get('get_livestock_edit', [ParaBoundaryController::class, 'get_livestock_edit']);
 
     // POST Method Route
-    Route::post('/store_livestock_entry1', [ParaBoundaryController::class, 'store_livestock_entry1']);
-    Route::post('/store_livestock_entry2', [ParaBoundaryController::class, 'store_livestock_entry2']);
-    Route::post('/store_livestock_entry3', [ParaBoundaryController::class, 'store_livestock_entry3']);
+    Route::post('store_basic_info_para_boundary', [ParaBoundaryController::class, 'store_basic_info_para_boundary']);
+    Route::post('store_livestock_entry2', [ParaBoundaryController::class, 'store_livestock_entry2']);
+    Route::post('store_livestock_entry3', [ParaBoundaryController::class, 'store_livestock_entry3']);
 
-    Route::post('/update_livestocks_info', [ParaBoundaryController::class, 'update_livestock_info']);
-    Route::post('/delete_livestocks_info', [ParaBoundaryController::class, 'delete_livestock_info']);
+    Route::post('update_livestocks_info', [ParaBoundaryController::class, 'update_livestock_info']);
+    Route::post('delete_livestocks_info', [ParaBoundaryController::class, 'delete_livestock_info']);
+});
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: VCF Boundary Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('basic-info-of-vcf-boundary', [VCFBoundaryController::class, 'show_basic_info'])->name('VCF.Boundary.Basic.Info');
+    Route::get('gps-point-of-vcf-boundary', [VCFBoundaryController::class, 'show_gps_point'])->name('VCF.Boundary.GPS.Point');
+
+    // GET Method Route 
+    Route::get('get_livestock_list', [VCFBoundaryController::class, 'get_livestock_list']);
+    Route::get('get_livestock_edit', [VCFBoundaryController::class, 'get_livestock_edit']);
+
+    // POST Method Route
+    Route::post('store_basic_info_vcf_boundary', [VCFBoundaryController::class, 'store_basic_info_vcf_boundary']);
+    Route::post('store_livestock_entry2', [VCFBoundaryController::class, 'store_livestock_entry2']);
+    Route::post('store_livestock_entry3', [VCFBoundaryController::class, 'store_livestock_entry3']);
+
+    Route::post('update_livestocks_info', [VCFBoundaryController::class, 'update_livestock_info']);
+    Route::post('delete_livestocks_info', [VCFBoundaryController::class, 'delete_livestock_info']);
 });
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 

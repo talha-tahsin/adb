@@ -1,7 +1,7 @@
 
 
 
-document.title = 'basic info';
+document.title = 'VCF basic info';
 
 $(document).ready(function () {
 
@@ -16,32 +16,6 @@ $(document).ready(function () {
     $('#para_list').prop('disabled', true);
 
     $('.date').datepicker({ dateFormat: "yy-mm-dd" });
-
-});
-
-$(document).on('change', '#para_list', function () {
-
-    var para_list = $('#para_list option:selected').val();
-    // console.log(watershedId);
-
-    if(para_list)
-    {
-        $.ajax({
-            url: "/get_community_list",
-            type: "GET",
-            data: { 'get_community' : 'get_data' },
-            dataType: "html",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#community').prop('disabled', false);
-                $('#community').html(data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
 
 });
 
@@ -85,53 +59,40 @@ $(document).on('click', '#get_entry_form', function () {
 
 });
 
-$(document).on('click', '#btn_store', function () {
+$('#accessilibity').change(function() {
+    var selectedText = $('#accessilibity option:selected').text();
+    $('#accessilibity_name').val(selectedText);
+});
 
+$('#overall_status').change(function() {
+    var selectedText2 = $('#overall_status option:selected').text();
+    $('#overall_status_name').val(selectedText2);
+});
+
+$(document).on('click', '#btn_store', function (event) {
+
+    // var token = $("meta[name='csrf-token']").attr("content");
+    // var created_by = $('#userName').val();
+
+    event.preventDefault();
     var token = $("meta[name='csrf-token']").attr("content");
-    var created_by = $('#userName').val();
-
-    survey_date = $('#survey_date').val();
-    watershed_id = $('#watershed_id').val();
-    watershed_name = $('#watershed_name').val();
-    para_name = $('#para_name').val();
-    mouza_name = $('#mouza_name').val();
-    union = $('#union').val();
-    upozila = $('#upozila').val();
-    district = $('#district').val();
-    headman_name = $('#headman_name').val();
-    karbari_name = $('#karbari_name').val();
-    chairman_name = $('#chairman_name').val();
-    para_area = $('#para_area').val();
-    any_remarks = $('#any_remarks').val();
-
-    jsonObj = {
-        'survey_date' : survey_date,
-        'watershed_id' : watershed_id,
-        'watershed_name' : watershed_name,
-        'para_name' : para_name,
-        'mouza_name' : mouza_name,
-        'union' : union,
-        'upozila' : upozila,
-        'district' : district,
-        'headman_name' : headman_name,
-        'karbari_name' : karbari_name,
-        'chairman_name' : chairman_name,
-        'para_area' : para_area,
-        'any_remarks' : any_remarks,
-        'created_by' : created_by,
-    };
-    
-    console.log(jsonObj);
+    var form = $('#store_vcf_basic')[0];
+    var formdata = new FormData(form);
+    formdata.append( "_token", token);
+    console.log(formdata);
 
      // clear model message value for every ajax call provide single accurate message
      $('#success_msg').html('');
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_basic_info_para_boundary",
+        url: "/store_basic_info_vcf_boundary",
         type: "POST",
-        data: { '_token' : token, 'dataToSend' : JSON.stringify(jsonObj) },
-        dataType: "JSON",
+        enctype: 'multipart/form-data',
+        dataType: 'json',
+        data: formdata,
+        processData: false,  // Important when file upload!
+        contentType: false,
         cache: false,
         success: function (data) {
             // console.log(data);
@@ -139,19 +100,10 @@ $(document).on('click', '#btn_store', function () {
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html(data.message);
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-                // alert(data.message);
-                $('#survey_date').val('');
-                $('#watershed_name').val('');
-                $('#para_name').val('');
-                $('#mouza_name').val('');
-                $('#union').val('');
-                $('#upozila').val('');
-                $('#district').val('');
-                $('#headman_name').val('');
-                $('#karbari_name').val('');
-                $('#chairman_name').val('');
-                $('#para_area').val('');
-                $('#any_remarks').val('');
+                // initial all value after success
+                $('.initialval').val('');
+                $('#accessilibity').val('').change();
+                $('#overall_status').val('').change();
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
