@@ -71,9 +71,6 @@ $('#overall_status').change(function() {
 
 $(document).on('click', '#btn_store', function (event) {
 
-    // var token = $("meta[name='csrf-token']").attr("content");
-    // var created_by = $('#userName').val();
-
     event.preventDefault();
     var token = $("meta[name='csrf-token']").attr("content");
     var form = $('#store_vcf_basic')[0];

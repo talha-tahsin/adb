@@ -54,6 +54,11 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::post('delte_role', [UserRoleController::class, 'delte_userRole'])->name('delte_role');
 }); 
 
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('watershed-view', [HomeController::class, 'watershed_view'])->name('Watershed.View');
+    // Route::get('view_population', [HomeController::class, 'view_population'])->name('View.Population');
+});
+
 /** Start :: Population View Page */
     Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
         Route::get('population_entry', [SocietalViewController::class, 'population_entry'])->name('Population.Entry');
@@ -336,7 +341,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
     // POST Method Route
     Route::post('store_basic_info_para_boundary', [ParaBoundaryController::class, 'store_basic_info_para_boundary']);
-    Route::post('store_livestock_entry2', [ParaBoundaryController::class, 'store_livestock_entry2']);
+    Route::post('store_gps_point_para', [ParaBoundaryController::class, 'store_gps_point_para']);
     Route::post('store_livestock_entry3', [ParaBoundaryController::class, 'store_livestock_entry3']);
 
     Route::post('update_livestocks_info', [ParaBoundaryController::class, 'update_livestock_info']);

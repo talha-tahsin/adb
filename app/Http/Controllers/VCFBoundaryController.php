@@ -16,6 +16,9 @@ class VCFBoundaryController extends Controller
     public function show_basic_info(){
         return view('vcf_boundary.basic_info_vcf');
     }
+    public function show_gps_point(){
+        return view('vcf_boundary.gps_points_vcf');
+    }
 
     public function store_basic_info_vcf_boundary(Request $request)
     {

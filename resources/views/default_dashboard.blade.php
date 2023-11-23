@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts._dashboard_head')
+@extends('layouts.master')
 
 @section('current_page_css')
 
@@ -21,7 +21,7 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-   
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -32,20 +32,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                
-                @foreach($data as $v)
-                  @if($v->id == 1)
-                    <h2> {{  $v->watershed_name }} </h2>
-                    <p> {{  $v->district }} </p>
-                  @endif
-                @endforeach
+                <h3>150</h3>
 
-                <!-- <p>New Orders</p> -->
+                <p>New Orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('Watershed.View') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -60,7 +54,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('Watershed.View') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

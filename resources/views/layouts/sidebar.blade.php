@@ -120,14 +120,14 @@
                 <li class="nav-item">
                   <a href="{{ route('Para.Boundary.Basic.Info') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>Table P1 : Basic Info</p>
+                    <p>Basic Info</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a href="{{ route('Para.Boundary.GPS.Point') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>Table P2 : GPS Points</p>
+                    <p>GPS Points</p>
                   </a>
                 </li>
 
@@ -160,14 +160,14 @@
                 <li class="nav-item">
                   <a href="{{ route('VCF.Boundary.Basic.Info') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>Table V1 : Basic Info</p>
+                    <p>Basic Info</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{ route('Para.Boundary.GPS.Point') }}" class="nav-link">
+                  <a href="{{ route('VCF.Boundary.GPS.Point') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>Table V2 : GPS Points</p>
+                    <p>GPS Points</p>
                   </a>
                 </li>
 
