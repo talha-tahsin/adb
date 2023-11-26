@@ -55,15 +55,37 @@ Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
 }); 
 
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('watershed-view', [HomeController::class, 'watershed_view'])->name('Watershed.View');
+    Route::get('watershed-dashboard', [HomeController::class, 'watershed_view'])->name('Watershed.View');
+    Route::get('data-entry-dashboard', [HomeController::class, 'data_entry_dashboard'])->name('Data.Entry.Dashboard');
     // Route::get('view_population', [HomeController::class, 'view_population'])->name('View.Population');
 });
 
+/** Start :: Para Boundary Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('basic-info-of-para-boundary', [ParaBoundaryController::class, 'show_basic_info'])->name('Para.Boundary.Basic.Info');
+    Route::get('view_para_list', [ParaBoundaryController::class, 'show_para_list'])->name('Show.Para.List');
+    Route::get('gps-point-of-para-boundary', [ParaBoundaryController::class, 'show_gps_point'])->name('Para.Boundary.GPS.Point');
+
+    // GET Method Route
+    Route::get('get_all_para_list', [ParaBoundaryController::class, 'get_all_para_list']);
+    Route::get('get_livestock_list', [ParaBoundaryController::class, 'get_livestock_list']);
+    Route::get('get_livestock_edit', [ParaBoundaryController::class, 'get_livestock_edit']);
+
+    // POST Method Route
+    Route::post('store_basic_info_para_boundary', [ParaBoundaryController::class, 'store_basic_info_para_boundary']);
+    Route::post('store_gps_point_para', [ParaBoundaryController::class, 'store_gps_point_para']);
+    Route::post('store_livestock_entry3', [ParaBoundaryController::class, 'store_livestock_entry3']);
+
+    Route::post('update_livestocks_info', [ParaBoundaryController::class, 'update_livestock_info']);
+    Route::post('delete_livestocks_info', [ParaBoundaryController::class, 'delete_livestock_info']);
+});
+// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
 /** Start :: Population View Page */
-    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-        Route::get('population_entry', [SocietalViewController::class, 'population_entry'])->name('Population.Entry');
-        Route::get('view_population', [SocietalViewController::class, 'view_population'])->name('View.Population');
-    });
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('population_entry', [SocietalViewController::class, 'population_entry'])->name('Population.Entry');
+    Route::get('view_population', [SocietalViewController::class, 'view_population'])->name('View.Population');
+   
 
     // GET Method Route 
     Route::get('/get_population_list', [PopulationController::class, 'get_population_list']);
@@ -73,14 +95,14 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::post('/insert_populatioin_entry', [PopulationController::class, 'insert_community_population']);
     Route::post('/update_population_details', [PopulationController::class, 'update_population_details']);
     Route::post('/delete_population', [PopulationController::class, 'delete_population']);
-
+});
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Household View Page Route */
-    Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-        Route::get('household_entry', [SocietalViewController::class, 'view_household_entry'])->name('View.Entry.Household');
-        Route::get('view_household', [SocietalViewController::class, 'get_household_view'])->name('View.Household.Info');
-    });
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('household_entry', [SocietalViewController::class, 'view_household_entry'])->name('View.Entry.Household');
+    Route::get('view_household', [SocietalViewController::class, 'get_household_view'])->name('View.Household.Info');
+ 
 
     // GET Method Route 
     Route::get('/get_household_info_list', [HouseholdController::class, 'get_household_info_list']);
@@ -90,7 +112,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::post('/entry_household_info', [HouseholdController::class, 'store_household_info']);
     Route::post('/update_household_info', [HouseholdController::class, 'update_household_info']);
     Route::post('/delete_household_info', [HouseholdController::class, 'delete_household_info']);
-
+});
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: Land View Page Route */
@@ -330,24 +352,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 });
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
-/** Start :: Para Boundary Route */
-Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('basic-info-of-para-boundary', [ParaBoundaryController::class, 'show_basic_info'])->name('Para.Boundary.Basic.Info');
-    Route::get('gps-point-of-para-boundary', [ParaBoundaryController::class, 'show_gps_point'])->name('Para.Boundary.GPS.Point');
 
-    // GET Method Route 
-    Route::get('get_livestock_list', [ParaBoundaryController::class, 'get_livestock_list']);
-    Route::get('get_livestock_edit', [ParaBoundaryController::class, 'get_livestock_edit']);
-
-    // POST Method Route
-    Route::post('store_basic_info_para_boundary', [ParaBoundaryController::class, 'store_basic_info_para_boundary']);
-    Route::post('store_gps_point_para', [ParaBoundaryController::class, 'store_gps_point_para']);
-    Route::post('store_livestock_entry3', [ParaBoundaryController::class, 'store_livestock_entry3']);
-
-    Route::post('update_livestocks_info', [ParaBoundaryController::class, 'update_livestock_info']);
-    Route::post('delete_livestocks_info', [ParaBoundaryController::class, 'delete_livestock_info']);
-});
-// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
 /** Start :: VCF Boundary Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){

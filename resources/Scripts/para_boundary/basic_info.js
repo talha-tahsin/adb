@@ -91,8 +91,10 @@ $(document).on('click', '#btn_store', function () {
     var created_by = $('#userName').val();
 
     survey_date = $('#survey_date').val();
-    watershed_id = $('#watershed_id').val();
-    watershed_name = $('#watershed_name').val();
+    // watershed_id = $('#watershed_id').val();
+    watershed_id = 'R114';
+    // watershed_name = $('#watershed_name').val();
+    watershed_name = 'Gillacahri';
     para_name = $('#para_name').val();
     mouza_name = $('#mouza_name').val();
     union = $('#union').val();
@@ -126,6 +128,7 @@ $(document).on('click', '#btn_store', function () {
      // clear model message value for every ajax call provide single accurate message
      $('#success_msg').html('');
      $('#error_msg').html('');
+    //  window.location.href = '/view_para_list';
 
     $.ajax({
         url: "/store_basic_info_para_boundary",
@@ -140,18 +143,11 @@ $(document).on('click', '#btn_store', function () {
                 $('#success_msg').html(data.message);
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 // alert(data.message);
-                $('#survey_date').val('');
-                $('#watershed_name').val('');
-                $('#para_name').val('');
-                $('#mouza_name').val('');
-                $('#union').val('');
-                $('#upozila').val('');
-                $('#district').val('');
-                $('#headman_name').val('');
-                $('#karbari_name').val('');
-                $('#chairman_name').val('');
-                $('#para_area').val('');
-                $('#any_remarks').val('');
+                $('#initial').val('');
+                $('#btn_close').on('click', function(){
+                    window.location.href = '/view_para_list';
+                });
+                
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

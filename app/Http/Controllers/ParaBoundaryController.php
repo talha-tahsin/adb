@@ -15,6 +15,9 @@ class ParaBoundaryController extends Controller
     public function show_basic_info(){
         return view('para_boundary.basic_info');
     }
+    public function show_para_list(){
+        return view('para_boundary.para_info_list');
+    }
     public function show_gps_point(){
         return view('para_boundary.gps_points_para');
     }
@@ -27,6 +30,11 @@ class ParaBoundaryController extends Controller
         
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
+
+        // Get unique id for every single user ::
+        $timestamp1 = now()->timestamp;
+        $randomNumber = mt_rand(1000000000, 9999999999);
+        $para_id = (int) substr($timestamp1 . $randomNumber, -10);
 
         // check dupliacte record in database ::
         // $found = DB::table('tbl_water_resources1')->select('id')
@@ -47,6 +55,7 @@ class ParaBoundaryController extends Controller
                 'survey_date' => $value->survey_date,
                 'watershed_id' => $value->watershed_id,
                 'watershed_name' => $value->watershed_name,
+                'para_id' => $para_id,
                 'para_name' => $value->para_name,
                 'mouza_name' => $value->mouza_name,
                 'union_name' => $value->union,            
@@ -61,7 +70,7 @@ class ParaBoundaryController extends Controller
                 'created_at' => $created_at,
             );
 
-            DB::table('p1_basic_info')->insert($store_data);
+            DB::table('tbl_para_basic_info')->insert($store_data);
           
             DB::commit();
             
@@ -75,6 +84,40 @@ class ParaBoundaryController extends Controller
             return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
         } 
 
+
+    }
+
+    public function get_all_para_list()
+    {
+        $sql_ret = DB::table('tbl_para_basic_info')->latest()->get();
+
+        $tabStr = '';
+        $serial=1;
+ 
+        foreach ($sql_ret as $v) {
+            
+            $timestamp = strtotime($v->created_at);
+            $date = date('d-M-Y', $timestamp);
+          
+            $tabStr .= '<tr>';
+            $tabStr .= '<td style="text-align: center;">'.$serial++.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$v->watershed_id.'</td>';
+            $tabStr .= '<td style="text-align: left;">'.$v->para_name.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$v->para_area.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$v->karbari_name.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$v->headman_name.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$v->mouza_name.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$v->union_name.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$v->upozila.'</td>';
+
+            $tabStr .= '<td style="text-align: center;">
+            <button type="submit" id="btn_edit" class="btn btn-primary" row_id="'.$v->id.'">Update</button></td>';
+            $tabStr .= '<td style="text-align: center;">
+            <button type="submit" id="btn_delte" class="btn btn-warning" row_id="'.$v->id.'">Data Entry</button></td>';
+            $tabStr .= '</tr>';
+        }
+
+        return $tabStr;
 
     }
 

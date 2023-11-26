@@ -107,20 +107,21 @@
               </li>
             </ul>
           </li> -->
+          <li class="nav-header">Para Information</li>
 
-           <li class="nav-item">
+           <!-- <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Para Boundary
                   <i class="fas fa-angle-left right"></i>
                 </p>
-              </a>
+              </a> -->
 
-              <ul class="nav nav-treeview">
+              <!-- <ul class="nav nav-treeview"> -->
                 <li class="nav-item">
                   <a href="{{ route('Para.Boundary.Basic.Info') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>Basic Info</p>
+                    <p>Entry Para Basic</p>
                   </a>
                 </li>
 
@@ -131,8 +132,8 @@
                   </a>
                 </li>
 
-              </ul>
-           </li>  
+              <!-- </ul>
+           </li>   -->
 
           <!-- <li class="nav-header">Para Boundary</li>
             <li class="nav-item">

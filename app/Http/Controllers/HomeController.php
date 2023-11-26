@@ -14,9 +14,9 @@ class HomeController extends Controller
 {
     public function view_dashboard(){
         if(!empty(auth()->user()->role)){
-            $data = DB::table('key_watershed')->latest()->get();
+            $data = DB::table('key_watershed')->orderBy('id')->get();
             
-            return view('dashboard', compact('data'));
+            return view('layouts.watershed._dashboard', compact('data'));
         }
         else {
             return view('auth.login');
@@ -45,7 +45,9 @@ class HomeController extends Controller
         
         return view('watershed_dashboard', compact('data'));
     }
-
+    public function data_entry_dashboard(){
+        return view('layouts.para._dashboard2');
+    }
     
 
 }
