@@ -6,6 +6,11 @@
 @section('current_page_css')
 <!-- datepicker -->
 <link rel="stylesheet" href="{{ mix('resources/plugins/datepicker/css/jquery-ui-1.9.2.custom.min.css') }}">
+<!-- dataTables -->
+<link rel="stylesheet" href="{{ mix('resources/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ mix('resources/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ mix('resources/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
 
 @endsection
 
@@ -183,7 +188,10 @@
               </div>
               <!-- end main table div -->
 
-              <div class="row">
+              <label class="control-label" for="any_remarks"><span style="color: green;">★&nbsp;</span>Show All Para list with details according to avobe watershed:</label>
+              
+
+              <div class="col-md-12">
                 
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
                   <input type="hidden" name="watershed_id" id="watershed_id" value=""/>
@@ -194,12 +202,12 @@
                       <button type="submit" class="btn btn-info" id="btn_new_para" style="width: 100%;border-radius: 5px;color: black;">Add New Para</button>
                     </a>
                   </div>   -->
-
+                  
                   <table width="100%" class="table table-bordered table-striped datatable dtr-inline" id="my_table">
                   <thead>
                     <tr style="background-color: #6bbfd9;">
                       <th style="text-align: center;width: 5%;">Serial</th>
-                      <th style="text-align: center;width: 5%;">Watershed Id</th>
+                      <th style="text-align: center;width: 6%;">Watershed Id</th>
                       <th style="text-align: left;width: 10%;">Para Name</th>
                       <th style="text-align: center;width: 5%;">Area</th>
                       <th style="text-align: center;width: 6%;">Karbari</th>
@@ -274,5 +282,12 @@
 <script src="{{ mix('resources/scripts/para_boundary/basic_info.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ mix('resources/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ mix('resources/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ mix('resources/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ mix('resources/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ mix('resources/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ mix('resources/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
 @endsection

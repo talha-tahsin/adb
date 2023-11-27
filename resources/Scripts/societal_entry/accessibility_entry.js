@@ -385,13 +385,6 @@ $(document).on('click', '#btn_store3', function () {
 
 });
 
-function clearInput() {
-
-    $('#water_source').val('').change();
-    $('#preferred_source').val('');
-    $('#drinking_water_number').val('');
-
-}
 
 
 

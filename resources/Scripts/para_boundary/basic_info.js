@@ -200,11 +200,24 @@ $(document).on('click', '#btn_store', function () {
                 $('#success_msg').html(data.message);
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 // alert(data.message);
-                $('#initial').val('');
-                $('#btn_close').on('click', function(){
-                    window.location.href = '/view_para_list';
+                $('.initial').val('');
+            
+                $.ajax({
+                    url: "/get_all_para_list",
+                    type: "GET",
+                    data: { 'watershed_id' : watershed_id },
+                    dataType: "html",
+                    cache: false,
+                    success: function (data) {
+                        // console.log(data);
+                        $("#table_body").html(data);
+                        $('#my_table').DataTable();
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
                 });
-                
+                            
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
@@ -293,8 +306,9 @@ $(document).on('click', '#btn_data_entry', function(){
     var token = $("meta[name='csrf-token']").attr("content");
     // var row_id = $('#btn_data_entry').attr('row_id');
     var userName = $('#userName').val();
-    var para_id = $('#btn_data_entry').attr('para_id');
-    var para_name = $('#btn_data_entry').attr('para_name');
+
+    var para_id = $(this).closest('tr').find('#btn_data_entry').attr('para_id');
+    var para_name = $(this).closest('tr').find('#btn_data_entry').attr('para_name');
     console.log(para_id);
 
     // window.location.href = '/gps-point-of-para-boundary';
@@ -332,8 +346,6 @@ $(document).on('click', '#btn_data_entry', function(){
         });
     }
         
-
-    
     
 });
 
