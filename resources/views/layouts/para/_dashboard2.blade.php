@@ -37,16 +37,18 @@
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box bg-gradient-info">
               <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+              
+              <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
               <div class="info-box-content">
-                <span class="info-box-text">Bookmarks</span>
-                <span class="info-box-number"> <h3>ABCD </h3> </span>
+                <span class="info-box-text">Current </span>
+                <span class="info-box-number" > <h4 id="watershed_id"></h4> </span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
                 <span class="progress-description">
-                <h3>ABCD </h3>
+                <a href="{{ route('dashboard') }}" class="nav-link" style="padding-left: 0px;"><h5 style="color: blue;">Go => Watershed Dashboard </h5></a> 
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -106,5 +108,35 @@
 @endsection
 
 @section('current_page_js')
+
+<script>
+
+$(document).ready(function () {
+
+  var userNm = $('#userName').val();
+  console.log(userNm);
+
+  $.ajax({
+      url: "/get_active_watershed",
+      type: "GET",
+      data: { 'userNm' : userNm },
+      dataType: "json",
+      cache: false,
+      success: function (data) {
+          // console.log(data);
+          $.each(data.message, function (i, v) {
+              $('#watershed_id').text('Watershed: '+v.watershed_id);
+              // $('#watershed_name').val(v.watershed_name);
+          });
+          
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+          console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+  });
+
+});
+
+</script>
 
 @endsection

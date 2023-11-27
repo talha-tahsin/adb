@@ -17,6 +17,29 @@ $(document).ready(function () {
 
     $('.date').datepicker({ dateFormat: "yy-mm-dd" });
 
+    var userNm = $('#userName').val();
+
+    $.ajax({
+        url: "/get_active_watershed",
+        type: "GET",
+        data: { 'userNm' : userNm },
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            $.each(data.message, function (i, v) {
+                $('#watershed_id').val(v.watershed_id);
+                $('#watershed_name').val(v.watershed_name);
+                $('#para_id').val(v.para_id);
+                $('#para_name').val(v.para_name);
+            });
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
 });
 
 $(document).on('click', '#get_entry_form', function () {
@@ -59,28 +82,26 @@ $(document).on('click', '#get_entry_form', function () {
 
 });
 
-$('#accessilibity').change(function() {
-    var selectedText = $('#accessilibity option:selected').text();
-    $('#accessilibity_name').val(selectedText);
-});
-
-$('#overall_status').change(function() {
-    var selectedText2 = $('#overall_status option:selected').text();
-    $('#overall_status_name').val(selectedText2);
-});
-
 $(document).on('click', '#btn_store', function (event) {
 
     event.preventDefault();
     var token = $("meta[name='csrf-token']").attr("content");
+    var accessilibity = $('#accessilibity option:selected').text();
+    var overall_status = $('#overall_status option:selected').text();
+    var forest_type = $('#forest_type option:selected').text();
+
     var form = $('#store_vcf_basic')[0];
     var formdata = new FormData(form);
     formdata.append( "_token", token);
+    formdata.append( "accessilibity", accessilibity);
+    formdata.append( "overall_status", overall_status);
+    formdata.append( "forest_type", forest_type);
     console.log(formdata);
 
      // clear model message value for every ajax call provide single accurate message
      $('#success_msg').html('');
      $('#error_msg').html('');
+    //  window.location.href = '/gps-point-of-vcf-boundary';
 
     $.ajax({
         url: "/store_basic_info_vcf_boundary",
@@ -101,6 +122,9 @@ $(document).on('click', '#btn_store', function (event) {
                 $('.initialval').val('');
                 $('#accessilibity').val('').change();
                 $('#overall_status').val('').change();
+                $('#btn_close').on('click', function(){
+                    window.location.href = '/gps-point-of-vcf-boundary';
+                });
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

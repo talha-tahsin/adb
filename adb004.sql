@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2023 at 11:00 AM
+-- Generation Time: Nov 27, 2023 at 05:35 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -561,6 +561,8 @@ CREATE TABLE `tbl_active_watershed` (
   `user_name` varchar(20) NOT NULL,
   `watershed_id` varchar(10) DEFAULT NULL,
   `watershed_name` varchar(20) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(20) DEFAULT NULL,
   `status` varchar(10) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -570,8 +572,8 @@ CREATE TABLE `tbl_active_watershed` (
 -- Dumping data for table `tbl_active_watershed`
 --
 
-INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'R114', 'Gilacharri', '1', '2023-11-26 03:31:31', NULL);
+INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'user1', 'T206', 'Sample 1', '4629226458', 'test2', '1', '2023-11-26 22:19:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -1178,7 +1180,9 @@ CREATE TABLE `tbl_para_basic_info` (
 --
 
 INSERT INTO `tbl_para_basic_info` (`id`, `survey_date`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `mouza_name`, `union_name`, `upozila`, `district`, `headman_name`, `karbari_name`, `chairman_name`, `para_area`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
-(2, '2023-11-26', 'R114', 'Gillacahri', '7184317751', 'test1', 'asd', 'ert', 'dfg', 'ert', 'fdr', 'hgt', 'hyu', '123 ha', 'erte', 'user1', '2023-11-25 23:57:15', NULL, NULL);
+(2, '2023-11-26', 'R114', 'Gillacahri', '7184317751', 'test1', 'asd', 'ert', 'dfg', 'ert', 'fdr', 'hgt', 'hyu', '123 ha', 'erte', 'user1', '2023-11-25 23:57:15', NULL, NULL),
+(3, '2023-11-27', 'R114', 'Gilacharri', '4629226458', 'test2', 'sde', 'rft', 'gty', 'dfr', 'fty', 'juh', 'ghy', '321 ha', 'ftutr', 'user1', '2023-11-26 21:18:01', NULL, NULL),
+(4, '2023-11-26', 'T206', 'Sample 1', '3399206439', 'Test10', 'dfr', 'gty', 'der', 'ghy', 'def', 'ftg', 'de', '143 ha', 'gth', 'user1', '2023-11-26 21:54:33', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1970,7 +1974,7 @@ ALTER TABLE `tbl_occupation`
 -- AUTO_INCREMENT for table `tbl_para_basic_info`
 --
 ALTER TABLE `tbl_para_basic_info`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_population`

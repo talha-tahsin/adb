@@ -93,8 +93,7 @@ class ParaBoundaryController extends Controller
         $waterId = $request['watershed_id'];
         // dd($waterId);
 
-        $sql_ret = DB::table('tbl_para_basic_info')
-                                ->where('watershed_id',$waterId)
+        $sql_ret = DB::table('tbl_para_basic_info')->where('watershed_id',$waterId)
                                 ->latest()->get();
 
         $tabStr = '';
@@ -176,7 +175,7 @@ class ParaBoundaryController extends Controller
                     'watershed_id' => $value->watershed_id,
                     'watershed_name' => $value->watershed_name,
                     'para_name' => $value->para_name,
-                    'row_id' => $value->row_id,
+                    'para_id' => $value->para_id,
                     'east_degree' => $value->east_degree,
                     'east_minute' => $value->east_minute,
                     'east_second' => $value->east_second,
@@ -187,7 +186,7 @@ class ParaBoundaryController extends Controller
                     'created_at' => $created_at,
                 );
                 
-                DB::table('tbl_livestock1')->insert($store_data);
+                DB::table('tbl_para_gps_point')->insert($store_data);
                 DB::commit();
             }
             

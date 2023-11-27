@@ -75,9 +75,8 @@ class VCFBoundaryController extends Controller
                     'created_at' => $created_at,
                 );
 
-                // DB::table('v1_basic_info')->insert($store_data);
-            
-                // DB::commit();
+                DB::table('tbl_vcf_basic_info')->insert($store_data);
+                DB::commit();
                 
                 return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
                 

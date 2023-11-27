@@ -89,6 +89,7 @@ $(document).on('click', '#btn_store', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershed_id').val();
     var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
     var sendData = '';
 
@@ -118,9 +119,9 @@ $(document).on('click', '#btn_store', function () {
 
         sendData += '<watershed_id>' + watershed_id + '</watershed_id>';
         sendData += '<watershed_name>' + watershed_name + '</watershed_name>';
+        sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
-        sendData += '<row_id>' + row_id + '</row_id>';
         sendData += '<east_degree>' + east_degree + '</east_degree>';
         sendData += '<east_minute>' + east_minute + '</east_minute>';
         sendData += '<east_second>' + east_second + '</east_second>';
@@ -142,33 +143,38 @@ $(document).on('click', '#btn_store', function () {
      // clear model message value for every ajax call provide single accurate message
      $('#success_msg').html('');
      $('#error_msg').html('');
+    //  window.location.href = '/basic-info-of-vcf-boundary';
 
-    // $.ajax({
-    //     url: "/store_gps_point_para",
-    //     type: "POST",
-    //     data: { '_token' : token, 'dataToSend' : sendData },
-    //     dataType: "JSON",
-    //     cache: false,
-    //     success: function (data) {
-    //         // console.log(data);
-    //         if(data.status == "SUCCESS")
-    //         {
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#success_msg').html(data.message);
-    //             $('#voucher_table td input[type=text]').val('');
-    //             $('#voucher_table td input[type=checkbox]').prop('checked', false);
-    //             // alert(data.message);
-    //         }
-    //         else{
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#error_msg').html(data.message);
-    //         }
+    $.ajax({
+        url: "/store_gps_point_para",
+        type: "POST",
+        data: { '_token' : token, 'dataToSend' : sendData },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == "SUCCESS")
+            {
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#my_table td input[type=text]').val('');
+                // $('#my_table td input[type=checkbox]').prop('checked', false);
+                // alert(data.message);
+                $('#btn_close').on('click', function(){
+                    window.location.href = '/basic-info-of-vcf-boundary';
+                });
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
             
-    //     },
-    //     error: function(xhr, ajaxOptions, thrownError) {
-    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    //     }
-    // });
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 
 
 

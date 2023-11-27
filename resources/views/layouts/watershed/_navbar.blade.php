@@ -4,14 +4,19 @@
   <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
+      <li class="nav-item d-none d-sm-inline-block">
+        <img src="{{ mix('resources/dist/img/cegis_namplate.png') }}" alt="Logo" class="elevation-3" height="35" width="220" style="opacity: .8;padding-top: 4px;">
+      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+
+      <!-- <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('dashboard') }}" class="nav-link">Watershed Dashboard</a>
+      </li> -->
+      
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <!-- <a href="#" class="nav-link">Contact</a> -->
+        <h3 style="padding: 3px 0px 0px 0px;"><strong>Center for Enviromental and Geographic Information Services, CEGIS</strong></h3>
       </li>
     </ul>
 

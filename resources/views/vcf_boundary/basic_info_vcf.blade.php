@@ -16,9 +16,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="font-family: Serif;">Table V1 : Basic Information of VCF Boundary</h1>
+            <h1 class="m-0" style="font-family: Serif;">Basic Information of VCF Boundary</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6"></div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="margin-right: 5px;"> <h5><span>Go To : </span> <a href="{{ route('dashboard') }}" >Watershed Dashboard</a></h5></li>
+              <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
+            </ol>
+          </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -45,26 +50,26 @@
                         
                         <div class="row">
                           <!-- <div class="col-md-1"></div> -->
-                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                          <!-- <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="survey_date"><span style="color: red;">★&nbsp;</span>Survey Date</label>
                             <input type="text" name="survey_date" id="survey_date" class="form-control date" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please enter date">
-                          </div>
+                          </div> -->
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="watershed_id"><span style="color: red;">★&nbsp;</span>Watershed Id</label>
-                            <input type="text" name="watershed_id" id="watershed_id" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
+                            <input type="text" name="watershed_id" id="watershed_id" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
                           </div> 
 
-                          <div class="col-md-1"></div> 
+                          <!-- <div class="col-md-1"></div>  -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="watershed_name"><span style="color: red;">★&nbsp;</span>Watershed Name</label>
-                            <input type="text" name="watershed_name" id="watershed_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
+                            <input type="text" name="watershed_name" id="watershed_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="vcf_name"><span style="color: red;">★&nbsp;</span>VCF Name</label>
@@ -74,30 +79,30 @@
                         </div>
                         <!-- end row -->
 
-                        <hr style="border-bottom: 2px solid black;">
+                        <!-- <hr style="border-bottom: 2px solid black;"> -->
 
-                        <div class="row">
+                        <div class="row hide">
                           <!-- <div class="col-md-1"></div> -->
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="mouza_name"><span style="color: red;">★&nbsp;</span>Mouza Name</label>
                             <input type="text" name="mouza_name" id="mouza_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="union"><span style="color: red;">★&nbsp;</span>Union</label>
                             <input type="text" name="union" id="union" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div> 
 
-                          <div class="col-md-1"></div> 
+                          <!-- <div class="col-md-1"></div>  -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="upozila"><span style="color: red;">★&nbsp;</span>Upozila</label>
                             <input type="text" name="upozila" id="upozila" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="district"><span style="color: red;">★&nbsp;</span>District</label>
@@ -116,21 +121,21 @@
                             <input type="text" name="vcf_group_name" id="vcf_group_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="karbari_name"><span style="color: red;">★&nbsp;</span>VCF chairman/Karbari Name</label>
                             <input type="text" name="karbari_name" id="karbari_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div> 
 
-                          <div class="col-md-1"></div> 
+                          <!-- <div class="col-md-1"></div>  -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="chairman_cell_no"><span style="color: red;">★&nbsp;</span>VCF Chairman Cell No</label>
                             <input type="text" name="chairman_cell_no" id="chairman_cell_no" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="vcf_dependent_para"><span style="color: red;">★&nbsp;</span>VCF Dependent Para Name</label>
@@ -149,14 +154,14 @@
                             <input type="text" name="approx_vcf_area" id="approx_vcf_area" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="avg_distance"><span style="color: red;">★&nbsp;</span>Avg. Distance of VCF from Para</label>
                             <input type="text" name="avg_distance" id="avg_distance" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div> 
 
-                          <div class="col-md-1"></div> 
+                          <!-- <div class="col-md-1"></div>  -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="accessilibity"><span style="color: red;">★&nbsp;</span>Accessibility Condition to VCF</label>
@@ -166,10 +171,9 @@
                                 <option value="002"> Moderate </option>
                                 <option value="003"> Poor </option>
                               </select>
-                              <input type="hidden" name="accessilibity_name" id="accessilibity_name" value="">
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="overall_status"><span style="color: red;">★&nbsp;</span>Overall Status of VCF</label>
@@ -179,7 +183,6 @@
                                 <option value="012"> Virgin Forest </option>
                                 <option value="013"> Moderately Changed </option>
                               </select>
-                              <input type="hidden" name="overall_status_name" id="overall_status_name" value="">
                           </div> 
                             
                         </div>
@@ -194,26 +197,31 @@
                             <textarea class="form-control initialval" id="current_problem" name="current_problem" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
                           </div>
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
-                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                          <!-- <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="any_remarks"><span style="color: red;">★&nbsp;</span>Forest/Plantation Type</label>
                             <textarea class="form-control initialval" id="forest_type" name="forest_type" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
-                          </div> 
+                          </div>  -->
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="any_remarks"><span style="color: red;">★&nbsp;</span>Observed Wildlife,Birds & Others</label>
                             <textarea class="form-control initialval" id="observed_wild_birds" name="observed_wild_birds" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
                           </div> 
                           
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="any_remarks"><span style="color: red;">★&nbsp;</span>Major Existing Conservation</label>
                             <textarea class="form-control initialval" id="existing_conservation" name="existing_conservation" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
-                          </div> 
+                          </div>
+                          
+                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="para_area"><span style="color: green;">★&nbsp;</span>Any Remarks</label>
+                            <textarea class="form-control initialval" id="any_remarks" name="any_remarks" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
+                          </div>
                          
                         </div>
                         <!-- end row -->
@@ -223,9 +231,17 @@
                         <div class="row">
                           <!-- <div class="col-md-1"></div> -->
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label validate" for="para_area"><span style="color: green;">★&nbsp;</span>Any Remarks</label>
-                            <textarea class="form-control initialval" id="any_remarks" name="any_remarks" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
-                          </div>
+                            <label class="control-label validate" for="forest_type"><span style="color: red;">★&nbsp;</span>Forest/Plantation Type</label>
+                            <select name="forest_type" id="forest_type" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;">
+                                <option value="" selected disabled> Select Option</option>
+                                <option value="031"> Monoculture Plantation </option>
+                                <option value="032"> Diverse Dense Forest </option>
+                                <option value="033"> Horticulture </option>
+                                <option value="034"> Agriculture </option>
+                                <option value="035"> Agro Foresty </option>
+                                <option value="036"> Mixed Forest </option>
+                              </select>
+                          </div> 
 
                           <!-- <div class="col-md-1"></div>
                           
@@ -234,7 +250,7 @@
                             <textarea class="form-control" id="narration" name="narration" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
                           </div>  -->
 
-                          <div class="col-md-1"></div>
+                          <!-- <div class="col-md-1"></div> -->
                           <div class="col-md-2" style="margin: 30px 0px 30px 0px;">
                             <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Info Details </button>
                           </div>  

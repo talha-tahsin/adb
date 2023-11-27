@@ -18,11 +18,17 @@
           <div class="col-sm-6">
             <h1 class="m-0" style="font-family: Serif;">Para Basic Information</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6"></div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="margin-right: 5px;"> <h5><span>Go To : </span> <a href="{{ route('dashboard') }}" >Watershed Dashboard</a></h5></li>
+              <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
+            </ol>
+          </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+    
 
     <!-- Main content -->
     <section class="content">
@@ -176,6 +182,49 @@
 
               </div>
               <!-- end main table div -->
+
+              <div class="row">
+                
+                  <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
+                  <input type="hidden" name="watershed_id" id="watershed_id" value=""/>
+                  <input type="hidden" name="watershed_name" id="watershed_name" value=""/>
+
+                  <!-- <div class="col-md-2" style="margin: 30px 0px 30px 0px;">
+                    <a href="{{ route('Para.Boundary.Basic.Info') }}">
+                      <button type="submit" class="btn btn-info" id="btn_new_para" style="width: 100%;border-radius: 5px;color: black;">Add New Para</button>
+                    </a>
+                  </div>   -->
+
+                  <table width="100%" class="table table-bordered table-striped datatable dtr-inline" id="my_table">
+                  <thead>
+                    <tr style="background-color: #6bbfd9;">
+                      <th style="text-align: center;width: 5%;">Serial</th>
+                      <th style="text-align: center;width: 5%;">Watershed Id</th>
+                      <th style="text-align: left;width: 10%;">Para Name</th>
+                      <th style="text-align: center;width: 5%;">Area</th>
+                      <th style="text-align: center;width: 6%;">Karbari</th>
+                      <th style="text-align: center;width: 6%;">Headman</th>
+                      <th style="text-align: center;width: 6%;">Mouza</th>
+                      <th style="text-align: center;width: 6%;">Union</th>
+                      <th style="text-align: center;width: 6%;">Upazila</th>
+                      <th style="text-align: center;width: 8%;">Edit Para Info</th>
+                      <th style="text-align: center;width: 10%;">Action</th>
+                    </tr>
+                  </thead>
+                
+                  <tbody id="table_body"></tbody>
+
+                    <!-- <tfoot>;
+                    <tr style="background-color: #eeee;">';
+                    <td colspan="3" style="text-align: right;font-weight: bold;"> Total</td>;
+                    <td style="text-align: right;font-weight: bold;" id="debit_total"></td>;
+                    <td style="text-align: right;font-weight: bold;" id="credit_total"></td>;
+                    </tr>;
+                    </tfoot>; -->
+
+                </table>
+
+              </div>
 
     
       </div>  
