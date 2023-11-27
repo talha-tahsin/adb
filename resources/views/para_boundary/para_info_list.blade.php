@@ -37,6 +37,16 @@
             <div class="card card-primary card-outline">
               <div class="card-body">
 
+              <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
+              <input type="hidden" name="watershed_id" id="watershed_id" value=""/>
+              <input type="hidden" name="watershed_name" id="watershed_name" value=""/>
+
+              <div class="col-md-2" style="margin: 30px 0px 30px 0px;">
+                <a href="{{ route('Para.Boundary.Basic.Info') }}">
+                  <button type="submit" class="btn btn-info" id="btn_new_para" style="width: 100%;border-radius: 5px;color: black;">Add New Para</button>
+                </a>
+              </div>  
+
               <table width="100%" class="table table-bordered table-striped datatable dtr-inline" id="my_table">
               <thead>
                 <tr style="background-color: #6bbfd9;">

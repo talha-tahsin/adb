@@ -7,6 +7,29 @@ $(document).ready(function () {
 
     console.log("hello talha.."); 
 
+    var userNm = $('#userName').val();
+
+    $.ajax({
+        url: "/get_active_watershed",
+        type: "GET",
+        data: { 'userNm' : userNm },
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            $.each(data.message, function (i, v) {
+                $('#watershed_id').val(v.watershed_id);
+                $('#watershed_name').val(v.watershed_name);
+                $('#para_id').val(v.para_id);
+                $('#para_name').val(v.para_name);
+            });
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
     for (var i = 0; i < 5; i++) {
         insertTableRow();
     }

@@ -10,13 +10,18 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <li class="nav-item d-none d-sm-inline-block" style="margin: 8px 0px 0px 0px;">
         <!-- <a href="#" class="nav-link">Contact</a> -->
+        <span style="color: red;"></span>
+        
       </li>
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+    <a class="nav-link" data-widget="navbar-search" href="{{ route('Logout.Watershed') }}" role="button">
+      <!-- <span style="color: blue;">Logout Current Watershed</span> -->
+    </a>
       <!-- Navbar Search -->
       <!-- <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">

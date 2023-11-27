@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2023 at 10:41 AM
+-- Generation Time: Nov 26, 2023 at 11:00 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -119,8 +119,8 @@ CREATE TABLE `key_watershed` (
 
 INSERT INTO `key_watershed` (`id`, `watershed_id`, `watershed_name`, `district`, `area`, `created_at`, `updated_at`) VALUES
 (1, 'R114', 'Gilacharri', 'Rangamati', '123 ha', '2023-10-22 06:42:09', '2023-10-22 06:42:09'),
-(2, '100200', NULL, NULL, NULL, '2023-10-22 06:43:11', '2023-10-22 06:43:11'),
-(3, '100300', NULL, NULL, NULL, '2023-10-22 06:43:26', '2023-10-22 06:43:26');
+(2, 'T206', 'Sample 1', 'Bandarban', NULL, '2023-10-22 06:43:11', '2023-10-22 06:43:11'),
+(3, 'H112', 'Sample 2', 'Khagrachari ', NULL, '2023-10-22 06:43:26', '2023-10-22 06:43:26');
 
 -- --------------------------------------------------------
 
@@ -415,41 +415,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (51, '2023_11_08_085943_create_tbl_livestock2_table', 45),
 (52, '2023_11_08_090917_create_tbl_livestock3_table', 46),
 (53, '2023_11_22_042947_create_tbl_basic_info_para_boundary_table', 47),
-(54, '2023_11_22_043218_create_p1_basic_info_table', 48);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `p1_basic_info`
---
-
-CREATE TABLE `p1_basic_info` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `survey_date` date DEFAULT NULL,
-  `watershed_id` varchar(10) NOT NULL,
-  `watershed_name` varchar(20) DEFAULT NULL,
-  `para_name` varchar(20) DEFAULT NULL,
-  `mouza_name` varchar(20) DEFAULT NULL,
-  `union_name` varchar(20) DEFAULT NULL,
-  `upozila` varchar(20) DEFAULT NULL,
-  `district` varchar(20) DEFAULT NULL,
-  `headman_name` varchar(20) DEFAULT NULL,
-  `karbari_name` varchar(20) DEFAULT NULL,
-  `chairman_name` varchar(20) DEFAULT NULL,
-  `para_area` varchar(20) DEFAULT NULL,
-  `any_remarks` varchar(200) DEFAULT NULL,
-  `created_by` varchar(10) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `update_by` varchar(10) DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `p1_basic_info`
---
-
-INSERT INTO `p1_basic_info` (`id`, `survey_date`, `watershed_id`, `watershed_name`, `para_name`, `mouza_name`, `union_name`, `upozila`, `district`, `headman_name`, `karbari_name`, `chairman_name`, `para_area`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
-(1, '2023-11-22', 'R-221', 'abc', 'asd', 'dfg', 'sdf', 'gft', 'ghy', 'tgr', 'gty', 'hyt', '23', 'dfrt', 'user1', '2023-11-21 22:50:25', NULL, NULL);
+(54, '2023_11_22_043218_create_p1_basic_info_table', 48),
+(55, '2023_11_26_082856_create_tbl_active_watershed_table', 49);
 
 -- --------------------------------------------------------
 
@@ -582,6 +549,29 @@ CREATE TABLE `tbl_accessibility3` (
 INSERT INTO `tbl_accessibility3` (`id`, `watershed_id`, `para_id`, `para_name`, `national_highway`, `regional_highway`, `zilla_road`, `local_road`, `main_transportation`, `goods_transportation`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 100200, 20002, 'Jigatola', '30', '25', '16', '23', 'Earthen', 'Pickup Van', 'alamin', NULL, '2023-11-05 04:00:56', NULL),
 (2, 100100, 10001, 'Shewrapara', '25', '23', '15', '25', 'Herringbone', 'Pickup Van', 'alamin', NULL, '2023-11-05 04:02:16', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_active_watershed`
+--
+
+CREATE TABLE `tbl_active_watershed` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `watershed_id` varchar(10) DEFAULT NULL,
+  `watershed_name` varchar(20) DEFAULT NULL,
+  `status` varchar(10) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_active_watershed`
+--
+
+INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'user1', 'R114', 'Gilacharri', '1', '2023-11-26 03:31:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -1158,6 +1148,41 @@ INSERT INTO `tbl_occupation` (`id`, `watershed_id`, `para_id`, `community_id`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_para_basic_info`
+--
+
+CREATE TABLE `tbl_para_basic_info` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `survey_date` date DEFAULT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(20) DEFAULT NULL,
+  `para_id` varchar(10) NOT NULL,
+  `para_name` varchar(20) DEFAULT NULL,
+  `mouza_name` varchar(20) DEFAULT NULL,
+  `union_name` varchar(20) DEFAULT NULL,
+  `upozila` varchar(20) DEFAULT NULL,
+  `district` varchar(20) DEFAULT NULL,
+  `headman_name` varchar(20) DEFAULT NULL,
+  `karbari_name` varchar(20) DEFAULT NULL,
+  `chairman_name` varchar(20) DEFAULT NULL,
+  `para_area` varchar(20) DEFAULT NULL,
+  `any_remarks` varchar(200) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `update_by` varchar(10) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_para_basic_info`
+--
+
+INSERT INTO `tbl_para_basic_info` (`id`, `survey_date`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `mouza_name`, `union_name`, `upozila`, `district`, `headman_name`, `karbari_name`, `chairman_name`, `para_area`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
+(2, '2023-11-26', 'R114', 'Gillacahri', '7184317751', 'test1', 'asd', 'ert', 'dfg', 'ert', 'fdr', 'hgt', 'hyu', '123 ha', 'erte', 'user1', '2023-11-25 23:57:15', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_population`
 --
 
@@ -1551,12 +1576,6 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `p1_basic_info`
---
-ALTER TABLE `p1_basic_info`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -1586,6 +1605,12 @@ ALTER TABLE `tbl_accessibility2`
 -- Indexes for table `tbl_accessibility3`
 --
 ALTER TABLE `tbl_accessibility3`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_active_watershed`
+--
+ALTER TABLE `tbl_active_watershed`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1676,6 +1701,12 @@ ALTER TABLE `tbl_livestock3`
 -- Indexes for table `tbl_occupation`
 --
 ALTER TABLE `tbl_occupation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_para_basic_info`
+--
+ALTER TABLE `tbl_para_basic_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1813,13 +1844,7 @@ ALTER TABLE `lookup_watershed`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
-
---
--- AUTO_INCREMENT for table `p1_basic_info`
---
-ALTER TABLE `p1_basic_info`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1844,6 +1869,12 @@ ALTER TABLE `tbl_accessibility2`
 --
 ALTER TABLE `tbl_accessibility3`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_active_watershed`
+--
+ALTER TABLE `tbl_active_watershed`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_diseases`
@@ -1934,6 +1965,12 @@ ALTER TABLE `tbl_livestock3`
 --
 ALTER TABLE `tbl_occupation`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tbl_para_basic_info`
+--
+ALTER TABLE `tbl_para_basic_info`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_population`

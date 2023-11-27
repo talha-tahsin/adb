@@ -71,7 +71,7 @@ class ParaBoundaryController extends Controller
             );
 
             DB::table('tbl_para_basic_info')->insert($store_data);
-          
+
             DB::commit();
             
             return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
@@ -87,9 +87,15 @@ class ParaBoundaryController extends Controller
 
     }
 
-    public function get_all_para_list()
+    public function get_all_para_list(Request $request)
     {
-        $sql_ret = DB::table('tbl_para_basic_info')->latest()->get();
+        // $userNm = $request['user_name'];
+        $waterId = $request['watershed_id'];
+        // dd($waterId);
+
+        $sql_ret = DB::table('tbl_para_basic_info')
+                                ->where('watershed_id',$waterId)
+                                ->latest()->get();
 
         $tabStr = '';
         $serial=1;
@@ -113,12 +119,30 @@ class ParaBoundaryController extends Controller
             $tabStr .= '<td style="text-align: center;">
             <button type="submit" id="btn_edit" class="btn btn-primary" row_id="'.$v->id.'">Update</button></td>';
             $tabStr .= '<td style="text-align: center;">
-            <button type="submit" id="btn_delte" class="btn btn-warning" row_id="'.$v->id.'">Data Entry</button></td>';
+            <button type="submit" id="btn_data_entry" class="btn btn-warning" para_name="'.$v->para_name.'" para_id="'.$v->para_id.'">Data Entry</button></td>';
             $tabStr .= '</tr>';
         }
 
         return $tabStr;
 
+    }
+
+    public function store_para_name_for_entry(Request $request)
+    {
+        $receiveData = $request['dataToSend'];
+        $value = json_decode($receiveData);
+        $userName = $value->user_name;
+        // dd($userName);
+
+        $store_data = array(
+            'para_id' => $value->para_id,
+            'para_name' => $value->para_name,
+        );
+
+        DB::table('tbl_active_watershed')->where('user_name', $userName)->update($store_data);
+        DB::commit();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => 'data store...' ]);
     }
 
     public function store_gps_point_para(Request $request)

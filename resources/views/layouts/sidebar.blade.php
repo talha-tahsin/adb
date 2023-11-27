@@ -121,14 +121,14 @@
                 <li class="nav-item">
                   <a href="{{ route('Para.Boundary.Basic.Info') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>Entry Para Basic</p>
+                    <p>Para Basic Info</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a href="{{ route('Para.Boundary.GPS.Point') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>GPS Points</p>
+                    <p>Para GPS Points</p>
                   </a>
                 </li>
 
@@ -149,7 +149,7 @@
               </a>
             </li> -->
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>VCF Boundary
@@ -157,23 +157,23 @@
                 </p>
               </a>
 
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview"> -->
                 <li class="nav-item">
                   <a href="{{ route('VCF.Boundary.Basic.Info') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>Basic Info</p>
+                    <p>VCF Basic Info</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a href="{{ route('VCF.Boundary.GPS.Point') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>GPS Points</p>
+                    <p>VCF GPS Points</p>
                   </a>
                 </li>
 
-              </ul>
-           </li>
+              <!-- </ul>
+           </li> -->
            
            <li class="nav-item">
               <a href="#" class="nav-link">
@@ -533,6 +533,7 @@
 
         @endif
 
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'test')
           <li class="nav-header">Reports</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -581,6 +582,7 @@
               </li>
             </ul>
           </li>
+          @endif
 
 
         </ul>

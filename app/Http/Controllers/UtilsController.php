@@ -160,6 +160,15 @@ class UtilsController extends Controller
 
     }
 
+    public function get_active_watershed(Request $request)
+    {
+        $userNm = $request['userNm'];
+        $data = DB::table('tbl_active_watershed')->where('user_name', $userNm)->get();
+            
+        return response()->json([ 'status' => 'SUCCESS', 'message' => $data ]);
+
+    }
+
 
   
     

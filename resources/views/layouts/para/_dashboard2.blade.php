@@ -15,8 +15,13 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Data Entry Dashboard</h1>
+            
           </div><!-- /.col -->
-          <div class="col-sm-6"></div><!-- /.col -->
+          <div class="col-sm-6">
+            <h1 class="m-0" style="text-align: right;"> </h1>
+            
+          </div><!-- /.col -->
+          
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -28,6 +33,26 @@
 
         <!-- Small boxes (Stat box) -->
         <div class="row">
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box bg-gradient-info">
+              <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Bookmarks</span>
+                <span class="info-box-number"> <h3>ABCD </h3> </span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                <h3>ABCD </h3>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
 
           <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">

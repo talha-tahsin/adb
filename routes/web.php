@@ -58,6 +58,12 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('watershed-dashboard', [HomeController::class, 'watershed_view'])->name('Watershed.View');
     Route::get('data-entry-dashboard', [HomeController::class, 'data_entry_dashboard'])->name('Data.Entry.Dashboard');
     // Route::get('view_population', [HomeController::class, 'view_population'])->name('View.Population');
+
+    Route::get('get_active_watershed', [UtilsController::class, 'get_active_watershed'])->name('Get.Active.Watershed');
+    Route::get('logout_current_watershed', [HomeController::class, 'logout_current_watershed'])->name('Logout.Watershed');
+    
+    // POST Route
+    Route::post('store_watershed_info_for_entry', [HomeController::class, 'store_watershed_info_for_entry']);
 });
 
 /** Start :: Para Boundary Route */
@@ -68,16 +74,15 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
     // GET Method Route
     Route::get('get_all_para_list', [ParaBoundaryController::class, 'get_all_para_list']);
-    Route::get('get_livestock_list', [ParaBoundaryController::class, 'get_livestock_list']);
-    Route::get('get_livestock_edit', [ParaBoundaryController::class, 'get_livestock_edit']);
+    // Route::get('get_para_name_for_entry', [ParaBoundaryController::class, 'get_para_name_for_entry']);
+   
 
     // POST Method Route
     Route::post('store_basic_info_para_boundary', [ParaBoundaryController::class, 'store_basic_info_para_boundary']);
     Route::post('store_gps_point_para', [ParaBoundaryController::class, 'store_gps_point_para']);
-    Route::post('store_livestock_entry3', [ParaBoundaryController::class, 'store_livestock_entry3']);
+    Route::post('store_para_name_for_entry', [ParaBoundaryController::class, 'store_para_name_for_entry']);
+   
 
-    Route::post('update_livestocks_info', [ParaBoundaryController::class, 'update_livestock_info']);
-    Route::post('delete_livestocks_info', [ParaBoundaryController::class, 'delete_livestock_info']);
 });
 // End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
 
