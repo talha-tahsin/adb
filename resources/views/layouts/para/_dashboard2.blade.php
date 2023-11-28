@@ -57,7 +57,7 @@
           </div>
 
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning" style="background: linear-gradient(90deg, rgba(191,229,240,1) 0%, rgba(0,212,255,1) 35%, rgba(9,9,121,1) 100%);">
               <div class="inner">
               <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
               <h3>Para Wise Information</h3>
@@ -71,7 +71,7 @@
           <!-- ./col -->
 
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning" style="background: linear-gradient(90deg, rgba(212,185,137,1) 28%, rgba(224,176,38,1) 100%);">
               <div class="inner">
                 <h3>Map Unit Wise Info</h3>
 
@@ -84,7 +84,7 @@
           <!-- ./col -->
 
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning" style="background: linear-gradient(90deg, rgba(199,232,166,1) 28%, rgba(80,194,40,1) 100%);">
               <div class="inner">
                 <h3>Value Chain Analysis </h3>
                 <!-- <h3>Business Model</h3> -->
@@ -110,6 +110,8 @@
 @section('current_page_js')
 
 <script>
+
+document.title = 'data entry dashboard';
 
 $(document).ready(function () {
 

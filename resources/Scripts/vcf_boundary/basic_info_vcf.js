@@ -30,8 +30,8 @@ $(document).ready(function () {
             $.each(data.message, function (i, v) {
                 $('#watershed_id').val(v.watershed_id);
                 $('#watershed_name').val(v.watershed_name);
-                $('#para_id').val(v.para_id);
-                $('#para_name').val(v.para_name);
+                $('#dependent_para_id').val(v.para_id);
+                $('#vcf_dependent_para').val(v.para_name);
             });
             
         },
@@ -86,6 +86,10 @@ $(document).on('click', '#btn_store', function (event) {
 
     event.preventDefault();
     var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var dependent_para_name = $('#vcf_dependent_para').val();
+
     var accessilibity = $('#accessilibity option:selected').text();
     var overall_status = $('#overall_status option:selected').text();
     var forest_type = $('#forest_type option:selected').text();
@@ -93,6 +97,9 @@ $(document).on('click', '#btn_store', function (event) {
     var form = $('#store_vcf_basic')[0];
     var formdata = new FormData(form);
     formdata.append( "_token", token);
+    formdata.append( "watershed_id", watershed_id);
+    formdata.append( "watershed_name", watershed_name);
+    formdata.append( "dependent_para_name", dependent_para_name);
     formdata.append( "accessilibity", accessilibity);
     formdata.append( "overall_status", overall_status);
     formdata.append( "forest_type", forest_type);
@@ -122,6 +129,8 @@ $(document).on('click', '#btn_store', function (event) {
                 $('.initialval').val('');
                 $('#accessilibity').val('').change();
                 $('#overall_status').val('').change();
+                $('#forest_type').val('').change();
+
                 $('#btn_close').on('click', function(){
                     window.location.href = '/gps-point-of-vcf-boundary';
                 });

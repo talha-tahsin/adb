@@ -70,10 +70,11 @@
                           </div>
 
                           <!-- <div class="col-md-1"></div> -->
-                          
+                          <input type="hidden" name="dependent_para_id" id="dependent_para_id" value=""/>
+
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label validate" for="vcf_name"><span style="color: red;">★&nbsp;</span>VCF Name</label>
-                            <input type="text" name="vcf_name" id="vcf_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
+                            <label class="control-label validate" for="vcf_dependent_para"><span style="color: red;">★&nbsp;</span>VCF Dependent Para Name</label>
+                            <input type="text" name="vcf_dependent_para" id="vcf_dependent_para" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
                           </div> 
                             
                         </div>
@@ -116,6 +117,12 @@
 
                         <div class="row">
                           <!-- <div class="col-md-1"></div> -->
+
+                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="vcf_name"><span style="color: red;">★&nbsp;</span>VCF Name</label>
+                            <input type="text" name="vcf_name" id="vcf_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
+                          </div> 
+
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="vcf_group_name"><span style="color: red;">★&nbsp;</span>VCF Group Name</label>
                             <input type="text" name="vcf_group_name" id="vcf_group_name" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
@@ -133,14 +140,8 @@
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="chairman_cell_no"><span style="color: red;">★&nbsp;</span>VCF Chairman Cell No</label>
                             <input type="text" name="chairman_cell_no" id="chairman_cell_no" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
-                          </div>
-
-                          <!-- <div class="col-md-1"></div> -->
-                          
-                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label validate" for="vcf_dependent_para"><span style="color: red;">★&nbsp;</span>VCF Dependent Para Name</label>
-                            <input type="text" name="vcf_dependent_para" id="vcf_dependent_para" class="form-control initialval" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please Enter Integer Number">
                           </div> 
+                          
                             
                         </div>
                         <!-- end row -->
@@ -301,7 +302,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="btn_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>

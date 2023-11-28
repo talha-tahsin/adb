@@ -92,6 +92,36 @@
           <!-- ./col -->
           @endif
 
+          @if($v->id == 3 )
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+
+                <input type="hidden" name="userName3" id="userName3" value="{{ Auth::user()->name }}"/>
+                <input type="hidden" name="watershed_id3" id="watershed_id3" value="{{ $v->watershed_id }}"/>
+                <input type="hidden" name="watershed_name3" id="watershed_name3" value="{{ $v->watershed_name }}"/>
+                
+                <h2> Watershed No: {{  $i++ }} </h2>
+                <h5> Watershed Id: {{  $v->watershed_id }} </h5>
+                <h5> Watershed Name: {{  $v->watershed_name }} </h5>
+                <p> District: {{  $v->district }} </p>
+               
+                <!-- <p>New Orders</p> -->
+              </div>
+              <div class="icon">
+                <i class="ion ion-circle"></i>
+              </div>
+              <!-- <a href="{{ route('Data.Entry.Dashboard') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> -->
+              <span class="small-box-footer">For Entry <i class="fas fa-arrow-circle-right"></i> </span>
+              <a href="{{ route('Data.Entry.Dashboard') }}">
+                <button type="submit" id="watershed2" name="watershed2" class="active_watershed" style="border: 5px;">Click Here</button>  
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+          @endif
+
         @endforeach
           
           <!-- <div class="col-lg-3 col-6">
