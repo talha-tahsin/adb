@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 05:35 AM
+-- Generation Time: Nov 27, 2023 at 11:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -106,7 +106,7 @@ INSERT INTO `key_livestock` (`id`, `livestock_id`, `livestock_name`, `delete_row
 CREATE TABLE `key_watershed` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `watershed_id` varchar(10) NOT NULL,
-  `watershed_name` varchar(20) DEFAULT NULL,
+  `watershed_name` varchar(50) DEFAULT NULL,
   `district` varchar(20) DEFAULT NULL,
   `area` varchar(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -118,9 +118,9 @@ CREATE TABLE `key_watershed` (
 --
 
 INSERT INTO `key_watershed` (`id`, `watershed_id`, `watershed_name`, `district`, `area`, `created_at`, `updated_at`) VALUES
-(1, 'R114', 'Gilacharri', 'Rangamati', '123 ha', '2023-10-22 06:42:09', '2023-10-22 06:42:09'),
-(2, 'T206', 'Sample 1', 'Bandarban', NULL, '2023-10-22 06:43:11', '2023-10-22 06:43:11'),
-(3, 'H112', 'Sample 2', 'Khagrachari ', NULL, '2023-10-22 06:43:26', '2023-10-22 06:43:26');
+(1, 'R114', 'Ghilachari', 'Rangamati', '1897 Ha', '2023-10-22 06:42:09', '2023-10-22 06:42:09'),
+(2, 'R99', 'Bhushan Chhara', 'Rangamati', '560 Ha', '2023-10-22 06:43:11', '2023-10-22 06:43:11'),
+(3, 'R65', 'Bangaltali and Rupakari', 'Rangamati ', '2498 Ha', '2023-10-22 06:43:26', '2023-10-22 06:43:26');
 
 -- --------------------------------------------------------
 
@@ -416,7 +416,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (52, '2023_11_08_090917_create_tbl_livestock3_table', 46),
 (53, '2023_11_22_042947_create_tbl_basic_info_para_boundary_table', 47),
 (54, '2023_11_22_043218_create_p1_basic_info_table', 48),
-(55, '2023_11_26_082856_create_tbl_active_watershed_table', 49);
+(55, '2023_11_26_082856_create_tbl_active_watershed_table', 49),
+(56, '2023_11_27_060211_create_tbl_para_gps_point_table', 50);
 
 -- --------------------------------------------------------
 
@@ -573,7 +574,7 @@ CREATE TABLE `tbl_active_watershed` (
 --
 
 INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'T206', 'Sample 1', '4629226458', 'test2', '1', '2023-11-26 22:19:48', NULL);
+(1, 'user1', 'R114', 'Gilacharri', '2917634481', 'test3', '1', '2023-11-27 02:49:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -1182,7 +1183,44 @@ CREATE TABLE `tbl_para_basic_info` (
 INSERT INTO `tbl_para_basic_info` (`id`, `survey_date`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `mouza_name`, `union_name`, `upozila`, `district`, `headman_name`, `karbari_name`, `chairman_name`, `para_area`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
 (2, '2023-11-26', 'R114', 'Gillacahri', '7184317751', 'test1', 'asd', 'ert', 'dfg', 'ert', 'fdr', 'hgt', 'hyu', '123 ha', 'erte', 'user1', '2023-11-25 23:57:15', NULL, NULL),
 (3, '2023-11-27', 'R114', 'Gilacharri', '4629226458', 'test2', 'sde', 'rft', 'gty', 'dfr', 'fty', 'juh', 'ghy', '321 ha', 'ftutr', 'user1', '2023-11-26 21:18:01', NULL, NULL),
-(4, '2023-11-26', 'T206', 'Sample 1', '3399206439', 'Test10', 'dfr', 'gty', 'der', 'ghy', 'def', 'ftg', 'de', '143 ha', 'gth', 'user1', '2023-11-26 21:54:33', NULL, NULL);
+(4, '2023-11-26', 'T206', 'Sample 1', '3399206439', 'Test10', 'dfr', 'gty', 'der', 'ghy', 'def', 'ftg', 'de', '143 ha', 'gth', 'user1', '2023-11-26 21:54:33', NULL, NULL),
+(5, '2023-11-27', 'R114', 'Gilacharri', '2917634481', 'test3', 'dfr', 'tfg', 'fty', 'gyh', 'ftg', 'rft', 'gty', 'dr4', 'der', 'user1', '2023-11-27 01:56:05', NULL, NULL),
+(6, '2023-11-24', 'R114', 'Gilacharri', '6150455261', 'test4', 'ert', 'frt', 'dfr', 'gtf', 'drt', 'gty', 'frt', '342', 'dr', 'user1', '2023-11-27 04:11:53', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_para_gps_point`
+--
+
+CREATE TABLE `tbl_para_gps_point` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(20) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(20) DEFAULT NULL,
+  `east_degree` varchar(20) DEFAULT NULL,
+  `east_minute` varchar(20) DEFAULT NULL,
+  `east_second` varchar(20) DEFAULT NULL,
+  `north_degree` varchar(20) DEFAULT NULL,
+  `north_minute` varchar(20) DEFAULT NULL,
+  `north_second` varchar(20) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `update_by` varchar(10) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_para_gps_point`
+--
+
+INSERT INTO `tbl_para_gps_point` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `east_degree`, `east_minute`, `east_second`, `north_degree`, `north_minute`, `north_second`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
+(1, 'T206', 'Sample 1', '3399206439', 'Test10', '5', '5', '5', '2', '2', '2', 'user1', '2023-11-27 00:14:21', NULL, NULL),
+(2, 'T206', 'Sample 1', '3399206439', 'Test10', '8', '5', '5', '5', '6', '5', 'user1', '2023-11-27 00:14:21', NULL, NULL),
+(3, 'T206', 'Sample 1', '3399206439', 'Test10', '5', '0', '2', '2', '2', '8', 'user1', '2023-11-27 00:14:21', NULL, NULL),
+(4, 'T206', 'Sample 1', '3399206439', 'Test10', '0', '0', '0', '0', '0', '0', 'user1', '2023-11-27 00:14:21', NULL, NULL),
+(5, 'T206', 'Sample 1', '3399206439', 'Test10', '0', '0', '0', '0', '0', '0', 'user1', '2023-11-27 00:14:21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1298,6 +1336,48 @@ CREATE TABLE `tbl_sanitation2` (
 INSERT INTO `tbl_sanitation2` (`id`, `watershed_id`, `para_id`, `para_name`, `per_latrine_user`, `male_awareness`, `female_awareness`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 100200, 20001, 'Dhanmondhi', '3', 'Yes', 'No', 'alamin', NULL, '2023-11-04 23:45:19', NULL),
 (2, 100200, 20002, 'Jigatola', '5', 'No', 'Yes', 'alamin', NULL, '2023-11-04 23:47:21', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_vcf_basic_info`
+--
+
+CREATE TABLE `tbl_vcf_basic_info` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `survey_date` date DEFAULT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(20) DEFAULT NULL,
+  `vcf_name` varchar(20) DEFAULT NULL,
+  `vcf_group_name` varchar(20) DEFAULT NULL,
+  `union_name` varchar(20) DEFAULT NULL,
+  `upozila` varchar(20) DEFAULT NULL,
+  `district` varchar(20) DEFAULT NULL,
+  `chairmane_name` varchar(20) DEFAULT NULL,
+  `chairman_cell` varchar(20) DEFAULT NULL,
+  `dependent_para` varchar(20) DEFAULT NULL,
+  `approx_area` varchar(20) DEFAULT NULL,
+  `average_distance` varchar(20) DEFAULT NULL,
+  `accessibility` varchar(20) DEFAULT NULL,
+  `overall_status` varchar(20) DEFAULT NULL,
+  `current_problem` varchar(300) DEFAULT NULL,
+  `forest_type` varchar(300) DEFAULT NULL,
+  `observed_wild_birds` varchar(300) DEFAULT NULL,
+  `exist_conversation` varchar(300) DEFAULT NULL,
+  `any_remarks` varchar(200) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `update_by` varchar(10) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_vcf_basic_info`
+--
+
+INSERT INTO `tbl_vcf_basic_info` (`id`, `survey_date`, `watershed_id`, `watershed_name`, `vcf_name`, `vcf_group_name`, `union_name`, `upozila`, `district`, `chairmane_name`, `chairman_cell`, `dependent_para`, `approx_area`, `average_distance`, `accessibility`, `overall_status`, `current_problem`, `forest_type`, `observed_wild_birds`, `exist_conversation`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
+(2, '2023-11-22', '23', '45', '65', '7', '4', '65', NULL, '8', '9', '09', '6', '9', '001', '012', 'fgr', 'tyg', 'fre', 'sff', 'fgt', 'user1', '2023-11-22 02:27:13', NULL, NULL),
+(3, '2023-11-22', '23', 'ry', '65', '7', 'fg', 'y', 'u', 'frtg', '9', '09', '6', '9', '001', '012', 'fgr', 'tyg', 'fre', 'sff', 'rer', 'user1', '2023-11-22 02:28:59', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1453,48 +1533,6 @@ INSERT INTO `user_resets` (`id`, `plain_password`, `user_mobile`, `user_birth_da
 (2, 'alamin@123', '01627840096', '1994-07-10', '2023-08-26 05:16:22', '2023-08-26 05:16:22'),
 (5, 'imran@321', NULL, NULL, '2023-08-26 00:16:29', '2023-08-26 00:16:29'),
 (7, 'user@1234', NULL, NULL, '2023-11-21 03:56:21', '2023-11-21 03:56:21');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `v1_basic_info`
---
-
-CREATE TABLE `v1_basic_info` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `survey_date` date DEFAULT NULL,
-  `watershed_id` varchar(10) NOT NULL,
-  `watershed_name` varchar(20) DEFAULT NULL,
-  `vcf_name` varchar(20) DEFAULT NULL,
-  `vcf_group_name` varchar(20) DEFAULT NULL,
-  `union_name` varchar(20) DEFAULT NULL,
-  `upozila` varchar(20) DEFAULT NULL,
-  `district` varchar(20) DEFAULT NULL,
-  `chairmane_name` varchar(20) DEFAULT NULL,
-  `chairman_cell` varchar(20) DEFAULT NULL,
-  `dependent_para` varchar(20) DEFAULT NULL,
-  `approx_area` varchar(20) DEFAULT NULL,
-  `average_distance` varchar(20) DEFAULT NULL,
-  `accessibility` varchar(20) DEFAULT NULL,
-  `overall_status` varchar(20) DEFAULT NULL,
-  `current_problem` varchar(300) DEFAULT NULL,
-  `forest_type` varchar(300) DEFAULT NULL,
-  `observed_wild_birds` varchar(300) DEFAULT NULL,
-  `exist_conversation` varchar(300) DEFAULT NULL,
-  `any_remarks` varchar(200) DEFAULT NULL,
-  `created_by` varchar(10) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `update_by` varchar(10) DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `v1_basic_info`
---
-
-INSERT INTO `v1_basic_info` (`id`, `survey_date`, `watershed_id`, `watershed_name`, `vcf_name`, `vcf_group_name`, `union_name`, `upozila`, `district`, `chairmane_name`, `chairman_cell`, `dependent_para`, `approx_area`, `average_distance`, `accessibility`, `overall_status`, `current_problem`, `forest_type`, `observed_wild_birds`, `exist_conversation`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
-(2, '2023-11-22', '23', '45', '65', '7', '4', '65', NULL, '8', '9', '09', '6', '9', '001', '012', 'fgr', 'tyg', 'fre', 'sff', 'fgt', 'user1', '2023-11-22 02:27:13', NULL, NULL),
-(3, '2023-11-22', '23', 'ry', '65', '7', 'fg', 'y', 'u', 'frtg', '9', '09', '6', '9', '001', '012', 'fgr', 'tyg', 'fre', 'sff', 'rer', 'user1', '2023-11-22 02:28:59', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1714,6 +1752,12 @@ ALTER TABLE `tbl_para_basic_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_para_gps_point`
+--
+ALTER TABLE `tbl_para_gps_point`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_population`
 --
 ALTER TABLE `tbl_population`
@@ -1729,6 +1773,12 @@ ALTER TABLE `tbl_sanitation1`
 -- Indexes for table `tbl_sanitation2`
 --
 ALTER TABLE `tbl_sanitation2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_vcf_basic_info`
+--
+ALTER TABLE `tbl_vcf_basic_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1760,12 +1810,6 @@ ALTER TABLE `users`
 -- Indexes for table `user_resets`
 --
 ALTER TABLE `user_resets`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `v1_basic_info`
---
-ALTER TABLE `v1_basic_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1848,7 +1892,7 @@ ALTER TABLE `lookup_watershed`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1974,7 +2018,13 @@ ALTER TABLE `tbl_occupation`
 -- AUTO_INCREMENT for table `tbl_para_basic_info`
 --
 ALTER TABLE `tbl_para_basic_info`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_para_gps_point`
+--
+ALTER TABLE `tbl_para_gps_point`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_population`
@@ -1993,6 +2043,12 @@ ALTER TABLE `tbl_sanitation1`
 --
 ALTER TABLE `tbl_sanitation2`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_vcf_basic_info`
+--
+ALTER TABLE `tbl_vcf_basic_info`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_water`
@@ -2023,12 +2079,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_resets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `v1_basic_info`
---
-ALTER TABLE `v1_basic_info`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
