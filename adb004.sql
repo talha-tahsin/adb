@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 11:48 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Nov 28, 2023 at 11:56 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -574,7 +574,8 @@ CREATE TABLE `tbl_active_watershed` (
 --
 
 INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'R114', 'Gilacharri', '2917634481', 'test3', '1', '2023-11-27 02:49:26', NULL);
+(1, 'user1', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-11-28 04:10:30', NULL),
+(2, 'user2', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-11-28 04:10:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -1185,7 +1186,8 @@ INSERT INTO `tbl_para_basic_info` (`id`, `survey_date`, `watershed_id`, `watersh
 (3, '2023-11-27', 'R114', 'Gilacharri', '4629226458', 'test2', 'sde', 'rft', 'gty', 'dfr', 'fty', 'juh', 'ghy', '321 ha', 'ftutr', 'user1', '2023-11-26 21:18:01', NULL, NULL),
 (4, '2023-11-26', 'T206', 'Sample 1', '3399206439', 'Test10', 'dfr', 'gty', 'der', 'ghy', 'def', 'ftg', 'de', '143 ha', 'gth', 'user1', '2023-11-26 21:54:33', NULL, NULL),
 (5, '2023-11-27', 'R114', 'Gilacharri', '2917634481', 'test3', 'dfr', 'tfg', 'fty', 'gyh', 'ftg', 'rft', 'gty', 'dr4', 'der', 'user1', '2023-11-27 01:56:05', NULL, NULL),
-(6, '2023-11-24', 'R114', 'Gilacharri', '6150455261', 'test4', 'ert', 'frt', 'dfr', 'gtf', 'drt', 'gty', 'frt', '342', 'dr', 'user1', '2023-11-27 04:11:53', NULL, NULL);
+(6, '2023-11-24', 'R114', 'Gilacharri', '6150455261', 'test4', 'ert', 'frt', 'dfr', 'gtf', 'drt', 'gty', 'frt', '342', 'dr', 'user1', '2023-11-27 04:11:53', NULL, NULL),
+(7, '2023-11-28', 'R99', 'Bhushan Chhara', '4055461611', 'asd', 'frt', 'hyu', 'hyu', 'hu', 'ghy', 'jui', 'gtu', '123 ha', 'ftg', 'user1', '2023-11-28 04:24:43', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1345,17 +1347,14 @@ INSERT INTO `tbl_sanitation2` (`id`, `watershed_id`, `para_id`, `para_name`, `pe
 
 CREATE TABLE `tbl_vcf_basic_info` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `survey_date` date DEFAULT NULL,
   `watershed_id` varchar(10) NOT NULL,
   `watershed_name` varchar(20) DEFAULT NULL,
+  `dependent_para_id` varchar(10) DEFAULT NULL,
+  `dependent_para_name` varchar(50) DEFAULT NULL,
   `vcf_name` varchar(20) DEFAULT NULL,
   `vcf_group_name` varchar(20) DEFAULT NULL,
-  `union_name` varchar(20) DEFAULT NULL,
-  `upozila` varchar(20) DEFAULT NULL,
-  `district` varchar(20) DEFAULT NULL,
   `chairmane_name` varchar(20) DEFAULT NULL,
   `chairman_cell` varchar(20) DEFAULT NULL,
-  `dependent_para` varchar(20) DEFAULT NULL,
   `approx_area` varchar(20) DEFAULT NULL,
   `average_distance` varchar(20) DEFAULT NULL,
   `accessibility` varchar(20) DEFAULT NULL,
@@ -1375,9 +1374,9 @@ CREATE TABLE `tbl_vcf_basic_info` (
 -- Dumping data for table `tbl_vcf_basic_info`
 --
 
-INSERT INTO `tbl_vcf_basic_info` (`id`, `survey_date`, `watershed_id`, `watershed_name`, `vcf_name`, `vcf_group_name`, `union_name`, `upozila`, `district`, `chairmane_name`, `chairman_cell`, `dependent_para`, `approx_area`, `average_distance`, `accessibility`, `overall_status`, `current_problem`, `forest_type`, `observed_wild_birds`, `exist_conversation`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
-(2, '2023-11-22', '23', '45', '65', '7', '4', '65', NULL, '8', '9', '09', '6', '9', '001', '012', 'fgr', 'tyg', 'fre', 'sff', 'fgt', 'user1', '2023-11-22 02:27:13', NULL, NULL),
-(3, '2023-11-22', '23', 'ry', '65', '7', 'fg', 'y', 'u', 'frtg', '9', '09', '6', '9', '001', '012', 'fgr', 'tyg', 'fre', 'sff', 'rer', 'user1', '2023-11-22 02:28:59', NULL, NULL);
+INSERT INTO `tbl_vcf_basic_info` (`id`, `watershed_id`, `watershed_name`, `dependent_para_id`, `dependent_para_name`, `vcf_name`, `vcf_group_name`, `chairmane_name`, `chairman_cell`, `approx_area`, `average_distance`, `accessibility`, `overall_status`, `current_problem`, `forest_type`, `observed_wild_birds`, `exist_conversation`, `any_remarks`, `created_by`, `created_at`, `update_by`, `updated_at`) VALUES
+(4, 'R99', 'Bhushan Chhara', '4055461611', NULL, 'drf', 'ghy', 'hyg', 'gy', 'huj', 'jui', 'Good', 'Degraded Forest', 'gyh', 'Horticulture', 'jik', 'jjyu', 'gty', 'user1', '2023-11-28 04:47:53', NULL, NULL),
+(5, 'R99', 'Bhushan Chhara', '4055461611', 'asd', 'gy', 'huj', 'er4', 'gty', 'fty', 'tr5', 'Moderate', 'Degraded Forest', 'fgy', 'Agriculture', 'jui', 'kio', 'gyh', 'user1', '2023-11-28 04:51:05', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1507,7 +1506,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (1, 'talha', 'talha@gmail.com', NULL, '$2y$10$6QvvF//XZRry6GDRF1V/UOy/lKgLyWYMNJuEo.AzFoToB00TTmFmq', NULL, 'admin', 'active', '2023-08-24 22:03:08', '2023-08-24 22:03:08'),
 (2, 'alamin', 'alamin@gmail.com', NULL, '$2y$10$dGlmCLH07Md1kcvdybJMpe9mit90kkyR.SF2XAYM1B7bwmOFIzFvG', NULL, 'user', 'active', '2023-08-24 22:05:43', '2023-08-24 22:06:26'),
 (5, 'imran', 'imran@gmail.com', NULL, '$2y$10$L15LC9B0S3SAUbzPEArA9ehi16XsI.cc4tWEDrMaGER64Dcl0vyzC', NULL, 'all_entry', 'active', '2023-08-26 00:16:29', '2023-08-26 01:26:15'),
-(6, 'user1', 'user01@gmail.com', NULL, '$2y$10$A2BAut9WdnrCIkfLAPzJDeokVC93s07KSDwagYKhyZ1GszgyLjaT6', NULL, 'entry', 'active', '2023-11-21 03:56:21', '2023-11-21 03:56:21');
+(6, 'user1', 'user01@gmail.com', NULL, '$2y$10$A2BAut9WdnrCIkfLAPzJDeokVC93s07KSDwagYKhyZ1GszgyLjaT6', NULL, 'entry', 'active', '2023-11-21 03:56:21', '2023-11-21 03:56:21'),
+(7, 'user2', 'user2@gmail.com', NULL, '$2y$10$xdPuWY3qcxHxWdofM5njxeIKAxS0PcngExiCCyiH.qz4eMB0i5oY2', NULL, 'entry', 'active', '2023-11-28 04:52:48', '2023-11-28 04:52:48');
 
 -- --------------------------------------------------------
 
@@ -1532,7 +1532,8 @@ INSERT INTO `user_resets` (`id`, `plain_password`, `user_mobile`, `user_birth_da
 (1, 'talha@123', '01400757584', '1992-08-14', '2023-08-26 05:12:26', '2023-08-26 05:12:26'),
 (2, 'alamin@123', '01627840096', '1994-07-10', '2023-08-26 05:16:22', '2023-08-26 05:16:22'),
 (5, 'imran@321', NULL, NULL, '2023-08-26 00:16:29', '2023-08-26 00:16:29'),
-(7, 'user@1234', NULL, NULL, '2023-11-21 03:56:21', '2023-11-21 03:56:21');
+(7, 'user@1234', NULL, NULL, '2023-11-21 03:56:21', '2023-11-21 03:56:21'),
+(8, 'user@1234', NULL, NULL, '2023-11-28 04:52:48', '2023-11-28 04:52:48');
 
 --
 -- Indexes for dumped tables
@@ -1922,7 +1923,7 @@ ALTER TABLE `tbl_accessibility3`
 -- AUTO_INCREMENT for table `tbl_active_watershed`
 --
 ALTER TABLE `tbl_active_watershed`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_diseases`
@@ -2018,7 +2019,7 @@ ALTER TABLE `tbl_occupation`
 -- AUTO_INCREMENT for table `tbl_para_basic_info`
 --
 ALTER TABLE `tbl_para_basic_info`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_para_gps_point`
@@ -2048,7 +2049,7 @@ ALTER TABLE `tbl_sanitation2`
 -- AUTO_INCREMENT for table `tbl_vcf_basic_info`
 --
 ALTER TABLE `tbl_vcf_basic_info`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_water`
@@ -2072,13 +2073,13 @@ ALTER TABLE `tbl_water_resources2`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_resets`
 --
 ALTER TABLE `user_resets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
