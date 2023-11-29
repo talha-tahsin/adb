@@ -245,6 +245,90 @@
 </div> 
 <!-- end main content row -->
 
+
+<!-- Popup Message Modal -->
+<div class="modal fade" id="myModal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #001a33;">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;">Edit Para Basic Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <input type="hidden" name="row_id" id="row_id" value=""/>
+          <div class="row">
+            <!-- <div class="col-sm-1"></div>'; -->
+            <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+              <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+              <span style="color: red;">★&nbsp;</span>Para Name</label></div>
+              <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+              <input type="text" class="form-control" name="m_para_nm" id="m_para_nm" value="" style="border-radius: 5px;border: 2px solid #77c3e1">
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-sm-1"></div>'; -->
+            <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+              <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+              <span style="color: red;">★&nbsp;</span>Area</label></div>
+              <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+              <input type="text" class="form-control" name="m_para_area" id="m_para_area" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-sm-1"></div>'; -->
+            <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+              <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+              <span style="color: red;">★&nbsp;</span>Karbari Name</label></div>
+              <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+              <input type="text" class="form-control" name="m_karbari" id="m_karbari" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-sm-1"></div>'; -->
+            <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+              <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+              <span style="color: red;">★&nbsp;</span>Headman Name</label></div>
+              <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+              <input type="text" class="form-control" name="m_headman" id="m_headman" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-sm-1"></div>'; -->
+            <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+              <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+              <span style="color: red;">★&nbsp;</span>Chairman Name</label></div>
+              <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+              <input type="text" class="form-control" name="m_chairman" id="m_chairman" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-sm-1"></div>'; -->
+            <div class="col-sm-4" style="margin: 10px 0px 10px 0px;text-align: left;"> 
+              <label style="font-family: Tahoma;font-size: 15px;margin: 5px 0px 5px 0px;">
+              <span style="color: red;">★&nbsp;</span>Mouza Name</label></div>
+              <div class="col-sm-6" style="margin: 10px 0px 10px 0px;">
+              <input type="text" class="form-control" name="m_mouza" id="m_mouza" value="" style="border-radius: 5px;border: 2px solid #77c3e1" >
+            </div>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="btn_updt" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- Popup Message Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

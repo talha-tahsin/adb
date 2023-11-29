@@ -51,7 +51,7 @@ $(document).ready(function () {
             $.each(data.message, function (i, v) {
                 $('#watershed_id').val(v.watershed_id);
                 var waterShed_id = v.watershed_id;
-                console.log(waterShed_id);
+                // console.log(waterShed_id);
 
                 $.ajax({
                     url: "/get_all_para_list",
@@ -239,59 +239,119 @@ $(document).on('click', '#btn_store', function () {
 
 $(document).on('click', '#btn_edit', function(){
 
-    var user_id = $(this).closest('tr').find('td:eq(0)').text();
+    var row_id = $(this).closest('tr').find('#btn_edit').attr('row_id');
+    console.log(row_id);
     
-    // console.log(user_id);
-    
-    if(user_id == '' || user_id == null || user_id == undefined)
-    {
-        alert("User id not found...");  
+    if(row_id == '' || row_id == null || row_id == undefined){
+        alert("Row id not found...");  
     }
-    else
-    {
-        $('#myModal').modal({backdrop : 'static', keyboard : false});
+    else{
+        $('#myModal_edit').modal({backdrop : 'static', keyboard : false});
+        $("#row_id").val(row_id);
 
-        $("#user_id").val(user_id);
+        $.ajax({
+            url: '/get_para_details_for_edit',
+            type: "GET",
+            data: { 'row_id' : row_id },
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                // console.log(data);
+                if(data.status == "SUCCESS") {
+                    $.each(data.message, function (i, v) {
+                        $('#m_para_nm').val(v.para_name);
+                        $('#m_para_area').val(v.para_area);
+                        $('#m_karbari').val(v.karbari_name);
+                        $('#m_chairman').val(v.chairman_name);
+                        $('#m_headman').val(v.headman_name);
+                        $('#m_mouza').val(v.mouza_name);
+                    });
+                }
+                else {
+                    alert(data.message);
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
 
     }
 });
 
 $(document).on('click', '#btn_updt', function(){
 
-    var usrId = $("#user_id").val();
-    var userStatus = $('#usr_status option:selected').val();
-    var usrRole = $('#usr_role option:selected').val();
     var token = $("meta[name='csrf-token']").attr("content");
+    var userNme = $('#userName').val();
+    var mRowId = $("#row_id").val();
+    var m_para_nam = $('#m_para_nm').val();
+    var m_para_area = $('#m_para_area').val();
+    var m_karbari = $('#m_karbari').val();
+    var m_headman = $('#m_headman').val();
+    var m_chairman = $('#m_chairman').val();
+    var m_mouza = $('#m_mouza').val();
 
     // console.log(usrId, userStatus);
 
     var send_data = {
-        'updt_userInfo' : 'info',
-        '_token' : token,
-        'user_id' : usrId,
-        'user_status' : userStatus,
-        'user_role' : usrRole 
+        'row_id' : mRowId,
+        'para_name' : m_para_nam,
+        'para_area' : m_para_area,
+        'karbari_name' : m_karbari,
+        'headman_name' : m_headman, 
+        'chairman_name' : m_chairman, 
+        'mouza_name' : m_mouza, 
     };
 
-    var ajaxUrl = "/updt_role";
-
     $.ajax({
-        url: ajaxUrl,
+        url: '/updt_para_basic_info',
         type: "POST",
-        data: send_data,
+        data: {'_token' : token, 'dataToSend' : JSON.stringify(send_data)},
         dataType: "JSON",
         cache: false,
         success: function (data) {
             // console.log(data);
+            if(data.status == "SUCCESS") {
+                $('#myModal_edit').modal('hide'); 
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                
+                
+                $.ajax({
+                    url: "/get_active_watershed",
+                    type: "GET",
+                    data: { 'userNm' : userNme },
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        // console.log(data);
+                        $.each(data.message, function (i, v) {
+                            var waterShed_id = v.watershed_id;
             
-            if(data.status == "SUCCESS") 
-            {
-                $('#myModal').modal('hide'); 
-                alert(data.message);   
-                window.location.reload();
+                            $.ajax({
+                                url: "/get_all_para_list",
+                                type: "GET",
+                                data: { 'watershed_id' : waterShed_id },
+                                dataType: "html",
+                                cache: false,
+                                success: function (data) {
+                                    // console.log(data);
+                                    $("#table_body").html(data);
+                                    $('#my_table').DataTable();
+                                },
+                                error: function(xhr, ajaxOptions, thrownError) {
+                                    console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                }
+                            });
+                            
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+                });
             }
-            else 
-            {
+            else {
                 alert(data.message);
             }
         },
@@ -299,6 +359,7 @@ $(document).on('click', '#btn_updt', function(){
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
+
 });
 
 $(document).on('click', '#btn_data_entry', function(){

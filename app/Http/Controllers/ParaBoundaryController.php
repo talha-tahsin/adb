@@ -116,7 +116,7 @@ class ParaBoundaryController extends Controller
             $tabStr .= '<td style="text-align: center;">'.$v->upozila.'</td>';
 
             $tabStr .= '<td style="text-align: center;">
-            <button type="submit" id="btn_edit" class="btn btn-primary" row_id="'.$v->id.'">Update</button></td>';
+            <button type="submit" id="btn_edit" class="btn btn-primary" row_id="'.$v->id.'">Edit Para Basic</button></td>';
             $tabStr .= '<td style="text-align: center;">
             <button type="submit" id="btn_data_entry" class="btn btn-warning" para_name="'.$v->para_name.'" para_id="'.$v->para_id.'">Data Entry</button></td>';
             $tabStr .= '</tr>';
@@ -124,6 +124,37 @@ class ParaBoundaryController extends Controller
 
         return $tabStr;
 
+    }
+
+    public function get_para_details_for_edit(Request $request)
+    {
+        $row_id = $request['row_id'];
+
+        $sql_ret = DB::table('tbl_para_basic_info')->where('id', $row_id)->get();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => $sql_ret ]);
+
+    }
+    public function updt_para_basic_info(Request $request)
+    {
+        $receiveData = $request['dataToSend'];
+        $value = json_decode($receiveData);
+        $RowId = $value->row_id;
+        // dd($RowId);
+
+        $store_data = array(
+            'para_name' => $value->para_name,
+            'para_area' => $value->para_area,
+            'karbari_name' => $value->karbari_name,
+            'headman_name' => $value->headman_name,
+            'chairman_name' => $value->chairman_name,
+            'mouza_name' => $value->mouza_name,
+        );
+
+        DB::table('tbl_para_basic_info')->where('id', $RowId)->update($store_data);
+        DB::commit();
+
+        return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data updated successfully...' ]);
     }
 
     public function store_para_name_for_entry(Request $request)

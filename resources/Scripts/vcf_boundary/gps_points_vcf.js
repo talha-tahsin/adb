@@ -1,11 +1,11 @@
 
 
 
-document.title = 'VCF GPS point';
+document.title = 'VCF gps point';
 
 $(document).ready(function () {
 
-    console.log("hello talha..");
+    console.log("hello talha23..");
     
     var userNm = $('#userName').val();
 
@@ -38,9 +38,7 @@ $(document).ready(function () {
 });
 
 $('#add_row').on('click', function () {
-
     insertTableRow();
-
 });
 
 function insertTableRow() {
@@ -89,6 +87,7 @@ $(document).on('click', '#btn_store', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershed_id').val();
     var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
     var sendData = '';
 
@@ -97,7 +96,6 @@ $(document).on('click', '#btn_store', function () {
     $('#my_table > tbody > tr').each(function () {
         
         // var sample = $(this).closest('tr').find('td:eq(1)').text();
-        var row_id = $(this).find('td:eq(0)').text(); 
         var east_degree = $(this).find('#east_degree').val();
         var east_minute = $(this).find('#east_minute').val();
         var east_second = $(this).find('#east_second').val();
@@ -118,9 +116,9 @@ $(document).on('click', '#btn_store', function () {
 
         sendData += '<watershed_id>' + watershed_id + '</watershed_id>';
         sendData += '<watershed_name>' + watershed_name + '</watershed_name>';
+        sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
-        sendData += '<row_id>' + row_id + '</row_id>';
         sendData += '<east_degree>' + east_degree + '</east_degree>';
         sendData += '<east_minute>' + east_minute + '</east_minute>';
         sendData += '<east_second>' + east_second + '</east_second>';
@@ -143,32 +141,34 @@ $(document).on('click', '#btn_store', function () {
      $('#success_msg').html('');
      $('#error_msg').html('');
 
-    // $.ajax({
-    //     url: "/store_gps_point_para",
-    //     type: "POST",
-    //     data: { '_token' : token, 'dataToSend' : sendData },
-    //     dataType: "JSON",
-    //     cache: false,
-    //     success: function (data) {
-    //         // console.log(data);
-    //         if(data.status == "SUCCESS")
-    //         {
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#success_msg').html(data.message);
-    //             $('#voucher_table td input[type=text]').val('');
-    //             $('#voucher_table td input[type=checkbox]').prop('checked', false);
-    //             // alert(data.message);
-    //         }
-    //         else{
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#error_msg').html(data.message);
-    //         }
+    $.ajax({
+        url: "/store_gps_point_vcf",
+        type: "POST",
+        data: { '_token' : token, 'dataToSend' : sendData },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == "SUCCESS"){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#my_table td input[type=text]').val('');
+                $('#voucher_table td input[type=checkbox]').prop('checked', false);
+                // alert(data.message);
+                $('#btn_close').on('click', function(){
+                    window.location.href = '/dominant-plant-vcf-boundary';
+                });
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html(data.message);
+            }
             
-    //     },
-    //     error: function(xhr, ajaxOptions, thrownError) {
-    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    //     }
-    // });
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 
 
 

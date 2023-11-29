@@ -18,8 +18,10 @@
             
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <h1 class="m-0" style="text-align: right;"> </h1>
-            
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="margin-right: 5px;"> <h5><span>Go To : </span> <a href="{{ route('dashboard') }}" >Watershed Dashboard</a></h5></li>
+              <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
+            </ol>
           </div><!-- /.col -->
           
         </div><!-- /.row -->
@@ -48,7 +50,8 @@
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
                 <span class="progress-description">
-                <a href="{{ route('dashboard') }}" class="nav-link" style="padding-left: 0px;"><h5 style="color: blue;">Go => Watershed Dashboard </h5></a> 
+                <h4 id="watershed_name" style="color: ;"> </h4>
+                <!-- <a href="{{ route('dashboard') }}" class="nav-link" style="padding-left: 0px;"><h5 style="color: blue;">Go => Watershed Dashboard </h5></a>  -->
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -96,8 +99,6 @@
           </div>
           <!-- ./col -->
 
-          
-
         </div>
         <!-- /.row -->
 
@@ -125,10 +126,10 @@ $(document).ready(function () {
       dataType: "json",
       cache: false,
       success: function (data) {
-          // console.log(data);
+          console.log(data);
           $.each(data.message, function (i, v) {
-              $('#watershed_id').text('Watershed: '+v.watershed_id);
-              // $('#watershed_name').val(v.watershed_name);
+              $('#watershed_id').text('Watershed: '+ v.watershed_id);
+              $('#watershed_name').text('Name: ' + v.watershed_name);
           });
           
       },

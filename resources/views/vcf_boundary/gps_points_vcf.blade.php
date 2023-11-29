@@ -51,7 +51,8 @@
                       <label class="control-label validate" for="watershed_name"><span style="color: red;">★&nbsp;</span>Watershed Name</label>
                       <input type="text" name="watershed_name" id="watershed_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
                     </div>
-                    <!-- <div class="col-md-1"></div> -->
+                    
+                    <input type="hidden" name="para_id" id="para_id" value=""/>
                     <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                       <label class="control-label validate" for="para_name"><span style="color: red;">★&nbsp;</span>Para Name</label>
                       <input type="text" name="para_name" id="para_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
@@ -138,7 +139,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="btn_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>

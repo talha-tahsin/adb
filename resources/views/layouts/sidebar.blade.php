@@ -173,6 +173,13 @@
                   </a>
                 </li>
 
+                <li class="nav-item">
+                  <a href="{{ route('VCF.Boundary.Dominant.Plant') }}" class="nav-link">
+                    <i class="nav-icon far fa-calendar-alt"></i>
+                    <p>VCF Dominant Plants</p>
+                  </a>
+                </li>
+
               <!-- </ul>
            </li> -->
            
