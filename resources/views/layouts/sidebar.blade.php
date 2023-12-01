@@ -108,17 +108,17 @@
               </li>
             </ul>
           </li> -->
-          <li class="nav-header">Para Information</li>
+          <li class="nav-header">Para Boundary</li>
 
-           <!-- <li class="nav-item">
+           <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Para Boundary
                   <i class="fas fa-angle-left right"></i>
                 </p>
-              </a> -->
+              </a>
 
-              <!-- <ul class="nav nav-treeview"> -->
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('Para.Boundary.Basic.Info') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
@@ -133,8 +133,8 @@
                   </a>
                 </li>
 
-              <!-- </ul>
-           </li>   -->
+              </ul>
+           </li>  
 
           <!-- <li class="nav-header">Para Boundary</li>
             <li class="nav-item">
@@ -150,7 +150,7 @@
               </a>
             </li> -->
 
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>VCF Boundary
@@ -158,7 +158,7 @@
                 </p>
               </a>
 
-              <ul class="nav nav-treeview"> -->
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('VCF.Boundary.Basic.Info') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
@@ -180,10 +180,10 @@
                   </a>
                 </li>
 
-              <!-- </ul>
-           </li> -->
+              </ul>
+           </li>
            
-           <!-- <li class="nav-item">
+           <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>LULC Validation
@@ -191,23 +191,23 @@
                 </p>
               </a>
 
-              <ul class="nav nav-treeview"> -->
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('Para.Boundary.Basic.Info') }}" class="nav-link">
+                  <a href="{{ route('Ground.Truth.First') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>LULC Ground Truth (1st)</p>
+                    <p>First Ground Truth</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{ route('Para.Boundary.GPS.Point') }}" class="nav-link">
+                  <a href="{{ route('Ground.Truth.Second') }}" class="nav-link">
                     <i class="nav-icon far fa-calendar-alt"></i>
-                    <p>LULC Ground Truth (2nd)</p>
+                    <p>Seceond Ground Truth</p>
                   </a>
                 </li>
 
-              <!-- </ul>
-           </li>  -->
+              </ul>
+           </li> 
 
 
             

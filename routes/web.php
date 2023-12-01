@@ -25,11 +25,14 @@ use App\Http\Controllers\Societal\AccessibilityController;
 use App\Http\Controllers\WaterResources\WaterResourceController;
 /** :: Livestock Controller :: */
 use App\Http\Controllers\Livestock\LivestockController;
+use App\Http\Controllers\LulcValidationController;
 
 /** :: Para Boundary Controller :: */
 use App\Http\Controllers\ParaBoundaryController;
 /** :: VCF Boundary Controller :: */
 use App\Http\Controllers\VCFBoundaryController;
+/** :: LULC Validation Controller :: */
+use App\Http\Controllers\LulcValidationControllerController;
 
 
 use App\Http\Controllers\UtilsController;
@@ -86,8 +89,6 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
    
 
 });
-// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
-
 
 /** Start :: VCF Boundary Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
@@ -107,7 +108,25 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::post('store_plot3_dominant_plants', [VCFBoundaryController::class, 'store_plot3_dominant_plants']);
  
 });
-// End :: ========== * ========= * ========= * ======== * ========= * ========== * ========== * ==========
+
+/** Start :: LULC Validation Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('show-ground-truth-first', [LulcValidationController::class, 'show_ground_truth1'])->name('Ground.Truth.First');
+    Route::get('show-ground-truth-second', [LulcValidationController::class, 'show_ground_truth2'])->name('Ground.Truth.Second');
+
+    // GET Method Route 
+    Route::get('get_livestock_list', [LulcValidationController::class, 'get_livestock_list']);
+    Route::get('get_livestock_edit', [LulcValidationController::class, 'get_livestock_edit']);
+
+    // POST Method Route
+    Route::post('store_first_ground_truth', [LulcValidationController::class, 'store_first_ground_truth']);
+    Route::post('store_second_ground_truth', [LulcValidationController::class, 'store_second_ground_truth']);
+   
+});
+
+
+
+
 
 /** Start :: Population View Page */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
