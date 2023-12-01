@@ -76,7 +76,7 @@
                                   <th rowspan="2" style="text-align: center;">Map Unit Code</th>
                                   <th colspan="3" style="text-align: center;">Information of the GCP</th>
                                   <th colspan="2" style="text-align: center;">Land Use and Land  Cover Information</th>
-                                  <th colspan="3" style="text-align: center;">GCP Type</th>
+                                  <th rowspan="2" style="text-align: center;">GCP Type</th>
                                   <!-- <th rowspan="2" style="text-align: center;">Photo Id</th> -->
                                   <th rowspan="2" style="text-align: center;">Photo Aspect</th>
                                   <th rowspan="2" style="text-align: center;">Action</th>
@@ -86,11 +86,8 @@
                                   <th style="text-align:center;border-bottom: none;">Longitude, E</th>
                                   <th style="text-align:center;border-bottom: none;">Latitude, N</th>
                                   <th style="text-align:center;border-bottom: none;">Elevation (m)</th>
-                                  <th style="text-align:center;border-bottom: none;">LULC Class Code in Map</th>
+                                  <th style="text-align:center;border-bottom: none;">Map LULC Class Code</th>
                                   <th style="text-align:center;border-bottom: none;">Observed LULC Class Code</th>
-                                  <th style="text-align:center;border-bottom: none;">Mandatory</th>
-                                  <th style="text-align:center;border-bottom: none;">Shifted</th>
-                                  <th style="text-align:center;border-bottom: none;">Accuracy</th>
                                 </tr>
                             </thead>
 

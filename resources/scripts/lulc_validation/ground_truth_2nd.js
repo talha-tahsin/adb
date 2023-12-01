@@ -51,34 +51,35 @@ function insertTableRow() {
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="east_degree" name="east_degree" class="form-control" value="" style="width: 80px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="map_code_unit" name="map_code_unit" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="east_minute" name="east_minute" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="longitude_east" name="longitude_east" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="east_second" name="east_second" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="longitude_north" name="longitude_north" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="north_degree" name="norht_degree" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="elevation" name="elevation" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="north_minute" name="north_minute" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="map_code" name="map_code" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="north_second" name="north_second" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
+
     appendString += '<td>';
-    appendString += '<input type="text" id="north_second" name="north_second" class="form-control" value="" style="width: 80px;text-align: center;" placeholder="0">';
+    appendString += '<select type="text" id="gcp_type" name="gcp_type" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="Mandatory">Mandatory</option>';
+    appendString += '<option value="Shifted">Shifted</option>';
+    appendString += '<option value="Accuracy">Accuracy </option>';
+    appendString += '</select>';
     appendString += '</td>';
+    
     appendString += '<td>';
-    appendString += '<input type="text" id="north_second" name="north_second" class="form-control" value="" style="width: 80px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="north_second" name="north_second" class="form-control" value="" style="width: 80px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="north_second" name="north_second" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="photo_aspect" name="photo_aspect" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td style="text-align: center;">';
@@ -108,20 +109,24 @@ $(document).on('click', '#btn_store', function () {
     $('#my_table > tbody > tr').each(function () {
         
         // var sample = $(this).closest('tr').find('td:eq(1)').text();
-        var east_degree = $(this).find('#east_degree').val();
-        var east_minute = $(this).find('#east_minute').val();
-        var east_second = $(this).find('#east_second').val();
-        var north_degree = $(this).find('#north_degree').val();
-        var north_minute = $(this).find('#north_minute').val();
-        var north_second = $(this).find('#north_second').val();
+        var map_code_unit = $(this).find('#map_code_unit').val();
+        var longitude_east = $(this).find('#longitude_east').val();
+        var longitude_north = $(this).find('#longitude_north').val();
+        var elevation = $(this).find('#elevation').val();
+        var map_code = $(this).find('#map_code').val();
+        var observed_code = $(this).find('#observed_code').val();
+        var gcp_type = $(this).find('#gcp_type option:selected').val();
+        var photo_aspect = $(this).find('#photo_aspect').val();
 
         // automation set value 0 if any field leave empty or null 
-        if(east_degree == '' || east_degree == null || east_degree == undefined) east_degree = 0;
-        if(east_minute == '' || east_minute == null || east_minute == undefined) east_minute = 0;
-        if(east_second == '' || east_second == null || east_second == undefined) east_second = 0;
-        if(north_degree == '' || north_degree == null || north_degree == undefined) north_degree = 0;
-        if(north_minute == '' || north_minute == null || north_minute == undefined) north_minute = 0;
-        if(north_second == '' || north_second == null || north_second == undefined) north_second = 0;
+        if(map_code_unit == '' || map_code_unit == null || map_code_unit == undefined) map_code_unit = 0;
+        if(longitude_east == '' || longitude_east == null || longitude_east == undefined) longitude_east = 0;
+        if(longitude_north == '' || longitude_north == null || longitude_north == undefined) longitude_north = 0;
+        if(elevation == '' || elevation == null || elevation == undefined) elevation = 0;
+        if(map_code == '' || map_code == null || map_code == undefined) map_code = 0;
+        if(observed_code == '' || observed_code == null || observed_code == undefined) observed_code = 0;
+        if(gcp_type == '' || gcp_type == null || gcp_type == undefined) gcp_type = 0;
+        if(photo_aspect == '' || photo_aspect == null || photo_aspect == undefined) photo_aspect = 0;
 
         // first binding data as xml string
         sendData += '<row>';
@@ -131,12 +136,14 @@ $(document).on('click', '#btn_store', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
-        sendData += '<east_degree>' + east_degree + '</east_degree>';
-        sendData += '<east_minute>' + east_minute + '</east_minute>';
-        sendData += '<east_second>' + east_second + '</east_second>';
-        sendData += '<north_degree>' + north_degree + '</north_degree>';
-        sendData += '<north_minute>' + north_minute + '</north_minute>';
-        sendData += '<north_second>' + north_second + '</north_second>';
+        sendData += '<map_code_unit>' + map_code_unit + '</map_code_unit>';
+        sendData += '<longitude_east>' + longitude_east + '</longitude_east>';
+        sendData += '<longitude_north>' + longitude_north + '</longitude_north>';
+        sendData += '<elevation>' + elevation + '</elevation>';
+        sendData += '<map_code>' + map_code + '</map_code>';
+        sendData += '<observed_code>' + observed_code + '</observed_code>';
+        sendData += '<gcp_type>' + gcp_type + '</gcp_type>';
+        sendData += '<photo_aspect>' + photo_aspect + '</photo_aspect>';
 
         sendData += '<created_by>' + created_by + '</created_by>';
 
@@ -154,7 +161,7 @@ $(document).on('click', '#btn_store', function () {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_gps_point_vcf",
+        url: "/store_second_ground_truth",
         type: "POST",
         data: { '_token' : token, 'dataToSend' : sendData },
         dataType: "JSON",
@@ -165,10 +172,10 @@ $(document).on('click', '#btn_store', function () {
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#my_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
+                $('#my_table td input[type=checkbox]').prop('checked', false);
                 // alert(data.message);
                 $('#btn_close').on('click', function(){
-                    window.location.href = '/dominant-plant-vcf-boundary';
+                    window.location.href = '/show-ground-truth-second';
                 });
             }
             else{
