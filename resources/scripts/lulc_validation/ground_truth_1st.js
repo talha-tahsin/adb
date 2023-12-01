@@ -1,7 +1,7 @@
 
 
 
-document.title = 'first ground truth1';
+document.title = 'first ground truth';
 
 $(document).ready(function () {
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
         }
     });
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 3; i++) {
         insertTableRow();
     }
 
@@ -77,9 +77,15 @@ function insertTableRow() {
     appendString += '<option value="Accuracy">Accuracy </option>';
     appendString += '</select>';
     appendString += '</td>';
-    
+
     appendString += '<td>';
-    appendString += '<input type="text" id="photo_aspect" name="photo_aspect" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<select type="text" id="photo_aspect" name="photo_aspect" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="" selected disabled> Select </option>';
+    appendString += '<option value="East">East</option>';
+    appendString += '<option value="West">West</option>';
+    appendString += '<option value="North">North</option>';
+    appendString += '<option value="South">South</option>';
+    appendString += '</select>';
     appendString += '</td>';
 
     appendString += '<td style="text-align: center;">';
@@ -116,7 +122,7 @@ $(document).on('click', '#btn_store', function () {
         var map_code = $(this).find('#map_code').val();
         var observed_code = $(this).find('#observed_code').val();
         var gcp_type = $(this).find('#gcp_type option:selected').val();
-        var photo_aspect = $(this).find('#photo_aspect').val();
+        var photo_aspect = $(this).find('#photo_aspect option:selected').val();
 
         // automation set value 0 if any field leave empty or null 
         if(map_code_unit == '' || map_code_unit == null || map_code_unit == undefined) map_code_unit = 0;
