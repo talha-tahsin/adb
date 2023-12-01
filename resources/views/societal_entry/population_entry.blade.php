@@ -11,16 +11,25 @@
 
 @section('content')
 
-<!-- Content Header (Page header) -->
+    <!-- Content Header (Page header) -->
     <div class="content-header" style="margin: 0px 0px -15px 0px;">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0" style="font-family: Serif;">Community Wise Population Entry</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6"></div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+          </div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="margin-right: 5px;"> 
+                <h5><span>Go To : </span> <a href="{{ route('Data.Entry.Dashboard') }}" >Data Entry Dashboard</a> </h5>
+              </li>
+              <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
+            </ol>
+          </div>
+
+        </div>
+      </div>
     </div>
     <!-- /.content-header -->
 
@@ -33,43 +42,39 @@
             <div class="card card-primary card-outline">
               <div class="card-body">
 
-                  <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
+              <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
-                  <div class="row"> 
-                    <!-- <div class="col-md-1"></div>  -->
+              <div class="row"> 
+                <!-- <div class="col-md-1"></div>  -->
 
-                    <div class="col-md-2" style="margin: 10px 0px 20px 0px;">
-                        <label class="control-label validate" for="community_id">
-                            <span style="color: red;">★&nbsp;</span>Watershed Id
-                        </label> 
+                <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                  <label class="control-label validate" for="community_id"><span style="color: red;">★&nbsp;</span>Watershed Id</label> 
+                  <input type="text" name="watershed_id" id="watershed_id" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
+                </div> 
+                <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                  <label class="control-label validate" for="watershed_name"><span style="color: red;">★&nbsp;</span>Watershed Name</label>
+                  <input type="text" name="watershed_name" id="watershed_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
+                </div>
+                
+                <input type="hidden" name="para_id" id="para_id" value=""/>
+                <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                  <label class="control-label validate" for="para_name"><span style="color: red;">★&nbsp;</span>Para Name</label>
+                  <input type="text" name="para_name" id="para_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
+                </div> 
 
-                        <select id="watershedId" name="watershedId" class="custom-select form-control" style="border-radius: 5px;border:2px solid #898AEE;">
-
-                        </select>
-                    </div> 
-
-                    <!-- <div class="col-md-1"></div> -->
-
-                    <div class="col-md-2" style="margin: 10px 0px 20px 0px;">
-                        <label class="control-label validate" for="community_id">
-                            <span style="color: red;">★&nbsp;</span>Para
-                        </label> 
-
-                        <select id="para_list" name="para_list" class="custom-select form-control" style="border-radius: 5px;border:2px solid #898AEE;" >
-                           
-                        </select>
-                    </div> 
-
-                    <!-- <div class="col-md-1"></div> -->
-
-                    <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                        <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
-                    </div>
+                <!-- <div class="col-md-1"></div> -->
 
               </div> 
               <!-- end row -->
 
-              <div class="form-group hide" id="table_div">
+                    <!-- <div class="col-md-1"></div> -->
+
+                    <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                        <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
+                    </div> -->
+              <hr style="border-bottom: 2px solid black;">
+              
+              <div class="form-group" id="table_div">
                     <div class="row">
                         <div class="col-md-12" style="margin: 20px 0px 10px 0px;">
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
@@ -187,5 +192,63 @@
 <script src="{{ mix('resources/scripts/societal_entry/population_entry.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
+
+<script>
+
+document.title = 'population entry';
+
+$(document).ready(function () {
+
+    console.log("hello talha23..");
+    
+    var userNm = $('#userName').val();
+
+    $.ajax({
+        url: "/get_active_watershed",
+        type: "GET",
+        data: { 'userNm' : userNm },
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            $.each(data.message, function (i, v) {
+                $('#watershed_id').val(v.watershed_id);
+                $('#watershed_name').val(v.watershed_name);
+                $('#para_id').val(v.para_id);
+                $('#para_name').val(v.para_name);
+            });
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    $.ajax({
+        url: "/CommunityList",
+        type: "GET",
+        data: { 'community_list' : 'get_data' },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            $('#table_div').removeClass('hide');
+              $.each(data.message, function (i, v) {
+                insertTableRow(v.community_name, v.community_id);
+              });
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    // for (var i = 0; i < 3; i++) {
+    //     insertTableRow();
+    // }
+
+
+});
+
+</script>
 
 @endsection
