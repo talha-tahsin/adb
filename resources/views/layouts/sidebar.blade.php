@@ -209,6 +209,32 @@
               </ul>
            </li> 
 
+           <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Agro Ecological
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('Ground.Truth.First') }}" class="nav-link">
+                    <i class="nav-icon far fa-calendar-alt"></i>
+                    <p>Basic Info</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ route('Land.Degradation') }}" class="nav-link">
+                    <i class="nav-icon far fa-calendar-alt"></i>
+                    <p>Land Degradation</p>
+                  </a>
+                </li>
+
+              </ul>
+           </li> 
+
 
             
 

@@ -1,71 +1,17 @@
 
 
 
-document.title = 'Entry Household';
+// document.title = 'Entry Household';
 
 $(document).ready(function () {
 
     console.log("hello talha.."); 
 
-    $('#para_list').prop('disabled', true);
+    // $('#para_list').prop('disabled', true);
 
-    $.ajax({
-        url: "/get_watershedId",
-        type: "GET",
-        data: { 'watershed' : 'get_data' },
-        dataType: "HTML",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            $('#watershedId').html(data);
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+   
 
-    $.ajax({
-        url: "/CommunityList",
-        type: "GET",
-        data: { 'community_list' : 'get_data' },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-             $.each(data.message, function (i, v) {
-                insertTableRow(v.community_name, v.community_id);
-             });
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-
-});
-
-$(document).on('change', '#watershedId', function () {
-
-    var watershedId = $('#watershedId option:selected').val();
-    // console.log(watershedId);
-
-    if(watershedId)
-    {
-        $.ajax({
-            url: "/get_paraList",
-            type: "GET",
-            data: { 'watershed_id' : watershedId },
-            dataType: "HTML",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#para_list').prop('disabled', false);
-                $('#para_list').html(data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
+    
 
 });
 
@@ -85,8 +31,10 @@ $(document).on('click', '#btn_household_entry', function () {
 
     var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
-    var watershed_id = $('#watershedId option:selected').val();
-    var paraId = $('#para_list option:selected').val();
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
     var xml_data = '';
 
     xml_data = '<head>';
@@ -116,7 +64,9 @@ $(document).on('click', '#btn_household_entry', function () {
             xml_data += '<row>';
 
             xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
+            xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
+            xml_data += '<para_id>' + para_id + '</para_id>';
+            xml_data += '<para_name>' + para_name + '</para_name>';
 
             xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
             xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';

@@ -67,11 +67,11 @@
               </div> 
               <!-- end row -->
 
-                    <!-- <div class="col-md-1"></div> -->
+              <!-- <div class="col-md-1"></div> -->
 
-                    <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
-                        <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
-                    </div> -->
+              <!-- <div class="col-md-2" style="margin: 40px 0px 20px 0px;">
+                  <button type="submit" class="btn btn-info" id="get_communities" style="width: 100%;border-radius: 20px;color: black;">Get All Communities for Entry</button>
+              </div> -->
               <hr style="border-bottom: 2px solid black;">
               
               <div class="form-group" id="table_div">

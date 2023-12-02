@@ -25,14 +25,15 @@ use App\Http\Controllers\Societal\AccessibilityController;
 use App\Http\Controllers\WaterResources\WaterResourceController;
 /** :: Livestock Controller :: */
 use App\Http\Controllers\Livestock\LivestockController;
-use App\Http\Controllers\LulcValidationController;
 
 /** :: Para Boundary Controller :: */
 use App\Http\Controllers\ParaBoundaryController;
 /** :: VCF Boundary Controller :: */
 use App\Http\Controllers\VCFBoundaryController;
 /** :: LULC Validation Controller :: */
-use App\Http\Controllers\LulcValidationControllerController;
+use App\Http\Controllers\LulcValidationController;
+/** :: Land Degradation Controller :: */
+use App\Http\Controllers\LandDegradationController;
 
 
 use App\Http\Controllers\UtilsController;
@@ -121,6 +122,21 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     // POST Method Route
     Route::post('store_first_ground_truth', [LulcValidationController::class, 'store_first_ground_truth']);
     Route::post('store_second_ground_truth', [LulcValidationController::class, 'store_second_ground_truth']);
+   
+});
+
+/** Start :: Agro Ecological Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('show-land-degradation', [LandDegradationController::class, 'show_land_degradation'])->name('Land.Degradation');
+    Route::get('show-ground-truth-second', [LandDegradationController::class, 'show_ground_truth2'])->name('Ground.Truth.Second');
+
+    // GET Method Route 
+    Route::get('get_livestock_list', [LandDegradationController::class, 'get_livestock_list']);
+    Route::get('get_livestock_edit', [LandDegradationController::class, 'get_livestock_edit']);
+
+    // POST Method Route
+    Route::post('store_first_ground_truth', [LandDegradationController::class, 'store_first_ground_truth']);
+    Route::post('store_second_ground_truth', [LandDegradationController::class, 'store_second_ground_truth']);
    
 });
 
