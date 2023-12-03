@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.master')
+@extends('layouts.map_unit_wise.map_wise_master')
 
 @section('current_page_css')
 <!-- datepicker -->

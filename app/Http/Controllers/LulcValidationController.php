@@ -22,7 +22,7 @@ class LulcValidationController extends Controller
     {
         $receiveData = $request['dataToSend'];
         $xmlstr = simplexml_load_string($receiveData);
-        dd($xmlstr->row);
+        // dd($xmlstr->row);
         
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
@@ -69,7 +69,7 @@ class LulcValidationController extends Controller
     {
         $receiveData = $request['dataToSend'];
         $xmlstr = simplexml_load_string($receiveData);
-        dd($xmlstr->row);
+        // dd($xmlstr->row);
         
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);

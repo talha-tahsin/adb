@@ -46,7 +46,6 @@ function insertTableRow() {
     var appendString = '';
     var rowCount = $('#my_table > tbody > tr').length;
     rowCount++;
-    // console.log(accountName);
 
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
@@ -63,10 +62,10 @@ function insertTableRow() {
     appendString += '<input type="text" id="elevation" name="elevation" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="map_code" name="map_code" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="map_code" name="map_code" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 180px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
@@ -77,7 +76,11 @@ function insertTableRow() {
     appendString += '<option value="Accuracy">Accuracy </option>';
     appendString += '</select>';
     appendString += '</td>';
-    
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
     appendString += '<td>';
     appendString += '<select type="text" id="photo_aspect" name="photo_aspect" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
     appendString += '<option value="" selected disabled> Select </option>';
@@ -178,10 +181,10 @@ $(document).on('click', '#btn_store', function () {
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#my_table td input[type=text]').val('');
-                $('#my_table td input[type=checkbox]').prop('checked', false);
+                $('#my_table td').find('.resetSelect').prop("selectedIndex", 0);
                 // alert(data.message);
                 $('#btn_close').on('click', function(){
-                    window.location.href = '/show-ground-truth-second';
+                    window.location.href = '/show-land-degradation';
                 });
             }
             else{
