@@ -78,7 +78,7 @@ function insertTableRow() {
     appendString += '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="photo_id" name="photo_id" class="form-control" value="" style="width: 100px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     appendString += '<td>';
@@ -125,6 +125,7 @@ $(document).on('click', '#btn_store', function () {
         var map_code = $(this).find('#map_code').val();
         var observed_code = $(this).find('#observed_code').val();
         var gcp_type = $(this).find('#gcp_type option:selected').val();
+        var photo_id = $(this).find('#photo_id').val();
         var photo_aspect = $(this).find('#photo_aspect option:selected').val();
 
         // automation set value 0 if any field leave empty or null 
@@ -135,6 +136,7 @@ $(document).on('click', '#btn_store', function () {
         if(map_code == '' || map_code == null || map_code == undefined) map_code = 0;
         if(observed_code == '' || observed_code == null || observed_code == undefined) observed_code = 0;
         if(gcp_type == '' || gcp_type == null || gcp_type == undefined) gcp_type = 0;
+        if(photo_id == '' || photo_id == null || photo_id == undefined) photo_id = 0;
         if(photo_aspect == '' || photo_aspect == null || photo_aspect == undefined) photo_aspect = 0;
 
         // first binding data as xml string
@@ -152,6 +154,7 @@ $(document).on('click', '#btn_store', function () {
         sendData += '<map_code>' + map_code + '</map_code>';
         sendData += '<observed_code>' + observed_code + '</observed_code>';
         sendData += '<gcp_type>' + gcp_type + '</gcp_type>';
+        sendData += '<photo_id>' + photo_id + '</photo_id>';
         sendData += '<photo_aspect>' + photo_aspect + '</photo_aspect>';
 
         sendData += '<created_by>' + created_by + '</created_by>';
@@ -189,7 +192,7 @@ $(document).on('click', '#btn_store', function () {
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html(data.message);
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
             }
             
         },

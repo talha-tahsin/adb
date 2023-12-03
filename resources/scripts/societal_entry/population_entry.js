@@ -55,145 +55,27 @@ $(document).on('click', '#get_communities', function () {
 
 });
 
-$(document).on('click', '#btn_store', function () {
-
-    var created_by = $('#userName').val();
-    var token = $("meta[name='csrf-token']").attr("content");
-    var watershed_id = $('#watershed_id').val();
-    var watershed_name = $('#watershed_name').val();
-    var para_id = $('#para_id').val();
-    var para_name = $('#para_name').val();
-    var xml_data = '';
-
-    xml_data = '<head>';
-
-    $('#voucher_table > tbody > tr').each(function () {
-
-        var rowCheckbox = $(this).find("#check").prop("checked");
-
-        if (rowCheckbox == true)
-        {
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
-            var m_under_5 = $(this).find('#m_under_5').val();
-            var m_5_14 = $(this).find('#m_5_14').val();
-            var m_15_19 = $(this).find('#m_15_19').val();
-            var m_20_49 = $(this).find('#m_20_49').val();
-            var m_50_65 = $(this).find('#m_50_65').val();
-            var m_65_up = $(this).find('#m_65_up').val();
-
-            var fe_under_5 = $(this).find('#fe_under_5').val();
-            var fe_5_14 = $(this).find('#fe_5_14').val();
-            var fe_15_19 = $(this).find('#fe_15_19').val();
-            var fe_20_49 = $(this).find('#fe_20_49').val();
-            var fe_50_65 = $(this).find('#fe_50_65').val();
-            var fe_65_up = $(this).find('#fe_65_up').val();
-
-            var m_total = $(this).find('#m_total').val();
-            var fe_total = $(this).find('#fe_total').val();
-            var grnd_total = $(this).find('#grandTotal').val();
-
-            var m_disable = $(this).find('#m_disable').val();
-            var fe_disable = $(this).find('#fe_disable').val();
-
-            // automation set value 0 if any field leave empty or null 
-            if(m_under_5 == '' || m_under_5 == null || m_under_5 == undefined) m_under_5 = 0;
-            if(m_5_14 == '' || m_5_14 == null || m_5_14 == undefined) m_5_14 = 0;
-            if(m_15_19 == '' || m_15_19 == null || m_15_19 == undefined) m_15_19 = 0;
-            if(m_20_49 == '' || m_20_49 == null || m_20_49 == undefined) m_20_49 = 0;
-            if(m_50_65 == '' || m_50_65 == null || m_50_65 == undefined) m_50_65 = 0;
-            if(m_65_up == '' || m_65_up == null || m_65_up == undefined) m_65_up = 0;
-
-            if(fe_under_5 == '' || fe_under_5 == null || fe_under_5 == undefined) fe_under_5 = 0;
-            if(fe_5_14 == '' || fe_5_14 == null || fe_5_14 == undefined) fe_5_14 = 0;
-            if(fe_15_19 == '' || fe_15_19 == null || fe_15_19 == undefined) fe_15_19 = 0;
-            if(fe_20_49 == '' || fe_20_49 == null || fe_20_49 == undefined) fe_20_49 = 0;
-            if(fe_50_65 == '' || fe_50_65 == null || fe_50_65 == undefined) fe_50_65 = 0;
-            if(fe_65_up == '' || fe_65_up == null || fe_65_up == undefined) fe_65_up = 0;
-
-            if(m_disable == '' || m_disable == null || m_disable == undefined) m_disable = 0;
-            if(fe_disable == '' || fe_disable == null || fe_disable == undefined) fe_disable = 0;
-
-
-            // first binding data as xml string
-            xml_data += '<row>';
-
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
-            xml_data += '<ParaId>' + para_id + '</ParaId>';
-            xml_data += '<para_name>' + para_name + '</para_name>';
-
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
-            xml_data += '<MaleUnder5>' + m_under_5 + '</MaleUnder5>';
-            xml_data += '<Male5to14>' + m_5_14 + '</Male5to14>';
-            xml_data += '<Male15to19>' + m_15_19 + '</Male15to19>';
-            xml_data += '<Male20to49>' + m_20_49 + '</Male20to49>';
-            xml_data += '<Male50to65>' + m_50_65 + '</Male50to65>';
-            xml_data += '<Male65Up>' + m_65_up + '</Male65Up>';
-
-            xml_data += '<FemaleUnder5>' + fe_under_5 + '</FemaleUnder5>';
-            xml_data += '<Female5to14>' + fe_5_14 + '</Female5to14>';
-            xml_data += '<Female15to19>' + fe_15_19 + '</Female15to19>';
-            xml_data += '<Female20to49>' + fe_20_49 + '</Female20to49>';
-            xml_data += '<Female50to65>' + fe_50_65 + '</Female50to65>';
-            xml_data += '<Female65Up>' + fe_65_up + '</Female65Up>';
-
-            xml_data += '<Totalmale>' + m_total + '</Totalmale>';
-            xml_data += '<TotalFemale>' + fe_total + '</TotalFemale>';
-            xml_data += '<TotalPopulation>' + grnd_total + '</TotalPopulation>';
-
-            xml_data += '<DisbaleMale>' + m_disable + '</DisbaleMale>';
-            xml_data += '<DisabledFemale>' + fe_disable + '</DisabledFemale>';
-
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-            xml_data += '</row>';
-        }
-
-    });
-
-    xml_data += '</head>';
-
-    
-    console.log(xml_data);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
+$('#add_row').on('click', function () {
+    insertTableRow();
 
     $.ajax({
-        url: "/insert_populatioin_entry",
-        type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
-        dataType: "JSON",
+        url: "/get_community_list",
+        type: "GET",
+        data: { 'community_list' : 'get_data' },
+        dataType: "html",
         cache: false,
         success: function (data) {
             // console.log(data);
-            if(data.status == "SUCCESS")
-            {
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html(data.message);
-            }
-            
+            $('.more').html(data);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
 
-
-
 });
 
-function insertTableRow(comntyName, comuntyId) {
+function insertTableRow() {
 
     var appendString = '';
     var rowCount = $('#voucher_table > tbody > tr').length;
@@ -201,13 +83,12 @@ function insertTableRow(comntyName, comuntyId) {
 
     // console.log(accountName);
 
-    appendString += '<tr comnty_id="' + comuntyId + '">';
+    appendString += '<tr comnty_id="">';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
     //appendString += '<td>'+ofcName+'</td>';
-    appendString += '<td comnty_name="' + comntyName + '" style="width: 60px;text-align: left;">' + comntyName + '</td>';
-
     appendString += '<td>';
-    appendString += '<input type="checkbox" class="checkbox" id="check" name="check" value="1" style="text-align: center;" >';
+    appendString += '<select type="text" id="community_list" name="community_list" class="form-control resetSelect more" value="" style="width: 120px;text-align: center;border-radius: 5px;">';
+    appendString += '</select>';
     appendString += '</td>';
 
     appendString += '<td>';
@@ -278,9 +159,9 @@ function insertTableRow(comntyName, comuntyId) {
     appendString += '<input type="text" id="fe_disable" class="form-control " name="fe_disable" value="" style="width: 50px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
-    //appendString += '<td style="text-align: center;">';
-    //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';
-    //appendString += '</td>';
+    appendString += '<td style="text-align: center;">';
+    appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i>Remove</button>';
+    appendString += '</td>';
 
     appendString += '</tr>';
 
@@ -289,6 +170,141 @@ function insertTableRow(comntyName, comuntyId) {
     // $("#voucher_table tr:last").scrollintoview();
     removeTableRow();
 }
+
+$(document).on('click', '#btn_store', function () {
+
+    var created_by = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+    var xml_data = '';
+
+    xml_data = '<head>';
+
+    $('#voucher_table > tbody > tr').each(function () {
+
+        // var tr_comnty_id = $(this).attr('comnty_id');
+        // var tr_comnty_name = $(this).find('td:eq(1)').text();
+        //$(this).closest('tr').find('td:eq(1)').text();
+        var community_id = $(this).find('#community_list option:selected').val();
+        var community_name = $(this).find('#community_list option:selected').text();
+        var m_under_5 = $(this).find('#m_under_5').val();
+        var m_5_14 = $(this).find('#m_5_14').val();
+        var m_15_19 = $(this).find('#m_15_19').val();
+        var m_20_49 = $(this).find('#m_20_49').val();
+        var m_50_65 = $(this).find('#m_50_65').val();
+        var m_65_up = $(this).find('#m_65_up').val();
+
+        var fe_under_5 = $(this).find('#fe_under_5').val();
+        var fe_5_14 = $(this).find('#fe_5_14').val();
+        var fe_15_19 = $(this).find('#fe_15_19').val();
+        var fe_20_49 = $(this).find('#fe_20_49').val();
+        var fe_50_65 = $(this).find('#fe_50_65').val();
+        var fe_65_up = $(this).find('#fe_65_up').val();
+
+        var m_total = $(this).find('#m_total').val();
+        var fe_total = $(this).find('#fe_total').val();
+        var grnd_total = $(this).find('#grandTotal').val();
+
+        var m_disable = $(this).find('#m_disable').val();
+        var fe_disable = $(this).find('#fe_disable').val();
+
+        // automation set value 0 if any field leave empty or null 
+        if(m_under_5 == '' || m_under_5 == null || m_under_5 == undefined) m_under_5 = 0;
+        if(m_5_14 == '' || m_5_14 == null || m_5_14 == undefined) m_5_14 = 0;
+        if(m_15_19 == '' || m_15_19 == null || m_15_19 == undefined) m_15_19 = 0;
+        if(m_20_49 == '' || m_20_49 == null || m_20_49 == undefined) m_20_49 = 0;
+        if(m_50_65 == '' || m_50_65 == null || m_50_65 == undefined) m_50_65 = 0;
+        if(m_65_up == '' || m_65_up == null || m_65_up == undefined) m_65_up = 0;
+
+        if(fe_under_5 == '' || fe_under_5 == null || fe_under_5 == undefined) fe_under_5 = 0;
+        if(fe_5_14 == '' || fe_5_14 == null || fe_5_14 == undefined) fe_5_14 = 0;
+        if(fe_15_19 == '' || fe_15_19 == null || fe_15_19 == undefined) fe_15_19 = 0;
+        if(fe_20_49 == '' || fe_20_49 == null || fe_20_49 == undefined) fe_20_49 = 0;
+        if(fe_50_65 == '' || fe_50_65 == null || fe_50_65 == undefined) fe_50_65 = 0;
+        if(fe_65_up == '' || fe_65_up == null || fe_65_up == undefined) fe_65_up = 0;
+
+        if(m_disable == '' || m_disable == null || m_disable == undefined) m_disable = 0;
+        if(fe_disable == '' || fe_disable == null || fe_disable == undefined) fe_disable = 0;
+
+
+        // first binding data as xml string
+        xml_data += '<row>';
+
+        xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+        xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
+        xml_data += '<ParaId>' + para_id + '</ParaId>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
+
+        xml_data += '<CommunityId>' + community_id + '</CommunityId>';
+        xml_data += '<CommunityName>' + community_name + '</CommunityName>';
+        xml_data += '<MaleUnder5>' + m_under_5 + '</MaleUnder5>';
+        xml_data += '<Male5to14>' + m_5_14 + '</Male5to14>';
+        xml_data += '<Male15to19>' + m_15_19 + '</Male15to19>';
+        xml_data += '<Male20to49>' + m_20_49 + '</Male20to49>';
+        xml_data += '<Male50to65>' + m_50_65 + '</Male50to65>';
+        xml_data += '<Male65Up>' + m_65_up + '</Male65Up>';
+
+        xml_data += '<FemaleUnder5>' + fe_under_5 + '</FemaleUnder5>';
+        xml_data += '<Female5to14>' + fe_5_14 + '</Female5to14>';
+        xml_data += '<Female15to19>' + fe_15_19 + '</Female15to19>';
+        xml_data += '<Female20to49>' + fe_20_49 + '</Female20to49>';
+        xml_data += '<Female50to65>' + fe_50_65 + '</Female50to65>';
+        xml_data += '<Female65Up>' + fe_65_up + '</Female65Up>';
+
+        xml_data += '<Totalmale>' + m_total + '</Totalmale>';
+        xml_data += '<TotalFemale>' + fe_total + '</TotalFemale>';
+        xml_data += '<TotalPopulation>' + grnd_total + '</TotalPopulation>';
+
+        xml_data += '<DisbaleMale>' + m_disable + '</DisbaleMale>';
+        xml_data += '<DisabledFemale>' + fe_disable + '</DisabledFemale>';
+
+        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+
+        xml_data += '</row>';
+        
+
+    });
+
+    xml_data += '</head>';
+
+    
+    console.log(xml_data);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/insert_populatioin_entry",
+        type: "POST",
+        data: { '_token' : token, 'xml_data' : xml_data },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == "SUCCESS"){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#voucher_table td input[type=text]').val('');
+                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+
+
+});
 
 $(document).on('change', '.m_num', function () {
 
@@ -385,6 +401,21 @@ function reOrderTable() {
     });
     counter = sl - 1;
 }
+
+$.ajax({
+    url: "/get_community_list",
+    type: "GET",
+    data: { 'community_list' : 'get_data' },
+    dataType: "html",
+    cache: false,
+    success: function (data) {
+        // console.log(data);
+        $('#community_list').html(data);
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    }
+});
 
 function gotoUrl(path, params, method, target = ''){
 

@@ -84,12 +84,11 @@
                                 <tr style="background-color: #8ed6f2;">
                                     <th rowspan="2" style="text-align:center;">Serial </th>
                                     <th rowspan="2" style="text-align:left;">Name </th>
-                                    <th rowspan="2" style="text-align:center;">Select </th>
                                     <th colspan="6" style="text-align:center;">Age Group Male</th>
                                     <th colspan="6" style="text-align:center;">Age Group Female</th>
                                     <th colspan="3" style="text-align:center;">Total Population </th>
                                     <th colspan="2" style="text-align:center;">Disabled People </th>
-                                    
+                                    <th rowspan="2" style="text-align:left;">Action</th>
                                 </tr>
 
                                 <tr style="background-color: #99ccff;">
@@ -136,9 +135,12 @@
                         <!-- // end table row -->
 
                         <div class="row">
-                            <div class="col-md-10"></div>
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Population Info</button>
+                              <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                            </div>
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                                <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Population Info</button>
                             </div>  
                         </div>
 
@@ -224,23 +226,26 @@ $(document).ready(function () {
         }
     });
 
-    $.ajax({
-        url: "/CommunityList",
-        type: "GET",
-        data: { 'community_list' : 'get_data' },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            $('#table_div').removeClass('hide');
-              $.each(data.message, function (i, v) {
-                insertTableRow(v.community_name, v.community_id);
-              });
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+    insertTableRow();
+
+    // $.ajax({
+    //     url: "/getCommunityList",
+    //     type: "GET",
+    //     data: { 'community_list' : 'get_data' },
+    //     dataType: "json",
+    //     cache: false,
+    //     success: function (data) {
+    //         console.log(data);
+    //         var option = '';
+    //         $.each(data.message, function (i, v) {
+    //           option += '<option value="'+v.community_id+'">'+v.community_name+'</option>';
+    //         });
+    //         $('#community_name').html(option);
+    //     },
+    //     error: function(xhr, ajaxOptions, thrownError) {
+    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    //     }
+    // });
 
     // for (var i = 0; i < 3; i++) {
     //     insertTableRow();
@@ -248,6 +253,7 @@ $(document).ready(function () {
 
 
 });
+
 
 </script>
 

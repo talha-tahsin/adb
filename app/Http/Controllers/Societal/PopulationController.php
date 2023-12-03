@@ -25,92 +25,94 @@ class PopulationController extends Controller
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
 
-        try {
-                $dupCount = 0;
-                $cname = '';
+        // try 
+        // {
+            $dupCount = 0;
+            $cname = '';
 
-                DB::beginTransaction();
+            DB::beginTransaction();
 
-                foreach ($xmlstr->row as $value) 
-                {
+            foreach ($xmlstr->row as $value) 
+            {
 
-                    $store_data = array(
-                        'WatershedId' => $value->WatershedId,
-                        'ParaId' => $value->ParaId,
-                        'CommunityId' => $value->CommunityId,
-                        'CommunityName' => $value->CommunityName,
-                        'MaleUnder5' => $value->MaleUnder5,
-                        'Male5to14' => $value->Male5to14,
-                        'Male15to19' => $value->Male15to19,
-                        'Male20to49' => $value->Male20to49,
-                        'Male50to65' => $value->Male50to65,
-                        'Male65Up' => $value->Male65Up,
-                        'FemaleUnder5' => $value->FemaleUnder5,
-                        'Female5to14' => $value->Female5to14,
-                        'Female15to19' => $value->Female15to19,
-                        'Female20to49' => $value->Female20to49,
-                        'Female50to65' => $value->Female50to65,
-                        'Female65Up' => $value->Female65Up,
-                        'Totalmale' => $value->Totalmale,
-                        'TotalFemale' => $value->TotalFemale,
-                        'TotalPopulation' => $value->TotalPopulation,
-                        'DisbaleMale' => $value->DisbaleMale,
-                        'DisabledFemale' => $value->DisabledFemale,
-                        'created_by' => $value->CreatedBy,
-                        'created_at' => $created_at
-                    );
-                    
-                    // check duplicate record in database
-                    $exist_watershed_id = $value->WatershedId;
-                    $exist_para_id = $value->ParaId;
-                    $exist_community_id = $value->CommunityId;
+                $store_data = array(
+                    'watershed_id' => $value->WatershedId,
+                    'para_id' => $value->ParaId,
+                    'para_name' => $value->para_name,
+                    'community_id' => $value->CommunityId,
+                    'community_name' => $value->CommunityName,
+                    'MaleUnder5' => $value->MaleUnder5,
+                    'Male5to14' => $value->Male5to14,
+                    'Male15to19' => $value->Male15to19,
+                    'Male20to49' => $value->Male20to49,
+                    'Male50to65' => $value->Male50to65,
+                    'Male65Up' => $value->Male65Up,
+                    'FemaleUnder5' => $value->FemaleUnder5,
+                    'Female5to14' => $value->Female5to14,
+                    'Female15to19' => $value->Female15to19,
+                    'Female20to49' => $value->Female20to49,
+                    'Female50to65' => $value->Female50to65,
+                    'Female65Up' => $value->Female65Up,
+                    'Totalmale' => $value->Totalmale,
+                    'TotalFemale' => $value->TotalFemale,
+                    'TotalPopulation' => $value->TotalPopulation,
+                    'DisbaleMale' => $value->DisbaleMale,
+                    'DisabledFemale' => $value->DisabledFemale,
+                    'created_by' => $value->CreatedBy,
+                    'created_at' => $created_at
+                );
+                
+                // check duplicate record in database
+                $exist_watershed_id = $value->WatershedId;
+                $exist_para_id = $value->ParaId;
+                $exist_community_id = $value->CommunityId;
 
-                    $found = DB::table('tbl_population')->select('id')
-                                        ->where('WatershedId', $exist_watershed_id)
-                                        ->where('ParaId', $exist_para_id)
-                                        ->where('CommunityId', $exist_community_id)
-                                        ->count();
+                $found = DB::table('tbl_population')->select('id')
+                                    ->where('watershed_id', $exist_watershed_id)
+                                    ->where('para_id', $exist_para_id)
+                                    ->where('community_id', $exist_community_id)
+                                    ->count();
 
-                    $get_community =json_encode($value->CommunityName);
-                    $jsonData = json_decode($get_community, TRUE);
-                    $cn = $jsonData[0];
+                $get_community =json_encode($value->CommunityName);
+                $jsonData = json_decode($get_community, TRUE);
+                $cn = $jsonData[0];
 
-                    if($found == 0){
-                        // $store = Population::insert($store_data);
-                        DB::table('tbl_population')->insert($store_data);
-                    }
-                    else
-                    {
-                        $dupCount++;
-                        if($cname == ''){
-                            $cname = $cn;
-                        }
-                        else{
-                            $cname = $cname.', '.$cn;
-                        }
-                        $found = 0;
-                    }
-                }
-
-                DB::commit();
-
-                if($dupCount > 0)
-                { 
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para, Rest of Data saved successfully..' ]);
+                if($found == 0){
+                    // $store = Population::insert($store_data);
+                    DB::table('tbl_population')->insert($store_data);
                 }
                 else
-                { 
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate..' ]);
+                {
+                    $dupCount++;
+                    if($cname == ''){
+                        $cname = $cn;
+                    }
+                    else{
+                        $cname = $cname.', '.$cn;
+                    }
+                    $found = 0;
                 }
-
             }
-            catch (\Exception $e) 
-            {
-                DB::rollBack();
-                $message = "Opps!! Something is wrong, data not saved and rollback..";
 
-                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            DB::commit();
+
+            if($dupCount > 0)
+            { 
+                return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para, Rest of Data saved successfully..' ]);
             }
+            else
+            { 
+                return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate..' ]);
+            }
+
+        // }
+        // catch (\Exception $e) 
+        // {
+        //     DB::rollBack();
+        //     $message = "Opps!! Something is wrong, data not saved and rollback..";
+
+        //     return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+        // }
 
                 
             

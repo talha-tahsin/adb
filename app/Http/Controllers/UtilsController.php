@@ -72,7 +72,7 @@ class UtilsController extends Controller
                     ->get();
         
         $retStr = '';
-        $retStr .= '<option value="" selected disabled>Select Community</option>';
+        $retStr .= '<option value="" selected disabled>Select</option>';
 
         foreach($data as $v) {
             $retStr .= '<option value="'.$v->community_id.'">'.$v->community_name.'</option>';

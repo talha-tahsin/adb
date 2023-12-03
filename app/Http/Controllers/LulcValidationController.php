@@ -46,6 +46,8 @@ class LulcValidationController extends Controller
                     'map_code' => $value->map_code,
                     'observed_code' => $value->observed_code,
                     'gcp_type' => $value->gcp_type,
+                    'photo_id' => $value->photo_id,
+                    'photo_aspect' => $value->photo_aspect,
                     'created_by' => $value->created_by,
                     'created_at' => $created_at,
                 );
@@ -93,6 +95,8 @@ class LulcValidationController extends Controller
                     'map_code' => $value->map_code,
                     'observed_code' => $value->observed_code,
                     'gcp_type' => $value->gcp_type,
+                    'photo_id' => $value->photo_id,
+                    'photo_aspect' => $value->photo_aspect,
                     'created_by' => $value->created_by,
                     'created_at' => $created_at,
                 );

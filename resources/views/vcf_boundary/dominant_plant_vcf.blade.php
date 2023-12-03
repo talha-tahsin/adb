@@ -18,12 +18,16 @@
           <div class="col-sm-6">
             <h1 class="m-0" style="font-family: Serif;">Dominant Plant VCF Boundary </h1>
           </div><!-- /.col -->
+
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item" style="margin-right: 5px;"> <h5><span>Go To : </span> <a href="{{ route('dashboard') }}" >Watershed Dashboard</a></h5></li>
+              <li class="breadcrumb-item" style="margin-right: 5px;"> 
+                <h5><span>Go To : </span> <a href="{{ route('Data.Entry.Dashboard') }}" >Data Entry Dashboard</a> </h5>
+              </li>
               <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
             </ol>
-          </div><!-- /.col -->
+          </div>
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -70,17 +74,29 @@
 
                       <div class="col-md-7" id="div_plot1" style="margin: 10px 0px 10px 0px;">
 
-                        <label class="control-label validate" for="para_name"><span style="color: black;">(1)&nbsp;</span>
+                        <label class="control-label validate"><span style="color: black;">(1)&nbsp;</span>
                         Dominant plants species, measurement and their coverage in 1st Plot</label>
+
+                        <div class="row">
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>Location</label>
+                            <input type="text" name="plot1_location" id="plot1_location" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
+                          
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="plot1_dimension"><span style="color: red;">★&nbsp;</span>Dimensions of the plot</label>
+                            <input type="text" name="plot1_dimension" id="plot1_dimension" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
+                        </div>
 
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table">
                             <thead>
                                 <tr style="background-color: #8ed6f2;">
                                   <th  style="text-align: center;">Serial</th>
                                   <th  style="text-align: center;">Tree Species Names</th>
+                                  <th  style="text-align: center;">Number of Tree</th>
                                   <th  style="text-align: center;">Tree Diameter at Breast Height</th>
                                   <th  style="text-align: center;">Avg. Tree Height</th>
-                                  <th  style="text-align: center;">Dimensions of the plot in sq</th>
                                   <!-- <th  style="text-align: center;">Action</th> -->
                                 </tr>
 
@@ -109,25 +125,35 @@
                           <hr style="border-bottom: 2px solid black;">
 
                           <label class="control-label validate" for="para_name"><span style="color: black;">(2)&nbsp;</span>
-                        Dominant plants species, measurement and their coverage in 2nd Plot</label>
+                            Dominant plants species, measurement and their coverage in 2nd Plot</label>
+
+                        <div class="row">
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="location"><span style="color: red;">★&nbsp;</span>Location</label>
+                            <input type="text" name="plot2_location" id="plot2_location" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
+                          
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="plot1_dimension"><span style="color: red;">★&nbsp;</span>Dimensions of the plot</label>
+                            <input type="text" name="plot2_dimension" id="plot2_dimension" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
+                        </div>
 
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
                             <thead>
-                                <tr style="background-color: #8ed6f2;">
-                                  <th style="text-align: center;">Serial</th>
-                                  <th style="text-align: center;">Tree Species Names</th>
-                                  <th style="text-align: center;">Tree Diameter at Breast Height</th>
-                                  <th style="text-align: center;">Avg. Tree Height</th>
-                                  <th style="text-align: center;">Dimensions of the plot in sq</th>
-                                  <!-- <th  style="text-align: center;">Action</th> -->
-                                </tr>
-
-                              
+                              <tr style="background-color: #8ed6f2;">
+                                <th style="text-align: center;">Serial</th>
+                                <th style="text-align: center;">Tree Species Names</th>
+                                <th style="text-align: center;">Tree Diameter at Breast Height</th>
+                                <th style="text-align: center;">Avg. Tree Height</th>
+                                <th style="text-align: center;">Dimensions of the plot in sq</th>
+                                <!-- <th  style="text-align: center;">Action</th> -->
+                              </tr>
                             </thead>
 
                             <tbody id="table_body"></tbody>
 
-                          </table>
+                        </table>
 
                           <div class="row">
                             <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
@@ -147,20 +173,30 @@
                           <hr style="border-bottom: 2px solid black;">
 
                           <label class="control-label validate" for="para_name"><span style="color: black;">(3)&nbsp;</span>
-                        Dominant plants species, measurement and their coverage in 3rd Plot</label>
+                            Dominant plants species, measurement and their coverage in 3rd Plot</label>
+
+                          <div class="row">
+                            <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                              <label class="control-label validate" for="location"><span style="color: red;">★&nbsp;</span>Location</label>
+                              <input type="text" name="plot3_location" id="plot3_location" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                            </div>
+                            
+                            <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                              <label class="control-label validate" for="dimensions"><span style="color: red;">★&nbsp;</span>Dimensions of the plot</label>
+                              <input type="text" name="plot3_dimension" id="plot3_dimension" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                            </div>
+                          </div>
 
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
                             <thead>
-                                <tr style="background-color: #8ed6f2;">
-                                  <th  style="text-align: center;">Serial</th>
-                                  <th  style="text-align: center;">Tree Species Names</th>
-                                  <th  style="text-align: center;">Tree Diameter at Breast Height</th>
-                                  <th  style="text-align: center;">Avg. Tree Height</th>
-                                  <th  style="text-align: center;">Dimensions of the plot in sq</th>
-                                  <!-- <th  style="text-align: center;">Action</th> -->
-                                </tr>
-
-                              
+                              <tr style="background-color: #8ed6f2;">
+                                <th  style="text-align: center;">Serial</th>
+                                <th  style="text-align: center;">Tree Species Names</th>
+                                <th  style="text-align: center;">Tree Diameter at Breast Height</th>
+                                <th  style="text-align: center;">Avg. Tree Height</th>
+                                <th  style="text-align: center;">Dimensions of the plot in sq</th>
+                                <!-- <th  style="text-align: center;">Action</th> -->
+                              </tr>
                             </thead>
 
                             <tbody id="table_body"></tbody>
@@ -294,13 +330,13 @@ function insertTableRow() {
   appendString += '<input type="text" id="species_name1" name="species_name1" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
   appendString += '</td>';    
   appendString += '<td>';
-  appendString += '<input type="text" id="diameter_height1" name="diameter_height1" class="form-control" value="" style="width: 250px;text-align: center;" placeholder="0">';
+  appendString += '<input type="text" id="number_tree1" name="number_tree1" class="form-control" value="" style="width: 160px;text-align: center;" placeholder="0">';
   appendString += '</td>';
   appendString += '<td>';
-  appendString += '<input type="text" id="avg_height1" name="avg_height1" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+  appendString += '<input type="text" id="diameter_height1" name="diameter_height1" class="form-control" value="" style="width: 220px;text-align: center;" placeholder="0">';
   appendString += '</td>';
   appendString += '<td>';
-  appendString += '<input type="text" id="dimensions1" name="dimensions1" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
+  appendString += '<input type="text" id="avg_height1" name="avg_height1" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
   appendString += '</td>';
 
   // appendString += '<td style="text-align: center;">';
@@ -325,17 +361,16 @@ function insertTableRow2() {
   appendString += '<tr>';
   appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
   appendString += '<td>';
-  appendString += '<input type="text" id="species_name1" name="species_name1" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-  appendString += '</td>';
-
+  appendString += '<input type="text" id="species_name2" name="species_name2" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+  appendString += '</td>';    
   appendString += '<td>';
-  appendString += '<input type="text" id="diameter_height2" name="diameter_height2" class="form-control" value="" style="width: 250px;text-align: center;" placeholder="0">';
-  appendString += '</td>';
-  appendString += '<td>';
-  appendString += '<input type="text" id="avg_height2" name="avg_height2" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+  appendString += '<input type="text" id="number_tree2" name="number_tree2" class="form-control" value="" style="width: 160px;text-align: center;" placeholder="0">';
   appendString += '</td>';
   appendString += '<td>';
-  appendString += '<input type="text" id="dimensions2" name="dimensions2" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
+  appendString += '<input type="text" id="diameter_height2" name="diameter_height2" class="form-control" value="" style="width: 220px;text-align: center;" placeholder="0">';
+  appendString += '</td>';
+  appendString += '<td>';
+  appendString += '<input type="text" id="avg_height2" name="avg_height2" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
   appendString += '</td>';
 
   // appendString += '<td style="text-align: center;">';
@@ -360,16 +395,15 @@ function insertTableRow3() {
   appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
   appendString += '<td>';
   appendString += '<input type="text" id="species_name3" name="species_name3" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
-  appendString += '</td>';
-
+  appendString += '</td>';    
   appendString += '<td>';
-  appendString += '<input type="text" id="diameter_height3" name="diameter_height3" class="form-control" value="" style="width: 250px;text-align: center;" placeholder="0">';
-  appendString += '</td>';
-  appendString += '<td>';
-  appendString += '<input type="text" id="avg_height3" name="avg_height3" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+  appendString += '<input type="text" id="number_tree3" name="number_tree3" class="form-control" value="" style="width: 160px;text-align: center;" placeholder="0">';
   appendString += '</td>';
   appendString += '<td>';
-  appendString += '<input type="text" id="dimensions3" name="dimensions3" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
+  appendString += '<input type="text" id="diameter_height3" name="diameter_height3" class="form-control" value="" style="width: 220px;text-align: center;" placeholder="0">';
+  appendString += '</td>';
+  appendString += '<td>';
+  appendString += '<input type="text" id="avg_height3" name="avg_height3" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
   appendString += '</td>';
 
   // appendString += '<td style="text-align: center;">';

@@ -18,12 +18,16 @@
           <div class="col-sm-6">
             <h1 class="m-0" style="font-family: Serif;">Basic Information of VCF Boundary</h1>
           </div><!-- /.col -->
+
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item" style="margin-right: 5px;"> <h5><span>Go To : </span> <a href="{{ route('dashboard') }}" >Watershed Dashboard</a></h5></li>
+              <li class="breadcrumb-item" style="margin-right: 5px;"> 
+                <h5><span>Go To : </span> <a href="{{ route('Data.Entry.Dashboard') }}" >Data Entry Dashboard</a> </h5>
+              </li>
               <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
             </ol>
-          </div><!-- /.col -->
+          </div>
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>

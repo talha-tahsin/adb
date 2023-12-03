@@ -54,6 +54,8 @@ $(document).on('click', '#btn_store_plot1', function () {
     var watershed_name = $('#watershed_name').val();
     var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
+    var plot1_location = $('#plot1_location').val();
+    var plot1_dimension = $('#plot1_dimension').val();
     var sendData = '';
 
     sendData = '<head>';
@@ -64,13 +66,13 @@ $(document).on('click', '#btn_store_plot1', function () {
         var species_name1 = $(this).find('#species_name1').val();
         var diameter_height1 = $(this).find('#diameter_height1').val();
         var avg_height1 = $(this).find('#avg_height1').val();
-        var dimensions1 = $(this).find('#dimensions1').val();
+        var number_tree1 = $(this).find('#number_tree1').val();
 
         // automation set value 0 if any field leave empty or null 
         if(species_name1 == '' || species_name1 == null || species_name1 == undefined) species_name1 = 0;
         if(diameter_height1 == '' || diameter_height1 == null || diameter_height1 == undefined) diameter_height1 = 0;
         if(avg_height1 == '' || avg_height1 == null || avg_height1 == undefined) avg_height1 = 0;
-        if(dimensions1 == '' || dimensions1 == null || dimensions1 == undefined) dimensions1 = 0;
+        if(number_tree1 == '' || number_tree1 == null || number_tree1 == undefined) number_tree1 = 0;
 
         // first binding data as xml string
         sendData += '<row>';
@@ -80,10 +82,13 @@ $(document).on('click', '#btn_store_plot1', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
+        sendData += '<plot1_location>' + plot1_location + '</plot1_location>';
+        sendData += '<plot1_dimension>' + plot1_dimension + '</plot1_dimension>';
+
         sendData += '<species_name1>' + species_name1 + '</species_name1>';
         sendData += '<diameter_height1>' + diameter_height1 + '</diameter_height1>';
         sendData += '<avg_height1>' + avg_height1 + '</avg_height1>';
-        sendData += '<dimensions1>' + dimensions1 + '</dimensions1>';
+        sendData += '<number_tree1>' + number_tree1 + '</number_tree1>';
 
         sendData += '<created_by>' + created_by + '</created_by>';
 
@@ -100,7 +105,6 @@ $(document).on('click', '#btn_store_plot1', function () {
     $('#success_msg').html('');
     $('#error_msg').html('');
      
-
     $.ajax({
         url: "/store_plot1_dominant_plants",
         type: "POST",
@@ -130,8 +134,6 @@ $(document).on('click', '#btn_store_plot1', function () {
         }
     });
 
-
-
 });
 
 $('#get_2nd_plot').on('click', function(){
@@ -149,6 +151,8 @@ $(document).on('click', '#btn_store_plot2', function () {
     var watershed_name = $('#watershed_name').val();
     var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
+    var plot2_location = $('#plot2_location').val();
+    var plot2_dimension = $('#plot2_dimension').val();
     var sendData = '';
 
     sendData = '<head>';
@@ -159,13 +163,13 @@ $(document).on('click', '#btn_store_plot2', function () {
         var species_name2 = $(this).find('#species_name2').val();
         var diameter_height2 = $(this).find('#diameter_height2').val();
         var avg_height2 = $(this).find('#avg_height2').val();
-        var dimensions2 = $(this).find('#dimensions2').val();
+        var number_tree2 = $(this).find('#number_tree2').val();
 
         // automation set value 0 if any field leave empty or null 
         if(species_name2 == '' || species_name2 == null || species_name2 == undefined) species_name2 = 0;
         if(diameter_height2 == '' || diameter_height2 == null || diameter_height2 == undefined) diameter_height2 = 0;
         if(avg_height2 == '' || avg_height2 == null || avg_height2 == undefined) avg_height2 = 0;
-        if(dimensions2 == '' || dimensions2 == null || dimensions2 == undefined) dimensions2 = 0;
+        if(number_tree2 == '' || number_tree2 == null || number_tree2 == undefined) number_tree2 = 0;
 
         // first binding data as xml string
         sendData += '<row>';
@@ -175,10 +179,13 @@ $(document).on('click', '#btn_store_plot2', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
+        sendData += '<plot2_location>' + plot2_location + '</plot2_location>';
+        sendData += '<plot2_dimension>' + plot2_dimension + '</plot2_dimension>';
+
         sendData += '<species_name2>' + species_name2 + '</species_name2>';
         sendData += '<diameter_height2>' + diameter_height2 + '</diameter_height2>';
         sendData += '<avg_height2>' + avg_height2 + '</avg_height2>';
-        sendData += '<dimensions2>' + dimensions2 + '</dimensions2>';
+        sendData += '<number_tree2>' + number_tree2 + '</number_tree2>';
 
         sendData += '<created_by>' + created_by + '</created_by>';
 
@@ -242,6 +249,8 @@ $(document).on('click', '#btn_store_plot3', function () {
     var watershed_name = $('#watershed_name').val();
     var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
+    var plot3_location = $('#plot3_location').val();
+    var plot3_dimension = $('#plot3_dimension').val();
     var sendData = '';
 
     sendData = '<head>';
@@ -252,13 +261,13 @@ $(document).on('click', '#btn_store_plot3', function () {
         var species_name3 = $(this).find('#species_name3').val();
         var diameter_height3 = $(this).find('#diameter_height3').val();
         var avg_height3 = $(this).find('#avg_height3').val();
-        var dimensions3 = $(this).find('#dimensions3').val();
+        var number_tree3 = $(this).find('#number_tree3').val();
 
         // automation set value 0 if any field leave empty or null 
         if(species_name3 == '' || species_name3 == null || species_name3 == undefined) species_name3 = 0;
         if(diameter_height3 == '' || diameter_height3 == null || diameter_height3 == undefined) diameter_height3 = 0;
         if(avg_height3 == '' || avg_height3 == null || avg_height3 == undefined) avg_height3 = 0;
-        if(dimensions3 == '' || dimensions3 == null || dimensions3 == undefined) dimensions3 = 0;
+        if(number_tree3 == '' || number_tree3 == null || number_tree3 == undefined) number_tree3 = 0;
 
         // first binding data as xml string
         sendData += '<row>';
@@ -268,10 +277,13 @@ $(document).on('click', '#btn_store_plot3', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
+        sendData += '<plot3_location>' + plot3_location + '</plot3_location>';
+        sendData += '<plot3_dimension>' + plot3_dimension + '</plot3_dimension>';
+
         sendData += '<species_name3>' + species_name3 + '</species_name3>';
         sendData += '<diameter_height3>' + diameter_height3 + '</diameter_height3>';
         sendData += '<avg_height3>' + avg_height3 + '</avg_height3>';
-        sendData += '<dimensions3>' + dimensions3 + '</dimensions3>';
+        sendData += '<number_tree3>' + number_tree3 + '</number_tree3>';
 
         sendData += '<created_by>' + created_by + '</created_by>';
 
@@ -303,7 +315,7 @@ $(document).on('click', '#btn_store_plot3', function () {
                 $('#voucher_table td input[type=checkbox]').prop('checked', false);
                 //
                 $('#btn_close').on('click', function(){
-                    window.location.href = '/watershed-dashboard';
+                    window.location.href = '/population_entry';
                 });
             }
             else{
