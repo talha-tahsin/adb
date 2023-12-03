@@ -34,9 +34,10 @@ class HouseholdController extends Controller
 
                     $store_data = array(
                         'watershed_id' => $value->WatershedId,
-                        'para_id' => $value->ParaId,
-                        'community_id' => $value->CommunityId,
-                        'community_name' => $value->CommunityName,
+                        'para_id' => $value->para_id,
+                        'para_name' => $value->para_name,
+                        'community_id' => $value->community_id,
+                        'community_name' => $value->community_name,
                         'jhupri_house' => $value->JhupriType,
                         'kacha_house' => $value->KachaType,
                         'semi_pacca_house' => $value->SemiPaccaType,
@@ -48,8 +49,8 @@ class HouseholdController extends Controller
             
                     // check duplicate record 
                     $exist_watershed_id = $value->WatershedId;
-                    $exist_para_id = $value->ParaId;
-                    $exist_community_id = $value->CommunityId;
+                    $exist_para_id = $value->para_id;
+                    $exist_community_id = $value->community_id;
 
                     $found = DB::table('tbl_household')->select('id')
                                         ->where('watershed_id', $exist_watershed_id)
@@ -57,7 +58,7 @@ class HouseholdController extends Controller
                                         ->where('community_id', $exist_community_id)
                                         ->count();
 
-                    $get_community =json_encode($value->CommunityName);
+                    $get_community =json_encode($value->community_name);
                     $jsonData = json_decode($get_community, TRUE);
                     $tem_cname = $jsonData[0];
 

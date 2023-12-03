@@ -105,7 +105,7 @@
                           <!-- <div class="col-md-1"></div>  -->
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label" for="upozila"><span style="color: red;">★&nbsp;</span>Upozila</label>
+                            <label class="control-label" for="upozila"><span style="color: red;">★&nbsp;</span>Upazila</label>
                             <input type="text" name="upozila" id="upozila" class="form-control initial" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div>
 

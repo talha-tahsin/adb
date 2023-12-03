@@ -30,7 +30,7 @@ $(document).ready(function () {
         }
     });
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 5; i++) {
         insertTableRow();
     }
 
@@ -50,21 +50,30 @@ function insertTableRow() {
 
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="map_code_unit" name="map_code_unit" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
+
+    // appendString += '<td>';
+    // appendString += '<input type="text" id="map_code_unit" name="map_code_unit" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    // appendString += '</td>';
+
+    // appendString += '<td>';
+    // appendString += '<select type="text" id="gcp_type" name="gcp_type" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    // appendString += '<option value="" selected disabled> Select </option>';
+    // appendString += '<option value="Degradation">Degradation</option>';
+    // appendString += '<option value="Existing Conservation">Existing Conservation</option>';
+    // appendString += '<option value="Future Conservation">Future Conservation</option>';
+    // appendString += '</select>';
+    // appendString += '</td>'; Degradation 
+
+    appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Degradation</td>';
 
     appendString += '<td>';
-    appendString += '<select type="text" id="gcp_type" name="gcp_type" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '<select type="text" id="indicator" name="indicator" class="form-control resetSelect" value="" style="width: 200px;text-align: center;border-radius: 5px;">';
     appendString += '<option value="" selected disabled> Select </option>';
-    appendString += '<option value="Degradation">Degradation</option>';
-    appendString += '<option value="Existing Conservation">Existing Conservation</option>';
-    appendString += '<option value="Future Conservation">Future Conservation</option>';
-    appendString += '</select>';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<select type="text" id="gcp_type" name="gcp_type" class="form-control resetSelect" value="" style="width: 100px;text-align: center;border-radius: 5px;">';
+    appendString += '<option value="Slope Class">Slope Class</option>';
+    appendString += '<option value="Degradation Process">Degradation Process</option>';
+    appendString += '<option value="Degree of Degradation">Degree of Degradation</option>';
+    appendString += '<option value="Causes of Degradation">Causes of Degradation</option>';
+    appendString += '<option value="% of Degraded Area in LULC Class">% of Degraded Area in LULC Class</option>';
     appendString += '</select>';
     appendString += '</td>';
 
@@ -117,9 +126,9 @@ function insertTableRow() {
     appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
-    appendString += '<td style="text-align: center;">';
-    appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
-    appendString += '</td>';
+    // appendString += '<td style="text-align: center;">';
+    // appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
+    // appendString += '</td>';
 
     appendString += '</tr>';
 

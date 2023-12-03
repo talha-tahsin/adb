@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="font-family: Serif;">LULC Ground Truth : 1st Round </h1>
+            <h1 class="m-0" style="font-family: Serif;">Land Degradation Status & Landscape Restoration Opportunities</h1>
           </div><!-- /.col -->
 
           <div class="col-sm-6">
@@ -71,18 +71,22 @@
                   <hr style="border-bottom: 2px solid black;">
 
                     <div class="row">
-                      <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
+                      <div class="col-md-12" style="margin: 0px 0px 0px 0px;">
+
+                      <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                        <label class="control-label validate" for="map_code_unit"><span style="color: red;">★&nbsp;</span>Area Map Unit</label>
+                        <input type="text" name="map_code_unit" id="map_code_unit" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
+                      </div>
 
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table">
                             <thead>
                                 <tr style="background-color: #8ed6f2;">
                                   <th rowspan="2" style="text-align: center;">Serial</th>
-                                  <th rowspan="2" style="text-align: center;">Area Map Unit</th>
                                   <th rowspan="2" style="text-align: center;">Item</th>
                                   <th rowspan="2" style="text-align: center;">Indicator</th>
                                   <th colspan="15" style="text-align: center;">LULC Class Map Unit</th>
                                   <!-- <th rowspan="2" style="text-align: center;">Remarks</th> -->
-                                  <th rowspan="2" style="text-align: center;">Action</th>
+                                  <!-- <th rowspan="2" style="text-align: center;">Action</th> -->
                                 </tr>
 
                                 <tr style="background-color: #d6eaf8;">
