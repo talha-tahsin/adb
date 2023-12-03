@@ -45,22 +45,22 @@
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
                   <div class="row"> 
-                <!-- <div class="col-md-1"></div>  -->
+                  <!-- <div class="col-md-1"></div>  -->
 
-                <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                  <label class="control-label validate" for="community_id"><span style="color: red;">★&nbsp;</span>Watershed Id</label> 
-                  <input type="text" name="watershed_id" id="watershed_id" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
-                </div> 
-                <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                  <label class="control-label validate" for="watershed_name"><span style="color: red;">★&nbsp;</span>Watershed Name</label>
-                  <input type="text" name="watershed_name" id="watershed_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
-                </div>
-                
-                <input type="hidden" name="para_id" id="para_id" value=""/>
-                <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                  <label class="control-label validate" for="para_name"><span style="color: red;">★&nbsp;</span>Para Name</label>
-                  <input type="text" name="para_name" id="para_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
-                </div> 
+                  <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                    <label class="control-label validate" for="community_id"><span style="color: red;">★&nbsp;</span>Watershed Id</label> 
+                    <input type="text" name="watershed_id" id="watershed_id" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
+                  </div> 
+                  <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                    <label class="control-label validate" for="watershed_name"><span style="color: red;">★&nbsp;</span>Watershed Name</label>
+                    <input type="text" name="watershed_name" id="watershed_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
+                  </div>
+                  
+                  <input type="hidden" name="para_id" id="para_id" value=""/>
+                  <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                    <label class="control-label validate" for="para_name"><span style="color: red;">★&nbsp;</span>Para Name</label>
+                    <input type="text" name="para_name" id="para_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
+                  </div> 
 
                 <!-- <div class="col-md-1"></div> -->
 
