@@ -53,9 +53,10 @@
                 <i class="ion ion-circle"></i>
               </div>
               <!-- <a href="{{ route('Data.Entry.Dashboard') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> -->
-              <span class="small-box-footer">For Entry <i class="fas fa-arrow-circle-right"></i> </span>
               <a href="{{ route('Data.Entry.Dashboard') }}">
-                <button type="submit" id="watershed1" name="watershed1" class="active_watershed" style="border: 5px;">Click Here</button>  
+                <button type="submit" id="watershed1" name="watershed1" class="active_watershed">
+                  <span class="small-box-footer">For Entry Click <i class="fas fa-arrow-circle-right"></i> </span>
+                </button>  
               </a>
             </div>
           </div>
@@ -83,9 +84,10 @@
                 <i class="ion ion-circle"></i>
               </div>
               <!-- <a href="{{ route('Data.Entry.Dashboard') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> -->
-              <span class="small-box-footer">For Entry <i class="fas fa-arrow-circle-right"></i> </span>
               <a href="{{ route('Data.Entry.Dashboard') }}">
-                <button type="submit" id="watershed2" name="watershed2" class="active_watershed" style="border: 5px;">Click Here</button>  
+                <button type="submit" id="watershed2" name="watershed2" class="active_watershed" style="border: 5px;">
+                  <span class="small-box-footer">For Entry Click <i class="fas fa-arrow-circle-right"></i> </span>
+                </button>  
               </a>
             </div>
           </div>
@@ -113,9 +115,10 @@
                 <i class="ion ion-circle"></i>
               </div>
               <!-- <a href="{{ route('Data.Entry.Dashboard') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> -->
-              <span class="small-box-footer">For Entry <i class="fas fa-arrow-circle-right"></i> </span>
               <a href="{{ route('Data.Entry.Dashboard') }}">
-                <button type="submit" id="watershed2" name="watershed2" class="active_watershed" style="border: 5px;">Click Here</button>  
+                <button type="submit" id="watershed2" name="watershed2" class="active_watershed" style="border: 5px;">
+                  <span class="small-box-footer">For Entry Click <i class="fas fa-arrow-circle-right"></i> </span>
+                </button>  
               </a>
             </div>
           </div>
