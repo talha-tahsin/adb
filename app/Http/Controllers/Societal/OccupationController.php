@@ -34,7 +34,9 @@ class OccupationController extends Controller
 
                     $store_data = array(
                         'watershed_id' => $value->WatershedId,
+                        'watershed_name' => $value->watershed_name,
                         'para_id' => $value->ParaId,
+                        'para_name' => $value->para_name,
                         'community_id' => $value->CommunityId,
                         'community_name' => $value->CommunityName,
                         'jhum' => $value->Jhum,
@@ -90,7 +92,7 @@ class OccupationController extends Controller
                 DB::commit();
 
                 if($dupCount > 0){ 
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para, Rest of Data saved successfully...' ]);
+                    return response()->json([ 'status' => 'ERROR', 'message' => '['.$cname.'] community already exsits for same selected watershed and para...' ]);
                 }
                 else{ 
                     return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate...' ]);

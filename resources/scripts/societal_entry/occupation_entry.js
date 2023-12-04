@@ -1,7 +1,7 @@
 
 
 
-document.title = 'Occupation Entry';
+// document.title = 'Occupation Entry';
 
 $(document).ready(function () {
 
@@ -9,15 +9,21 @@ $(document).ready(function () {
 
     $('#para_list').prop('disabled', true);
 
+
+});
+
+$('#add_row').on('click', function () {
+    insertTableRow();
+
     $.ajax({
-        url: "/get_watershedId",
+        url: "/get_community_list",
         type: "GET",
-        data: { 'watershed' : 'get_data' },
-        dataType: "HTML",
+        data: { 'community_list' : 'get_data' },
+        dataType: "html",
         cache: false,
         success: function (data) {
             // console.log(data);
-            $('#watershedId').html(data);
+            $('.more').html(data);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -26,177 +32,7 @@ $(document).ready(function () {
 
 });
 
-$(document).on('change', '#watershedId', function () {
-
-    var watershedId = $('#watershedId option:selected').val();
-    // console.log(watershedId);
-
-    if(watershedId)
-    {
-        $.ajax({
-            url: "/get_paraList",
-            type: "GET",
-            data: { 'watershed_id' : watershedId },
-            dataType: "HTML",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#para_list').prop('disabled', false);
-                $('#para_list').html(data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
-
-});
-
-$(document).on('click', '#get_communities', function () {
-
-    var Watershed_Id = $('#watershedId option:selected').val();
-    var Para_Id = $('#para_list option:selected').val();
-
-    if(Watershed_Id && Para_Id)
-    { 
-        $.ajax({
-            url: "/CommunityList",
-            type: "GET",
-            data: { 'community_list' : 'get_data' },
-            dataType: "JSON",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#table_div').removeClass('hide');
-                 $.each(data.message, function (i, v) {
-                    insertTableRow(v.community_name, v.community_id);
-                 });
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
-
-});
-
-$(document).on('click', '#btn_store', function () {
-
-    var created_by = $('#userName').val();
-    var token = $("meta[name='csrf-token']").attr("content");
-    var watershed_id = $('#watershedId option:selected').val();
-    var paraId = $('#para_list option:selected').val();
-    var xml_data = '';
-
-    xml_data = '<head>';
-
-    $('#voucher_table > tbody > tr').each(function () {
-
-        var rowCheckbox = $(this).find("#check").prop("checked");
-
-        if (rowCheckbox == true)
-        {
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
-           
-            var v_jhum = $(this).find('#jhum').val();
-            var v_plainLand = $(this).find('#plain_land').val();
-            var v_orchard = $(this).find('#orchard').val();
-            var v_fuel = $(this).find('#fuel_wood').val();
-            var v_wage = $(this).find('#wage_labour').val();
-
-            var v_poultry = $(this).find('#poultry').val();
-            var v_livestock = $(this).find('#livestock').val();
-            var v_aquaculture = $(this).find('#aquaculture').val();
-            var v_service_holder = $(this).find('#service_holder').val();
-            var v_business = $(this).find('#business').val();
-            var v_handicraft = $(this).find('#handicraft').val();
-            var v_others = $(this).find('#others').val();
-
-            // automation set value 0 if any field leave empty or null
-            if(v_jhum == '' || v_jhum == null || v_jhum == undefined) v_jhum = 0;
-            if(v_plainLand == '' || v_plainLand == null || v_plainLand == undefined) v_plainLand = 0;
-            if(v_orchard == '' || v_orchard == null || v_orchard == undefined) v_orchard = 0;
-            if(v_fuel == '' || v_fuel == null || v_fuel == undefined) v_fuel = 0;
-            if(v_wage == '' || v_wage == null || v_wage == undefined) v_wage = 0;
-
-            if(v_poultry == '' || v_poultry == null || v_poultry == undefined) v_poultry = 0;
-            if(v_livestock == '' || v_livestock == null || v_livestock == undefined) v_livestock = 0;
-            if(v_aquaculture == '' || v_aquaculture == null || v_aquaculture == undefined) v_aquaculture = 0;
-            if(v_service_holder == '' || v_service_holder == null || v_service_holder == undefined) v_service_holder = 0;
-            if(v_business == '' || v_business == null || v_business == undefined) v_business = 0;
-            if(v_handicraft == '' || v_handicraft == null || v_handicraft == undefined) v_handicraft = 0;
-            if(v_others == '' || v_others == null || v_others == undefined) v_others = 0;
-
-            // first binding data as xml string
-            xml_data += '<row>';
-
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
-
-            xml_data += '<Jhum>' + v_jhum + '</Jhum>';
-            xml_data += '<PlainLand>' + v_plainLand + '</PlainLand>';
-            xml_data += '<Orchard>' + v_orchard + '</Orchard>';
-            xml_data += '<FuelWood>' + v_fuel + '</FuelWood>';
-            xml_data += '<WageLabour>' + v_wage + '</WageLabour>';
-
-            xml_data += '<Poultry>' + v_poultry + '</Poultry>';
-            xml_data += '<Livestock>' + v_livestock + '</Livestock>';
-            xml_data += '<AquaCulture>' + v_aquaculture + '</AquaCulture>';
-            xml_data += '<ServiceHolder>' + v_service_holder + '</ServiceHolder>';
-            xml_data += '<Business>' + v_business + '</Business>';
-            xml_data += '<HandiCraft>' + v_handicraft + '</HandiCraft>';
-            xml_data += '<Others>' + v_others + '</Others>';
-
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
-
-            xml_data += '</row>';
-        }
-
-    });
-
-    xml_data += '</head>';
-
-    
-    console.log(xml_data);
-
-     // clear model message value for every ajax call provide single accurate message
-     $('#success_msg').html('');
-     $('#error_msg').html('');
-
-    $.ajax({
-        url: "/store_occupation_info",
-        type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data },
-        dataType: "JSON",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            if(data.status == 'SUCCESS'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html(data.message);
-                $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
-            }
-            else{
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#error_msg').html(data.message);
-            }
-            
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-
-
-
-});
-
-function insertTableRow(comntyName, comuntyId) {
+function insertTableRow() {
 
     var appendString = '';
     var rowCount = $('#voucher_table > tbody > tr').length;
@@ -204,13 +40,12 @@ function insertTableRow(comntyName, comuntyId) {
 
     // console.log(accountName);
 
-    appendString += '<tr comnty_id="' + comuntyId + '">';
+    appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    //appendString += '<td>'+ofcName+'</td>';
-    appendString += '<td comnty_name="' + comntyName + '" style="width: 100px;text-align: left;">' + comntyName + '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="checkbox" class="checkbox" id="check" name="check" value="1" style="text-align: center;" >';
+    appendString += '<select type="text" id="community_list" name="community_list" class="form-control resetSelect more" value="" style="width: 120px;text-align: center;border-radius: 5px;">';
+    appendString += '</select>';
     appendString += '</td>';
 
     appendString += '<td>';
@@ -262,9 +97,9 @@ function insertTableRow(comntyName, comuntyId) {
     appendString += '</td>';
 
 
-    //appendString += '<td style="text-align: center;">';
-    //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';
-    //appendString += '</td>';
+    appendString += '<td style="text-align: center;">';
+    appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i>Remove</button>';
+    appendString += '</td>';
 
     appendString += '</tr>';
 
@@ -273,6 +108,128 @@ function insertTableRow(comntyName, comuntyId) {
     // $("#voucher_table tr:last").scrollintoview();
     removeTableRow();
 }
+
+
+$(document).on('click', '#btn_store', function () {
+
+    var created_by = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+    var xml_data = '';
+
+    xml_data = '<head>';
+
+    $('#voucher_table > tbody > tr').each(function () {
+
+        // var tr_comnty_id = $(this).attr('comnty_id');
+        // var tr_comnty_name = $(this).find('td:eq(1)').text(); 
+        //$(this).closest('tr').find('td:eq(1)').text();
+
+        var community_id = $(this).find('#community_list option:selected').val();
+        var community_name = $(this).find('#community_list option:selected').text();
+        
+        var v_jhum = $(this).find('#jhum').val();
+        var v_plainLand = $(this).find('#plain_land').val();
+        var v_orchard = $(this).find('#orchard').val();
+        var v_fuel = $(this).find('#fuel_wood').val();
+        var v_wage = $(this).find('#wage_labour').val();
+
+        var v_poultry = $(this).find('#poultry').val();
+        var v_livestock = $(this).find('#livestock').val();
+        var v_aquaculture = $(this).find('#aquaculture').val();
+        var v_service_holder = $(this).find('#service_holder').val();
+        var v_business = $(this).find('#business').val();
+        var v_handicraft = $(this).find('#handicraft').val();
+        var v_others = $(this).find('#others').val();
+
+        // automation set value 0 if any field leave empty or null
+        if(v_jhum == '' || v_jhum == null || v_jhum == undefined) v_jhum = 0;
+        if(v_plainLand == '' || v_plainLand == null || v_plainLand == undefined) v_plainLand = 0;
+        if(v_orchard == '' || v_orchard == null || v_orchard == undefined) v_orchard = 0;
+        if(v_fuel == '' || v_fuel == null || v_fuel == undefined) v_fuel = 0;
+        if(v_wage == '' || v_wage == null || v_wage == undefined) v_wage = 0;
+
+        if(v_poultry == '' || v_poultry == null || v_poultry == undefined) v_poultry = 0;
+        if(v_livestock == '' || v_livestock == null || v_livestock == undefined) v_livestock = 0;
+        if(v_aquaculture == '' || v_aquaculture == null || v_aquaculture == undefined) v_aquaculture = 0;
+        if(v_service_holder == '' || v_service_holder == null || v_service_holder == undefined) v_service_holder = 0;
+        if(v_business == '' || v_business == null || v_business == undefined) v_business = 0;
+        if(v_handicraft == '' || v_handicraft == null || v_handicraft == undefined) v_handicraft = 0;
+        if(v_others == '' || v_others == null || v_others == undefined) v_others = 0;
+
+        // first binding data as xml string
+        xml_data += '<row>';
+
+        xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+        xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
+        xml_data += '<ParaId>' + para_id + '</ParaId>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
+
+        xml_data += '<CommunityId>' + community_id + '</CommunityId>';
+        xml_data += '<CommunityName>' + community_name + '</CommunityName>';
+
+        xml_data += '<Jhum>' + v_jhum + '</Jhum>';
+        xml_data += '<PlainLand>' + v_plainLand + '</PlainLand>';
+        xml_data += '<Orchard>' + v_orchard + '</Orchard>';
+        xml_data += '<FuelWood>' + v_fuel + '</FuelWood>';
+        xml_data += '<WageLabour>' + v_wage + '</WageLabour>';
+
+        xml_data += '<Poultry>' + v_poultry + '</Poultry>';
+        xml_data += '<Livestock>' + v_livestock + '</Livestock>';
+        xml_data += '<AquaCulture>' + v_aquaculture + '</AquaCulture>';
+        xml_data += '<ServiceHolder>' + v_service_holder + '</ServiceHolder>';
+        xml_data += '<Business>' + v_business + '</Business>';
+        xml_data += '<HandiCraft>' + v_handicraft + '</HandiCraft>';
+        xml_data += '<Others>' + v_others + '</Others>';
+
+        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+
+        xml_data += '</row>';
+     
+
+    });
+
+    xml_data += '</head>';
+
+    
+    console.log(xml_data);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_occupation_info",
+        type: "POST",
+        data: { '_token' : token, 'xml_data' : xml_data },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#voucher_table td input[type=text]').val('');
+                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
+                // alert(data.message);
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+
+
+});
 
 $(document).on('change', '.m_num', function () {
 
@@ -369,6 +326,21 @@ function reOrderTable() {
     });
     counter = sl - 1;
 }
+
+$.ajax({
+    url: "/get_community_list",
+    type: "GET",
+    data: { 'community_list' : 'get_data' },
+    dataType: "html",
+    cache: false,
+    success: function (data) {
+        // console.log(data);
+        $('#community_list').html(data);
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    }
+});
 
 function gotoUrl(path, params, method, target = ''){
 

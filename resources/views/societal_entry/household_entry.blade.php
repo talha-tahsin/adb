@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -71,7 +71,7 @@
 
               <div class="form-group" id="table_div">
                     <div class="row">
-                        <div class="col-md-12" style="margin: 20px 0px 20px 0px;">
+                        <div class="col-md-10" style="margin: 20px 0px 20px 0px;">
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
 
                             <thead>
@@ -101,27 +101,44 @@
                                 </tr>
                             </tfoot>  -->
 
-                              <tbody id="table_body">
-                                  
-                              </tbody>
+                              <tbody id="table_body"> </tbody>
                           </table>
+
+                      <div class="row">
+                        <div class="col-md-2" style="margin: 20px 0px 10px 0px;">
+                          <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                        </div>
+                        <div class="col-md-8"></div>
+                
+                      <div class="col-md-2" style="margin: 20px 0px 10px 0px;">
+                          <button type="submit" class="btn btn-primary" id="btn_household_entry" style="width: 100%;border-radius: 5px;color: black;">Save Household Info</button>
+                      </div>
+                    </div>
 
                     </div>
                 </div>
-                        <!-- // end table row -->
+                <!-- // end table row -->
+                <hr style="border-bottom: 2px solid black;">
 
-              <div class="row">
-                <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                  <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                <div class="row">
+                  <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                    <a href="{{ route('Population.Entry') }}" style="color: black;">
+                      <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : BaseLine Population</button>
+                    </a>
+                  </div>
+                  <div class="col-md-8"></div>
+                  <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                    <a href="{{ route('View.Land.Entry') }}">
+                      <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : BaseLine Land</button>
+                    </a>
+                  </div>
+
                 </div>
-                <div class="col-md-8"></div>
-                <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                    <button type="submit" class="btn btn-primary" id="btn_household_entry" style="width: 100%;border-radius: 5px;color: black;">Save Household Info</button>
-                </div>  
-              </div>
+
+              
 
             </div>
-          <!-- end main table div -->
+         
 
     
       </div>  

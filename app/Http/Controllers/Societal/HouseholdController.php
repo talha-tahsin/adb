@@ -34,6 +34,7 @@ class HouseholdController extends Controller
 
                     $store_data = array(
                         'watershed_id' => $value->WatershedId,
+                        'watershed_name' => $value->watershed_name,
                         'para_id' => $value->para_id,
                         'para_name' => $value->para_name,
                         'community_id' => $value->community_id,

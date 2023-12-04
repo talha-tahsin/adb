@@ -1,7 +1,6 @@
 
 
-
-@extends('layouts.master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -52,11 +51,10 @@
                       <label class="control-label validate" for="para_name"><span style="color: red;">★&nbsp;</span>Para Name</label>
                       <input type="text" name="para_name" id="para_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
                     </div> 
-
-                <!-- <div class="col-md-1"></div> -->
-
-              </div> 
+                  </div> 
               <!-- end row -->
+
+              <hr style="border-bottom: 2px solid black;">
 
               <div class="form-group" id="table_div">
                     <div class="row">
@@ -110,17 +108,37 @@
                         <!-- // end table row -->
 
                 <div class="row">
-                  <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                    <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                  <div class="col-md-2" style="margin: 10px 0px 30px 0px;">
+                    <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
                   </div>
                   <div class="col-md-8"></div>
-                      <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                          <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Communities Info</button>
+                      <div class="col-md-2" style="margin: 10px 0px 30px 0px;">
+                          <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save details info</button>
                       </div>  
                 </div>
 
             </div>
           <!-- end main table div -->
+
+          <hr style="border-bottom: 2px solid black;">
+
+            <div class="row">
+
+              <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                <a href="{{ route('View.Entry.Household') }}" style="color: black;">
+                  <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : BaseLine Household</button>
+                </a>
+              </div>
+
+              <div class="col-md-8"></div>
+
+              <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                <a href="{{ route('View.Occupation.Entry') }}">
+                  <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : BaseLine Occupation</button>
+                </a>
+              </div>
+
+            </div>
 
     
       </div>  

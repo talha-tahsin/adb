@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.map_unit_wise.map_wise_master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -71,7 +71,7 @@
                   <hr style="border-bottom: 2px solid black;">
 
                     <div class="row">
-                      <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
+                      <div class="col-md-10" style="margin: 10px 0px 10px 0px;">
 
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table">
                             <thead>
@@ -100,10 +100,11 @@
                           </table>
 
                           <div class="row">
-                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
-                            </div>
                             <div class="col-md-8"></div>
+                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                              <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                            </div>
+                            
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
                               <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
                             </div>  
@@ -114,8 +115,23 @@
                     </div>
                     <!-- end row  -->
 
-              <!-- </div> -->
-              <!-- end form-group -->
+                    <div class="row">
+
+                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                          <a href="{{ route('Ground.Truth.First') }}" style="color: black;">
+                            <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : 1st Ground Truth</button>
+                          </a>
+                        </div>
+
+                        <div class="col-md-8"></div>
+
+                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                          <a href="{{ route('Land.Degradation') }}">
+                            <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : Land Degradation Status </button>
+                          </a>
+                        </div>
+
+                    </div>
                 
 
     

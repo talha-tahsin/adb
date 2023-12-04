@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -136,16 +136,37 @@
 
                 <div class="row">
                   <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                    <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                    <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
                   </div>
+                  
                   <div class="col-md-8"></div>
+
                   <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                      <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Population Info</button>
-                  </div>  
+                    <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Population Info</button>
+                  </div>
                 </div>
 
             </div>
           <!-- end main table div -->
+          <hr style="border-bottom: 2px solid black;">
+
+            <div class="row">
+
+              <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                <a href="{{ route('VCF.Boundary.Dominant.Plant') }}" style="color: black;">
+                  <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : VCF Dominant Plant</button>
+                </a>
+              </div>
+
+              <div class="col-md-8"></div>
+
+              <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                <a href="{{ route('View.Entry.Household') }}">
+                  <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : BaseLine Household</button>
+                </a>
+              </div>
+
+            </div>
 
     
       </div>  

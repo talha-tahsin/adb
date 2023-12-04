@@ -42,8 +42,14 @@ $(document).ready(function () {
 
 });
 
-$('#add_row').on('click', function () {
+$('#add_row1').on('click', function () {
     insertTableRow();
+});
+$('#add_row2').on('click', function () {
+    insertTableRow2();
+});
+$('#add_row3').on('click', function () {
+    insertTableRow3();
 });
 
 $(document).on('click', '#btn_store_plot1', function () {
@@ -218,7 +224,8 @@ $(document).on('click', '#btn_store_plot2', function () {
                 //
                 $('#div_plot1').addClass('hide');
                 $('#div_plot2').addClass('hide'); 
-                $('#div_plot3').removeClass('hide'); 
+                $('#div_plot3').removeClass('hide');
+                $('#next_div').removeClass('hide'); 
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

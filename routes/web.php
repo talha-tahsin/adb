@@ -98,8 +98,8 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('dominant-plant-vcf-boundary', [VCFBoundaryController::class, 'show_dominant_plant'])->name('VCF.Boundary.Dominant.Plant');
 
     // GET Method Route 
-    Route::get('get_livestock_list', [VCFBoundaryController::class, 'get_livestock_list']);
-    Route::get('get_livestock_edit', [VCFBoundaryController::class, 'get_livestock_edit']);
+    // Route::get('get_livestock_list', [VCFBoundaryController::class, 'get_livestock_list']);
+    // Route::get('get_livestock_edit', [VCFBoundaryController::class, 'get_livestock_edit']);
 
     // POST Method Route
     Route::post('store_basic_info_vcf_boundary', [VCFBoundaryController::class, 'store_basic_info_vcf_boundary']);
@@ -116,8 +116,8 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('show-ground-truth-second', [LulcValidationController::class, 'show_ground_truth2'])->name('Ground.Truth.Second');
 
     // GET Method Route 
-    Route::get('get_livestock_list', [LulcValidationController::class, 'get_livestock_list']);
-    Route::get('get_livestock_edit', [LulcValidationController::class, 'get_livestock_edit']);
+    // Route::get('get_livestock_list', [LulcValidationController::class, 'get_livestock_list']);
+    // Route::get('get_livestock_edit', [LulcValidationController::class, 'get_livestock_edit']);
 
     // POST Method Route
     Route::post('store_first_ground_truth', [LulcValidationController::class, 'store_first_ground_truth']);

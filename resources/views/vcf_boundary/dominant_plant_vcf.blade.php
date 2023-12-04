@@ -91,16 +91,14 @@
 
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table">
                             <thead>
-                                <tr style="background-color: #8ed6f2;">
-                                  <th  style="text-align: center;">Serial</th>
-                                  <th  style="text-align: center;">Tree Species Names</th>
-                                  <th  style="text-align: center;">Number of Tree</th>
-                                  <th  style="text-align: center;">Tree Diameter at Breast Height</th>
-                                  <th  style="text-align: center;">Avg. Tree Height</th>
-                                  <!-- <th  style="text-align: center;">Action</th> -->
-                                </tr>
-
-                              
+                              <tr style="background-color: #8ed6f2;">
+                                <th  style="text-align: center;">Serial</th>
+                                <th  style="text-align: center;">Tree Species Names</th>
+                                <th  style="text-align: center;">Number of Tree</th>
+                                <th  style="text-align: center;">Tree Diameter at Breast Height</th>
+                                <th  style="text-align: center;">Avg. Tree Height</th>
+                                <th  style="text-align: center;">Action</th>
+                              </tr>
                             </thead>
 
                             <tbody id="table_body"></tbody>
@@ -108,12 +106,12 @@
                           </table>
 
                           <div class="row">
-                            <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add Row</button>
-                            </div> -->
+                            <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;"> -->
+                              <button type="submit" class="btn btn-info" id="get_2nd_plot" style="width: 100%;border-radius: 5px;color: black;">2nd plot</button>
+                            <!-- </div> -->
                             <div class="col-md-6"></div>
                             <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-info" id="get_2nd_plot" style="width: 100%;border-radius: 5px;color: black;">Go 2nd Plot </button>
+                              <button type="submit" class="btn btn-secondary" id="add_row1" style="width: 100%;border-radius: 5px;color: black;">Add More Row </button>
                             </div>
                             <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
                               <button type="submit" class="btn btn-primary" id="btn_store_plot1" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
@@ -142,12 +140,12 @@
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
                             <thead>
                               <tr style="background-color: #8ed6f2;">
-                                <th style="text-align: center;">Serial</th>
-                                <th style="text-align: center;">Tree Species Names</th>
-                                <th style="text-align: center;">Tree Diameter at Breast Height</th>
-                                <th style="text-align: center;">Avg. Tree Height</th>
-                                <th style="text-align: center;">Dimensions of the plot in sq</th>
-                                <!-- <th  style="text-align: center;">Action</th> -->
+                              <th  style="text-align: center;">Serial</th>
+                                <th  style="text-align: center;">Tree Species Names</th>
+                                <th  style="text-align: center;">Number of Tree</th>
+                                <th  style="text-align: center;">Tree Diameter at Breast Height</th>
+                                <th  style="text-align: center;">Avg. Tree Height</th>
+                                <th  style="text-align: center;">Action</th>
                               </tr>
                             </thead>
 
@@ -156,17 +154,15 @@
                         </table>
 
                           <div class="row">
-                            <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add Row</button>
-                            </div> -->
+                            <button type="submit" class="btn btn-info" id="get_3rd_plot" style="width: 100%;border-radius: 5px;color: black;">3rd plot</button>
                             <div class="col-md-6"></div>
-                            <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-info" id="get_3rd_plot" style="width: 100%;border-radius: 5px;color: black;">Go 3rd Plot </button>
+                              <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                                <button type="submit" class="btn btn-secondary" id="add_row2" style="width: 100%;border-radius: 5px;color: black;">Add More Row </button>
+                              </div>
+                              <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                                <button type="submit" class="btn btn-primary" id="btn_store_plot2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
+                              </div>  
                             </div>
-                            <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-primary" id="btn_store_plot2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
-                            </div>  
-                          </div>
                         </div>
 
                         <div class="col-md-7 hide" id="div_plot3" style="margin: 10px 0px 10px 0px;">       
@@ -190,12 +186,12 @@
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
                             <thead>
                               <tr style="background-color: #8ed6f2;">
-                                <th  style="text-align: center;">Serial</th>
+                              <th  style="text-align: center;">Serial</th>
                                 <th  style="text-align: center;">Tree Species Names</th>
+                                <th  style="text-align: center;">Number of Tree</th>
                                 <th  style="text-align: center;">Tree Diameter at Breast Height</th>
                                 <th  style="text-align: center;">Avg. Tree Height</th>
-                                <th  style="text-align: center;">Dimensions of the plot in sq</th>
-                                <!-- <th  style="text-align: center;">Action</th> -->
+                                <th  style="text-align: center;">Action</th>
                               </tr>
                             </thead>
 
@@ -207,10 +203,10 @@
                             <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
                               <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add Row</button>
                             </div> -->
-                            <div class="col-md-9"></div>
-                            <!-- <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-info" id="get_3rd_plot" style="width: 100%;border-radius: 5px;color: black;">Go 3rd Plot </button>
-                            </div> -->
+                            <div class="col-md-6"></div>
+                            <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                              <button type="submit" class="btn btn-secondary" id="add_row3" style="width: 100%;border-radius: 5px;color: black;">Add More Row </button>
+                            </div>
                             <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
                               <button type="submit" class="btn btn-primary" id="btn_store_plot3" style="width: 100%;border-radius: 5px;color: black;">Save Details Info</button>
                             </div>  
@@ -223,7 +219,7 @@
                     </div>
                     <!-- end row  -->
 
-                    <div class="row">
+                    <div class="row hide" id="next_div">
 
                       <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
                         <a href="{{ route('VCF.Boundary.GPS.Point') }}" style="color: black;">
@@ -354,9 +350,9 @@ function insertTableRow() {
   appendString += '<input type="text" id="avg_height1" name="avg_height1" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
   appendString += '</td>';
 
-  // appendString += '<td style="text-align: center;">';
-  // appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
-  // appendString += '</td>';
+  appendString += '<td style="text-align: center;">';
+  appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
+  appendString += '</td>';
 
   appendString += '</tr>';
 
@@ -388,9 +384,9 @@ function insertTableRow2() {
   appendString += '<input type="text" id="avg_height2" name="avg_height2" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
   appendString += '</td>';
 
-  // appendString += '<td style="text-align: center;">';
-  // appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
-  // appendString += '</td>';
+  appendString += '<td style="text-align: center;">';
+  appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
+  appendString += '</td>';
 
   appendString += '</tr>';
 
@@ -421,9 +417,9 @@ function insertTableRow3() {
   appendString += '<input type="text" id="avg_height3" name="avg_height3" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
   appendString += '</td>';
 
-  // appendString += '<td style="text-align: center;">';
-  // appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
-  // appendString += '</td>';
+  appendString += '<td style="text-align: center;">';
+  appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
+  appendString += '</td>';
 
   appendString += '</tr>';
 
