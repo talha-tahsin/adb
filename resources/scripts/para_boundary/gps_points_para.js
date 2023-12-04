@@ -160,10 +160,10 @@ $(document).on('click', '#btn_store', function () {
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#my_table td input[type=text]').val('');
                 // $('#my_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
-                $('#btn_close').on('click', function(){
-                    window.location.href = '/basic-info-of-vcf-boundary';
-                });
+                
+                // $('#btn_close').on('click', function(){
+                //     window.location.href = '/basic-info-of-vcf-boundary';
+                // });
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

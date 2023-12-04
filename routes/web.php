@@ -142,8 +142,6 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
 
 
-
-
 /** Start :: Population View Page */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('population_entry', [SocietalViewController::class, 'population_entry'])->name('Population.Entry');

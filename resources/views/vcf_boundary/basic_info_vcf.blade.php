@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -264,16 +264,27 @@
                         <!-- end row -->
                       </form>
 
+                      <div class="row">
+
+                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                          <a href="{{ route('Para.Boundary.GPS.Point') }}" style="color: black;">
+                            <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : Para GPS Point</button>
+                          </a>
+                        </div>
+
+                        <div class="col-md-8"></div>
+
+                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                          <a href="{{ route('VCF.Boundary.GPS.Point') }}">
+                            <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : VCF GPS Point</button>
+                          </a>
+                        </div>
+
+                    </div>
+                    <!-- end div -->
+
                     </div>
                 </div>
-                        <!-- // end table row -->
-
-                  <!-- <div class="row">
-                    <div class="col-md-9"></div>
-                    <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                        <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
-                    </div>  
-                  </div> -->
 
               </div>
               <!-- end main table div -->

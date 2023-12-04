@@ -42,46 +42,6 @@ $(document).ready(function () {
 
 });
 
-$(document).on('click', '#get_entry_form', function () {
-
-    var Watershed_Id = $('#watershedId option:selected').val();
-    var Para_Id = $('#para_list option:selected').val();
-    var Community_Id = $('#community option:selected').val();
-
-    if(Para_Id == '' || Para_Id == null || Para_Id == undefined)
-    {
-        alert("Please Select Para...");
-    }
-    else if(Community_Id == '' || Community_Id == null || Community_Id == undefined)
-    {
-        alert("Please Select Community...");
-    }
-    else
-    { 
-        $.ajax({
-            url: "/check_livelihood_duplicate",
-            type: "GET",
-            data: { 'watershed_id' : Watershed_Id, 'para_id' : Para_Id, 'community_id' : Community_Id},
-            dataType: "JSON",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                if(data.status == 'SUCCESS'){
-                    $('#table_div').removeClass('hide');
-                }
-                else{
-                    $('#myModal').modal({backdrop : 'static', keyboard : false});
-                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-                }  
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
-
-});
-
 $(document).on('click', '#btn_store', function (event) {
 
     event.preventDefault();
@@ -131,9 +91,9 @@ $(document).on('click', '#btn_store', function (event) {
                 $('#overall_status').val('').change();
                 $('#forest_type').val('').change();
 
-                $('#btn_close').on('click', function(){
-                    window.location.href = '/gps-point-of-vcf-boundary';
-                });
+                // $('#btn_close').on('click', function(){
+                //     window.location.href = '/gps-point-of-vcf-boundary';
+                // });
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

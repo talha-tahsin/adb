@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -219,12 +219,27 @@
                       </div>
                       <!-- end div col-md -->
 
+
                     </div>
                     <!-- end row  -->
 
-              <!-- </div> -->
-              <!-- end form-group -->
-                
+                    <div class="row">
+
+                      <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                        <a href="{{ route('VCF.Boundary.GPS.Point') }}" style="color: black;">
+                          <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : VCF GPS Point</button>
+                        </a>
+                      </div>
+
+                      <div class="col-md-8"></div>
+
+                      <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                        <a href="{{ route('Population.Entry') }}">
+                          <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : BaseLine Population</button>
+                        </a>
+                      </div>
+
+                    </div>
 
     
       </div>  

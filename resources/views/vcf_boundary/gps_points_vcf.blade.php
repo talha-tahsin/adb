@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -97,10 +97,12 @@
                           </table>
 
                           <div class="row">
+                          <div class="col-md-8"></div>
+
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                              <button type="submit" class="btn btn-info" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add Row</button>
+                              <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add Row</button>
                             </div>
-                            <div class="col-md-8"></div>
+                            
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
                               <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
                             </div>  
@@ -111,8 +113,25 @@
                     </div>
                     <!-- end row  -->
 
-              <!-- </div> -->
-              <!-- end form-group -->
+                    <div class="row">
+
+                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                          <a href="{{ route('VCF.Boundary.Basic.Info') }}" style="color: black;">
+                            <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : VCF Basic Info</button>
+                          </a>
+                        </div>
+
+                        <div class="col-md-8"></div>
+
+                        <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                          <a href="{{ route('VCF.Boundary.Dominant.Plant') }}">
+                            <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : VCF Dominanat Plants</button>
+                          </a>
+                        </div>
+
+                    </div>
+
+             
                 
 
     

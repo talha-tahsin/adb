@@ -155,9 +155,9 @@ $(document).on('click', '#btn_store', function () {
                 $('#my_table td input[type=text]').val('');
                 $('#voucher_table td input[type=checkbox]').prop('checked', false);
                 // alert(data.message);
-                $('#btn_close').on('click', function(){
-                    window.location.href = '/dominant-plant-vcf-boundary';
-                });
+                // $('#btn_close').on('click', function(){
+                //     window.location.href = '/dominant-plant-vcf-boundary';
+                // });
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

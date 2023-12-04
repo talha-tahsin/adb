@@ -314,9 +314,9 @@ $(document).on('click', '#btn_store_plot3', function () {
                 $('#my_table3 td input[type=text]').val('');
                 $('#voucher_table td input[type=checkbox]').prop('checked', false);
                 //
-                $('#btn_close').on('click', function(){
-                    window.location.href = '/population_entry';
-                });
+                // $('#btn_close').on('click', function(){
+                //     window.location.href = '/population_entry';
+                // });
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
