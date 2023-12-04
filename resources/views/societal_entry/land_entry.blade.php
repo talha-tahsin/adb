@@ -52,7 +52,7 @@
                       <input type="text" name="para_name" id="para_name" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
                     </div> 
                   </div> 
-              <!-- end row -->
+                  <!-- end row -->
 
               <hr style="border-bottom: 2px solid black;">
 

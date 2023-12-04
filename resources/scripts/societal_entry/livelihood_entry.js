@@ -1,86 +1,21 @@
 
 
 
-document.title = 'Livelihood Entry';
+// document.title = 'Livelihood Entry';
 
 $(document).ready(function () {
 
     console.log("hello talha.."); 
 
-    $('#watershedId').select2();
-    $('#para_list').select2();
-    $('#community').select2();
+    // $('#watershedId').select2();
+    // $('#para_list').select2();
+    // $('#community').select2();
   
-    $('.select2').css({'border': '2px solid #898AEE', 'border-radius': '5px'});
+    // $('.select2').css({'border': '2px solid #898AEE', 'border-radius': '5px'});
 
-    $('#para_list').prop('disabled', true);
+    // $('#para_list').prop('disabled', true);
 
-    $.ajax({
-        url: "/get_watershedId",
-        type: "GET",
-        data: { 'watershed' : 'get_data' },
-        dataType: "HTML",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            $('#watershedId').html(data);
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-
-});
-
-$(document).on('change', '#watershedId', function () {
-
-    var watershedId = $('#watershedId option:selected').val();
-    // console.log(watershedId);
-
-    if(watershedId)
-    {
-        $.ajax({
-            url: "/get_paraList",
-            type: "GET",
-            data: { 'watershed_id' : watershedId },
-            dataType: "HTML",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#para_list').prop('disabled', false);
-                $('#para_list').html(data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
-
-});
-
-$(document).on('change', '#para_list', function () {
-
-    var para_list = $('#para_list option:selected').val();
-    // console.log(watershedId);
-
-    if(para_list)
-    {
-        $.ajax({
-            url: "/get_community_list",
-            type: "GET",
-            data: { 'get_community' : 'get_data' },
-            dataType: "html",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#community').prop('disabled', false);
-                $('#community').html(data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
+   
 
 });
 
