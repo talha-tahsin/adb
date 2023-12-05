@@ -10,29 +10,56 @@ $(document).ready(function () {
     var userNm = $('#userName').val();
 
     $.ajax({
-        url: "/get_active_watershed",
+        url: "/getindicator1List",
         type: "GET",
-        data: { 'userNm' : userNm },
+        data: { 'userNm' : 'get_data' },
         dataType: "json",
         cache: false,
         success: function (data) {
             // console.log(data);
             $.each(data.message, function (i, v) {
-                $('#watershed_id').val(v.watershed_id);
-                $('#watershed_name').val(v.watershed_name);
-                $('#para_id').val(v.para_id);
-                $('#para_name').val(v.para_name);
+                insertTableRow(v.indicator);
             });
-            
         },
         error: function(xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
 
-    for (var i = 0; i < 5; i++) {
-        insertTableRow();
-    }
+    $.ajax({
+        url: "/getindicator2List",
+        type: "GET",
+        data: { 'userNm' : 'get_data' },
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            $.each(data.message, function (i, v) {
+                insertTableRow2(v.indicator);
+            });
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    $.ajax({
+        url: "/getindicator3List",
+        type: "GET",
+        data: { 'userNm' : 'get_data' },
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            $.each(data.message, function (i, v) {
+                insertTableRow3(v.indicator);
+            });
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
 
 
 });
@@ -41,7 +68,7 @@ $('#add_row').on('click', function () {
     insertTableRow();
 });
 
-function insertTableRow() {
+function insertTableRow(indicator_nm) {
 
     var appendString = '';
     var rowCount = $('#my_table > tbody > tr').length;
@@ -51,79 +78,61 @@ function insertTableRow() {
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
 
-    // appendString += '<td>';
-    // appendString += '<input type="text" id="map_code_unit" name="map_code_unit" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
-    // appendString += '</td>';
-
-    // appendString += '<td>';
-    // appendString += '<select type="text" id="gcp_type" name="gcp_type" class="form-control resetSelect" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
-    // appendString += '<option value="" selected disabled> Select </option>';
-    // appendString += '<option value="Degradation">Degradation</option>';
-    // appendString += '<option value="Existing Conservation">Existing Conservation</option>';
-    // appendString += '<option value="Future Conservation">Future Conservation</option>';
-    // appendString += '</select>';
-    // appendString += '</td>'; Degradation 
-
     appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Degradation</td>';
 
-    appendString += '<td>';
-    appendString += '<select type="text" id="indicator" name="indicator" class="form-control resetSelect" value="" style="width: 200px;text-align: center;border-radius: 5px;">';
-    appendString += '<option value="" selected disabled> Select </option>';
-    appendString += '<option value="Slope Class">Slope Class</option>';
-    appendString += '<option value="Degradation Process">Degradation Process</option>';
-    appendString += '<option value="Degree of Degradation">Degree of Degradation</option>';
-    appendString += '<option value="Causes of Degradation">Causes of Degradation</option>';
-    appendString += '<option value="% of Degraded Area in LULC Class">% of Degraded Area in LULC Class</option>';
-    appendString += '</select>';
-    appendString += '</td>';
+    appendString += '<td style="width: 200px;text-align: left;">' + indicator_nm + '</td>';
 
     /* 1 */
     appendString += '<td>';
-    appendString += '<input type="text" id="longitude_north" name="longitude_north" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="forest" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="elevation" name="elevation" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="herb" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="map_code" name="map_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="orchard" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="shifting" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="crop_land" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     /* 6 */
     appendString += '<td>';
-    appendString += '<input type="text" id="longitude_north" name="longitude_north" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="lake" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="elevation" name="elevation" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="baor" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="map_code" name="map_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="rivers" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="ponds" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="aquaculture" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     /* 11 */
     appendString += '<td>';
-    appendString += '<input type="text" id="longitude_north" name="longitude_north" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="rural" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="elevation" name="elevation" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="brickfield" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="map_code" name="map_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="helipad" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="road" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="observed_code" name="observed_code" class="form-control" value="" style="width: 50px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="sand" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="remark" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     // appendString += '<td style="text-align: center;">';
@@ -138,7 +147,165 @@ function insertTableRow() {
     removeTableRow();
 }
 
-$(document).on('click', '#btn_store', function () {
+function insertTableRow2(indicator_nm) {
+
+    var appendString = '';
+    var rowCount = $('#my_table2 > tbody > tr').length;
+    rowCount++;
+    // console.log(accountName);
+
+    appendString += '<tr>';
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
+
+    appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Existing Conservation</td>';
+
+    appendString += '<td style="width: 200px;text-align: left;">' + indicator_nm + '</td>';
+
+    /* 1 */
+    appendString += '<td>';
+    appendString += '<input type="text" id="forest" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="herb" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="orchard" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="shifting" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="crop_land" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    /* 6 */
+    appendString += '<td>';
+    appendString += '<input type="text" id="lake" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="baor" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="rivers" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="ponds" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="aquaculture" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    /* 11 */
+    appendString += '<td>';
+    appendString += '<input type="text" id="rural" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="brickfield" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="helipad" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="road" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="sand" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="remark" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    // appendString += '<td style="text-align: center;">';
+    // appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
+    // appendString += '</td>';
+
+    appendString += '</tr>';
+
+
+    $('#my_table2 > tbody:last-child').append(appendString);
+    // $("#my_table tr:last").scrollintoview();
+    removeTableRow();
+}
+
+function insertTableRow3(indicator_nm) {
+
+    var appendString = '';
+    var rowCount = $('#my_table3 > tbody > tr').length;
+    rowCount++;
+    // console.log(accountName);
+
+    appendString += '<tr>';
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
+
+    appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Existing Conservation</td>';
+
+    appendString += '<td style="width: 200px;text-align: left;">' + indicator_nm + '</td>';
+
+    /* 1 */
+    appendString += '<td>';
+    appendString += '<input type="text" id="forest" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="herb" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="orchard" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="shifting" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="crop_land" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    /* 6 */
+    appendString += '<td>';
+    appendString += '<input type="text" id="lake" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="baor" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="rivers" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="ponds" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="aquaculture" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    /* 11 */
+    appendString += '<td>';
+    appendString += '<input type="text" id="rural" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="brickfield" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="helipad" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="road" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+    appendString += '<td>';
+    appendString += '<input type="text" id="sand" class="form-control" value="" style="width: 60px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="remark" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    // appendString += '<td style="text-align: center;">';
+    // appendString += '<button type="button" class="btn btn-xs btn-danger removeHead"><i class="fa fa-remove"></i>Remove</button>';
+    // appendString += '</td>';
+
+    appendString += '</tr>';
+
+
+    $('#my_table3 > tbody:last-child').append(appendString);
+    removeTableRow();
+    // $("#my_table tr:last").scrollintoview();
+}
+
+$(document).on('click', '#btn_store1', function () {
 
     var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
@@ -146,31 +313,42 @@ $(document).on('click', '#btn_store', function () {
     var watershed_name = $('#watershed_name').val();
     var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
+    var map_unit = $('#map_unit').val();
+    var area_map_unit = $('#area_map_unit').val();
+
     var sendData = '';
 
     sendData = '<head>';
 
     $('#my_table > tbody > tr').each(function () {
         
-        // var sample = $(this).closest('tr').find('td:eq(1)').text();
-        var map_code_unit = $(this).find('#map_code_unit').val();
-        var longitude_east = $(this).find('#longitude_east').val();
-        var longitude_north = $(this).find('#longitude_north').val();
-        var elevation = $(this).find('#elevation').val();
-        var map_code = $(this).find('#map_code').val();
-        var observed_code = $(this).find('#observed_code').val();
-        var gcp_type = $(this).find('#gcp_type option:selected').val();
-        var photo_aspect = $(this).find('#photo_aspect option:selected').val();
+        var indicator = $(this).closest('tr').find('td:eq(2)').text();
+        var forest = $(this).find('#forest').val();
+        var herb = $(this).find('#herb').val();
+        var orchard = $(this).find('#orchard').val();
+        var shifting = $(this).find('#shifting').val();
+        var crop_land = $(this).find('#crop_land').val();
+        var lake = $(this).find('#lake').val();
+        var baor = $(this).find('#baor').val();
+        var rivers = $(this).find('#rivers').val();
+        var ponds = $(this).find('#ponds').val();
+        var aquaculture = $(this).find('#aquaculture').val();
+        var rural = $(this).find('#rural').val();
+        var brickfield = $(this).find('#brickfield').val();
+        var helipad = $(this).find('#helipad').val();
+        var road = $(this).find('#road').val();
+        var sand = $(this).find('#sand').val();
+        var remark = $(this).find('#remark').val();
+        
 
         // automation set value 0 if any field leave empty or null 
-        if(map_code_unit == '' || map_code_unit == null || map_code_unit == undefined) map_code_unit = 0;
-        if(longitude_east == '' || longitude_east == null || longitude_east == undefined) longitude_east = 0;
-        if(longitude_north == '' || longitude_north == null || longitude_north == undefined) longitude_north = 0;
-        if(elevation == '' || elevation == null || elevation == undefined) elevation = 0;
-        if(map_code == '' || map_code == null || map_code == undefined) map_code = 0;
-        if(observed_code == '' || observed_code == null || observed_code == undefined) observed_code = 0;
-        if(gcp_type == '' || gcp_type == null || gcp_type == undefined) gcp_type = 0;
-        if(photo_aspect == '' || photo_aspect == null || photo_aspect == undefined) photo_aspect = 0;
+        if(forest == '' || forest == null || forest == undefined) forest = 0;
+        if(herb == '' || herb == null || herb == undefined) herb = 0;
+        if(orchard == '' || orchard == null || orchard == undefined) orchard = 0;
+        if(shifting == '' || shifting == null || shifting == undefined) shifting = 0;
+        if(crop_land == '' || crop_land == null || crop_land == undefined) crop_land = 0;
+        if(lake == '' || lake == null || lake == undefined) lake = 0;
+        if(baor == '' || baor == null || baor == undefined) baor = 0;
 
         // first binding data as xml string
         sendData += '<row>';
@@ -180,14 +358,26 @@ $(document).on('click', '#btn_store', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
-        sendData += '<map_code_unit>' + map_code_unit + '</map_code_unit>';
-        sendData += '<longitude_east>' + longitude_east + '</longitude_east>';
-        sendData += '<longitude_north>' + longitude_north + '</longitude_north>';
-        sendData += '<elevation>' + elevation + '</elevation>';
-        sendData += '<map_code>' + map_code + '</map_code>';
-        sendData += '<observed_code>' + observed_code + '</observed_code>';
-        sendData += '<gcp_type>' + gcp_type + '</gcp_type>';
-        sendData += '<photo_aspect>' + photo_aspect + '</photo_aspect>';
+        sendData += '<map_unit>' + map_unit + '</map_unit>';
+        sendData += '<area_map_unit>' + area_map_unit + '</area_map_unit>';
+
+        sendData += '<indicator>' + indicator + '</indicator>';
+        sendData += '<forest>' + forest + '</forest>';
+        sendData += '<herb>' + herb + '</herb>';
+        sendData += '<orchard>' + orchard + '</orchard>';
+        sendData += '<shifting>' + shifting + '</shifting>';
+        sendData += '<crop_land>' + crop_land + '</crop_land>';
+        sendData += '<lake>' + lake + '</lake>';
+        sendData += '<baor>' + baor + '</baor>';
+        sendData += '<rivers>' + rivers + '</rivers>';
+        sendData += '<ponds>' + ponds + '</ponds>';
+        sendData += '<aquaculture>' + aquaculture + '</aquaculture>';
+        sendData += '<rural>' + rural + '</rural>';
+        sendData += '<brickfield>' + brickfield + '</brickfield>';
+        sendData += '<helipad>' + helipad + '</helipad>';
+        sendData += '<road>' + road + '</road>';
+        sendData += '<sand>' + sand + '</sand>';
+        sendData += '<remark>' + remark + '</remark>';
 
         sendData += '<created_by>' + created_by + '</created_by>';
 
@@ -205,7 +395,7 @@ $(document).on('click', '#btn_store', function () {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_first_ground_truth",
+        url: "/store_degradation_info",
         type: "POST",
         data: { '_token' : token, 'dataToSend' : sendData },
         dataType: "JSON",
@@ -216,11 +406,7 @@ $(document).on('click', '#btn_store', function () {
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#my_table td input[type=text]').val('');
-                $('#my_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
-                $('#btn_close').on('click', function(){
-                    window.location.href = '/show-ground-truth-second';
-                });
+                
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
@@ -232,6 +418,131 @@ $(document).on('click', '#btn_store', function () {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
+
+
+
+});
+
+$(document).on('click', '#btn_store2', function () {
+
+    var created_by = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+    var map_unit = $('#map_unit').val();
+    var area_map_unit = $('#area_map_unit').val();
+
+    var sendData = '';
+
+    sendData = '<head>';
+
+    $('#my_table2 > tbody > tr').each(function () {
+        
+        var indicator = $(this).closest('tr').find('td:eq(2)').text();
+        var forest = $(this).find('#forest').val();
+        var herb = $(this).find('#herb').val();
+        var orchard = $(this).find('#orchard').val();
+        var shifting = $(this).find('#shifting').val();
+        var crop_land = $(this).find('#crop_land').val();
+        var lake = $(this).find('#lake').val();
+        var baor = $(this).find('#baor').val();
+        var rivers = $(this).find('#rivers').val();
+        var ponds = $(this).find('#ponds').val();
+        var aquaculture = $(this).find('#aquaculture').val();
+        var rural = $(this).find('#rural').val();
+        var brickfield = $(this).find('#brickfield').val();
+        var helipad = $(this).find('#helipad').val();
+        var road = $(this).find('#road').val();
+        var sand = $(this).find('#sand').val();
+        var remark = $(this).find('#remark').val();
+        
+
+        // automation set value 0 if any field leave empty or null 
+        if(forest == '' || forest == null || forest == undefined) forest = 0;
+        if(herb == '' || herb == null || herb == undefined) herb = 0;
+        if(orchard == '' || orchard == null || orchard == undefined) orchard = 0;
+        if(shifting == '' || shifting == null || shifting == undefined) shifting = 0;
+        if(crop_land == '' || crop_land == null || crop_land == undefined) crop_land = 0;
+        if(lake == '' || lake == null || lake == undefined) lake = 0;
+        if(baor == '' || baor == null || baor == undefined) baor = 0;
+        if(rivers == '' || rivers == null || rivers == undefined) rivers = '';
+        if(ponds == '' || ponds == null || ponds == undefined) ponds = '';
+        if(aquaculture == '' || aquaculture == null || aquaculture == undefined) aquaculture = '';
+        if(rural == '' || rural == null || rural == undefined) rural = '';
+        if(brickfield == '' || brickfield == null || brickfield == undefined) brickfield = '';
+        if(helipad == '' || helipad == null || helipad == undefined) helipad = '';
+        if(road == '' || road == null || road == undefined) road = '';
+        if(sand == '' || sand == null || sand == undefined) sand = '';
+
+        // first binding data as xml string
+        sendData += '<row>';
+
+        sendData += '<watershed_id>' + watershed_id + '</watershed_id>';
+        sendData += '<watershed_name>' + watershed_name + '</watershed_name>';
+        sendData += '<para_id>' + para_id + '</para_id>';
+        sendData += '<para_name>' + para_name + '</para_name>';
+
+        sendData += '<map_unit>' + map_unit + '</map_unit>';
+        sendData += '<area_map_unit>' + area_map_unit + '</area_map_unit>';
+
+        sendData += '<indicator>' + indicator + '</indicator>';
+        sendData += '<forest>' + forest + '</forest>';
+        sendData += '<herb>' + herb + '</herb>';
+        sendData += '<orchard>' + orchard + '</orchard>';
+        sendData += '<shifting>' + shifting + '</shifting>';
+        sendData += '<crop_land>' + crop_land + '</crop_land>';
+        sendData += '<lake>' + lake + '</lake>';
+        sendData += '<baor>' + baor + '</baor>';
+        sendData += '<rivers>' + rivers + '</rivers>';
+        sendData += '<ponds>' + ponds + '</ponds>';
+        sendData += '<aquaculture>' + aquaculture + '</aquaculture>';
+        sendData += '<rural>' + rural + '</rural>';
+        sendData += '<brickfield>' + brickfield + '</brickfield>';
+        sendData += '<helipad>' + helipad + '</helipad>';
+        sendData += '<road>' + road + '</road>';
+        sendData += '<sand>' + sand + '</sand>';
+        sendData += '<remark>' + remark + '</remark>';
+
+        sendData += '<created_by>' + created_by + '</created_by>';
+
+        sendData += '</row>';
+        
+    });
+
+    sendData += '</head>';
+
+    
+    console.log(sendData);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    // $.ajax({
+    //     url: "/store_existing_conversation",
+    //     type: "POST",
+    //     data: { '_token' : token, 'dataToSend' : sendData },
+    //     dataType: "JSON",
+    //     cache: false,
+    //     success: function (data) {
+    //         // console.log(data);
+    //         if(data.status == "SUCCESS"){
+    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
+    //             $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+    //             $('#my_table td input[type=text]').val('');
+    //         }
+    //         else{
+    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
+    //             $('#error_msg').html(data.message);
+    //         }
+            
+    //     },
+    //     error: function(xhr, ajaxOptions, thrownError) {
+    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    //     }
+    // });
 
 
 

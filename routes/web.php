@@ -116,12 +116,15 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('show-land-degradation', [LandDegradationController::class, 'show_land_degradation'])->name('Land.Degradation');
 
     // GET Method Route 
-    // Route::get('get_livestock_list', [LulcValidationController::class, 'get_livestock_list']);
+    Route::get('getindicator1List', [LandDegradationController::class, 'getindicator1List']);
+    Route::get('getindicator2List', [LandDegradationController::class, 'getindicator2List']);
+    Route::get('getindicator3List', [LandDegradationController::class, 'getindicator3List']);
     // Route::get('get_livestock_edit', [LulcValidationController::class, 'get_livestock_edit']);
 
     // POST Method Route
     Route::post('store_first_ground_truth', [LulcValidationController::class, 'store_first_ground_truth']);
     Route::post('store_second_ground_truth', [LulcValidationController::class, 'store_second_ground_truth']);
+    Route::post('store_degradation_info', [LandDegradationController::class, 'store_degradation_info']);
    
 });
 
