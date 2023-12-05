@@ -51,6 +51,7 @@ Route::post('/get_register', [AuthController::class, 'store'])->name('get.regist
 
 Route::post('/logout', [AuthController::class, 'get_logout'])->name('logout');
 
+/** Start :: Admin Route */
 Route::group(['prefix' => '/',  'middleware' => 'admin_auth'], function(){
     Route::get('user_panel', [HomeController::class, 'view_userPanel'])->name('userPanel');
     Route::get('user_role', [UserRoleController::class, 'get_userRole'])->name('user_role');
@@ -81,14 +82,12 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('get_para_details_for_edit', [ParaBoundaryController::class, 'get_para_details_for_edit']);
     // Route::get('get_para_name_for_entry', [ParaBoundaryController::class, 'get_para_name_for_entry']);
    
-
     // POST Method Route
     Route::post('store_basic_info_para_boundary', [ParaBoundaryController::class, 'store_basic_info_para_boundary']);
     Route::post('store_gps_point_para', [ParaBoundaryController::class, 'store_gps_point_para']);
     Route::post('store_para_name_for_entry', [ParaBoundaryController::class, 'store_para_name_for_entry']);
     Route::post('updt_para_basic_info', [ParaBoundaryController::class, 'updt_para_basic_info']);
    
-
 });
 
 /** Start :: VCF Boundary Route */
@@ -110,10 +109,11 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
  
 });
 
-/** Start :: LULC Validation Route */
+/** Start :: Map Unit Wise Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('show-ground-truth-first', [LulcValidationController::class, 'show_ground_truth1'])->name('Ground.Truth.First');
     Route::get('show-ground-truth-second', [LulcValidationController::class, 'show_ground_truth2'])->name('Ground.Truth.Second');
+    Route::get('show-land-degradation', [LandDegradationController::class, 'show_land_degradation'])->name('Land.Degradation');
 
     // GET Method Route 
     // Route::get('get_livestock_list', [LulcValidationController::class, 'get_livestock_list']);
@@ -122,21 +122,6 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     // POST Method Route
     Route::post('store_first_ground_truth', [LulcValidationController::class, 'store_first_ground_truth']);
     Route::post('store_second_ground_truth', [LulcValidationController::class, 'store_second_ground_truth']);
-   
-});
-
-/** Start :: Agro Ecological Route */
-Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('show-land-degradation', [LandDegradationController::class, 'show_land_degradation'])->name('Land.Degradation');
-    // Route::get('show-ground-truth-second', [LandDegradationController::class, 'show_ground_truth2'])->name('Ground.Truth.Second');
-
-    // GET Method Route 
-    Route::get('get_livestock_list', [LandDegradationController::class, 'get_livestock_list']);
-    Route::get('get_livestock_edit', [LandDegradationController::class, 'get_livestock_edit']);
-
-    // POST Method Route
-    // Route::post('store_first_ground_truth', [LandDegradationController::class, 'store_first_ground_truth']);
-    // Route::post('store_second_ground_truth', [LandDegradationController::class, 'store_second_ground_truth']);
    
 });
 
