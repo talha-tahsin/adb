@@ -78,7 +78,7 @@ function insertTableRow(indicator_nm) {
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
 
-    appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Degradation</td>';
+    // appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Degradation</td>';
 
     appendString += '<td style="width: 200px;text-align: left;">' + indicator_nm + '</td>';
 
@@ -157,8 +157,6 @@ function insertTableRow2(indicator_nm) {
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
 
-    appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Existing Conservation</td>';
-
     appendString += '<td style="width: 200px;text-align: left;">' + indicator_nm + '</td>';
 
     /* 1 */
@@ -235,8 +233,6 @@ function insertTableRow3(indicator_nm) {
 
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-
-    appendString += '<td id="item" name="item" style="width: 80px;text-align: left;">Existing Conservation</td>';
 
     appendString += '<td style="width: 200px;text-align: left;">' + indicator_nm + '</td>';
 

@@ -9,15 +9,22 @@ $(document).ready(function () {
 
     $('#para_list').prop('disabled', true);
 
+   
+
+});
+
+$('#add_row').on('click', function () {
+    insertTableRow();
+
     $.ajax({
-        url: "/get_watershedId",
+        url: "/get_community_list",
         type: "GET",
-        data: { 'watershed' : 'get_data' },
-        dataType: "HTML",
+        data: { 'community_list' : 'get_data' },
+        dataType: "html",
         cache: false,
         success: function (data) {
             // console.log(data);
-            $('#watershedId').html(data);
+            $('.more').html(data);
         },
         error: function(xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -26,59 +33,69 @@ $(document).ready(function () {
 
 });
 
-$(document).on('change', '#watershedId', function () {
+function insertTableRow() {
 
-    var watershedId = $('#watershedId option:selected').val();
-    // console.log(watershedId);
+    var appendString = '';
+    var rowCount = $('#voucher_table > tbody > tr').length;
+    rowCount++;
 
-    if(watershedId)
-    {
-        $.ajax({
-            url: "/get_paraList",
-            type: "GET",
-            data: { 'watershed_id' : watershedId },
-            dataType: "HTML",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#para_list').prop('disabled', false);
-                $('#para_list').html(data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
+    // console.log(accountName);
 
-});
+    appendString += '<tr>';
+    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
 
-$(document).on('click', '#get_communities', function () {
+    appendString += '<td>';
+    appendString += '<select type="text" id="community_list" name="community_list" class="form-control resetSelect more" value="" style="width: 150px;text-align: center;border-radius: 5px;">';
+    appendString += '</select>';
+    appendString += '</td>';
 
-    var Watershed_Id = $('#watershedId option:selected').val();
-    var Para_Id = $('#para_list option:selected').val();
+    appendString += '<td>';
+    appendString += '<input type="text" id="very_poor" class="form-control integer" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
 
-    if(Watershed_Id && Para_Id)
-    { 
-        $.ajax({
-            url: "/CommunityList",
-            type: "GET",
-            data: { 'community_list' : 'get_data' },
-            dataType: "JSON",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                $('#table_div').removeClass('hide');
-                 $.each(data.message, function (i, v) {
-                    insertTableRow(v.community_name, v.community_id);
-                 });
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
+    appendString += '<td>';
+    appendString += '<input type="text" id="poor" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
 
-});
+    appendString += '<td>';
+    appendString += '<input type="text" id="middle_class" class="form-control integer" value="" style="width: 120px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="better_of" class="form-control integer" value="" style="width: 120px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="Less3Month" class="form-control integer" value="" style="width: 120px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="Month3to6" class="form-control integer" value="" style="width: 120px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="Month6to9" class="form-control integer" value="" style="width: 120px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="Month9to12" class="form-control integer" value="" style="width: 120px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td>';
+    appendString += '<input type="text" id="Up12Month" class="form-control integer" value="" style="width: 120px;text-align: center;" placeholder="0">';
+    appendString += '</td>';
+
+    appendString += '<td style="text-align: center;">';
+    appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i>Remove</button>';
+    appendString += '</td>';
+
+    appendString += '</tr>';
+
+
+    $('#voucher_table > tbody:last-child').append(appendString);
+    // $("#voucher_table tr:last").scrollintoview();
+    removeTableRow();
+}
 
 $(document).on('click', '#btn_store', function () {
 
@@ -190,70 +207,7 @@ $(document).on('click', '#btn_store', function () {
 
 });
 
-function insertTableRow(comntyName, comuntyId) {
 
-    var appendString = '';
-    var rowCount = $('#voucher_table > tbody > tr').length;
-    rowCount++;
-
-    // console.log(accountName);
-
-    appendString += '<tr comnty_id="' + comuntyId + '">';
-    appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    //appendString += '<td>'+ofcName+'</td>';
-    appendString += '<td comnty_name="' + comntyName + '" style="width: 150px;text-align: left;">' + comntyName + '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="checkbox" class="checkbox" id="check" value="1" style="width: 60px;text-align: center;" >';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="very_poor" class="form-control integer" value="" style="width: 150px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="poor" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="middle_class" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="better_of" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="Less3Month" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="Month3to6" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="Month6to9" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="Month9to12" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="Up12Month" class="form-control integer" value="" style="width: 100px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    //appendString += '<td style="text-align: center;">';
-    //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';
-    //appendString += '</td>';
-
-    appendString += '</tr>';
-
-
-    $('#voucher_table > tbody:last-child').append(appendString);
-    // $("#voucher_table tr:last").scrollintoview();
-    removeTableRow();
-}
 
 $(document).on('change', '.m_num', function () {
 
@@ -386,34 +340,17 @@ function gotoUrl(path, params, method, target = ''){
     form.submit();
 }
 
-// Function to convert XML to JSON
-function xmlToJson(xml) {
-  try {
-    var obj = {};
-    if (xml.children.length > 0) {
-      for (var i = 0; i < xml.children.length; i++) {
-        var item = xml.children.item(i);
-        var nodeName = item.nodeName;
-
-        if (typeof (obj[nodeName]) == "undefined") {
-          obj[nodeName] = xml2json(item);
-        } else {
-          if (typeof (obj[nodeName].push) == "undefined") {
-            var old = obj[nodeName];
-
-            obj[nodeName] = [];
-            obj[nodeName].push(old);
-          }
-          obj[nodeName].push(xml2json(item));
-        }
-      }
-    } else {
-      obj = xml.textContent;
+$.ajax({
+    url: "/get_community_list",
+    type: "GET",
+    data: { 'community_list' : 'get_data' },
+    dataType: "html",
+    cache: false,
+    success: function (data) {
+        // console.log(data);
+        $('#community_list').html(data);
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
     }
-    return obj;
-  } catch (e) {
-      console.log(e.message);
-  }
-}
-
-
+});

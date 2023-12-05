@@ -73,7 +73,7 @@
                     <div class="row">
                       <div class="col-md-12" style="margin: 0px 0px 0px 0px;">
 
-                        <div class="row">
+                        <!-- <div class="row">
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="map_unit"><span style="color: red;">★&nbsp;</span>Map Unit</label>
                             <input type="text" name="map_unit" id="map_unit" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
@@ -82,13 +82,14 @@
                             <label class="control-label validate" for="area_map_unit"><span style="color: red;">★&nbsp;</span>Area Map Unit (ha)</label>
                             <input type="text" name="area_map_unit" id="area_map_unit" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
                           </div>
-                        </div>
+                        </div> -->
 
+                        <label class="control-label" for="map_unit"><span style="color: black;">(1) &nbsp;</span>Degradation</label>
                         <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table">
                             <thead>
                                 <tr style="background-color: #8ed6f2;">
                                   <th rowspan="2" style="text-align: center;">Serial</th>
-                                  <th rowspan="2" style="text-align: center;">Item</th>
+                                 
                                   <th rowspan="2" style="text-align: left;">Indicator</th>
                                   <th colspan="15" style="text-align: center;">LULC Class Map Unit</th>
                                   <th rowspan="2" style="text-align: center;">Remarks</th>
@@ -132,11 +133,11 @@
 
                           <hr style="border-bottom: 2px solid black;">
                           <!-- 2nd table -->
+                          <label class="control-label" for="map_unit"><span style="color: black;">(2) &nbsp;</span>Existing Conservation</label>
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
                             <thead>
                                 <tr style="background-color: #8ed6f2;">
                                   <th rowspan="2" style="text-align: center;">Serial</th>
-                                  <th rowspan="2" style="text-align: center;">Item</th>
                                   <th rowspan="2" style="text-align: center;">Indicator</th>
                                   <th colspan="15" style="text-align: center;">LULC Class Map Unit</th>
                                   <th rowspan="2" style="text-align: center;">Remarks</th>
@@ -180,11 +181,11 @@
 
                           <hr style="border-bottom: 2px solid black;">
                           <!-- 3rd table -->
+                          <label class="control-label" for="map_unit"><span style="color: black;">(3) &nbsp;</span>Future Conservation</label>
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
                             <thead>
                                 <tr style="background-color: #8ed6f2;">
                                   <th rowspan="2" style="text-align: center;">Serial</th>
-                                  <th rowspan="2" style="text-align: center;">Item</th>
                                   <th rowspan="2" style="text-align: center;">Indicator</th>
                                   <th colspan="15" style="text-align: center;">LULC Class Map Unit</th>
                                   <th rowspan="2" style="text-align: center;">Remarks</th>

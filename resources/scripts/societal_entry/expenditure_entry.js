@@ -308,6 +308,7 @@ function removeTableRow() {
 
     });
 }
+
 $.ajax({
     url: "/get_community_list",
     type: "GET",
