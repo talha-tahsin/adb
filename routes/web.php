@@ -234,7 +234,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
 /** Start :: Expenditure View Page Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('expenditure_entry', [SocietalViewController::class, 'view_expenditure_entry'])->name('View.Expenditure.Entry');
+    Route::get('expenditure', [SocietalViewController::class, 'view_expenditure_entry'])->name('View.Expenditure.Entry');
     //Route::get('view_occupation_info', [SocietalViewController::class, 'view_occupation_info'])->name('View.Occupation.Info');
     
     // GET Method Route 
@@ -250,7 +250,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
 /** Start :: Economic View Page Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('economic_entry', [SocietalViewController::class, 'view_economic_entry'])->name('View.Economic.Entry');
+    Route::get('economic', [SocietalViewController::class, 'view_economic_entry'])->name('View.Economic.Entry');
     //Route::get('view_economic_info', [SocietalViewController::class, 'view_economic_info'])->name('View.Economic.Info');
     
     // GET Method Route 

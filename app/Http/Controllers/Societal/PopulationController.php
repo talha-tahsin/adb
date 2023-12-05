@@ -98,7 +98,7 @@ class PopulationController extends Controller
 
             if($dupCount > 0)
             { 
-                return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para, Rest of Data saved successfully..' ]);
+                return response()->json([ 'status' => 'ERROR', 'message' => '['.$cname.'] community already exsits for same watershed and para...' ]);
             }
             else
             { 

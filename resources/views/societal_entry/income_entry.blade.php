@@ -54,6 +54,8 @@
                     </div> 
                   </div> 
                   <!-- end row -->
+                  
+                <hr style="border-bottom: 2px solid black;">
 
               <div class="form-group" id="table_div">
                     <div class="row">
@@ -64,8 +66,7 @@
                                 
                                 <tr style="background-color: #8ed6f2;">
                                     <th style="text-align:center;">Serial </th>
-                                    <th style="text-align:left;">Name </th>
-                                    <th style="text-align:center;">Select </th>
+                                    <th style="text-align:left;">Community Name </th>
                                     <th style="text-align:center;">Average working people per house</th>
                                     <th style="text-align:center;">1-6000</th>
                                     <th style="text-align:center;">7-10000</th>
@@ -76,6 +77,7 @@
                                     <th style="text-align:center;">30000(+)</th>
                                     <th style="text-align:center;">Male</th>
                                     <th style="text-align:center;">Feamle</th>
+                                    <th style="text-align:center;">Action</th>
                                 </tr>
                                 
                             </thead>
@@ -98,10 +100,13 @@
                         <!-- // end table row -->
 
               <div class="row">
-                  <div class="col-md-10"></div>
-                  <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                      <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 20px;color: black;">Save Communities Info</button>
-                  </div>  
+                <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                  <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                </div>
+                <div class="col-md-8"></div>
+                <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                  <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Communities Info</button>
+                </div>  
               </div>
 
             </div>
@@ -112,16 +117,16 @@
             <div class="row">
 
               <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                <a href="{{ route('View.Entry.Household') }}" style="color: black;">
-                  <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 5px;">Previous : BaseLine Household</button>
+                <a href="{{ route('View.Livelihood.Entry') }}" style="color: black;">
+                  <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 20px;">Previous : Societal Livelihood</button>
                 </a>
               </div>
 
               <div class="col-md-8"></div>
 
               <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                <a href="{{ route('View.Occupation.Entry') }}">
-                  <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : BaseLine Occupation</button>
+                <a href="{{ route('View.Expenditure.Entry') }}">
+                  <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 20px;">Next : Societal Expenditure</button>
                 </a>
               </div>
 

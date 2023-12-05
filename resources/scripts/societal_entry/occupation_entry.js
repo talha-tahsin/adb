@@ -342,40 +342,6 @@ $.ajax({
     }
 });
 
-function gotoUrl(path, params, method, target = ''){
-
-    method = method || "post";
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-    form.setAttribute("target", target);
-    if (typeof params === 'string') {
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", 'data');
-        hiddenField.setAttribute("value", params);
-        form.appendChild(hiddenField);
-    }
-    else {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var hiddenField = document.createElement("input");
-                hiddenField.setAttribute("type", "hidden");
-                hiddenField.setAttribute("name", key);
-                if(typeof params[key] === 'object'){
-                    hiddenField.setAttribute("value", JSON.stringify(params[key]));
-                }
-                else{
-                    hiddenField.setAttribute("value", params[key]);
-                }
-                form.appendChild(hiddenField);
-            }
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-}
 
 
 

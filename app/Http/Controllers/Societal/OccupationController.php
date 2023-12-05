@@ -92,7 +92,7 @@ class OccupationController extends Controller
                 DB::commit();
 
                 if($dupCount > 0){ 
-                    return response()->json([ 'status' => 'ERROR', 'message' => '['.$cname.'] community already exsits for same selected watershed and para...' ]);
+                    return response()->json([ 'status' => 'ERROR', 'message' => '['.$cname.'] community already exsits for same watershed and para...' ]);
                 }
                 else{ 
                     return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate...' ]);
