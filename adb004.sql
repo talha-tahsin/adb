@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 11:30 AM
+-- Generation Time: Dec 05, 2023 at 11:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -67,6 +67,74 @@ INSERT INTO `key_farm_item` (`id`, `item_id`, `item_name`, `delete_row`, `create
 (6, 60015, 'Labor', 0, 'admin', '2023-11-08 05:43:12', NULL, NULL),
 (7, 60016, 'Veterinary Cost', 0, 'admin', '2023-11-08 05:43:12', NULL, NULL),
 (8, 60017, 'Others', 0, 'admin', '2023-11-08 05:43:12', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_indicator1`
+--
+
+CREATE TABLE `key_indicator1` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `indicator` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `key_indicator1`
+--
+
+INSERT INTO `key_indicator1` (`id`, `indicator`, `created_at`, `updated_at`) VALUES
+(1, 'Slope Class', '2023-12-05 05:21:17', NULL),
+(2, 'Degradation Process', '2023-12-05 05:21:17', NULL),
+(3, 'Degree of Degradation', '2023-12-05 05:21:17', NULL),
+(4, 'Causes of Degradation', '2023-12-05 05:21:17', NULL),
+(5, '% of Degraded Area in LULC Class', '2023-12-05 05:21:17', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_indicator2`
+--
+
+CREATE TABLE `key_indicator2` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `indicator` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `key_indicator2`
+--
+
+INSERT INTO `key_indicator2` (`id`, `indicator`, `created_at`, `updated_at`) VALUES
+(1, 'Type of Measure', '2023-12-05 05:21:17', NULL),
+(2, '% of Area Covered', '2023-12-05 05:21:17', NULL),
+(3, 'Who Implement', '2023-12-05 05:21:17', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_indicator3`
+--
+
+CREATE TABLE `key_indicator3` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `indicator` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `key_indicator3`
+--
+
+INSERT INTO `key_indicator3` (`id`, `indicator`, `created_at`, `updated_at`) VALUES
+(1, 'Type of Measure', '2023-12-05 05:21:17', NULL),
+(2, '% of Area to be Covered', '2023-12-05 05:21:17', NULL),
+(3, 'Length of Measures (km)', '2023-12-05 05:21:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -419,7 +487,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (55, '2023_11_26_082856_create_tbl_active_watershed_table', 49),
 (56, '2023_11_27_060211_create_tbl_para_gps_point_table', 50),
 (57, '2023_11_29_092743_create_tbl_plot1_dominant_plant_table', 51),
-(58, '2023_12_03_032836_create_tbl_1st_ground_truth_table', 51);
+(58, '2023_12_03_032836_create_tbl_1st_ground_truth_table', 51),
+(59, '2023_12_05_051950_create_key_indicator1_table', 52),
+(60, '2023_12_05_084831_create_tbl_degradation_info_table', 53);
 
 -- --------------------------------------------------------
 
@@ -588,8 +658,55 @@ CREATE TABLE `tbl_active_watershed` (
 --
 
 INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'R114', 'Ghilachari', '6150455261', 'test4', '1', '2023-12-03 22:43:48', NULL),
+(1, 'user1', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-12-05 00:49:17', NULL),
 (2, 'user2', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-11-28 04:10:30', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_degradation_info`
+--
+
+CREATE TABLE `tbl_degradation_info` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `map_unit` varchar(10) DEFAULT NULL,
+  `area_map_unit` varchar(10) DEFAULT NULL,
+  `indicator` varchar(50) DEFAULT NULL,
+  `forest` varchar(20) DEFAULT NULL,
+  `herb` varchar(20) DEFAULT NULL,
+  `orchard` varchar(20) DEFAULT NULL,
+  `shifting` varchar(20) DEFAULT NULL,
+  `crop_land` varchar(20) DEFAULT NULL,
+  `lake` varchar(20) DEFAULT NULL,
+  `baor` varchar(20) DEFAULT NULL,
+  `rivers` varchar(20) DEFAULT NULL,
+  `ponds` varchar(20) DEFAULT NULL,
+  `aquaculture` varchar(20) DEFAULT NULL,
+  `rural` varchar(20) DEFAULT NULL,
+  `brickfield` varchar(20) DEFAULT NULL,
+  `helipad` varchar(20) DEFAULT NULL,
+  `road` varchar(20) DEFAULT NULL,
+  `sand` varchar(20) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_degradation_info`
+--
+
+INSERT INTO `tbl_degradation_info` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `map_unit`, `area_map_unit`, `indicator`, `forest`, `herb`, `orchard`, `shifting`, `crop_land`, `lake`, `baor`, `rivers`, `ponds`, `aquaculture`, `rural`, `brickfield`, `helipad`, `road`, `sand`, `remark`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Slope Class', '5', '5', '5', '5', '5', '5', '5', '5', '5', '55', '5', '5', '5', '5', '5', 'sert', 'user1', '2023-12-05 02:57:05', NULL),
+(2, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Degradation Process', '2', '2', '2', '2', '2', '2', '22', '2', '2', '2', '2', '2', '2', '2', '2', 'huhu', 'user1', '2023-12-05 02:57:05', NULL),
+(3, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Degree of Degradation', '5', '5', '0', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', 'jihuh', 'user1', '2023-12-05 02:57:05', NULL),
+(4, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Causes of Degradation', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', 'user1', '2023-12-05 02:57:05', NULL),
+(5, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', '% of Degraded Area in LULC Class', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', 'user1', '2023-12-05 02:57:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -667,14 +784,52 @@ INSERT INTO `tbl_economic` (`id`, `watershed_id`, `para_id`, `community_id`, `co
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_existing_conversation`
+--
+
+CREATE TABLE `tbl_existing_conversation` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `map_unit` varchar(10) DEFAULT NULL,
+  `area_map_unit` varchar(10) DEFAULT NULL,
+  `indicator` varchar(50) DEFAULT NULL,
+  `forest` varchar(20) DEFAULT NULL,
+  `herb` varchar(20) DEFAULT NULL,
+  `orchard` varchar(20) DEFAULT NULL,
+  `shifting` varchar(20) DEFAULT NULL,
+  `crop_land` varchar(20) DEFAULT NULL,
+  `lake` varchar(20) DEFAULT NULL,
+  `baor` varchar(20) DEFAULT NULL,
+  `rivers` varchar(20) DEFAULT NULL,
+  `ponds` varchar(20) DEFAULT NULL,
+  `aquaculture` varchar(20) DEFAULT NULL,
+  `rural` varchar(20) DEFAULT NULL,
+  `brickfield` varchar(20) DEFAULT NULL,
+  `helipad` varchar(20) DEFAULT NULL,
+  `road` varchar(20) DEFAULT NULL,
+  `sand` varchar(20) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_expenses`
 --
 
 CREATE TABLE `tbl_expenses` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `watershed_id` int(11) NOT NULL,
-  `para_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
+  `watershed_id` varchar(11) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(11) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `community_id` varchar(11) DEFAULT NULL,
   `community_name` varchar(50) DEFAULT NULL,
   `avg_per_house` int(11) DEFAULT NULL,
   `expenses_1to6` int(11) DEFAULT NULL,
@@ -696,10 +851,8 @@ CREATE TABLE `tbl_expenses` (
 -- Dumping data for table `tbl_expenses`
 --
 
-INSERT INTO `tbl_expenses` (`id`, `watershed_id`, `para_id`, `community_id`, `community_name`, `avg_per_house`, `expenses_1to6`, `expenses_7to10`, `expenses_11to15`, `expenses_16to20`, `expenses_21to25`, `expenses_26to30`, `expenses_30Up`, `male`, `female`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 100300, 30001, 10010008, 'Khumi', 4, 4, 4, 4, 3, 4, 3, 4, 3, 4, 'alamin', '2023-10-28 03:03:56', NULL, NULL),
-(2, 100300, 30001, 10010009, 'Lushai', 4, 3, 3, 3, 3, 3, 4, 3, 2, 3, 'alamin', '2023-10-28 03:05:41', NULL, NULL),
-(3, 100300, 30001, 10010002, 'Marma', 5, 4, 4, 3, 4, 3, 4, 4, 3, 2, 'alamin', '2023-10-28 03:05:41', NULL, NULL);
+INSERT INTO `tbl_expenses` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `community_id`, `community_name`, `avg_per_house`, `expenses_1to6`, `expenses_7to10`, `expenses_11to15`, `expenses_16to20`, `expenses_21to25`, `expenses_26to30`, `expenses_30Up`, `male`, `female`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(4, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '10010008', 'Khumi', 58, 5, 5, 58, 5, 8, 5, 88, 55, 9, 'user1', '2023-12-04 22:44:50', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -775,9 +928,11 @@ INSERT INTO `tbl_household` (`id`, `watershed_id`, `watershed_name`, `para_id`, 
 
 CREATE TABLE `tbl_income` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `watershed_id` int(10) NOT NULL,
-  `para_id` int(10) NOT NULL,
-  `community_id` int(10) NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `community_id` varchar(10) DEFAULT NULL,
   `community_name` varchar(50) DEFAULT NULL,
   `avg_per_house` int(10) DEFAULT NULL,
   `income_1to6` int(10) DEFAULT NULL,
@@ -799,15 +954,8 @@ CREATE TABLE `tbl_income` (
 -- Dumping data for table `tbl_income`
 --
 
-INSERT INTO `tbl_income` (`id`, `watershed_id`, `para_id`, `community_id`, `community_name`, `avg_per_house`, `income_1to6`, `income_7to10`, `income_11to15`, `income_16to20`, `income_21to25`, `income_26to30`, `income_30Up`, `male`, `female`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 100200, 20001, 10010001, 'Chakma', 4, 3, 2, 4, 3, 5, 4, 3, 4, 3, 'alamin', '2023-10-28 02:07:24', NULL, NULL),
-(2, 100100, 10002, 10010007, 'Chak', 34, 34, 34, 32, 2, 4, 2, 4, 4, 2, 'alamin', '2023-10-28 02:15:32', NULL, NULL),
-(3, 100100, 10002, 10010001, 'Chakma', 4, 34, 3, 23, 4, 34, 34, 3, 33, 2, 'alamin', '2023-10-28 02:15:32', NULL, NULL),
-(4, 100100, 10002, 10010008, 'Khumi', 45, 6, 56, 5, 6, 5, 6, 5, 5, 6, 'alamin', '2023-10-28 02:15:32', NULL, NULL),
-(7, 100100, 10001, 10010007, 'Chak', 5, 5, 5, 5, 5, 5, 5, 3, 4, 3, 'alamin', '2023-10-28 02:18:20', NULL, NULL),
-(8, 100100, 10001, 10010001, 'Chakma', 4, 5, 4, 3, 4, 4, 4, 4, 3, 2, 'alamin', '2023-10-28 02:18:20', NULL, NULL),
-(9, 100200, 20002, 10010008, 'Khumi', 4, 3, 4, 3, 3, 2, 2, 4, 3, 3, 'alamin', '2023-10-28 02:21:52', NULL, NULL),
-(10, 100300, 30002, 10010008, 'Khumi', 4, 3, 2, 3, 4, 4, 3, 2, 3, 4, 'alamin', '2023-10-28 02:23:50', NULL, NULL);
+INSERT INTO `tbl_income` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `community_id`, `community_name`, `avg_per_house`, `income_1to6`, `income_7to10`, `income_11to15`, `income_16to20`, `income_21to25`, `income_26to30`, `income_30Up`, `male`, `female`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(11, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '10010001', 'Chakma', 25, 5, 5, 5, 8, 8, 8, 8, 8, 8, 'user1', '2023-12-04 21:55:37', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1699,6 +1847,24 @@ ALTER TABLE `key_farm_item`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `key_indicator1`
+--
+ALTER TABLE `key_indicator1`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `key_indicator2`
+--
+ALTER TABLE `key_indicator2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `key_indicator3`
+--
+ALTER TABLE `key_indicator3`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `key_livestock`
 --
 ALTER TABLE `key_livestock`
@@ -1809,6 +1975,12 @@ ALTER TABLE `tbl_active_watershed`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_degradation_info`
+--
+ALTER TABLE `tbl_degradation_info`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_diseases`
 --
 ALTER TABLE `tbl_diseases`
@@ -1818,6 +1990,12 @@ ALTER TABLE `tbl_diseases`
 -- Indexes for table `tbl_economic`
 --
 ALTER TABLE `tbl_economic`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_existing_conversation`
+--
+ALTER TABLE `tbl_existing_conversation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2006,6 +2184,24 @@ ALTER TABLE `key_farm_item`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `key_indicator1`
+--
+ALTER TABLE `key_indicator1`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `key_indicator2`
+--
+ALTER TABLE `key_indicator2`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `key_indicator3`
+--
+ALTER TABLE `key_indicator3`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `key_livestock`
 --
 ALTER TABLE `key_livestock`
@@ -2069,7 +2265,7 @@ ALTER TABLE `lookup_watershed`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2108,6 +2304,12 @@ ALTER TABLE `tbl_active_watershed`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_degradation_info`
+--
+ALTER TABLE `tbl_degradation_info`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tbl_diseases`
 --
 ALTER TABLE `tbl_diseases`
@@ -2120,10 +2322,16 @@ ALTER TABLE `tbl_economic`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `tbl_existing_conversation`
+--
+ALTER TABLE `tbl_existing_conversation`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tbl_expenses`
 --
 ALTER TABLE `tbl_expenses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_health_services`
@@ -2141,7 +2349,7 @@ ALTER TABLE `tbl_household`
 -- AUTO_INCREMENT for table `tbl_income`
 --
 ALTER TABLE `tbl_income`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_land`

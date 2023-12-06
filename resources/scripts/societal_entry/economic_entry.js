@@ -115,7 +115,8 @@ $(document).on('click', '#btn_store', function () {
         {
 
             var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); //$(this).closest('tr').find('td:eq(1)').text();
+            var tr_comnty_name = $(this).find('td:eq(1)').text(); 
+            //$(this).closest('tr').find('td:eq(1)').text();
            
             var very_poor = $(this).find('#very_poor').val();
             var poor = $(this).find('#poor').val();

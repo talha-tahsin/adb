@@ -36,6 +36,28 @@ class LandDegradationController extends Controller
 
         return response()->json([ 'message' => $data ]);
     }
+    public function get_map_unit_list(){
+        
+        $data = DB::table('key_map_unit_list')->orderBy('id')->get();
+        
+        $tabStr = '';
+        $serial = 1;
+
+        foreach ($data as $user) {
+
+            $tabStr .= '<tr>';
+            $tabStr .= '<td style="text-align: center;">'.$serial++.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$user->map_unit.'</td>';
+            $tabStr .= '<td style="text-align: center;">'.$user->area_map_unit.'</td>';
+           
+            $tabStr .= '<td style="text-align: center;">
+                <button type="submit" id="btn_entry" class="btn btn-primary" row_id="'.$user->id.'">Entry for this Map</button></td>';
+            $tabStr .= '</tr>';
+        }
+
+        return $tabStr;
+
+    }
     public function store_degradation_info(Request $request)
     {
         $receiveData = $request['dataToSend'];
@@ -55,10 +77,10 @@ class LandDegradationController extends Controller
                 $store_data = array(
                     'watershed_id' => $value->watershed_id,
                     'watershed_name' => $value->watershed_name,
-                    'para_id' => $value->para_id,
-                    'para_name' => $value->para_name,
+                    // 'para_id' => $value->para_id,
+                    // 'para_name' => $value->para_name,
                     'map_unit' => $value->map_unit,
-                    'area_map_unit' => $value->para_name,
+                    'area_map_unit' => $value->area_map_unit,
                     'indicator' => $value->indicator,
                     'forest' => $value->forest,
                     'herb' => $value->herb,
@@ -114,10 +136,10 @@ class LandDegradationController extends Controller
                 $store_data = array(
                     'watershed_id' => $value->watershed_id,
                     'watershed_name' => $value->watershed_name,
-                    'para_id' => $value->para_id,
-                    'para_name' => $value->para_name,
+                    // 'para_id' => $value->para_id,
+                    // 'para_name' => $value->para_name,
                     'map_unit' => $value->map_unit,
-                    'area_map_unit' => $value->para_name,
+                    'area_map_unit' => $value->area_map_unit,
                     'indicator' => $value->indicator,
                     'forest' => $value->forest,
                     'herb' => $value->herb,
@@ -140,6 +162,65 @@ class LandDegradationController extends Controller
                 );
                 
                 DB::table('tbl_existing_conversation')->insert($store_data);
+                DB::commit();
+            }
+            
+            return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            
+        }
+        catch (\Exception $e) 
+        {
+            DB::rollBack();
+            $message = "Opps!! Something is wrong, data not saved and rollback..";
+            return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+        }
+
+    }
+    public function store_future_conversation(Request $request)
+    {
+        $receiveData = $request['dataToSend'];
+        $xmlstr = simplexml_load_string($receiveData);
+        // dd($xmlstr->row);
+        
+        $timestamp = time();
+        $created_at = date("Y-m-d H:i:s", $timestamp);
+
+        try 
+        {
+            DB::beginTransaction();
+
+            foreach ($xmlstr->row as $value) 
+            {
+
+                $store_data = array(
+                    'watershed_id' => $value->watershed_id,
+                    'watershed_name' => $value->watershed_name,
+                    // 'para_id' => $value->para_id,
+                    // 'para_name' => $value->para_name,
+                    'map_unit' => $value->map_unit,
+                    'area_map_unit' => $value->area_map_unit,
+                    'indicator' => $value->indicator,
+                    'forest' => $value->forest,
+                    'herb' => $value->herb,
+                    'orchard' => $value->orchard,
+                    'shifting' => $value->shifting,
+                    'crop_land' => $value->crop_land,
+                    'lake' => $value->lake,
+                    'baor' => $value->baor,
+                    'rivers' => $value->rivers,
+                    'ponds' => $value->ponds,
+                    'aquaculture' => $value->aquaculture,
+                    'rural' => $value->rural,
+                    'brickfield' => $value->brickfield,
+                    'helipad' => $value->helipad,
+                    'road' => $value->road,
+                    'sand' => $value->sand,
+                    'remark' => $value->remark,
+                    'created_by' => $value->created_by,
+                    'created_at' => $created_at,
+                );
+                
+                DB::table('tbl_future_conversation')->insert($store_data);
                 DB::commit();
             }
             

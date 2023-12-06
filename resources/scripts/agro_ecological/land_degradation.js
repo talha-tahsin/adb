@@ -68,6 +68,18 @@ $('#add_row').on('click', function () {
     insertTableRow();
 });
 
+$(document).on('click', '#btn_entry', function(){
+
+    var map_unit = $(this).closest('tr').find('td:eq(1)').text();
+    var area_map_unit = $(this).closest('tr').find('td:eq(2)').text();
+    console.log(map_unit, area_map_unit);
+
+    $('#entry_div').removeClass('hide');
+    $('#map_unit').val(map_unit);
+    $('#area_map_unit').val(area_map_unit);
+  
+  });
+
 function insertTableRow(indicator_nm) {
 
     var appendString = '';
@@ -307,8 +319,8 @@ $(document).on('click', '#btn_store1', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershed_id').val();
     var watershed_name = $('#watershed_name').val();
-    var para_id = $('#para_id').val();
-    var para_name = $('#para_name').val();
+    // var para_id = $('#para_id').val();
+    // var para_name = $('#para_name').val();
     var map_unit = $('#map_unit').val();
     var area_map_unit = $('#area_map_unit').val();
 
@@ -318,7 +330,7 @@ $(document).on('click', '#btn_store1', function () {
 
     $('#my_table > tbody > tr').each(function () {
         
-        var indicator = $(this).closest('tr').find('td:eq(2)').text();
+        var indicator = $(this).closest('tr').find('td:eq(1)').text();
         var forest = $(this).find('#forest').val();
         var herb = $(this).find('#herb').val();
         var orchard = $(this).find('#orchard').val();
@@ -351,8 +363,8 @@ $(document).on('click', '#btn_store1', function () {
 
         sendData += '<watershed_id>' + watershed_id + '</watershed_id>';
         sendData += '<watershed_name>' + watershed_name + '</watershed_name>';
-        sendData += '<para_id>' + para_id + '</para_id>';
-        sendData += '<para_name>' + para_name + '</para_name>';
+        // sendData += '<para_id>' + para_id + '</para_id>';
+        // sendData += '<para_name>' + para_name + '</para_name>';
 
         sendData += '<map_unit>' + map_unit + '</map_unit>';
         sendData += '<area_map_unit>' + area_map_unit + '</area_map_unit>';
@@ -425,8 +437,8 @@ $(document).on('click', '#btn_store2', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershed_id').val();
     var watershed_name = $('#watershed_name').val();
-    var para_id = $('#para_id').val();
-    var para_name = $('#para_name').val();
+    // var para_id = $('#para_id').val();
+    // var para_name = $('#para_name').val();
     var map_unit = $('#map_unit').val();
     var area_map_unit = $('#area_map_unit').val();
 
@@ -436,7 +448,7 @@ $(document).on('click', '#btn_store2', function () {
 
     $('#my_table2 > tbody > tr').each(function () {
         
-        var indicator = $(this).closest('tr').find('td:eq(2)').text();
+        var indicator = $(this).closest('tr').find('td:eq(1)').text();
         var forest = $(this).find('#forest').val();
         var herb = $(this).find('#herb').val();
         var orchard = $(this).find('#orchard').val();
@@ -463,22 +475,22 @@ $(document).on('click', '#btn_store2', function () {
         if(crop_land == '' || crop_land == null || crop_land == undefined) crop_land = 0;
         if(lake == '' || lake == null || lake == undefined) lake = 0;
         if(baor == '' || baor == null || baor == undefined) baor = 0;
-        if(rivers == '' || rivers == null || rivers == undefined) rivers = '';
-        if(ponds == '' || ponds == null || ponds == undefined) ponds = '';
-        if(aquaculture == '' || aquaculture == null || aquaculture == undefined) aquaculture = '';
-        if(rural == '' || rural == null || rural == undefined) rural = '';
-        if(brickfield == '' || brickfield == null || brickfield == undefined) brickfield = '';
-        if(helipad == '' || helipad == null || helipad == undefined) helipad = '';
-        if(road == '' || road == null || road == undefined) road = '';
-        if(sand == '' || sand == null || sand == undefined) sand = '';
+        if(rivers == '' || rivers == null || rivers == undefined) rivers = 0;
+        if(ponds == '' || ponds == null || ponds == undefined) ponds = 0;
+        if(aquaculture == '' || aquaculture == null || aquaculture == undefined) aquaculture = 0;
+        if(rural == '' || rural == null || rural == undefined) rural = 0;
+        if(brickfield == '' || brickfield == null || brickfield == undefined) brickfield = 0;
+        if(helipad == '' || helipad == null || helipad == undefined) helipad = 0;
+        if(road == '' || road == null || road == undefined) road = 0;
+        if(sand == '' || sand == null || sand == undefined) sand = 0;
 
         // first binding data as xml string
         sendData += '<row>';
 
         sendData += '<watershed_id>' + watershed_id + '</watershed_id>';
         sendData += '<watershed_name>' + watershed_name + '</watershed_name>';
-        sendData += '<para_id>' + para_id + '</para_id>';
-        sendData += '<para_name>' + para_name + '</para_name>';
+        // sendData += '<para_id>' + para_id + '</para_id>';
+        // sendData += '<para_name>' + para_name + '</para_name>';
 
         sendData += '<map_unit>' + map_unit + '</map_unit>';
         sendData += '<area_map_unit>' + area_map_unit + '</area_map_unit>';
@@ -516,29 +528,154 @@ $(document).on('click', '#btn_store2', function () {
      $('#success_msg').html('');
      $('#error_msg').html('');
 
-    // $.ajax({
-    //     url: "/store_existing_conversation",
-    //     type: "POST",
-    //     data: { '_token' : token, 'dataToSend' : sendData },
-    //     dataType: "JSON",
-    //     cache: false,
-    //     success: function (data) {
-    //         // console.log(data);
-    //         if(data.status == "SUCCESS"){
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-    //             $('#my_table td input[type=text]').val('');
-    //         }
-    //         else{
-    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
-    //             $('#error_msg').html(data.message);
-    //         }
+    $.ajax({
+        url: "/store_existing_conversation",
+        type: "POST",
+        data: { '_token' : token, 'dataToSend' : sendData },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == "SUCCESS"){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#my_table2 td input[type=text]').val('');
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html(data.message);
+            }
             
-    //     },
-    //     error: function(xhr, ajaxOptions, thrownError) {
-    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-    //     }
-    // });
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+
+
+});
+
+$(document).on('click', '#btn_store3', function () {
+
+    var created_by = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    // var para_id = $('#para_id').val();
+    // var para_name = $('#para_name').val();
+    var map_unit = $('#map_unit').val();
+    var area_map_unit = $('#area_map_unit').val();
+
+    var sendData = '';
+
+    sendData = '<head>';
+
+    $('#my_table3 > tbody > tr').each(function () {
+        
+        var indicator = $(this).closest('tr').find('td:eq(1)').text();
+        var forest = $(this).find('#forest').val();
+        var herb = $(this).find('#herb').val();
+        var orchard = $(this).find('#orchard').val();
+        var shifting = $(this).find('#shifting').val();
+        var crop_land = $(this).find('#crop_land').val();
+        var lake = $(this).find('#lake').val();
+        var baor = $(this).find('#baor').val();
+        var rivers = $(this).find('#rivers').val();
+        var ponds = $(this).find('#ponds').val();
+        var aquaculture = $(this).find('#aquaculture').val();
+        var rural = $(this).find('#rural').val();
+        var brickfield = $(this).find('#brickfield').val();
+        var helipad = $(this).find('#helipad').val();
+        var road = $(this).find('#road').val();
+        var sand = $(this).find('#sand').val();
+        var remark = $(this).find('#remark').val();
+        
+
+        // automation set value 0 if any field leave empty or null 
+        if(forest == '' || forest == null || forest == undefined) forest = 0;
+        if(herb == '' || herb == null || herb == undefined) herb = 0;
+        if(orchard == '' || orchard == null || orchard == undefined) orchard = 0;
+        if(shifting == '' || shifting == null || shifting == undefined) shifting = 0;
+        if(crop_land == '' || crop_land == null || crop_land == undefined) crop_land = 0;
+        if(lake == '' || lake == null || lake == undefined) lake = 0;
+        if(baor == '' || baor == null || baor == undefined) baor = 0;
+        if(rivers == '' || rivers == null || rivers == undefined) rivers = 0;
+        if(ponds == '' || ponds == null || ponds == undefined) ponds = 0;
+        if(aquaculture == '' || aquaculture == null || aquaculture == undefined) aquaculture = 0;
+        if(rural == '' || rural == null || rural == undefined) rural = 0;
+        if(brickfield == '' || brickfield == null || brickfield == undefined) brickfield = 0;
+        if(helipad == '' || helipad == null || helipad == undefined) helipad = 0;
+        if(road == '' || road == null || road == undefined) road = 0;
+        if(sand == '' || sand == null || sand == undefined) sand = 0;
+
+        // first binding data as xml string
+        sendData += '<row>';
+
+        sendData += '<watershed_id>' + watershed_id + '</watershed_id>';
+        sendData += '<watershed_name>' + watershed_name + '</watershed_name>';
+        // sendData += '<para_id>' + para_id + '</para_id>';
+        // sendData += '<para_name>' + para_name + '</para_name>';
+
+        sendData += '<map_unit>' + map_unit + '</map_unit>';
+        sendData += '<area_map_unit>' + area_map_unit + '</area_map_unit>';
+
+        sendData += '<indicator>' + indicator + '</indicator>';
+        sendData += '<forest>' + forest + '</forest>';
+        sendData += '<herb>' + herb + '</herb>';
+        sendData += '<orchard>' + orchard + '</orchard>';
+        sendData += '<shifting>' + shifting + '</shifting>';
+        sendData += '<crop_land>' + crop_land + '</crop_land>';
+        sendData += '<lake>' + lake + '</lake>';
+        sendData += '<baor>' + baor + '</baor>';
+        sendData += '<rivers>' + rivers + '</rivers>';
+        sendData += '<ponds>' + ponds + '</ponds>';
+        sendData += '<aquaculture>' + aquaculture + '</aquaculture>';
+        sendData += '<rural>' + rural + '</rural>';
+        sendData += '<brickfield>' + brickfield + '</brickfield>';
+        sendData += '<helipad>' + helipad + '</helipad>';
+        sendData += '<road>' + road + '</road>';
+        sendData += '<sand>' + sand + '</sand>';
+        sendData += '<remark>' + remark + '</remark>';
+
+        sendData += '<created_by>' + created_by + '</created_by>';
+
+        sendData += '</row>';
+        
+    });
+
+    sendData += '</head>';
+
+    
+    console.log(sendData);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_future_conversation",
+        type: "POST",
+        data: { '_token' : token, 'dataToSend' : sendData },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == "SUCCESS"){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#my_table3 td input[type=text]').val('');
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html(data.message);
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 
 
 
