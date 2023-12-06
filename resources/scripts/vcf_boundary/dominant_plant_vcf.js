@@ -60,7 +60,8 @@ $(document).on('click', '#btn_store_plot1', function () {
     var watershed_name = $('#watershed_name').val();
     var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
-    var plot1_location = $('#plot1_location').val();
+    var latitude1 = $('#latitude1').val();
+    var longitude1 = $('#longitude1').val();
     var plot1_dimension = $('#plot1_dimension').val();
     var sendData = '';
 
@@ -88,7 +89,8 @@ $(document).on('click', '#btn_store_plot1', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
-        sendData += '<plot1_location>' + plot1_location + '</plot1_location>';
+        sendData += '<latitude1>' + latitude1 + '</latitude1>';
+        sendData += '<longitude1>' + longitude1 + '</longitude1>';
         sendData += '<plot1_dimension>' + plot1_dimension + '</plot1_dimension>';
 
         sendData += '<species_name1>' + species_name1 + '</species_name1>';
@@ -124,6 +126,7 @@ $(document).on('click', '#btn_store_plot1', function () {
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#my_table td input[type=text]').val('');
                 $('#voucher_table td input[type=checkbox]').prop('checked', false);
+                $('.resetVal').val('');
                 //
                 $('#div_plot1').addClass('hide'); 
                 $('#div_plot2').removeClass('hide');  
@@ -157,7 +160,8 @@ $(document).on('click', '#btn_store_plot2', function () {
     var watershed_name = $('#watershed_name').val();
     var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
-    var plot2_location = $('#plot2_location').val();
+    var latitude2 = $('#latitude2').val();
+    var longitude2 = $('#longitude2').val();
     var plot2_dimension = $('#plot2_dimension').val();
     var sendData = '';
 
@@ -185,7 +189,8 @@ $(document).on('click', '#btn_store_plot2', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
-        sendData += '<plot2_location>' + plot2_location + '</plot2_location>';
+        sendData += '<latitude2>' + latitude2 + '</latitude2>';
+        sendData += '<longitude2>' + longitude2 + '</longitude2>';
         sendData += '<plot2_dimension>' + plot2_dimension + '</plot2_dimension>';
 
         sendData += '<species_name2>' + species_name2 + '</species_name2>';
@@ -256,7 +261,8 @@ $(document).on('click', '#btn_store_plot3', function () {
     var watershed_name = $('#watershed_name').val();
     var para_id = $('#para_id').val();
     var para_name = $('#para_name').val();
-    var plot3_location = $('#plot3_location').val();
+    var latitude3 = $('#latitude3').val();
+    var longitude3 = $('#longitude3').val();
     var plot3_dimension = $('#plot3_dimension').val();
     var sendData = '';
 
@@ -284,7 +290,8 @@ $(document).on('click', '#btn_store_plot3', function () {
         sendData += '<para_id>' + para_id + '</para_id>';
         sendData += '<para_name>' + para_name + '</para_name>';
 
-        sendData += '<plot3_location>' + plot3_location + '</plot3_location>';
+        sendData += '<latitude3>' + latitude3 + '</latitude3>';
+        sendData += '<longitude3>' + longitude3 + '</longitude3>';
         sendData += '<plot3_dimension>' + plot3_dimension + '</plot3_dimension>';
 
         sendData += '<species_name3>' + species_name3 + '</species_name3>';

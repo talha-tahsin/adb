@@ -43,7 +43,7 @@
               <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
               <div class="info-box-content">
-                <span class="info-box-text">Current </span>
+                <span class="info-box-text"> <h4>Current</h4> </span>
                 <span class="info-box-number" > <h4 id="watershed_id"></h4> </span>
 
                 <div class="progress">

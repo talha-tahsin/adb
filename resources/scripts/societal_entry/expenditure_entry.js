@@ -128,7 +128,7 @@ $(document).on('click', '#btn_store', function () {
 
         // var tr_comnty_id = $(this).attr('comnty_id');
         // var tr_comnty_name = $(this).find('td:eq(1)').text(); 
-        //$(this).closest('tr').find('td:eq(1)').text();
+        // $(this).closest('tr').find('td:eq(1)').text();
 
         var community_id = $(this).find('#community_list option:selected').val();
         var community_name = $(this).find('#community_list option:selected').text();

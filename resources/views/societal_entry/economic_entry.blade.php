@@ -36,7 +36,6 @@
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
                   <div class="row"> 
-                  <!-- <div class="col-md-1"></div>  -->
 
                     <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                       <label class="control-label validate" for="community_id"><span style="color: red;">★&nbsp;</span>Watershed Id</label> 
@@ -188,7 +187,7 @@
 
 <script>
 
-document.title = 'Societal Expenditure';
+document.title = 'Societal Economic';
 
 $(document).ready(function () {
 

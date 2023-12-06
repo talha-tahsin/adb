@@ -79,13 +79,18 @@
 
                         <div class="row">
                           <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>Location</label>
-                            <input type="text" name="plot1_location" id="plot1_location" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>latitude </label>
+                            <input type="text" name="latitude1" id="latitude1" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
+
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>longitude </label>
+                            <input type="text" name="longitude1" id="longitude1" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                           </div>
                           
                           <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="plot1_dimension"><span style="color: red;">★&nbsp;</span>Dimensions of the plot</label>
-                            <input type="text" name="plot1_dimension" id="plot1_dimension" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                            <input type="text" name="plot1_dimension" id="plot1_dimension" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                           </div>
                         </div>
 
@@ -127,13 +132,18 @@
 
                         <div class="row">
                           <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label validate" for="location"><span style="color: red;">★&nbsp;</span>Location</label>
-                            <input type="text" name="plot2_location" id="plot2_location" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>latitude </label>
+                            <input type="text" name="latitude2" id="latitude2" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
+
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>longitude </label>
+                            <input type="text" name="longitude2" id="longitude2" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                           </div>
                           
                           <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="plot1_dimension"><span style="color: red;">★&nbsp;</span>Dimensions of the plot</label>
-                            <input type="text" name="plot2_dimension" id="plot2_dimension" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                            <input type="text" name="plot2_dimension" id="plot2_dimension" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                           </div>
                         </div>
 
@@ -172,14 +182,19 @@
                             Dominant plants species, measurement and their coverage in 3rd Plot</label>
 
                           <div class="row">
-                            <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
-                              <label class="control-label validate" for="location"><span style="color: red;">★&nbsp;</span>Location</label>
-                              <input type="text" name="plot3_location" id="plot3_location" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
-                            </div>
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>latitude </label>
+                            <input type="text" name="latitude3" id="latitude3" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
+
+                          <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label validate" for="plot1_location"><span style="color: red;">★&nbsp;</span>longitude </label>
+                            <input type="text" name="longitude3" id="longitude3" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                          </div>
                             
                             <div class="col-md-4" style="margin: 0px 0px 10px 0px;">
                               <label class="control-label validate" for="dimensions"><span style="color: red;">★&nbsp;</span>Dimensions of the plot</label>
-                              <input type="text" name="plot3_dimension" id="plot3_dimension" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                              <input type="text" name="plot3_dimension" id="plot3_dimension" class="form-control resetVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                             </div>
                           </div>
 

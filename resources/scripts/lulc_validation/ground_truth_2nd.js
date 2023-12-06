@@ -109,8 +109,8 @@ $(document).on('click', '#btn_store', function () {
     var token = $("meta[name='csrf-token']").attr("content");
     var watershed_id = $('#watershed_id').val();
     var watershed_name = $('#watershed_name').val();
-    var para_id = $('#para_id').val();
-    var para_name = $('#para_name').val();
+    // var para_id = $('#para_id').val();
+    // var para_name = $('#para_name').val();
     var sendData = '';
 
     sendData = '<head>';
@@ -143,8 +143,8 @@ $(document).on('click', '#btn_store', function () {
 
         sendData += '<watershed_id>' + watershed_id + '</watershed_id>';
         sendData += '<watershed_name>' + watershed_name + '</watershed_name>';
-        sendData += '<para_id>' + para_id + '</para_id>';
-        sendData += '<para_name>' + para_name + '</para_name>';
+        // sendData += '<para_id>' + para_id + '</para_id>';
+        // sendData += '<para_name>' + para_name + '</para_name>';
 
         sendData += '<map_code_unit>' + map_code_unit + '</map_code_unit>';
         sendData += '<longitude_east>' + longitude_east + '</longitude_east>';

@@ -36,7 +36,9 @@ class EconomicController extends Controller
 
                     $store_data = array(
                         'watershed_id' => $value->WatershedId,
+                        'watershed_name' => $value->watershed_name,
                         'para_id' => $value->ParaId,
+                        'para_name' => $value->para_name,
                         'community_id' => $value->CommunityId,
                         'community_name' => $value->CommunityName,
                         'very_poor' => $value->VeryPoor,
@@ -90,14 +92,11 @@ class EconomicController extends Controller
 
                 DB::commit();
 
-                if($dupCount > 0 && $newCount == 0){ 
-                    return response()->json([ 'status' => 'EXIST', 'message' => 'Becasue, ['.$cname.'] community has already exsits for the selected watershed and para...' ]);
-                }
-                else if ($dupCount > 0 && $newCount > 0){
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'But ['.$cname.'] community already exsits and can not possible to store...' ]);
+                if($dupCount > 0){ 
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para...' ]);
                 }
                 else{ 
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'No Data found as duplicate...' ]);
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate...' ]);
                 }
             }
             catch (\Exception $e) 

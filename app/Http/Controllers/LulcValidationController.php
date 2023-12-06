@@ -37,8 +37,8 @@ class LulcValidationController extends Controller
                 $store_data = array(
                     'watershed_id' => $value->watershed_id,
                     'watershed_name' => $value->watershed_name,
-                    'para_id' => $value->para_id,
-                    'para_name' => $value->para_name,
+                    // 'para_id' => $value->para_id,
+                    // 'para_name' => $value->para_name,
                     'map_code_unit' => $value->map_code_unit,
                     'longitude_east' => $value->longitude_east,
                     'longitude_north' => $value->longitude_north,
@@ -86,8 +86,8 @@ class LulcValidationController extends Controller
                 $store_data = array(
                     'watershed_id' => $value->watershed_id,
                     'watershed_name' => $value->watershed_name,
-                    'para_id' => $value->para_id,
-                    'para_name' => $value->para_name,
+                    // 'para_id' => $value->para_id,
+                    // 'para_name' => $value->para_name,
                     'map_code_unit' => $value->map_code_unit,
                     'longitude_east' => $value->longitude_east,
                     'longitude_north' => $value->longitude_north,

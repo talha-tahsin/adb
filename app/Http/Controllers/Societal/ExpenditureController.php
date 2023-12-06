@@ -92,7 +92,7 @@ class ExpenditureController extends Controller
                 DB::commit();
 
                 if($dupCount > 0){ 
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para, Rest of Data saved successfully...' ]);
+                    return response()->json([ 'status' => 'SUCCESS', 'message' => '['.$cname.'] community already exsits for same selected watershed and para...' ]);
                 }
                 else{ 
                     return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data save successfully without duplicate...' ]);

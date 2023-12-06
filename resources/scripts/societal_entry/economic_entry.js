@@ -101,67 +101,70 @@ $(document).on('click', '#btn_store', function () {
 
     var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
-    var watershed_id = $('#watershedId option:selected').val();
-    var paraId = $('#para_list option:selected').val();
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
     var xml_data = '';
 
     xml_data = '<head>';
 
     $('#voucher_table > tbody > tr').each(function () {
 
-        var rowCheckbox = $(this).find("#check").prop("checked");
+        // var tr_comnty_id = $(this).attr('comnty_id');
+        // var tr_comnty_name = $(this).find('td:eq(1)').text(); 
+        //$(this).closest('tr').find('td:eq(1)').text();
 
-        if (rowCheckbox == true)
-        {
+        var community_id = $(this).find('#community_list option:selected').val();
+        var community_name = $(this).find('#community_list option:selected').text();
+        
+        var very_poor = $(this).find('#very_poor').val();
+        var poor = $(this).find('#poor').val();
+        var middle_class = $(this).find('#middle_class').val();
+        var better_of = $(this).find('#better_of').val();
 
-            var tr_comnty_id = $(this).attr('comnty_id');
-            var tr_comnty_name = $(this).find('td:eq(1)').text(); 
-            //$(this).closest('tr').find('td:eq(1)').text();
-           
-            var very_poor = $(this).find('#very_poor').val();
-            var poor = $(this).find('#poor').val();
-            var middle_class = $(this).find('#middle_class').val();
-            var better_of = $(this).find('#better_of').val();
+        var Less3Month = $(this).find('#Less3Month').val();
+        var Month3to6 = $(this).find('#Month3to6').val();
+        var Month6to9 = $(this).find('#Month6to9').val();
+        var Month9to12 = $(this).find('#Month9to12').val();
+        var Up12Month = $(this).find('#Up12Month').val();
 
-            var Less3Month = $(this).find('#Less3Month').val();
-            var Month3to6 = $(this).find('#Month3to6').val();
-            var Month6to9 = $(this).find('#Month6to9').val();
-            var Month9to12 = $(this).find('#Month9to12').val();
-            var Up12Month = $(this).find('#Up12Month').val();
+        if(very_poor == '' || very_poor == null || very_poor == undefined) very_poor = 0;
+        if(poor == '' || poor == null || poor == undefined) poor = 0;
+        if(middle_class == '' || middle_class == null || middle_class == undefined) middle_class = 0;
+        if(better_of == '' || better_of == null || better_of == undefined) better_of = 0;
+        if(Less3Month == '' || Less3Month == null || Less3Month == undefined) Less3Month = 0;
+        if(Month3to6 == '' || Month3to6 == null || Month3to6 == undefined) Month3to6 = 0;
+        if(Month6to9 == '' || Month6to9 == null || Month6to9 == undefined) Month6to9 = 0;
+        if(Month9to12 == '' || Month9to12 == null || Month9to12 == undefined) Month9to12 = 0;
+        if(Up12Month == '' || Up12Month == null || Up12Month == undefined) Up12Month = 0;
 
-            if(very_poor == '' || very_poor == null || very_poor == undefined) very_poor = 0;
-            if(poor == '' || poor == null || poor == undefined) poor = 0;
-            if(middle_class == '' || middle_class == null || middle_class == undefined) middle_class = 0;
-            if(better_of == '' || better_of == null || better_of == undefined) better_of = 0;
-            if(Less3Month == '' || Less3Month == null || Less3Month == undefined) Less3Month = 0;
-            if(Month3to6 == '' || Month3to6 == null || Month3to6 == undefined) Month3to6 = 0;
-            if(Month6to9 == '' || Month6to9 == null || Month6to9 == undefined) Month6to9 = 0;
-            if(Month9to12 == '' || Month9to12 == null || Month9to12 == undefined) Month9to12 = 0;
-            if(Up12Month == '' || Up12Month == null || Up12Month == undefined) Up12Month = 0;
+        // first binding data as xml string
+        xml_data += '<row>';
 
-            // first binding data as xml string
-            xml_data += '<row>';
+        xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
+        xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
+        xml_data += '<ParaId>' + para_id + '</ParaId>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
 
-            xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-            xml_data += '<ParaId>' + paraId + '</ParaId>';
-            xml_data += '<CommunityId>' + tr_comnty_id + '</CommunityId>';
-            xml_data += '<CommunityName>' + tr_comnty_name + '</CommunityName>';
+        xml_data += '<CommunityId>' + community_id + '</CommunityId>';
+        xml_data += '<CommunityName>' + community_name + '</CommunityName>';
 
-            xml_data += '<VeryPoor>' + very_poor + '</VeryPoor>';
-            xml_data += '<Poor>' + poor + '</Poor>';
-            xml_data += '<MiddleClass>' + middle_class + '</MiddleClass>';
-            xml_data += '<BetterOff>' + better_of + '</BetterOff>';
+        xml_data += '<VeryPoor>' + very_poor + '</VeryPoor>';
+        xml_data += '<Poor>' + poor + '</Poor>';
+        xml_data += '<MiddleClass>' + middle_class + '</MiddleClass>';
+        xml_data += '<BetterOff>' + better_of + '</BetterOff>';
 
-            xml_data += '<Less3Month>' + Less3Month + '</Less3Month>';
-            xml_data += '<Month3to6>' + Month3to6 + '</Month3to6>';
-            xml_data += '<Month6to9>' + Month6to9 + '</Month6to9>';
-            xml_data += '<Month9to12>' + Month9to12 + '</Month9to12>';
-            xml_data += '<Up12Month>' + Up12Month + '</Up12Month>';
+        xml_data += '<Less3Month>' + Less3Month + '</Less3Month>';
+        xml_data += '<Month3to6>' + Month3to6 + '</Month3to6>';
+        xml_data += '<Month6to9>' + Month6to9 + '</Month6to9>';
+        xml_data += '<Month9to12>' + Month9to12 + '</Month9to12>';
+        xml_data += '<Up12Month>' + Up12Month + '</Up12Month>';
 
-            xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
 
-            xml_data += '</row>';
-        }
+        xml_data += '</row>';
+        
 
     });
 
@@ -184,14 +187,9 @@ $(document).on('click', '#btn_store', function () {
             // console.log(data);
             if(data.status == 'SUCCESS'){
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! Data store Succesfully.</span><p>'+ data.message+'</p>' );
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
-            }
-            else if (data.status == 'EXIST'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: red;">Sorry '+created_by+' ! Data not possible to store. </span><p>'+ data.message+'</p>' );
+                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
