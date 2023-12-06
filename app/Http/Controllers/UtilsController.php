@@ -169,7 +169,57 @@ class UtilsController extends Controller
 
     }
 
+    public function get_district_name()
+    {
+        $data = DB::table('key_district')->select('id', 'district_code', 'district_name')->orderBy('district_name')->get();
+        
+        $retStr = '';
+        $retStr .= '<option value="" selected disabled>Select District</option>';
 
+        foreach($data as $v) {
+            $retStr .= '<option value="'.$v->district_code.'">'.$v->district_name.'</option>';
+        }
+
+        return $retStr;
+    }
+    public function get_upazila_list(Request $request)
+    {
+        $district_code = $request['district_code'];
+
+        $data = DB::table('key_upazila')->select('id', 'upazila_code', 'upazila_name')
+                            ->where('district_code', $district_code)
+                            ->orderBy('upazila_name')
+                            ->get()
+                            ->unique('upazila_name');
+        
+        $retStr = '';
+        $retStr .= '<option value="" selected disabled>Select Upazila</option>';
+
+        foreach($data as $v) {
+            $retStr .= '<option value="'.$v->upazila_code.'">'.$v->upazila_name.'</option>';
+        }
+
+        return $retStr;
+    }
+    public function get_union_list(Request $request)
+    {
+        $upazila_code = $request['upozila_code'];
+
+        $data = DB::table('key_union')->select('id', 'union_name')
+                            ->where('upazila_code', $upazila_code)
+                            ->orderBy('union_name')
+                            ->get()
+                            ->unique('union_name');
+        
+        $retStr = '';
+        $retStr .= '<option value="" selected disabled>Select Upazila</option>';
+
+        foreach($data as $v) {
+            $retStr .= '<option value="'.$v->union_name.'">'.$v->union_name.'</option>';
+        }
+
+        return $retStr;
+    }
   
     
 }

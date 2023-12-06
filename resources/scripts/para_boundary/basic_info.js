@@ -13,7 +13,8 @@ $(document).ready(function () {
   
     // $('.select2').css({'border': '2px solid #898AEE', 'border-radius': '5px'});
 
-    // $('#para_list').prop('disabled', true);
+    $('#upozila').prop('disabled', true);
+    $('#union').prop('disabled', true);
 
     $('.date').datepicker({ dateFormat: "yy-mm-dd" });
 
@@ -78,23 +79,23 @@ $(document).ready(function () {
 
 });
 
-$(document).on('change', '#para_list', function () {
+$(document).on('change', '#district', function () {
 
-    var para_list = $('#para_list option:selected').val();
-    // console.log(watershedId);
+    var district_code = $('#district option:selected').val();
+    // console.log(district_code);
 
-    if(para_list)
+    if(district_code)
     {
         $.ajax({
-            url: "/get_community_list",
+            url: "/get_upazila_list",
             type: "GET",
-            data: { 'get_community' : 'get_data' },
+            data: { 'district_code' : district_code },
             dataType: "html",
             cache: false,
             success: function (data) {
                 // console.log(data);
-                $('#community').prop('disabled', false);
-                $('#community').html(data);
+                $('#upozila').prop('disabled', false);
+                $('#upozila').html(data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -104,37 +105,23 @@ $(document).on('change', '#para_list', function () {
 
 });
 
-$(document).on('click', '#get_entry_form', function () {
+$(document).on('change', '#upozila', function () {
 
-    var Watershed_Id = $('#watershedId option:selected').val();
-    var Para_Id = $('#para_list option:selected').val();
-    var Community_Id = $('#community option:selected').val();
+    var upozila_code = $('#upozila option:selected').val();
+    // console.log(district_code);
 
-    if(Para_Id == '' || Para_Id == null || Para_Id == undefined)
+    if(upozila_code)
     {
-        alert("Please Select Para...");
-    }
-    else if(Community_Id == '' || Community_Id == null || Community_Id == undefined)
-    {
-        alert("Please Select Community...");
-    }
-    else
-    { 
         $.ajax({
-            url: "/check_livelihood_duplicate",
+            url: "/get_union_list",
             type: "GET",
-            data: { 'watershed_id' : Watershed_Id, 'para_id' : Para_Id, 'community_id' : Community_Id},
-            dataType: "JSON",
+            data: { 'upozila_code' : upozila_code },
+            dataType: "html",
             cache: false,
             success: function (data) {
                 // console.log(data);
-                if(data.status == 'SUCCESS'){
-                    $('#table_div').removeClass('hide');
-                }
-                else{
-                    $('#myModal').modal({backdrop : 'static', keyboard : false});
-                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-                }  
+                $('#union').prop('disabled', false);
+                $('#union').html(data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -143,6 +130,7 @@ $(document).on('click', '#get_entry_form', function () {
     }
 
 });
+
 
 $(document).on('click', '#btn_store', function () {
 
@@ -154,9 +142,9 @@ $(document).on('click', '#btn_store', function () {
     watershed_name = $('#watershed_name').val();
     para_name = $('#para_name').val();
     mouza_name = $('#mouza_name').val();
-    union = $('#union').val();
-    upozila = $('#upozila').val();
-    district = $('#district').val();
+    union = $('#union option:selected').val();
+    upozila = $('#upozila option:selected').text();
+    district = $('#district option:selected').text();
     headman_name = $('#headman_name').val();
     karbari_name = $('#karbari_name').val();
     chairman_name = $('#chairman_name').val();

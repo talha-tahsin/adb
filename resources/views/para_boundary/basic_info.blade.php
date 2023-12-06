@@ -96,25 +96,25 @@
                           </div>
 
                           <!-- <div class="col-md-1"></div> -->
+
+                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label" for="district"><span style="color: red;">★&nbsp;</span>District</label>
+                            <select id="district" name="district" class="custom-select form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;" > 
+                            </select>
+                          </div> 
+
+                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                            <label class="control-label" for="upozila"><span style="color: red;">★&nbsp;</span>Upazila</label>
+                            <select id="upozila" name="upozila" class="custom-select form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;" > 
+                            </select>
+                          </div>
                           
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label" for="union"><span style="color: red;">★&nbsp;</span>Union</label>
-                            <input type="text" name="union" id="union" class="form-control initial" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
+                            <select id="union" name="union" class="custom-select form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;" > 
+                            </select>
                           </div> 
-
-                          <!-- <div class="col-md-1"></div>  -->
-                          
-                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label" for="upozila"><span style="color: red;">★&nbsp;</span>Upazila</label>
-                            <input type="text" name="upozila" id="upozila" class="form-control initial" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
-                          </div>
-
-                          <!-- <div class="col-md-1"></div> -->
-                          
-                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label" for="district"><span style="color: red;">★&nbsp;</span>District</label>
-                            <input type="text" name="district" id="district" class="form-control initial" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this feild">
-                          </div>                           
+                                                    
                             
                         </div>
                         <!-- end row -->
@@ -377,5 +377,32 @@
 <script src="{{ mix('resources/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ mix('resources/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ mix('resources/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+
+<script>
+  $(document).ready(function () {
+
+console.log("hello talha..");
+
+var userNm = $('#userName').val();
+
+$.ajax({
+    url: "/get_district_name",
+    type: "GET",
+    data: { 'userNm' : 'get_data' },
+    dataType: "html",
+    cache: false,
+    success: function (data) {
+        console.log(data);
+        $('#district').html(data);
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    }
+});
+
+
+
+});
+</script>
 
 @endsection

@@ -80,7 +80,9 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     // GET Method Route
     Route::get('get_all_para_list', [ParaBoundaryController::class, 'get_all_para_list']);
     Route::get('get_para_details_for_edit', [ParaBoundaryController::class, 'get_para_details_for_edit']);
-    // Route::get('get_para_name_for_entry', [ParaBoundaryController::class, 'get_para_name_for_entry']);
+    Route::get('get_district_name', [UtilsController::class, 'get_district_name']);
+    Route::get('get_upazila_list', [UtilsController::class, 'get_upazila_list']);
+    Route::get('get_union_list', [UtilsController::class, 'get_union_list']);
    
     // POST Method Route
     Route::post('store_basic_info_para_boundary', [ParaBoundaryController::class, 'store_basic_info_para_boundary']);
