@@ -234,7 +234,7 @@
                     </div>
                     <!-- end row  -->
 
-                    <div class="row hide" id="next_div">
+                    <div class="row " id="next_div">
 
                       <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
                         <a href="{{ route('VCF.Boundary.GPS.Point') }}" style="color: black;">
@@ -245,8 +245,8 @@
                       <div class="col-md-8"></div>
 
                       <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                        <a href="{{ route('Population.Entry') }}">
-                          <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : BaseLine Population</button>
+                        <a href="{{ route('Watershed.Sample.Quality') }}">
+                          <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : Water Sample Quality</button>
                         </a>
                       </div>
 

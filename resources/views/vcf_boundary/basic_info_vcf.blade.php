@@ -49,7 +49,7 @@
                     <div class="row">
                       <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 
-                      <form id="store_vcf_basic" method="POST" >
+                      <form id="store_vcf_basic" method="POST">
                         <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
                         
                         <div class="row">

@@ -34,6 +34,7 @@ use App\Http\Controllers\VCFBoundaryController;
 use App\Http\Controllers\LulcValidationController;
 /** :: Land Degradation Controller :: */
 use App\Http\Controllers\LandDegradationController;
+use App\Http\Controllers\WatershedHealthController;
 
 
 use App\Http\Controllers\UtilsController;
@@ -109,6 +110,13 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::post('store_plot2_dominant_plants', [VCFBoundaryController::class, 'store_plot2_dominant_plants']);
     Route::post('store_plot3_dominant_plants', [VCFBoundaryController::class, 'store_plot3_dominant_plants']);
  
+});
+
+/** Start :: watershed health survey Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('show-water-sample-quality', [WatershedHealthController::class, 'watershed_sample_quality'])->name('Watershed.Sample.Quality');
+
+    
 });
 
 /** Start :: Map Unit Wise Route */
