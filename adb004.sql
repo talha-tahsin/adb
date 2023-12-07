@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 11:37 AM
+-- Generation Time: Dec 07, 2023 at 11:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,6 +36,25 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_district`
+--
+
+CREATE TABLE `key_district` (
+  `id` bigint(20) NOT NULL,
+  `district_code` varchar(10) DEFAULT NULL,
+  `district_name` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `key_district`
+--
+
+INSERT INTO `key_district` (`id`, `district_code`, `district_name`) VALUES
+(1, '1027', 'Rangamati');
 
 -- --------------------------------------------------------
 
@@ -164,6 +183,202 @@ INSERT INTO `key_livestock` (`id`, `livestock_id`, `livestock_name`, `delete_row
 (4, 50013, 'Hen', 0, 'admin', '2023-11-08 04:24:20', NULL, NULL),
 (5, 50014, 'Duck', 0, 'admin', '2023-11-08 04:24:37', NULL, NULL),
 (6, 50015, 'Pigeon', 0, 'admin', '2023-11-08 04:25:03', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_map_unit_list`
+--
+
+CREATE TABLE `key_map_unit_list` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `map_unit` varchar(10) DEFAULT NULL,
+  `area_map_unit` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `key_map_unit_list`
+--
+
+INSERT INTO `key_map_unit_list` (`id`, `map_unit`, `area_map_unit`, `created_at`, `updated_at`) VALUES
+(1, '1', '120', '2023-12-06 03:24:47', NULL),
+(2, '2', '124', '2023-12-06 03:24:47', NULL),
+(3, '3', '110', '2023-12-06 03:24:47', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_union`
+--
+
+CREATE TABLE `key_union` (
+  `id` bigint(20) NOT NULL,
+  `upazila_code` varchar(10) DEFAULT NULL,
+  `union_name` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `key_union`
+--
+
+INSERT INTO `key_union` (`id`, `upazila_code`, `union_name`) VALUES
+(1, '102701', 'Amtali'),
+(2, '102701', 'Baghaichhari'),
+(3, '102701', 'Bangaltali'),
+(4, '102701', 'Khedarmara'),
+(5, '102701', 'Marishya'),
+(6, '102701', 'Rupakari'),
+(7, '102701', 'Sajek'),
+(8, '102701', 'Saroatali'),
+(9, '102701', 'Ward No 01'),
+(10, '102701', 'Ward No 02'),
+(11, '102701', 'Ward No 03'),
+(12, '102701', 'Ward No 04'),
+(13, '102701', 'Ward No. 05'),
+(14, '102701', 'Ward No. 06'),
+(15, '102701', 'Ward No. 07'),
+(16, '102701', 'Ward No. 08'),
+(17, '102701', 'Ward No. 09'),
+(18, '102702', 'Aimachhara'),
+(19, '102702', 'Bara Harina'),
+(20, '102702', 'Barkal'),
+(21, '102702', 'Bhushanchhara'),
+(22, '102702', 'Subalong'),
+(23, '102703', 'Betbunia'),
+(24, '102703', 'Fatikchhari'),
+(25, '102703', 'Ghagra'),
+(26, '102703', 'Kalampati'),
+(27, '102704', 'Barathali'),
+(28, '102704', 'Belaichhari'),
+(29, '102704', 'Farua'),
+(30, '102704', 'Kengrachhari'),
+(31, '102705', 'Chandraghona'),
+(32, '102705', 'Chitmaram'),
+(33, '102705', 'Kaptai'),
+(34, '102705', 'Raikhali'),
+(35, '102705', 'Wagga'),
+(36, '102706', 'Banjogichhara'),
+(37, '102706', 'Dumdumya'),
+(38, '102706', 'Jurachhari'),
+(39, '102706', 'Maidang'),
+(40, '102707', 'Atarakchhara'),
+(41, '102707', 'Bagachatar'),
+(42, '102707', 'Bhasanyadam'),
+(43, '102707', 'Gulshakhali'),
+(44, '102707', 'Kalapakujya'),
+(45, '102707', 'Langadu'),
+(46, '102707', 'Mainimukh'),
+(47, '102708', 'Burighat'),
+(48, '102708', 'Ghilachhari'),
+(49, '102708', 'Naniarchar'),
+(50, '102708', 'Sabekkhyong'),
+(51, '102709', 'Bangalhalia'),
+(52, '102709', 'Gaindya'),
+(53, '102709', 'Ghilachhari'),
+(54, '102710', 'Balukhali'),
+(55, '102710', 'Bandukbhanga'),
+(56, '102710', 'Jibtali'),
+(57, '102710', 'Kutukchhari'),
+(58, '102710', 'Magban'),
+(59, '102710', 'Sapchhari'),
+(60, '102710', 'Ward No. 01'),
+(61, '102710', 'Ward No. 02'),
+(62, '102710', 'Ward No. 03'),
+(63, '102710', 'Ward No. 04'),
+(64, '102710', 'Ward No. 05'),
+(65, '102710', 'Ward No. 06'),
+(66, '102710', 'Ward No. 07'),
+(67, '102710', 'Ward No. 08'),
+(68, '102710', 'Ward No. 09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_upazila`
+--
+
+CREATE TABLE `key_upazila` (
+  `id` bigint(20) NOT NULL,
+  `district_code` varchar(10) DEFAULT NULL,
+  `upazila_code` varchar(10) DEFAULT NULL,
+  `upazila_name` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `key_upazila`
+--
+
+INSERT INTO `key_upazila` (`id`, `district_code`, `upazila_code`, `upazila_name`) VALUES
+(1, '1027', '102701', 'Baghaichhari'),
+(2, '1027', '102701', 'Baghaichhari'),
+(3, '1027', '102701', 'Baghaichhari'),
+(4, '1027', '102701', 'Baghaichhari'),
+(5, '1027', '102701', 'Baghaichhari'),
+(6, '1027', '102701', 'Baghaichhari'),
+(7, '1027', '102701', 'Baghaichhari'),
+(8, '1027', '102701', 'Baghaichhari'),
+(9, '1027', '102701', 'Baghaichhari'),
+(10, '1027', '102701', 'Baghaichhari'),
+(11, '1027', '102701', 'Baghaichhari'),
+(12, '1027', '102701', 'Baghaichhari'),
+(13, '1027', '102701', 'Baghaichhari'),
+(14, '1027', '102701', 'Baghaichhari'),
+(15, '1027', '102701', 'Baghaichhari'),
+(16, '1027', '102701', 'Baghaichhari'),
+(17, '1027', '102701', 'Baghaichhari'),
+(18, '1027', '102702', 'Barkal'),
+(19, '1027', '102702', 'Barkal'),
+(20, '1027', '102702', 'Barkal'),
+(21, '1027', '102702', 'Barkal'),
+(22, '1027', '102702', 'Barkal'),
+(23, '1027', '102703', 'Kawkhali'),
+(24, '1027', '102703', 'Kawkhali'),
+(25, '1027', '102703', 'Kawkhali'),
+(26, '1027', '102703', 'Kawkhali'),
+(27, '1027', '102704', 'Belaichhari'),
+(28, '1027', '102704', 'Belaichhari'),
+(29, '1027', '102704', 'Belaichhari'),
+(30, '1027', '102704', 'Belaichhari'),
+(31, '1027', '102705', 'Kaptai'),
+(32, '1027', '102705', 'Kaptai'),
+(33, '1027', '102705', 'Kaptai'),
+(34, '1027', '102705', 'Kaptai'),
+(35, '1027', '102705', 'Kaptai'),
+(36, '1027', '102706', 'Jurachhari'),
+(37, '1027', '102706', 'Jurachhari'),
+(38, '1027', '102706', 'Jurachhari'),
+(39, '1027', '102706', 'Jurachhari'),
+(40, '1027', '102707', 'Langadu'),
+(41, '1027', '102707', 'Langadu'),
+(42, '1027', '102707', 'Langadu'),
+(43, '1027', '102707', 'Langadu'),
+(44, '1027', '102707', 'Langadu'),
+(45, '1027', '102707', 'Langadu'),
+(46, '1027', '102707', 'Langadu'),
+(47, '1027', '102708', 'Naniarchar'),
+(48, '1027', '102708', 'Naniarchar'),
+(49, '1027', '102708', 'Naniarchar'),
+(50, '1027', '102708', 'Naniarchar'),
+(51, '1027', '102709', 'Rajasthali'),
+(52, '1027', '102709', 'Rajasthali'),
+(53, '1027', '102709', 'Rajasthali'),
+(54, '1027', '102710', 'Rangamati Sadar'),
+(55, '1027', '102710', 'Rangamati Sadar'),
+(56, '1027', '102710', 'Rangamati Sadar'),
+(57, '1027', '102710', 'Rangamati Sadar'),
+(58, '1027', '102710', 'Rangamati Sadar'),
+(59, '1027', '102710', 'Rangamati Sadar'),
+(60, '1027', '102710', 'Rangamati Sadar'),
+(61, '1027', '102710', 'Rangamati Sadar'),
+(62, '1027', '102710', 'Rangamati Sadar'),
+(63, '1027', '102710', 'Rangamati Sadar'),
+(64, '1027', '102710', 'Rangamati Sadar'),
+(65, '1027', '102710', 'Rangamati Sadar'),
+(66, '1027', '102710', 'Rangamati Sadar'),
+(67, '1027', '102710', 'Rangamati Sadar'),
+(68, '1027', '102710', 'Rangamati Sadar');
 
 -- --------------------------------------------------------
 
@@ -489,7 +704,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (57, '2023_11_29_092743_create_tbl_plot1_dominant_plant_table', 51),
 (58, '2023_12_03_032836_create_tbl_1st_ground_truth_table', 51),
 (59, '2023_12_05_051950_create_key_indicator1_table', 52),
-(60, '2023_12_05_084831_create_tbl_degradation_info_table', 53);
+(60, '2023_12_05_084831_create_tbl_degradation_info_table', 53),
+(61, '2023_12_06_032348_create_key_map_unit_list_table', 54),
+(62, '2023_12_06_040831_create_key_active_map_unit_table', 55),
+(63, '2023_12_06_050621_create_key_upazila_table', 56),
+(64, '2023_12_07_075107_create_tbl_water_sample_quality_table', 57);
 
 -- --------------------------------------------------------
 
@@ -530,6 +749,49 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `tbl_1st_ground_truth` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `map_code_unit` varchar(30) DEFAULT NULL,
+  `longitude_east` varchar(20) DEFAULT NULL,
+  `longitude_north` varchar(20) DEFAULT NULL,
+  `elevation` varchar(20) DEFAULT NULL,
+  `map_code` varchar(20) DEFAULT NULL,
+  `observed_code` varchar(20) DEFAULT NULL,
+  `gcp_type` varchar(30) DEFAULT NULL,
+  `photo_aspect` varchar(10) DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_1st_ground_truth`
+--
+
+INSERT INTO `tbl_1st_ground_truth` (`id`, `watershed_id`, `watershed_name`, `map_code_unit`, `longitude_east`, `longitude_north`, `elevation`, `map_code`, `observed_code`, `gcp_type`, `photo_aspect`, `image`, `created_by`, `created_at`, `updated_at`) VALUES
+(4, 'R99', 'Bhushan Chhara', '6', '6', '6', '6', '6', '6', 'Mandatory', 'North', NULL, 'user1', '2023-12-07 03:27:11', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_2nd_ground_truth`
+--
+
+CREATE TABLE `tbl_2nd_ground_truth` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `map_code_unit` varchar(30) DEFAULT NULL,
+  `longitude_east` varchar(20) DEFAULT NULL,
+  `longitude_north` varchar(20) DEFAULT NULL,
+  `elevation` varchar(20) DEFAULT NULL,
+  `map_code` varchar(20) DEFAULT NULL,
+  `observed_code` varchar(20) DEFAULT NULL,
+  `gcp_type` varchar(30) DEFAULT NULL,
+  `photo_aspect` varchar(10) DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -658,7 +920,7 @@ CREATE TABLE `tbl_active_watershed` (
 --
 
 INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-12-05 00:49:17', NULL),
+(1, 'user1', 'R99', 'Bhushan Chhara', '9931081068', 'test43', '1', '2023-12-06 20:59:05', NULL),
 (2, 'user2', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-11-28 04:10:30', NULL);
 
 -- --------------------------------------------------------
@@ -671,8 +933,6 @@ CREATE TABLE `tbl_degradation_info` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `watershed_id` varchar(10) NOT NULL,
   `watershed_name` varchar(30) DEFAULT NULL,
-  `para_id` varchar(10) DEFAULT NULL,
-  `para_name` varchar(30) DEFAULT NULL,
   `map_unit` varchar(10) DEFAULT NULL,
   `area_map_unit` varchar(10) DEFAULT NULL,
   `indicator` varchar(50) DEFAULT NULL,
@@ -701,12 +961,12 @@ CREATE TABLE `tbl_degradation_info` (
 -- Dumping data for table `tbl_degradation_info`
 --
 
-INSERT INTO `tbl_degradation_info` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `map_unit`, `area_map_unit`, `indicator`, `forest`, `herb`, `orchard`, `shifting`, `crop_land`, `lake`, `baor`, `rivers`, `ponds`, `aquaculture`, `rural`, `brickfield`, `helipad`, `road`, `sand`, `remark`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Slope Class', '5', '5', '5', '5', '5', '5', '5', '5', '5', '55', '5', '5', '5', '5', '5', 'sert', 'user1', '2023-12-05 02:57:05', NULL),
-(2, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Degradation Process', '2', '2', '2', '2', '2', '2', '22', '2', '2', '2', '2', '2', '2', '2', '2', 'huhu', 'user1', '2023-12-05 02:57:05', NULL),
-(3, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Degree of Degradation', '5', '5', '0', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', 'jihuh', 'user1', '2023-12-05 02:57:05', NULL),
-(4, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', 'Causes of Degradation', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', 'user1', '2023-12-05 02:57:05', NULL),
-(5, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', 'asd', '% of Degraded Area in LULC Class', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', 'user1', '2023-12-05 02:57:05', NULL);
+INSERT INTO `tbl_degradation_info` (`id`, `watershed_id`, `watershed_name`, `map_unit`, `area_map_unit`, `indicator`, `forest`, `herb`, `orchard`, `shifting`, `crop_land`, `lake`, `baor`, `rivers`, `ponds`, `aquaculture`, `rural`, `brickfield`, `helipad`, `road`, `sand`, `remark`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'R99', 'Bhushan Chhara', '1', 'asd', 'Slope Class', '5', '5', '5', '5', '5', '5', '5', '5', '5', '55', '5', '5', '5', '5', '5', 'sert', 'user1', '2023-12-05 02:57:05', NULL),
+(2, 'R99', 'Bhushan Chhara', '1', 'asd', 'Degradation Process', '2', '2', '2', '2', '2', '2', '22', '2', '2', '2', '2', '2', '2', '2', '2', 'huhu', 'user1', '2023-12-05 02:57:05', NULL),
+(3, 'R99', 'Bhushan Chhara', '1', 'asd', 'Degree of Degradation', '5', '5', '0', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', '6', 'jihuh', 'user1', '2023-12-05 02:57:05', NULL),
+(4, 'R99', 'Bhushan Chhara', '1', 'asd', 'Causes of Degradation', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', 'user1', '2023-12-05 02:57:05', NULL),
+(5, 'R99', 'Bhushan Chhara', '1', 'asd', '% of Degraded Area in LULC Class', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', 'user1', '2023-12-05 02:57:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -749,9 +1009,11 @@ INSERT INTO `tbl_diseases` (`id`, `watershed_id`, `para_id`, `para_name`, `diarr
 
 CREATE TABLE `tbl_economic` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `watershed_id` int(11) NOT NULL,
-  `para_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
+  `watershed_id` varchar(11) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(11) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `community_id` varchar(11) DEFAULT NULL,
   `community_name` varchar(50) DEFAULT NULL,
   `very_poor` int(11) DEFAULT NULL,
   `poor` int(11) DEFAULT NULL,
@@ -772,14 +1034,8 @@ CREATE TABLE `tbl_economic` (
 -- Dumping data for table `tbl_economic`
 --
 
-INSERT INTO `tbl_economic` (`id`, `watershed_id`, `para_id`, `community_id`, `community_name`, `very_poor`, `poor`, `middle_class`, `better_off`, `month_less3`, `month_3to6`, `month_6to9`, `month_9to12`, `month_up12`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 100200, 20002, 10010007, 'Chak', 3, 4, 5, 4, 5, 4, 5, 4, 5, 'alamin', '2023-10-29 00:00:25', NULL, NULL),
-(2, 100200, 20001, 10010007, 'Chak', 3, 3, 3, 4, 3, 3, 3, 2, 2, 'alamin', '2023-10-29 00:29:10', NULL, NULL),
-(3, 100100, 10002, 10010009, 'Lushai', 2, 5, 56, 5, 5, 56, 5, 5, 5, 'alamin', '2023-10-29 02:14:31', NULL, NULL),
-(4, 100100, 10002, 10010002, 'Marma', 6, 6, 6, 6, 6, 6, 7, 7, 7, 'alamin', '2023-10-29 02:14:31', NULL, NULL),
-(7, 100100, 10002, 10010004, 'Mro', 3, 3, 2, 3, 2, 3, 4, 3, 3, 'alamin', '2023-10-29 03:51:57', NULL, NULL),
-(8, 100100, 10002, 10010011, 'Non-IPs', 3, 4, 3, 4, 5, 4, 5, 4, 3, 'alamin', '2023-10-29 03:51:57', NULL, NULL),
-(9, 100200, 20001, 10010008, 'Khumi', 4, 4, 5, 4, 5, 45, 4, 5, 4, 'alamin', '2023-10-29 21:10:08', NULL, NULL);
+INSERT INTO `tbl_economic` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `community_id`, `community_name`, `very_poor`, `poor`, `middle_class`, `better_off`, `month_less3`, `month_3to6`, `month_6to9`, `month_9to12`, `month_up12`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(10, 'R114', 'Ghilachari', '6150455261', 'test4', '10010001', 'Chakma', 6, 6, 6, 2, 2, 8, 8, 8, 8, 'user1', '2023-12-06 03:02:23', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -791,8 +1047,6 @@ CREATE TABLE `tbl_existing_conversation` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `watershed_id` varchar(10) NOT NULL,
   `watershed_name` varchar(30) DEFAULT NULL,
-  `para_id` varchar(10) DEFAULT NULL,
-  `para_name` varchar(30) DEFAULT NULL,
   `map_unit` varchar(10) DEFAULT NULL,
   `area_map_unit` varchar(10) DEFAULT NULL,
   `indicator` varchar(50) DEFAULT NULL,
@@ -816,6 +1070,15 @@ CREATE TABLE `tbl_existing_conversation` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_existing_conversation`
+--
+
+INSERT INTO `tbl_existing_conversation` (`id`, `watershed_id`, `watershed_name`, `map_unit`, `area_map_unit`, `indicator`, `forest`, `herb`, `orchard`, `shifting`, `crop_land`, `lake`, `baor`, `rivers`, `ponds`, `aquaculture`, `rural`, `brickfield`, `helipad`, `road`, `sand`, `remark`, `created_by`, `created_at`, `updated_at`) VALUES
+(9, 'R99', 'Bhushan Chhara', '1', '120', 'Type of Measure', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', 'werr', 'user1', '2023-12-05 22:42:41', NULL),
+(10, 'R99', 'Bhushan Chhara', '1', '120', '% of Area Covered', '0', '0', '0', '0', '0', '0', '0', NULL, '', '', '', '', '', '', '', '', 'user1', '2023-12-05 22:42:41', NULL),
+(11, 'R99', 'Bhushan Chhara', '1', '120', 'Who Implement', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', 'user1', '2023-12-05 22:42:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -853,6 +1116,52 @@ CREATE TABLE `tbl_expenses` (
 
 INSERT INTO `tbl_expenses` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `community_id`, `community_name`, `avg_per_house`, `expenses_1to6`, `expenses_7to10`, `expenses_11to15`, `expenses_16to20`, `expenses_21to25`, `expenses_26to30`, `expenses_30Up`, `male`, `female`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (4, 'R99', 'Bhushan Chhara', '4055461611', 'asd', '10010008', 'Khumi', 58, 5, 5, 58, 5, 8, 5, 88, 55, 9, 'user1', '2023-12-04 22:44:50', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_future_conversation`
+--
+
+CREATE TABLE `tbl_future_conversation` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `map_unit` varchar(10) DEFAULT NULL,
+  `area_map_unit` varchar(10) DEFAULT NULL,
+  `indicator` varchar(50) DEFAULT NULL,
+  `forest` varchar(20) DEFAULT NULL,
+  `herb` varchar(20) DEFAULT NULL,
+  `orchard` varchar(20) DEFAULT NULL,
+  `shifting` varchar(20) DEFAULT NULL,
+  `crop_land` varchar(20) DEFAULT NULL,
+  `lake` varchar(20) DEFAULT NULL,
+  `baor` varchar(20) DEFAULT NULL,
+  `rivers` varchar(20) DEFAULT NULL,
+  `ponds` varchar(20) DEFAULT NULL,
+  `aquaculture` varchar(20) DEFAULT NULL,
+  `rural` varchar(20) DEFAULT NULL,
+  `brickfield` varchar(20) DEFAULT NULL,
+  `helipad` varchar(20) DEFAULT NULL,
+  `road` varchar(20) DEFAULT NULL,
+  `sand` varchar(20) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_future_conversation`
+--
+
+INSERT INTO `tbl_future_conversation` (`id`, `watershed_id`, `watershed_name`, `map_unit`, `area_map_unit`, `indicator`, `forest`, `herb`, `orchard`, `shifting`, `crop_land`, `lake`, `baor`, `rivers`, `ponds`, `aquaculture`, `rural`, `brickfield`, `helipad`, `road`, `sand`, `remark`, `created_by`, `created_at`, `updated_at`) VALUES
+(12, 'R99', 'Bhushan Chhara', '3', '110', 'Type of Measure', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', 'det5', 'user1', '2023-12-05 22:48:30', NULL),
+(13, 'R99', 'Bhushan Chhara', '3', '110', '% of Area to be Covered', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-05 22:48:30', NULL),
+(14, 'R99', 'Bhushan Chhara', '3', '110', 'Length of Measures (km)', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-05 22:48:30', NULL),
+(15, 'R114', 'Ghilachari', '3', '110', 'Type of Measure', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-06 03:19:15', NULL),
+(16, 'R114', 'Ghilachari', '3', '110', '% of Area to be Covered', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-06 03:19:15', NULL),
+(17, 'R114', 'Ghilachari', '3', '110', 'Length of Measures (km)', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-06 03:19:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -1322,7 +1631,8 @@ INSERT INTO `tbl_para_basic_info` (`id`, `survey_date`, `watershed_id`, `watersh
 (4, '2023-11-26', 'T206', 'Sample 1', '3399206439', 'Test10', 'dfr', 'gty', 'der', 'ghy', 'def', 'ftg', 'de', '143 ha', 'gth', 'user1', '2023-11-26 21:54:33', NULL, NULL),
 (5, '2023-11-27', 'R114', 'Gilacharri', '2917634481', 'test3', 'dfr', 'tfg', 'fty', 'gyh', 'ftg', 'rft', 'gty', 'dr4', 'der', 'user1', '2023-11-27 01:56:05', NULL, NULL),
 (6, '2023-11-24', 'R114', 'Gilacharri', '6150455261', 'test4', 'ert', 'frt', 'dfr', 'gtf', 'drt', 'gty', 'frt', '342', 'dr', 'user1', '2023-11-27 04:11:53', NULL, NULL),
-(7, '2023-11-28', 'R99', 'Bhushan Chhara', '4055461611', 'asd', 'frt', 'hyu', 'hyu', 'hu', 'ghy', 'jui', 'gtu', '123 ha', 'ftg', 'user1', '2023-11-28 04:24:43', NULL, NULL);
+(7, '2023-11-28', 'R99', 'Bhushan Chhara', '4055461611', 'asd', 'frt', 'hyu', 'hyu', 'hu', 'ghy', 'jui', 'gtu', '123 ha', 'ftg', 'user1', '2023-11-28 04:24:43', NULL, NULL),
+(8, '2023-12-06', 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'sget', 'Belaichhari', 'Belaichhari', 'Rangamati', 'dr', 'gfg', 'hyu', '123 ha', 'ser', 'user1', '2023-12-06 01:09:11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1391,7 +1701,8 @@ CREATE TABLE `tbl_plot1_dominant_plant` (
   `watershed_name` varchar(20) DEFAULT NULL,
   `para_id` varchar(20) DEFAULT NULL,
   `para_name` varchar(20) DEFAULT NULL,
-  `plot1_location` varchar(30) DEFAULT NULL,
+  `latitude1` varchar(30) DEFAULT NULL,
+  `longitude1` varchar(20) DEFAULT NULL,
   `plot1_dimension` varchar(30) DEFAULT NULL,
   `species_name1` varchar(30) DEFAULT NULL,
   `diameter_height1` varchar(20) DEFAULT NULL,
@@ -1407,14 +1718,8 @@ CREATE TABLE `tbl_plot1_dominant_plant` (
 -- Dumping data for table `tbl_plot1_dominant_plant`
 --
 
-INSERT INTO `tbl_plot1_dominant_plant` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `plot1_location`, `plot1_dimension`, `species_name1`, `diameter_height1`, `avg_height1`, `number_tree1`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'R99', 'Bhushan Chhara', '4629226458', 'test2', 'e34de', '454e', 'r5', 'r5', 'rt', '65', 'user1', '2023-12-03 21:38:53', NULL, NULL),
-(2, 'R99', 'Bhushan Chhara', '4629226458', 'test2', 'e34de', '454e', '0', '0', '0', '0', 'user1', '2023-12-03 21:38:53', NULL, NULL),
-(3, 'R99', 'Bhushan Chhara', '4629226458', 'test2', 'e34de', '454e', '0', '0', '0', '0', 'user1', '2023-12-03 21:38:53', NULL, NULL),
-(4, 'R99', 'Bhushan Chhara', '4629226458', 'test2', 'e34de', '454e', '0', '0', '0', '0', 'user1', '2023-12-03 21:38:53', NULL, NULL),
-(5, 'R99', 'Bhushan Chhara', '4629226458', 'test2', 'e34de', '454e', '0', '0', '0', '0', 'user1', '2023-12-03 21:38:53', NULL, NULL),
-(6, 'R114', 'Ghilachari', '6150455261', 'test4', '', '', '2', '2', '2', '2', 'user1', '2023-12-04 02:08:41', NULL, NULL),
-(7, 'R114', 'Ghilachari', '6150455261', 'test4', 'as', 'as', '4', '76', '8', '5', 'user1', '2023-12-04 02:14:25', NULL, NULL);
+INSERT INTO `tbl_plot1_dominant_plant` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `latitude1`, `longitude1`, `plot1_dimension`, `species_name1`, `diameter_height1`, `avg_height1`, `number_tree1`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(8, 'R114', 'Ghilachari', '6150455261', 'test4', '25 ', '54', '123', '5', '8', '8', '8', 'user1', '2023-12-06 02:29:51', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1428,7 +1733,8 @@ CREATE TABLE `tbl_plot2_dominant_plant` (
   `watershed_name` varchar(20) DEFAULT NULL,
   `para_id` varchar(20) DEFAULT NULL,
   `para_name` varchar(20) DEFAULT NULL,
-  `plot2_location` varchar(30) DEFAULT NULL,
+  `latitude2` varchar(30) DEFAULT NULL,
+  `longitude2` varchar(20) DEFAULT NULL,
   `plot2_dimension` varchar(30) DEFAULT NULL,
   `species_name2` varchar(30) DEFAULT NULL,
   `diameter_height2` varchar(20) DEFAULT NULL,
@@ -1444,9 +1750,8 @@ CREATE TABLE `tbl_plot2_dominant_plant` (
 -- Dumping data for table `tbl_plot2_dominant_plant`
 --
 
-INSERT INTO `tbl_plot2_dominant_plant` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `plot2_location`, `plot2_dimension`, `species_name2`, `diameter_height2`, `avg_height2`, `number_tree2`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(7, 'R114', 'Ghilachari', '6150455261', 'test4', '4', '5', '5', '7', '8', '6', 'user1', '2023-12-04 02:14:40', NULL, NULL),
-(8, 'R114', 'Ghilachari', '6150455261', 'test4', '44', '56', '3', '3', '3', '3', 'user1', '2023-12-04 02:24:14', NULL, NULL);
+INSERT INTO `tbl_plot2_dominant_plant` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `latitude2`, `longitude2`, `plot2_dimension`, `species_name2`, `diameter_height2`, `avg_height2`, `number_tree2`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(9, 'R114', 'Ghilachari', '6150455261', 'test4', '54', '24', '43 da', '5', '8', '5', '7', 'user1', '2023-12-06 02:31:02', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1460,7 +1765,8 @@ CREATE TABLE `tbl_plot3_dominant_plant` (
   `watershed_name` varchar(20) DEFAULT NULL,
   `para_id` varchar(20) DEFAULT NULL,
   `para_name` varchar(20) DEFAULT NULL,
-  `plot3_location` varchar(30) DEFAULT NULL,
+  `latitude3` varchar(30) DEFAULT NULL,
+  `longitude3` varchar(20) DEFAULT NULL,
   `plot3_dimension` varchar(30) DEFAULT NULL,
   `species_name3` varchar(30) DEFAULT NULL,
   `diameter_height3` varchar(20) DEFAULT NULL,
@@ -1476,8 +1782,8 @@ CREATE TABLE `tbl_plot3_dominant_plant` (
 -- Dumping data for table `tbl_plot3_dominant_plant`
 --
 
-INSERT INTO `tbl_plot3_dominant_plant` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `plot3_location`, `plot3_dimension`, `species_name3`, `diameter_height3`, `avg_height3`, `number_tree3`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(8, 'R114', 'Ghilachari', '6150455261', 'test4', 'der', 'df', '4', '6', '7', '5', 'user1', '2023-12-04 02:16:26', NULL, NULL);
+INSERT INTO `tbl_plot3_dominant_plant` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `latitude3`, `longitude3`, `plot3_dimension`, `species_name3`, `diameter_height3`, `avg_height3`, `number_tree3`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(9, 'R114', 'Ghilachari', '6150455261', 'test4', '24', '65', 'r543', '3', '6', '7', 't5', 'user1', '2023-12-06 02:31:44', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1776,6 +2082,53 @@ INSERT INTO `tbl_water_resources2` (`id`, `watershed_id`, `para_id`, `para_name`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_water_sample_quality`
+--
+
+CREATE TABLE `tbl_water_sample_quality` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(20) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `collection_date` date DEFAULT NULL,
+  `collection_time` varchar(10) DEFAULT NULL,
+  `farmar_name` varchar(20) DEFAULT NULL,
+  `sample_id` varchar(10) DEFAULT NULL,
+  `approx_area` varchar(10) DEFAULT NULL,
+  `longitude` varchar(20) DEFAULT NULL,
+  `latitude` varchar(20) DEFAULT NULL,
+  `dry_season` varchar(20) DEFAULT NULL,
+  `wet_season` varchar(20) DEFAULT NULL,
+  `weather_condition` varchar(30) DEFAULT NULL,
+  `sediment_type` varchar(30) DEFAULT NULL,
+  `water_flow_status` varchar(30) DEFAULT NULL,
+  `lulc_type` varchar(30) DEFAULT NULL,
+  `intervention_upstream` varchar(30) DEFAULT NULL,
+  `intervention_nearby` varchar(30) DEFAULT NULL,
+  `navigation_practice` varchar(30) DEFAULT NULL,
+  `fishing_practice` varchar(30) DEFAULT NULL,
+  `use_of_wetland` varchar(30) DEFAULT NULL,
+  `waste_discharge` varchar(30) DEFAULT NULL,
+  `major_mollusks` varchar(30) DEFAULT NULL,
+  `overall_wetland` varchar(30) DEFAULT NULL,
+  `any_remark` varchar(100) DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_water_sample_quality`
+--
+
+INSERT INTO `tbl_water_sample_quality` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `collection_date`, `collection_time`, `farmar_name`, `sample_id`, `approx_area`, `longitude`, `latitude`, `dry_season`, `wet_season`, `weather_condition`, `sediment_type`, `water_flow_status`, `lulc_type`, `intervention_upstream`, `intervention_nearby`, `navigation_practice`, `fishing_practice`, `use_of_wetland`, `waste_discharge`, `major_mollusks`, `overall_wetland`, `any_remark`, `image`, `created_by`, `created_at`, `updated_at`) VALUES
+(2, 'R99', 'Bhushan Chhara', '9931081068', 'test43', '2023-12-07', '12:10 Am', 'hasan', '5458458', '232', '24', '65', 'de4', '5r4', 'Cloudy', 'Sand', 'Mild Wave', 'Forest', 'Mining', 'Roads', 'Yes', 'No', 'Household', 'Yes', 'Shamuk', 'Very Good', 'no time', '/upload/7581384102.png', 'user1', '2023-12-07 02:28:11', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -1841,6 +2194,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `key_district`
+--
+ALTER TABLE `key_district`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `key_farm_item`
 --
 ALTER TABLE `key_farm_item`
@@ -1868,6 +2227,24 @@ ALTER TABLE `key_indicator3`
 -- Indexes for table `key_livestock`
 --
 ALTER TABLE `key_livestock`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `key_map_unit_list`
+--
+ALTER TABLE `key_map_unit_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `key_union`
+--
+ALTER TABLE `key_union`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `key_upazila`
+--
+ALTER TABLE `key_upazila`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1951,6 +2328,12 @@ ALTER TABLE `tbl_1st_ground_truth`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_2nd_ground_truth`
+--
+ALTER TABLE `tbl_2nd_ground_truth`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_accessibility1`
 --
 ALTER TABLE `tbl_accessibility1`
@@ -2002,6 +2385,12 @@ ALTER TABLE `tbl_existing_conversation`
 -- Indexes for table `tbl_expenses`
 --
 ALTER TABLE `tbl_expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_future_conversation`
+--
+ALTER TABLE `tbl_future_conversation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2155,6 +2544,12 @@ ALTER TABLE `tbl_water_resources2`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_water_sample_quality`
+--
+ALTER TABLE `tbl_water_sample_quality`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -2176,6 +2571,12 @@ ALTER TABLE `user_resets`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `key_district`
+--
+ALTER TABLE `key_district`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `key_farm_item`
@@ -2206,6 +2607,24 @@ ALTER TABLE `key_indicator3`
 --
 ALTER TABLE `key_livestock`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `key_map_unit_list`
+--
+ALTER TABLE `key_map_unit_list`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `key_union`
+--
+ALTER TABLE `key_union`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `key_upazila`
+--
+ALTER TABLE `key_upazila`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `key_watershed`
@@ -2265,7 +2684,7 @@ ALTER TABLE `lookup_watershed`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2277,7 +2696,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tbl_1st_ground_truth`
 --
 ALTER TABLE `tbl_1st_ground_truth`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_2nd_ground_truth`
+--
+ALTER TABLE `tbl_2nd_ground_truth`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_accessibility1`
@@ -2319,19 +2744,25 @@ ALTER TABLE `tbl_diseases`
 -- AUTO_INCREMENT for table `tbl_economic`
 --
 ALTER TABLE `tbl_economic`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_existing_conversation`
 --
 ALTER TABLE `tbl_existing_conversation`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_expenses`
 --
 ALTER TABLE `tbl_expenses`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_future_conversation`
+--
+ALTER TABLE `tbl_future_conversation`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_health_services`
@@ -2409,7 +2840,7 @@ ALTER TABLE `tbl_occupation`
 -- AUTO_INCREMENT for table `tbl_para_basic_info`
 --
 ALTER TABLE `tbl_para_basic_info`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_para_gps_point`
@@ -2421,19 +2852,19 @@ ALTER TABLE `tbl_para_gps_point`
 -- AUTO_INCREMENT for table `tbl_plot1_dominant_plant`
 --
 ALTER TABLE `tbl_plot1_dominant_plant`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_plot2_dominant_plant`
 --
 ALTER TABLE `tbl_plot2_dominant_plant`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_plot3_dominant_plant`
 --
 ALTER TABLE `tbl_plot3_dominant_plant`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_population`
@@ -2482,6 +2913,12 @@ ALTER TABLE `tbl_water_resources1`
 --
 ALTER TABLE `tbl_water_resources2`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tbl_water_sample_quality`
+--
+ALTER TABLE `tbl_water_sample_quality`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

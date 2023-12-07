@@ -10,6 +10,7 @@ $(document).ready(function () {
     // $('#watershedId').select2();
     // $('#para_list').select2();
     // $('#community').select2();
+    $('.date').datepicker({ dateFormat: "yy-mm-dd" });
   
     // $('.select2').css({'border': '2px solid #898AEE', 'border-radius': '5px'});
 
@@ -23,8 +24,10 @@ $(document).on('click', '#btn_store', function (event) {
 
     event.preventDefault();
     var token = $("meta[name='csrf-token']").attr("content");
-    // var weather_condition = $('#weather_condition option:selected').val();
-    // var sediment_type = $('#sediment_type option:selected').val();
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_name = $('#para_name').val();
+   
     // var sediment_type = $('#sediment_type option:selected').val();
     // var lulc_type = $('#lulc_type option:selected').val();
     // var intervention_upstream = $('#intervention_upstream option:selected').val();
@@ -37,15 +40,9 @@ $(document).on('click', '#btn_store', function (event) {
     var form = $('#form_body')[0];
     var formdata = new FormData(form);
     formdata.append( "_token", token);
-    // formdata.append( "weather_condition", weather_condition);
-    // formdata.append( "sediment_type", sediment_type);
-    // formdata.append( "water_flow_status", water_flow_status);
-    // formdata.append( "lulc_type", lulc_type);
-    // formdata.append( "intervention_upstream", intervention_upstream);
-    // formdata.append( "intervention_nearby", intervention_nearby);
-    // formdata.append( "navigation_practice", navigation_practice);
-    // formdata.append( "fishing_practice", fishing_practice);
-    // formdata.append( "use_of_wetland", use_of_wetland);
+    formdata.append( "watershed_id", watershed_id);
+    formdata.append( "watershed_name", watershed_name);
+    formdata.append( "para_name", para_name);
 
     console.log(formdata);
     
@@ -56,7 +53,7 @@ $(document).on('click', '#btn_store', function (event) {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_livelihood_info",
+        url: "/store_water_sample_quality",
         type: "POST",
         enctype: 'multipart/form-data',
         dataType: 'json',
@@ -70,6 +67,10 @@ $(document).on('click', '#btn_store', function (event) {
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html(data.message);
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('.initialSelectBoxVal').val('').change();
+                $('#up_image').val('');
+                $('#my_table td input[type=text]').val('');
+                $('#any_remark').val();
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

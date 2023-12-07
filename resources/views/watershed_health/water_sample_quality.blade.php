@@ -18,7 +18,16 @@
           <div class="col-sm-6">
             <h1 class="m-0" style="font-family: Serif;">Water Sampling and Quality Test Form </h1>
           </div><!-- /.col -->
-          <div class="col-sm-6"></div><!-- /.col -->
+          
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="margin-right: 5px;"> 
+                <h5><span>Go To : </span> <a href="{{ route('Data.Entry.Dashboard') }}" >Data Entry Dashboard</a> </h5>
+              </li>
+              <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
+            </ol>
+          </div>
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -33,7 +42,7 @@
             <div class="card card-primary card-outline">
               <div class="card-body">
 
-              <form id="form_body" method="POST" >
+              <form id="form_body" method="POST">
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
                   <div class="row"> 
@@ -80,8 +89,8 @@
                     <tbody id="table_body">
 
                       <tr>
-                        <td style="text-align: center;width: 10%"><input type="text" id="collection_date" name="collection_date" class="form-control" placeholder="Write collection date"></td> 
-                        <td style="text-align: center;width: 10%"><input type="text" id="collection_time" name="collection_time" class="form-control" placeholder="Write collection time"></td> 
+                        <td style="text-align: center;width: 10%"><input type="text" id="collection_date" name="collection_date" class="form-control date" placeholder="Write collection date"></td> 
+                        <td style="text-align: center;width: 10%"><input type="text" id="collection_time" name="collection_time" class="form-control" placeholder="Write like 12:10 Am"></td> 
                         <td style="text-align: center;width: 10%"><input type="text" id="farmar_name" name="farmar_name" class="form-control" placeholder="Write farmar name"></td>
                         <td style="text-align: center;width: 10%"><input type="text" id="sample_id" name="sample_id" class="form-control" placeholder="0"></td>
                         <td style="text-align: center;width: 10%"><input type="text" id="approx_area" name="approx_area" class="form-control" placeholder="0"></td>
@@ -110,7 +119,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_male">
                           <span style="color: red;">★&nbsp;</span>Weather Condition during In-situ Test</label>
-                            <select id="weather_condition" name="weather_condition" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="weather_condition" name="weather_condition" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Cloudy">Cloudy</option>
                               <option value="Sunny">Sunny</option>
@@ -125,7 +134,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_female">
                           <span style="color: red;">★&nbsp;</span>Sediment Type of Wetlands Bed </label>
-                            <select id="sediment_type" name="sediment_type" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="sediment_type" name="sediment_type" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Gravel">Gravel</option>
                               <option value="Sand">Sand</option>
@@ -140,7 +149,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="plain_land_male">
                           <span style="color: red;">★&nbsp;</span>Status of Water Flow </label>
-                            <select id="water_flow_status" name="water_flow_status" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="water_flow_status" name="water_flow_status" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Stagnant">Stagnant</option>
                               <option value="Mild Wave">Mild Wave</option>
@@ -154,7 +163,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                             <label class="control-label validate" for="plain_land_female">
                             <span style="color: red;">★&nbsp;</span>Upper Riparian LULC Type </label>
-                            <select id="lulc_type" name="lulc_type" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="lulc_type" name="lulc_type" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Open land">Open land</option>
                               <option value="Forest">Forest</option>
@@ -166,7 +175,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                             <label class="control-label validate" for="plain_land_female">
                             <span style="color: red;">★&nbsp;</span>Interventions in Upstream of Sam. Site</label>
-                            <select id="intervention_upstream" name="intervention_upstream" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="intervention_upstream" name="intervention_upstream" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Industrial">Industrial</option>
                               <option value="Mining">Mining</option>
@@ -178,7 +187,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                             <label class="control-label validate" for="plain_land_female">
                             <span style="color: red;">★&nbsp;</span>Interventions Nearby the Samp. Site</label>
-                            <select id="intervention_nearby" name="main_transportation" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="intervention_nearby" name="intervention_nearby" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Bridge">Bridge</option>
                               <option value="Settlement">Settlement</option>
@@ -196,7 +205,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_male">
                           <span style="color: red;">★&nbsp;</span>Navigation Practice</label>
-                            <select id="navigation_practice" name="navigation_practice" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="navigation_practice" name="navigation_practice" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -205,7 +214,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_male">
                           <span style="color: red;">★&nbsp;</span>Fishing Practice</label>
-                            <select id="fishing_practice" name="fishing_practice" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="fishing_practice" name="fishing_practice" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -214,7 +223,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_male">
                           <span style="color: red;">★&nbsp;</span>Use of Wetlands Water</label>
-                            <select id="use_of_wetland" name="use_of_wetland" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="use_of_wetland" name="use_of_wetland" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Drinking">Drinking</option>
                               <option value="Irrigation">Irrigation</option>
@@ -226,7 +235,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_male">
                           <span style="color: red;">★&nbsp;</span>Waste Discharge into Water</label>
-                            <select id="waste_discharge" name="waste_discharge" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="waste_discharge" name="waste_discharge" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Yes">Yes</option>
                               <option value="No">No</option>
@@ -235,7 +244,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_male">
                           <span style="color: red;">★&nbsp;</span>Major Mollusks</label>
-                            <select id="major_mollusks" name="major_mollusks" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="major_mollusks" name="major_mollusks" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Shamuk">Shamuk</option>
                               <option value="Jhinuk">Jhinuk</option>
@@ -245,7 +254,7 @@
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_male">
                           <span style="color: red;">★&nbsp;</span>Overall Wetlands Water Health</label>
-                            <select id="overall_wetland" name="overall_wetland" class="form-control" style="border-radius: 5px;border:2px solid #898AEE;">
+                            <select id="overall_wetland" name="overall_wetland" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
                               <option value="Very Good">Very Good</option>
                               <option value="Good">Good</option>
@@ -262,7 +271,7 @@
                         <div class="row">
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                             <label class="control-label validate" for="up_image"><span style="color: red;">★&nbsp;</span>Upload Image</label>
-                            <input type="file" class="" id="up_image" name="up_image" accept="image/x-png,image/jpg,image/jpeg" autocomplete="off"/>
+                            <input type="file" class="" id="up_image" name="up_image" accept="image/x-png,image/jpg,image/jpeg,image/heif,image/heic" autocomplete="off"/>
                           </div>
                           <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                             <label class="control-label validate" for="any_remarks"><span style="color: red;">★&nbsp;</span>Any Remarks</label>

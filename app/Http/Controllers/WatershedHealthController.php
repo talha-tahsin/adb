@@ -22,6 +22,7 @@ class WatershedHealthController extends Controller
             $validator = Validator::make($request->all(), [
                 'watershed_id' => 'required|string|max:255',
                 'watershed_name' => 'required',
+                'up_image' => 'required|image|mimes:jpeg,png,jpg',
             ], [],[]);
 
             if ($validator->fails()){
@@ -30,10 +31,20 @@ class WatershedHealthController extends Controller
         
             $timestamp = time();
             $created_at = date("Y-m-d H:i:s", $timestamp);
-            // Get unique id for every single user ::
+            // Get unique id for every single image ::
             $timestamp1 = now()->timestamp;
             $randomNumber = mt_rand(1000000000, 9999999999);
             $image_id = (int) substr($timestamp1 . $randomNumber, -10);
+
+            // check dupliacte record in database ::
+            $found = DB::table('tbl_water_sample_quality')->select('id')
+                                ->where('watershed_id',  $request['watershed_id'])
+                                ->where('para_id', $request['para_id'])
+                                ->count();
+
+            if($found > 0){
+                return response()->json([ 'status' => 'ERROR', 'message' => 'Data already exsits for this watershed and para, not possible to store...' ]);
+            }
 
             DB::beginTransaction();
 
@@ -68,7 +79,7 @@ class WatershedHealthController extends Controller
                 'created_at' => $created_at,
             );
 
-            DB::table('tbl_vcf_basic_info')->insert($store_data);
+            DB::table('tbl_water_sample_quality')->insert($store_data);
             DB::commit();
 
             if ($files = $request->file('up_image')) {
@@ -78,7 +89,10 @@ class WatershedHealthController extends Controller
                     'image' =>'/' . $path_str,
                 );
 
-                DB::table('key_send_type')->where('send_type_id', $send_type_id)->update($store_image);
+                DB::table('tbl_water_sample_quality')
+                            ->where('watershed_id', $request['watershed_id'])
+                            ->where('para_id', $request['para_id'])
+                            ->update($store_image);
                 DB::commit();
             }
             

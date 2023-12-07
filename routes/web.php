@@ -116,7 +116,8 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('show-water-sample-quality', [WatershedHealthController::class, 'watershed_sample_quality'])->name('Watershed.Sample.Quality');
 
-    
+    // POST Method
+    Route::post('store_water_sample_quality', [WatershedHealthController::class, 'store_water_sample_quality']);
 });
 
 /** Start :: Map Unit Wise Route */
