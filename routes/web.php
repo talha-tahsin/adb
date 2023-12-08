@@ -118,6 +118,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
     // POST Method
     Route::post('store_water_sample_quality', [WatershedHealthController::class, 'store_water_sample_quality']);
+    Route::post('store_water_test_report', [WatershedHealthController::class, 'store_water_test_report']);
 });
 
 /** Start :: Map Unit Wise Route */

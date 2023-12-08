@@ -100,4 +100,48 @@ class WatershedHealthController extends Controller
 
         }
     }
+    public function store_water_test_report(Request $request)
+    {
+        $receiveData = $request['dataToSend'];
+        $xmlstr = simplexml_load_string($receiveData);
+        // dd($xmlstr->row);
+        
+        $timestamp = time();
+        $created_at = date("Y-m-d H:i:s", $timestamp);
+
+        try 
+        {
+            DB::beginTransaction();
+
+            foreach ($xmlstr->row as $value) 
+            {
+                $store_data = array(
+                    'watershed_id' => $value->watershed_id,
+                    'watershed_name' => $value->watershed_name,
+                    'para_id' => $value->para_id,
+                    'para_name' => $value->para_name,
+                    'test_name' => $value->test_name,
+                    'test_1st' => $value->test_1st,
+                    'test_2nd' => $value->test_2nd,
+                    'test_3rd' => $value->test_3rd,
+                    'test_3rd' => $value->test_3rd,
+                    'average' => $value->average,
+                    'created_by' => $value->created_by,
+                    'created_at' => $created_at,
+                );
+                
+                DB::table('tbl_water_test_report')->insert($store_data);
+                DB::commit();
+            }
+            
+            return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            
+        }
+        catch (\Exception $e) 
+        {
+            DB::rollBack();
+            $message = "Opps!! Something is wrong, data not saved and rollback..";
+            return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+        }
+    }
 }

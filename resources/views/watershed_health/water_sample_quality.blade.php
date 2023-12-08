@@ -283,7 +283,7 @@
                           
                         </div>
                         <!-- end row -->
-                  </from>
+                  </form>
 
                     </div>
                 </div>
@@ -299,7 +299,37 @@
               </div>
               <!-- end main table div -->
 
-              <hr style="border-bottom: 2px solid black;">
+          <hr style="border-bottom: 2px solid black;">
+            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
+
+              <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
+                  <thead>
+                      <tr style="background-color: #8ed6f2;">
+                        <th style="text-align: center;">Serial</th>
+                        <th style="text-align: left;">Test Name</th>
+                        <th style="text-align: center;">1st  Test</th>
+                        <th style="text-align: center;">2nd Test</th>
+                        <th style="text-align: center;">3rd Test</th>  
+                        <th style="text-align: center;">Average</th>  
+                      </tr>
+                  </thead>
+
+                  <tbody id="table_body"></tbody>
+
+                </table>
+
+                  <div class="row">
+                    <div class="col-md-10"></div>
+                      <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                        <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                      </div> -->
+                      <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                        <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
+                      </div>  
+                  </div>
+            </div>
+
+          <hr style="border-bottom: 2px solid black;">
 
             <div class="row">
 
@@ -398,7 +428,7 @@ $(document).ready(function () {
         }
     });
 
-    insertTableRow();
+    // insertTableRow();
 
     // for (var i = 0; i < 3; i++) {
     //     insertTableRow();

@@ -5,16 +5,22 @@
 
 $(document).ready(function () {
 
-    console.log("hello talha.."); 
-
-    // $('#watershedId').select2();
-    // $('#para_list').select2();
+    // console.log("hello talha.."); 
     // $('#community').select2();
-    $('.date').datepicker({ dateFormat: "yy-mm-dd" });
-  
     // $('.select2').css({'border': '2px solid #898AEE', 'border-radius': '5px'});
-
-    // $('#para_list').prop('disabled', true);
+    $('.date').datepicker({ dateFormat: "yy-mm-dd" });
+    
+    myJson = {
+        '001' : 'Dissolve Oxygen (DO) (mg/L)',
+        '002' : 'Temperature  (°C )',
+        '003' : 'pH',
+        '004' : 'Electrical Conductivity (mS/cm)',
+        '005' : 'Total Dissolved Solids (ppt) (mg/L)',
+    };
+    $.each(myJson, function(key, value) {
+        // console.log(value);
+        insertTableRow(value);
+    });
 
    
 
@@ -87,119 +93,31 @@ $(document).on('click', '#btn_store', function (event) {
 
 });
 
-function insertTableRow(comntyName, comuntyId) {
+function insertTableRow(name) {
 
     var appendString = '';
-    var rowCount = $('#voucher_table > tbody > tr').length;
+    var rowCount = $('#my_table2 > tbody > tr').length;
     rowCount++;
 
     // console.log(accountName);
 
-    appendString += '<tr comnty_id="' + comuntyId + '">';
+    appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
-    //appendString += '<td>'+ofcName+'</td>';
-    appendString += '<td comnty_name="' + comntyName + '" style="width: 100px;text-align: left;">' + comntyName + '</td>';
+
+    appendString += '<td style="width: 300px;text-align: left;">' + name + '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="checkbox" class="checkbox" id="check" name="check" value="1" style="text-align: center;" >';
+    appendString += '<input type="text" id="test_1st" name="test_1st" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-
     appendString += '<td>';
-    appendString += '<input type="text" id="jhum" class="form-control" name="jhum" value="" style="width: 40px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="test_2nd" name="test_2nd" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-
     appendString += '<td>';
-    appendString += '<input type="text" id="plain_land" class="form-control" name="plain_land" value="" style="width: 40px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="test_3rd" name="test_3rd" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-
     appendString += '<td>';
-    appendString += '<input type="text" id="orchard" class="form-control" name="orchard" value="" style="width: 40px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="average" name="average" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
     appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fuel_wood" class="form-control" name="fuel_wood" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="wage_labour" class="form-control" name="wage_labour" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="poultry" class="form-control" name="poultry" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="livestock" class="form-control" name="livestock" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="aquaculture" class="form-control" name="aquaculture" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="service_holder" class="form-control" name="service_holder" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="business" class="form-control" name="business" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="handicraft" class="form-control" name="handicraft" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="others" class="form-control" name="others" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="jhum" class="form-control" name="jhum" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="plain_land" class="form-control" name="plain_land" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="orchard" class="form-control" name="orchard" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="fuel_wood" class="form-control" name="fuel_wood" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="wage_labour" class="form-control" name="wage_labour" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="poultry" class="form-control" name="poultry" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="livestock" class="form-control" name="livestock" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="aquaculture" class="form-control" name="aquaculture" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="service_holder" class="form-control" name="service_holder" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="business" class="form-control" name="business" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="handicraft" class="form-control" name="handicraft" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
-    appendString += '<td>';
-    appendString += '<input type="text" id="others" class="form-control" name="others" value="" style="width: 40px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-
 
     //appendString += '<td style="text-align: center;">';
     //appendString += '<button type="button" class="btn btn-xs btn-danger btn-info removeHead"><i class="fa fa-remove"></i></button>';
@@ -208,10 +126,98 @@ function insertTableRow(comntyName, comuntyId) {
     appendString += '</tr>';
 
 
-    $('#voucher_table > tbody:last-child').append(appendString);
-    // $("#voucher_table tr:last").scrollintoview();
+    $('#my_table2 > tbody:last-child').append(appendString);
     removeTableRow();
+    // $("#voucher_table tr:last").scrollintoview();
 }
+
+$(document).on('click', '#btn_store2', function () {
+
+    var created_by = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+    var xml_data = '';
+
+    xml_data = '<head>';
+
+    $('#my_table2 > tbody > tr').each(function () {
+
+        // var tr_comnty_id = $(this).attr('comnty_id');
+        // var tr_comnty_name = $(this).find('td:eq(1)').text(); 
+        var test_name = $(this).closest('tr').find('td:eq(1)').text();
+
+        var test_1st = $(this).find('#test_1st').val();
+        var test_2nd = $(this).find('#test_2nd').val();
+        var test_3rd = $(this).find('#test_3rd').val();
+        var average = $(this).find('#average').val();
+
+        if(test_1st == '' || test_1st == null || test_1st == undefined) test_1st = 0;
+        if(test_2nd == '' || test_2nd == null || test_2nd == undefined) test_2nd = 0;
+        if(test_3rd == '' || test_3rd == null || test_3rd == undefined) test_3rd = 0;
+        if(average == '' || average == null || average == undefined) average = 0;
+    
+        // first binding data as xml string
+        xml_data += '<row>';
+
+        xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+        xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
+        xml_data += '<para_id>' + para_id + '</para_id>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
+        xml_data += '<test_name>' + test_name + '</test_name>';
+
+        xml_data += '<test_1st>' + test_1st + '</test_1st>';
+        xml_data += '<test_2nd>' + test_2nd + '</test_2nd>';
+        xml_data += '<test_3rd>' + test_3rd + '</test_3rd>';
+        xml_data += '<average>' + average + '</average>';
+
+        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+
+        xml_data += '</row>';
+        
+
+    });
+
+    xml_data += '</head>';
+
+    
+    console.log(xml_data);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_water_test_report",
+        type: "POST",
+        data: { '_token' : token, 'dataToSend' : xml_data },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#voucher_table td input[type=text]').val('');
+                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
+                // alert(data.message);
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+
+
+});
 
 $(document).on('change', '.m_num', function () {
 
