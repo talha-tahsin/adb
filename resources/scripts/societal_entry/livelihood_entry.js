@@ -19,47 +19,7 @@ $(document).ready(function () {
 
 });
 
-$(document).on('click', '#get_entry_form', function () {
-
-    var Watershed_Id = $('#watershedId option:selected').val();
-    var Para_Id = $('#para_list option:selected').val();
-    var Community_Id = $('#community option:selected').val();
-
-    if(Para_Id == '' || Para_Id == null || Para_Id == undefined)
-    {
-        alert("Please Select Para...");
-    }
-    else if(Community_Id == '' || Community_Id == null || Community_Id == undefined)
-    {
-        alert("Please Select Community...");
-    }
-    else
-    { 
-        $.ajax({
-            url: "/check_livelihood_duplicate",
-            type: "GET",
-            data: { 'watershed_id' : Watershed_Id, 'para_id' : Para_Id, 'community_id' : Community_Id},
-            dataType: "JSON",
-            cache: false,
-            success: function (data) {
-                // console.log(data);
-                if(data.status == 'SUCCESS'){
-                    $('#table_div').removeClass('hide');
-                }
-                else{
-                    $('#myModal').modal({backdrop : 'static', keyboard : false});
-                    $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
-                }  
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    }
-
-});
-
-$(document).on('click', '#btn_store', function () {
+$(document).on('click', '#btn_store1', function () {
 
     var token = $("meta[name='csrf-token']").attr("content");
     var created_by = $('#userName').val();
@@ -161,6 +121,58 @@ $(document).on('click', '#btn_store', function () {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
+
+
+
+});
+
+$(document).on('click', '#btn_store', function (event) {
+
+    event.preventDefault();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+
+    var form = $('#form_body')[0];
+    var formdata = new FormData(form);
+    formdata.append("_token", token);
+    formdata.append("watershed_id", watershed_id);
+    formdata.append("watershed_name", watershed_name);
+    formdata.append("para_id", para_id);
+    formdata.append("para_name", para_name);
+
+    console.log(formdata);
+
+    // clear model message value for every ajax call provide single accurate message
+    $('#success_msg').html('');
+    $('#error_msg').html('');
+
+    // $.ajax({
+    //     url: "/store_livelihood_info",
+    //     type: "POST",
+    //     data: { '_token' : token, 'json_data' : JSON.stringify(jsonObj) },
+    //     dataType: "JSON",
+    //     cache: false,
+    //     success: function (data) {
+    //         // console.log(data);
+    //         if(data.status == 'SUCCESS'){
+    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
+    //             $('#success_msg').html(data.message);
+    //             $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+    //             // alert(data.message);
+    //         }
+    //         else{
+    //             $('#myModal').modal({backdrop : 'static', keyboard : false});
+    //             $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+    //         }
+            
+    //     },
+    //     error: function(xhr, ajaxOptions, thrownError) {
+    //         console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    //     }
+    // });
 
 
 
@@ -388,69 +400,5 @@ function reOrderTable() {
     counter = sl - 1;
 }
 
-function gotoUrl(path, params, method, target = ''){
-
-    method = method || "post";
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-    form.setAttribute("target", target);
-    if (typeof params === 'string') {
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", 'data');
-        hiddenField.setAttribute("value", params);
-        form.appendChild(hiddenField);
-    }
-    else {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var hiddenField = document.createElement("input");
-                hiddenField.setAttribute("type", "hidden");
-                hiddenField.setAttribute("name", key);
-                if(typeof params[key] === 'object'){
-                    hiddenField.setAttribute("value", JSON.stringify(params[key]));
-                }
-                else{
-                    hiddenField.setAttribute("value", params[key]);
-                }
-                form.appendChild(hiddenField);
-            }
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-}
-
-// Function to convert XML to JSON
-function xmlToJson(xml) {
-  try {
-    var obj = {};
-    if (xml.children.length > 0) {
-      for (var i = 0; i < xml.children.length; i++) {
-        var item = xml.children.item(i);
-        var nodeName = item.nodeName;
-
-        if (typeof (obj[nodeName]) == "undefined") {
-          obj[nodeName] = xml2json(item);
-        } else {
-          if (typeof (obj[nodeName].push) == "undefined") {
-            var old = obj[nodeName];
-
-            obj[nodeName] = [];
-            obj[nodeName].push(old);
-          }
-          obj[nodeName].push(xml2json(item));
-        }
-      }
-    } else {
-      obj = xml.textContent;
-    }
-    return obj;
-  } catch (e) {
-      console.log(e.message);
-  }
-}
 
 

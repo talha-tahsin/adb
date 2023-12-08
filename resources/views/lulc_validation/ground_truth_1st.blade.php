@@ -42,7 +42,7 @@
             <div class="card card-primary card-outline">
               <div class="card-body">
 
-              <form id="form_body" method="POST" >
+              <form id="form_body" method="POST">
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
                   <div class="row"> 
