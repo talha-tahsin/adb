@@ -72,7 +72,7 @@
                   <hr style="border-bottom: 2px solid black;">
 
                     <div class="row">
-                      <div class="col-md-10" style="margin: 10px 0px 10px 0px;">
+                      <div class="col-md-11" style="margin: 10px 0px 10px 0px;">
 
                         <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table">
                             <thead>
@@ -101,10 +101,10 @@
                           </table>
 
                           <div class="row">
-                          <div class="col-md-8"></div>
-                            <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                          <div class="col-md-10"></div>
+                            <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
                               <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
-                            </div>
+                            </div> -->
                             
                             <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
                               <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
@@ -115,6 +115,7 @@
                       <!-- end div col-md -->
                     </div>
                     <!-- end row  -->
+                    <hr style="border-bottom: 2px solid black;">
                     <div class="row">
 
                       <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
@@ -125,9 +126,9 @@
 
                       <div class="col-md-10"></div>
 
-                      <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                      <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                         <a href="{{ route('Ground.Truth.Second') }}">
-                          <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 5px;">Next : 2nd Ground Truth</button>
+                          <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 20px;">Next : 2nd Ground Truth</button>
                         </a>
                       </div>
 
@@ -182,5 +183,46 @@
 <script src="{{ mix('resources/scripts/lulc_validation/ground_truth_1st.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
+
+<script>
+
+document.title = 'map-wise: first ground truth';
+
+$(document).ready(function () {
+
+    console.log("hello talha23..");
+    
+    var userNm = $('#userName').val();
+
+    $.ajax({
+        url: "/get_active_watershed",
+        type: "GET",
+        data: { 'userNm' : userNm },
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            $.each(data.message, function (i, v) {
+                $('#watershed_id').val(v.watershed_id);
+                $('#watershed_name').val(v.watershed_name);
+                $('#para_id').val(v.para_id);
+                $('#para_name').val(v.para_name);
+            });
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+    // for (var i = 0; i < 3; i++) {
+        insertTableRow();
+    // }
+
+
+});
+
+
+</script> 
 
 @endsection

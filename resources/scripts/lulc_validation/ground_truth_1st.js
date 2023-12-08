@@ -1,39 +1,13 @@
 
 
 
-document.title = 'map-wise: first ground truth';
+// document.title = 'map-wise: first ground truth';
 
 $(document).ready(function () {
 
-    console.log("hello talha23..");
+    // console.log("hello talha23..");
     
-    var userNm = $('#userName').val();
-
-    $.ajax({
-        url: "/get_active_watershed",
-        type: "GET",
-        data: { 'userNm' : userNm },
-        dataType: "json",
-        cache: false,
-        success: function (data) {
-            // console.log(data);
-            $.each(data.message, function (i, v) {
-                $('#watershed_id').val(v.watershed_id);
-                $('#watershed_name').val(v.watershed_name);
-                $('#para_id').val(v.para_id);
-                $('#para_name').val(v.para_name);
-            });
-            
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-
-    for (var i = 0; i < 3; i++) {
-        insertTableRow();
-    }
-
+    // var userNm = $('#userName').val();
 
 });
 
@@ -113,9 +87,9 @@ $(document).on('click', '#btn_store', function (event) {
 
     var form = $('#form_body')[0];
     var formdata = new FormData(form);
-    formdata.append( "_token", token);
-    formdata.append( "watershed_id", watershed_id);
-    formdata.append( "watershed_name", watershed_name);
+    formdata.append("_token", token);
+    formdata.append("watershed_id", watershed_id);
+    formdata.append("watershed_name", watershed_name);
 
     console.log(formdata);
 

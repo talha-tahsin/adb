@@ -20,10 +20,7 @@ class LulcValidationController extends Controller
     }
     public function store_first_ground_truth(Request $request)
     {
-        $data = $request->all();
-        $xmlstr = simplexml_load_string($data);
-        // dd($xmlstr->row);
-        // $itemsData = $request;
+        // $xmlstr = simplexml_load_string($data);
         // dd($data);
 
         $timestamp = time();
@@ -36,40 +33,36 @@ class LulcValidationController extends Controller
         // try 
         // {
             DB::beginTransaction();
-
-            foreach ($xmlstr as $value) 
-            {
-
-                $store_data = array(
-                    'watershed_id' => $value->watershed_id,
-                    'watershed_name' => $value->watershed_name,
-                    'map_code_unit' => $value->map_code_unit,
-                    'longitude_east' => $value->longitude_east,
-                    'longitude_north' => $value->longitude_north,
-                    'elevation' => $value->elevation,
-                    'map_code' => $value->map_code,
-                    'observed_code' => $value->observed_code,
-                    'gcp_type' => $value->gcp_type,
-                    // 'photo_id' => $value->photo_id,
-                    'photo_aspect' => $value->photo_aspect,
-                    'created_by' => $value->created_by,
-                    'created_at' => $created_at,
-                );
+            $store_data = array(
+                'watershed_id' => $request['watershed_id'],
+                'watershed_name' => $request['watershed_name'],
+                'map_code_unit' => $request['map_code_unit'],
+                'longitude_east' => $request['longitude_east'],
+                'longitude_north' => $request['longitude_north'],
+                'elevation' => $request['elevation'],
+                'map_code' => $request['map_code'],
+                'observed_code' => $request['observed_code'],
+                'gcp_type' => $request['gcp_type'],
+                // 'photo_id' => $request['photo_id'],
+                'photo_aspect' => $request['photo_aspect'],
+                'created_by' => $request['created_by'],
+                'created_at' => $created_at,
+            );
                 
-                DB::table('tbl_1st_ground_truth')->insert($store_data);
-                DB::commit();
+            DB::table('tbl_1st_ground_truth')->insert($store_data);
+            DB::commit();
 
-                if ($files = $value->file('up_image')) {
-                    $file = $image_id . "." .$files->getClientOriginalExtension();
-                    $path_str = $files->storeAs( 'upload', $file, 'public' );
-                    $store_image = array(
-                        'image' =>'/' . $path_str,
-                    );
-    
-                    DB::table('tbl_1st_ground_truth')->where('watershed_id', $value->watershed_id)->update($store_image);
-                    DB::commit();
-                }
+            if ($files = $request->file('up_image')) {
+                $file = $image_id . "." .$files->getClientOriginalExtension();
+                $path_str = $files->storeAs( 'upload', $file, 'public' );
+                $store_image = array(
+                    'image' =>'/' . $path_str,
+                );
+
+                DB::table('tbl_1st_ground_truth')->where('watershed_id', $request['watershed_id'])->update($store_image);
+                DB::commit();
             }
+            
             
             return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
             
