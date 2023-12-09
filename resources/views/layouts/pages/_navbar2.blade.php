@@ -5,7 +5,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
     <li class="nav-item d-none d-sm-inline-block">
-        <img src="{{ mix('resources/dist/img/cegis_namplate.png') }}" alt="Logo" class="elevation-3" height="35" width="220" style="opacity: .8;padding-top: 4px;">
+        <!-- <img src="{{ mix('resources/dist/img/cegis_namplate.png') }}" alt="Logo" class="elevation-3" height="35" width="220" style="opacity: .8;padding-top: 4px;"> -->
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>

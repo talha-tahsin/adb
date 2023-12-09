@@ -16,6 +16,9 @@ class WatershedHealthController extends Controller
     public function watershed_sample_quality(){
         return view('watershed_health.water_sample_quality');
     }
+    public function soil_sample_lab_test(){
+        return view('watershed_health.soil_sample_lab_test');
+    }
     public function store_water_sample_quality(Request $request)
     {
         if (request()->ajax()) {

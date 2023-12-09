@@ -73,16 +73,17 @@
                         <th rowspan="2" style="text-align: left;">Sample Collection Date</th>
                         <th rowspan="2" style="text-align: left;">Sample Collection Time</th>
                         <th rowspan="2" style="text-align: left;">Name of Farmer/Forester</th>
-                        <th rowspan="2" style="text-align: left;">Water Sample ID</th>
-                        <th rowspan="2" style="text-align: left;">Approx. Area (acre) of wetlands</th>
-                        <th colspan="2" style="text-align: center;">Location of Sample from Wetlands (coordinates)</th>
-                        <th colspan="2" style="text-align: center;">Approx. Avg. Depth (ft) of Flow</th>
+                        <th rowspan="2" style="text-align: left;">Cell No of Farmer/Forester</th>
+                        <th rowspan="2" style="text-align: left;">Soil Sample ID</th>
+                        <th colspan="2" style="text-align: center;">Sample Location</th>
+                        <th colspan="3" style="text-align: center;">Cropping Pattern of Sample Collection Site</th>
                       </tr>
                       <tr style="background-color: #99ccff;">
                         <th style="text-align:center;border-bottom: none;">Longitude, X (Easting)</th>
                         <th style="text-align:center;border-bottom: none;">Latitude, Y (Northing)</th>
-                        <th style="text-align:center;border-bottom: none;">Dry Season</th>
-                        <th style="text-align:center;border-bottom: none;">Wet Season</th>
+                        <th style="text-align:center;border-bottom: none;">Kharif I (Mar - Jun)</th>
+                        <th style="text-align:center;border-bottom: none;">Kharif II (Jul - Oct)</th>
+                        <th style="text-align:center;border-bottom: none;">Rabi (Nov - Feb)</th>
                       </tr>
                     </thead>
 
@@ -100,11 +101,12 @@
 
                         <td style="text-align: center;width: 10%"><input type="text" id="dry_season" name="dry_season" class="form-control" placeholder="0"></td> 
                         <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
+                        <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
                       </tr>
 
                     </tbody>
 
-                </table>
+                  </table>
 
                 <!-- <hr style="border-bottom: 2px solid black;"> -->
                
@@ -112,177 +114,47 @@
                   <div class="form-group" id="table_div">
 
                     <div class="row">
-                        <div class="col-md-12" style="margin: 20px 0px 10px 0px;">
+                        <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 
                         <div class="row">
                           <!-- <div class="col-md-1"></div> -->
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_male">
-                          <span style="color: red;">★&nbsp;</span>Weather Condition during In-situ Test</label>
-                            <select id="weather_condition" name="weather_condition" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Cloudy">Cloudy</option>
-                              <option value="Sunny">Sunny</option>
-                              <option value="Rainy">Rainy</option>
-                              <option value="Foggy">Foggy</option>
-                              <option value="Others">Others</option>
-                            </select>
+                            <label class="control-label validate" for="jhum_male">
+                            <span style="color: red;">★&nbsp;</span>Soil Depth (cm)</label>
+                            <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="Please fill up this field">
                           </div>
-
-                          <!-- <div class="col-md-1"></div> -->
+                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                            <label class="control-label validate" for="jhum_male">
+                            <span style="color: red;">★&nbsp;</span>Inundation depth (cm)</label>
+                            <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Write when normal flooding">
+                          </div>
                           
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                           <label class="control-label validate" for="jhum_female">
-                          <span style="color: red;">★&nbsp;</span>Sediment Type of Wetlands Bed </label>
+                          <span style="color: red;">★&nbsp;</span>Land Form </label>
                             <select id="sediment_type" name="sediment_type" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
                               <option value="" selected disabled>Select Option</option>
-                              <option value="Gravel">Gravel</option>
-                              <option value="Sand">Sand</option>
-                              <option value="Silt">Silt</option>
-                              <option value="Boulder">Boulder</option>
-                              <option value="Others">Others</option>
+                              <option value="Hill Top">Hill Top</option>
+                              <option value="Valley">Valley</option>
+                              <option value="Low Lying Flat Land">Low Lying Flat Land</option>
+                              <option value="Sloping Land">Sloping Land</option>
                             </select>
                           </div> 
 
                           <!-- <div class="col-md-1"></div>  -->
                           
                           <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="plain_land_male">
-                          <span style="color: red;">★&nbsp;</span>Status of Water Flow </label>
-                            <select id="water_flow_status" name="water_flow_status" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Stagnant">Stagnant</option>
-                              <option value="Mild Wave">Mild Wave</option>
-                              <option value="Turbulent">Turbulent</option>
-                              <option value="Others">Others</option>
-                            </select>
+                            <label class="control-label validate" for="jhum_male">
+                            <span style="color: red;">★&nbsp;</span>Land Type (tbf by CEGIS)</label>
+                            <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                           </div>
 
-                          <!-- <div class="col-md-1"></div> -->
-                          
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                            <label class="control-label validate" for="plain_land_female">
-                            <span style="color: red;">★&nbsp;</span>Upper Riparian LULC Type </label>
-                            <select id="lulc_type" name="lulc_type" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Open land">Open land</option>
-                              <option value="Forest">Forest</option>
-                              <option value="Hill tract">Hill tract</option>
-                              <option value="Others">Others</option>
-                            </select>
-                          </div> 
-
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                            <label class="control-label validate" for="plain_land_female">
-                            <span style="color: red;">★&nbsp;</span>Interventions in Upstream of Sam. Site</label>
-                            <select id="intervention_upstream" name="intervention_upstream" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Industrial">Industrial</option>
-                              <option value="Mining">Mining</option>
-                              <option value="Agricultural">Agricultural</option>
-                              <option value="Others">Others</option>
-                            </select>
-                          </div> 
-
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                            <label class="control-label validate" for="plain_land_female">
-                            <span style="color: red;">★&nbsp;</span>Interventions Nearby the Samp. Site</label>
-                            <select id="intervention_nearby" name="intervention_nearby" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Bridge">Bridge</option>
-                              <option value="Settlement">Settlement</option>
-                              <option value="Roads">Roads</option>
-                              <option value="Market">Market</option>
-                              <option value="Others">Others</option>
-                            </select>
-                          </div> 
-                            
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                          <!-- <div class="col-md-1"></div> -->
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_male">
-                          <span style="color: red;">★&nbsp;</span>Navigation Practice</label>
-                            <select id="navigation_practice" name="navigation_practice" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
-                            </select>
-                          </div>
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_male">
-                          <span style="color: red;">★&nbsp;</span>Fishing Practice</label>
-                            <select id="fishing_practice" name="fishing_practice" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
-                            </select>
-                          </div>
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_male">
-                          <span style="color: red;">★&nbsp;</span>Use of Wetlands Water</label>
-                            <select id="use_of_wetland" name="use_of_wetland" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Drinking">Drinking</option>
-                              <option value="Irrigation">Irrigation</option>
-                              <option value="Household">Household</option>
-                              <option value="Industrial">Industrial</option>
-                              <option value="Others">Others</option>
-                            </select>
-                          </div>
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_male">
-                          <span style="color: red;">★&nbsp;</span>Waste Discharge into Water</label>
-                            <select id="waste_discharge" name="waste_discharge" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
-                            </select>
-                          </div>
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_male">
-                          <span style="color: red;">★&nbsp;</span>Major Mollusks</label>
-                            <select id="major_mollusks" name="major_mollusks" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Shamuk">Shamuk</option>
-                              <option value="Jhinuk">Jhinuk</option>
-                              <option value="Others">Others</option>
-                            </select>
-                          </div>
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_male">
-                          <span style="color: red;">★&nbsp;</span>Overall Wetlands Water Health</label>
-                            <select id="overall_wetland" name="overall_wetland" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Very Good">Very Good</option>
-                              <option value="Good">Good</option>
-                              <option value="Moderate">Moderate</option>
-                              <option value="Bad">Bad</option>
-                              <option value="Very Bad">Very Bad</option>
-                              <option value="Others">Others</option>
-                            </select>
-                          </div>
-
-                      </div>
-                      <!-- end row -->
-                        
-                        <div class="row">
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                            <label class="control-label validate" for="up_image"><span style="color: red;">★&nbsp;</span>Upload Image</label>
-                            <input type="file" class="" id="up_image" name="up_image" accept="image/x-png,image/jpg,image/jpeg,image/heif,image/heic" autocomplete="off"/>
-                          </div>
-                          <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
-                            <label class="control-label validate" for="any_remarks"><span style="color: red;">★&nbsp;</span>Any Remarks</label>
-                            <textarea class="form-control initialval" id="any_remark" name="any_remark" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
-                          </div>
                           <div class="col-md-2" style="margin: 40px 0px 10px 0px;">
                             <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Details Info</button>
                           </div>
-                          
+  
                         </div>
-                        <!-- end row -->
+                        <!-- end row -->                      
                   </form>
 
                     </div>
@@ -394,17 +266,17 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/watershed_health/water_sample_quality.js') }}"></script>
+<script src="{{ mix('resources/scripts/watershed_health/soil_sample_lab_test.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 
 <script>
 
-document.title = 'water sample quality';
+document.title = 'soil sample lab test';
 
 $(document).ready(function () {
 
-    console.log("hello talha..");
+    console.log("hello from blade script..");
     
     var userNm = $('#userName').val();
 

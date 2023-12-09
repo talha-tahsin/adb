@@ -114,7 +114,8 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
 /** Start :: watershed health survey Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('show-water-sample-quality', [WatershedHealthController::class, 'watershed_sample_quality'])->name('Watershed.Sample.Quality');
+    Route::get('water-sample-quality', [WatershedHealthController::class, 'watershed_sample_quality'])->name('Watershed.Sample.Quality');
+    Route::get('soil-sample-lab-test', [WatershedHealthController::class, 'soil_sample_lab_test'])->name('Soil.Sample.Lab.Test');
 
     // POST Method
     Route::post('store_water_sample_quality', [WatershedHealthController::class, 'store_water_sample_quality']);
