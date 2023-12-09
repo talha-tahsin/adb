@@ -172,34 +172,116 @@
               <!-- end main table div -->
 
           <hr style="border-bottom: 2px solid black;">
-            <div class="col-md-8" style="margin: 10px 0px 10px 0px;">
+            <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 
-              <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
-                  <thead>
-                      <tr style="background-color: #8ed6f2;">
-                        <th style="text-align: center;">Serial</th>
-                        <th style="text-align: left;">Test Name</th>
-                        <th style="text-align: center;">1st  Test</th>
-                        <th style="text-align: center;">2nd Test</th>
-                        <th style="text-align: center;">3rd Test</th>  
-                        <th style="text-align: center;">Average</th>  
-                      </tr>
-                  </thead>
+            <h5>(a) Soil Test Result (tbf after lab test)</h5>
+            <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
+              <thead>
+                <tr style="background-color: #8ed6f2;">
+                  <th style="text-align: left;">Soil Reaction (pH)</th>
+                  <th style="text-align: left;">Organic Matter (OM), % </th>
+                  <th style="text-align: left;">Water Holding Capacity</th>
+                  <th style="text-align: center;">Percolation/Infiltration, ml/min</th>
+                  <th style="text-align: center;">Nitrogen (N), %</th>
+                  <th style="text-align: center;">Phosphorus (P), ppm</th>
+                  <th style="text-align: center;">Potassium (K), meq/100g soil</th>
+                  <th style="text-align: left;">Sulphur (S), ppm</th>
+                  <th style="text-align: left;">Calcium (Ca), ppm</th>
+                </tr>
+              </thead>
 
-                  <tbody id="table_body"></tbody>
+              <tbody id="table_body">
 
-                </table>
+                <tr>
+                  <td style="text-align: center;width: 10%"><input type="text" id="collection_date" name="collection_date" class="form-control" placeholder="0"></td> 
+                  <td style="text-align: center;width: 10%"><input type="text" id="collection_time" name="collection_time" class="form-control" placeholder="0"></td> 
+                  <td style="text-align: center;width: 10%"><input type="text" id="farmar_name" name="farmar_name" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="sample_id" name="sample_id" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="approx_area" name="approx_area" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="longitude" name="longitude" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="latitude" name="latitude" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="dry_season" name="dry_season" class="form-control" placeholder="0"></td> 
+                  <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
+                </tr>
 
-                  <div class="row">
-                    <div class="col-md-10"></div>
-                      <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                        <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
-                      </div> -->
-                      <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                        <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
-                      </div>  
-                  </div>
+              </tbody>
+
+            </table>
+
+              <!-- 2nd part -->
+              <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
+                <thead>
+                  <tr style="background-color: #8ed6f2;">
+                    <th style="text-align: left;">Magnesium (Mg), mg/100g soil</th>
+                    <th style="text-align: left;">Iron (Fe), mg/100g soil</th>
+                    <th style="text-align: left;">Manganese (Mn), mg/100g soil</th>
+                    <th style="text-align: left;">Copper (Cu), mg/100g soil</th>
+                    <th style="text-align: left;">Molybdenum (Mo), mg/100g soil</th>
+                    <th style="text-align: center;">Zinc (Zn), mg/100g soil</th>
+                    <th style="text-align: center;">Boron (B), mg/100g soil</th>
+                    <th style="text-align: center;">Cadmium (Cd), ppm</th>
+                    <th style="text-align: center;">Lead (Pb), ppm</th>
+                  </tr>
+                </thead>
+
+                <tbody id="table_body">
+
+                  <tr>
+                    <td style="text-align: center;width: 10%"><input type="text" id="collection_date" name="collection_date" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="collection_time" name="collection_time" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="farmar_name" name="farmar_name" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="sample_id" name="sample_id" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="approx_area" name="approx_area" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="longitude" name="longitude" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="latitude" name="latitude" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="dry_season" name="dry_season" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+              <div class="row">
+                <div class="col-md-10"></div>
+                  <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                    <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                  </div> -->
+                  <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                    <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
+                  </div>  
+              </div>
             </div>
+
+          <hr style="border-bottom: 2px solid black;">
+          <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
+
+          <h5>(b) Soil Texture Class</h5>
+            <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
+                <thead>
+                    <tr style="background-color: #8ed6f2;">
+                      <th style="text-align: center;">Serial</th>
+                      <th style="text-align: left;">Soil Texture Class</th>
+                      <th style="text-align: center;">Sand, %</th>
+                      <th style="text-align: center;">Silt, %</th>
+                      <th style="text-align: center;">Clay, %</th>   
+                    </tr>
+                </thead>
+
+                <tbody id="table_body"></tbody>
+
+              </table>
+
+                <div class="row">
+                  <div class="col-md-9"></div>
+                    <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                      <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                    </div> -->
+                    <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                      <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
+                    </div>  
+                </div>
+          </div>
 
           <hr style="border-bottom: 2px solid black;">
 

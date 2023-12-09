@@ -11,14 +11,20 @@ $(document).ready(function () {
     $('.date').datepicker({ dateFormat: "yy-mm-dd" });
     
     myJson = {
-        '001' : 'Dissolve Oxygen (DO) (mg/L)',
-        '002' : 'Temperature  (°C )',
-        '003' : 'pH',
-        '004' : 'Electrical Conductivity (mS/cm)',
-        '005' : 'Total Dissolved Solids (ppt) (mg/L)',
+        '001' : 'Sand',
+        '002' : 'Loamy sand',
+        '003' : 'Sandy loam',
+        '004' : 'Sandy clay loam',
+        '005' : 'Loam',
+        '006' : 'Silt loam',
+        '007' : 'Silt',
+        '008' : 'Silty clay loam',
+        '009' : 'Clay',
+        '010' : 'Clay loam',
+        '011' : 'Sandy clay',
+        '012' : 'Silty clay',
     };
     $.each(myJson, function(key, value) {
-        // console.log(value);
         insertTableRow(value);
     });
 
@@ -96,10 +102,8 @@ $(document).on('click', '#btn_store', function (event) {
 function insertTableRow(name) {
 
     var appendString = '';
-    var rowCount = $('#my_table2 > tbody > tr').length;
+    var rowCount = $('#my_table3 > tbody > tr').length;
     rowCount++;
-
-    // console.log(accountName);
 
     appendString += '<tr>';
     appendString += '<td class="sl" style="width: 20px;text-align: center;">' + rowCount + '</td>';
@@ -107,16 +111,13 @@ function insertTableRow(name) {
     appendString += '<td style="width: 300px;text-align: left;">' + name + '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="test_1st" name="test_1st" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="sand" name="test_1st" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="test_2nd" name="test_2nd" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="slit" name="test_2nd" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="test_3rd" name="test_3rd" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
-    appendString += '</td>';
-    appendString += '<td>';
-    appendString += '<input type="text" id="average" name="average" class="form-control" value="" style="width: 200px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="clay" name="test_3rd" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     //appendString += '<td style="text-align: center;">';
@@ -126,7 +127,7 @@ function insertTableRow(name) {
     appendString += '</tr>';
 
 
-    $('#my_table2 > tbody:last-child').append(appendString);
+    $('#my_table3 > tbody:last-child').append(appendString);
     removeTableRow();
     // $("#voucher_table tr:last").scrollintoview();
 }
