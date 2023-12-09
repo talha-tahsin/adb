@@ -92,16 +92,16 @@
                       <tr>
                         <td style="text-align: center;width: 10%"><input type="text" id="collection_date" name="collection_date" class="form-control date" placeholder="Write collection date"></td> 
                         <td style="text-align: center;width: 10%"><input type="text" id="collection_time" name="collection_time" class="form-control" placeholder="Write like 12:10 Am"></td> 
-                        <td style="text-align: center;width: 10%"><input type="text" id="farmar_name" name="farmar_name" class="form-control" placeholder="Write farmar name"></td>
-                        <td style="text-align: center;width: 10%"><input type="text" id="sample_id" name="sample_id" class="form-control" placeholder="0"></td>
-                        <td style="text-align: center;width: 10%"><input type="text" id="approx_area" name="approx_area" class="form-control" placeholder="0"></td>
+                        <td style="text-align: center;width: 10%"><input type="text" id="farmer_name" name="farmer_name" class="form-control" placeholder="Write farmar name"></td>
+                        <td style="text-align: center;width: 10%"><input type="text" id="farmer_cell_no" name="farmer_cell_no" class="form-control" placeholder="0"></td>
+                        <td style="text-align: center;width: 10%"><input type="text" id="soil_sample_id" name="soil_sample_id" class="form-control" placeholder="0"></td>
 
                         <td style="text-align: center;width: 10%"><input type="text" id="longitude" name="longitude" class="form-control" placeholder="0"></td>
                         <td style="text-align: center;width: 10%"><input type="text" id="latitude" name="latitude" class="form-control" placeholder="0"></td>
 
-                        <td style="text-align: center;width: 10%"><input type="text" id="dry_season" name="dry_season" class="form-control" placeholder="0"></td> 
-                        <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
-                        <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
+                        <td style="text-align: center;width: 10%"><input type="text" id="kharif_1" name="kharif_1" class="form-control" placeholder="0"></td> 
+                        <td style="text-align: center;width: 10%"><input type="text" id="kharif_2" name="kharif_2" class="form-control" placeholder="0"></td> 
+                        <td style="text-align: center;width: 10%"><input type="text" id="rabi" name="rabi" class="form-control" placeholder="0"></td> 
                       </tr>
 
                     </tbody>
@@ -109,71 +109,64 @@
                   </table>
 
                 <!-- <hr style="border-bottom: 2px solid black;"> -->
-               
-              
-                  <div class="form-group" id="table_div">
+                <div class="row">
+                  <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 
                     <div class="row">
-                        <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
+                      <!-- <div class="col-md-1"></div> -->
+                      <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                        <label class="control-label validate" for="jhum_male">
+                        <span style="color: red;">★&nbsp;</span>Soil Depth (cm)</label>
+                        <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="Please fill up this field">
+                      </div>
+                      <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                        <label class="control-label validate" for="jhum_male">
+                        <span style="color: red;">★&nbsp;</span>Inundation depth (cm)</label>
+                        <input type="text" name="inundation_depth" id="inundation_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Write when normal flooding">
+                      </div>
+                      
+                      <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                      <label class="control-label validate" for="land_form">
+                      <span style="color: red;">★&nbsp;</span>Land Form </label>
+                        <select id="land_form" name="land_form" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
+                          <option value="" selected disabled>Select Option</option>
+                          <option value="Hill Top">Hill Top</option>
+                          <option value="Valley">Valley</option>
+                          <option value="Low Lying Flat Land">Low Lying Flat Land</option>
+                          <option value="Sloping Land">Sloping Land</option>
+                        </select>
+                      </div> 
 
-                        <div class="row">
-                          <!-- <div class="col-md-1"></div> -->
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                            <label class="control-label validate" for="jhum_male">
-                            <span style="color: red;">★&nbsp;</span>Soil Depth (cm)</label>
-                            <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="Please fill up this field">
-                          </div>
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                            <label class="control-label validate" for="jhum_male">
-                            <span style="color: red;">★&nbsp;</span>Inundation depth (cm)</label>
-                            <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Write when normal flooding">
-                          </div>
-                          
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                          <label class="control-label validate" for="jhum_female">
-                          <span style="color: red;">★&nbsp;</span>Land Form </label>
-                            <select id="sediment_type" name="sediment_type" class="form-control initialSelectBoxVal" style="border-radius: 5px;border:2px solid #898AEE;">
-                              <option value="" selected disabled>Select Option</option>
-                              <option value="Hill Top">Hill Top</option>
-                              <option value="Valley">Valley</option>
-                              <option value="Low Lying Flat Land">Low Lying Flat Land</option>
-                              <option value="Sloping Land">Sloping Land</option>
-                            </select>
-                          </div> 
+                      <!-- <div class="col-md-1"></div>  -->
+                      
+                      <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+                        <label class="control-label validate" for="jhum_male">
+                        <span style="color: red;">★&nbsp;</span>Land Type (tbf by CEGIS)</label>
+                        <input type="text" name="land_type" id="land_type" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                      </div>
 
-                          <!-- <div class="col-md-1"></div>  -->
-                          
-                          <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                            <label class="control-label validate" for="jhum_male">
-                            <span style="color: red;">★&nbsp;</span>Land Type (tbf by CEGIS)</label>
-                            <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
-                          </div>
+                      <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
+                        <label class="control-label validate" for="any_remarks"><span style="color: red;">★&nbsp;</span>Any Remarks</label>
+                        <textarea class="form-control initialval" id="any_remark" name="any_remark" rows="2" style="resize: vertical; border: 2px solid #898AEE;border-radius: 5px;" placeholder="Please write something"></textarea>
+                      </div>
 
-                          <div class="col-md-2" style="margin: 40px 0px 10px 0px;">
-                            <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Details Info</button>
-                          </div>
-  
-                        </div>
-                        <!-- end row -->                      
-                  </form>
+                      <div class="col-md-2" style="margin: 40px 0px 10px 0px;">
+                        <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Details Info</button>
+                      </div>
 
                     </div>
+                    <!-- end row -->                      
+                
+                  </div>
                 </div>
-                <!-- // end table row -->
+                <!-- end main row -->
 
-                  <!-- <div class="row">
-                      <div class="col-md-10"></div>
-                      <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                        <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Details Info</button>
-                      </div>  
-                  </div> -->
-
-              </div>
-              <!-- end main table div -->
-
+            </form>
+          <!-- ========= * ========== * =========== * ========== * =========== * ========== -->
           <hr style="border-bottom: 2px solid black;">
-            <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
+          <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 
+          <form id="form2_body" method="POST">
             <h5>(a) Soil Test Result (tbf after lab test)</h5>
             <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
               <thead>
@@ -208,7 +201,7 @@
 
             </table>
 
-              <!-- 2nd part -->
+              <!-- table 2 : 2nd part -->
               <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
                 <thead>
                   <tr style="background-color: #8ed6f2;">
@@ -251,36 +244,38 @@
                     <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
                   </div>  
               </div>
-            </div>
+            <form>
+          </div>
 
+          <!-- ========= * ========== * =========== * ========== * =========== * ========== -->
           <hr style="border-bottom: 2px solid black;">
-          <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
 
-          <h5>(b) Soil Texture Class</h5>
+          <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
+            <h5>(b) Soil Texture Class</h5>
             <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
-                <thead>
-                    <tr style="background-color: #8ed6f2;">
-                      <th style="text-align: center;">Serial</th>
-                      <th style="text-align: left;">Soil Texture Class</th>
-                      <th style="text-align: center;">Sand, %</th>
-                      <th style="text-align: center;">Silt, %</th>
-                      <th style="text-align: center;">Clay, %</th>   
-                    </tr>
-                </thead>
+              <thead>
+                <tr style="background-color: #8ed6f2;">
+                  <th style="text-align: center;">Serial</th>
+                  <th style="text-align: left;">Soil Texture Class</th>
+                  <th style="text-align: center;">Sand, %</th>
+                  <th style="text-align: center;">Silt, %</th>
+                  <th style="text-align: center;">Clay, %</th>   
+                </tr>
+              </thead>
 
                 <tbody id="table_body"></tbody>
 
-              </table>
+            </table>
 
-                <div class="row">
-                  <div class="col-md-9"></div>
-                    <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
-                      <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
-                    </div> -->
-                    <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-                      <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
-                    </div>  
-                </div>
+            <div class="row">
+              <div class="col-md-9"></div>
+                <!-- <div class="col-md-2" style="margin: 20px 0px 30px 0px;">
+                  <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
+                </div> -->
+                <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                  <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
+                </div>  
+            </div>
           </div>
 
           <hr style="border-bottom: 2px solid black;">

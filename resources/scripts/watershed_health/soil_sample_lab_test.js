@@ -39,15 +39,6 @@ $(document).on('click', '#btn_store', function (event) {
     var watershed_id = $('#watershed_id').val();
     var watershed_name = $('#watershed_name').val();
     var para_name = $('#para_name').val();
-   
-    // var sediment_type = $('#sediment_type option:selected').val();
-    // var lulc_type = $('#lulc_type option:selected').val();
-    // var intervention_upstream = $('#intervention_upstream option:selected').val();
-    // var intervention_nearby = $('#intervention_nearby option:selected').val();
-    // var navigation_practice = $('#navigation_practice option:selected').val();
-    // var fishing_practice = $('#fishing_practice option:selected').val();
-    // var use_of_wetland = $('#use_of_wetland option:selected').val();
-
 
     var form = $('#form_body')[0];
     var formdata = new FormData(form);
@@ -65,7 +56,7 @@ $(document).on('click', '#btn_store', function (event) {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_water_sample_quality",
+        url: "/store_soil_sample_basic_info",
         type: "POST",
         enctype: 'multipart/form-data',
         dataType: 'json',

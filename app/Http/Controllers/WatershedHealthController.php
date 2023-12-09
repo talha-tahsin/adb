@@ -147,4 +147,73 @@ class WatershedHealthController extends Controller
             return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
         }
     }
+    // Soil Sample and Land Test
+    public function store_soil_sample_basic_info(Request $request)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($request->all(), [
+                'watershed_id' => 'required|string|max:255',
+                'watershed_name' => 'required',
+                'up_image' => 'required|image|mimes:jpeg,png,jpg',
+            ], [],[]);
+
+            if ($validator->fails()){
+                return response()->json(['success' => false,'message' => strval(implode("<br>",$validator->errors()->all()))]);
+            }
+        
+            $timestamp = time();
+            $created_at = date("Y-m-d H:i:s", $timestamp);
+
+            // check dupliacte record in database ::
+            $found = DB::table('tbl_soil_sample_basic')->select('id')
+                                ->where('watershed_id',  $request['watershed_id'])
+                                ->where('para_id', $request['para_id'])
+                                ->count();
+
+            if($found > 0){
+                return response()->json([ 'status' => 'ERROR', 'message' => 'Data already exsits for this watershed and para, not possible to store...' ]);
+            }
+
+            try 
+            {
+                DB::beginTransaction();
+
+                $store_data = array(
+                    'watershed_id' => $request['watershed_id'],
+                    'watershed_name' => $request['watershed_name'],
+                    'para_id' => $request['para_id'],
+                    'para_name' => $request['para_name'],
+                    'collection_date' => $request['collection_date'],           
+                    'collection_time' => $request['collection_time'],            
+                    'farmar_name' => $request['farmer_name'],            
+                    'farmer_cell_no' => $request['farmer_cell_no'],                        
+                    'soil_sample_id' => $request['soil_sample_id'],            
+                    'longitude' => $request['longitude'],            
+                    'latitude' => $request['latitude'],
+                    'kharif_1' => $request['kharif_1'],
+                    'kharif_2' => $request['kharif_2'],
+                    'rabi' => $request['rabi'],
+                    'soil_depth' => $request['soil_depth'],
+                    'inundation_depth' => $request['inundation_depth'],
+                    'land_form' => $request['land_form'],
+                    'land_type' => $request['land_type'],
+                    'any_remark' => $request['any_remark'],
+                    'created_by' => $request['userName'],
+                    'created_at' => $created_at,
+                );
+
+                DB::table('tbl_soil_sample_basic')->insert($store_data);
+                DB::commit();
+                
+                return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            }
+            catch (\Exception $e) 
+            {
+                DB::rollBack();
+                $message = "Opps!! Something is wrong, data not saved and rollback..";
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
+
+        }
+    }
 }
