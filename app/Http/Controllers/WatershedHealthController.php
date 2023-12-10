@@ -286,4 +286,48 @@ class WatershedHealthController extends Controller
 
         }
     }
+    public function store_soil_texture_class(Request $request)
+    {
+        $receiveData = $request['dataToSend'];
+        $xmlstr = simplexml_load_string($receiveData);
+        // dd($xmlstr->row);
+        
+        $timestamp = time();
+        $created_at = date("Y-m-d H:i:s", $timestamp);
+
+        
+
+        try 
+        {
+            DB::beginTransaction();
+
+            foreach ($xmlstr->row as $value) 
+            {
+                $store_data = array(
+                    'watershed_id' => $value->watershed_id,
+                    'watershed_name' => $value->watershed_name,
+                    'para_id' => $value->para_id,
+                    'para_name' => $value->para_name,
+                    'soil_texture_class' => $value->soil_texture_class,
+                    'sand' => $value->sand,
+                    'slit' => $value->slit,
+                    'clay' => $value->clay,
+                    'created_by' => $value->created_by,
+                    'created_at' => $created_at,
+                );
+                
+                DB::table('tbl_soil_texture_class')->insert($store_data);
+                DB::commit();
+            }
+            
+            return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            
+        }
+        catch (\Exception $e) 
+        {
+            DB::rollBack();
+            $message = "Opps!! Something is wrong, data not saved and rollback..";
+            return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+        }
+    }
 }

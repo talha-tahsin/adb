@@ -122,6 +122,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::post('store_water_test_report', [WatershedHealthController::class, 'store_water_test_report']);
     Route::post('store_soil_sample_basic_info', [WatershedHealthController::class, 'store_soil_sample_basic_info']);
     Route::post('store_soil_test_result', [WatershedHealthController::class, 'store_soil_test_result']);
+    Route::post('store_soil_texture_class', [WatershedHealthController::class, 'store_soil_texture_class']);
 });
 
 /** Start :: Map Unit Wise Route */

@@ -244,7 +244,7 @@
                     <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
                   </div>  
               </div>
-            <form>
+            </form>
           </div>
 
           <!-- ========= * ========== * =========== * ========== * =========== * ========== -->
@@ -273,7 +273,7 @@
                   <button type="submit" class="btn btn-secondary" id="add_row" style="width: 100%;border-radius: 5px;color: black;">Add More Row</button>
                 </div> -->
                 <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
-                  <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
+                  <button type="submit" class="btn btn-primary" id="btn_store3" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
                 </div>  
             </div>
           </div>

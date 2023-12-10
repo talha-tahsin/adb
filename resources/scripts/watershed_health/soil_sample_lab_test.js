@@ -164,13 +164,13 @@ function insertTableRow(name) {
     appendString += '<td style="width: 300px;text-align: left;">' + name + '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="sand" name="test_1st" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="sand" name="sand" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="slit" name="test_2nd" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="slit" name="slit" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="clay" name="test_3rd" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="clay" name="clay" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     //appendString += '<td style="text-align: center;">';
@@ -201,17 +201,15 @@ $(document).on('click', '#btn_store3', function () {
 
         // var tr_comnty_id = $(this).attr('comnty_id');
         // var tr_comnty_name = $(this).find('td:eq(1)').text(); 
-        var test_name = $(this).closest('tr').find('td:eq(1)').text();
+        var soil_texture_class = $(this).closest('tr').find('td:eq(1)').text();
 
-        var test_1st = $(this).find('#test_1st').val();
-        var test_2nd = $(this).find('#test_2nd').val();
-        var test_3rd = $(this).find('#test_3rd').val();
-        var average = $(this).find('#average').val();
+        var sand = $(this).find('#sand').val();
+        var slit = $(this).find('#slit').val();
+        var clay = $(this).find('#clay').val();
 
-        if(test_1st == '' || test_1st == null || test_1st == undefined) test_1st = 0;
-        if(test_2nd == '' || test_2nd == null || test_2nd == undefined) test_2nd = 0;
-        if(test_3rd == '' || test_3rd == null || test_3rd == undefined) test_3rd = 0;
-        if(average == '' || average == null || average == undefined) average = 0;
+        if(sand == '' || sand == null || sand == undefined) sand = 0;
+        if(slit == '' || slit == null || slit == undefined) slit = 0;
+        if(clay == '' || clay == null || clay == undefined) clay = 0;
     
         // first binding data as xml string
         xml_data += '<row>';
@@ -220,14 +218,13 @@ $(document).on('click', '#btn_store3', function () {
         xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
         xml_data += '<para_id>' + para_id + '</para_id>';
         xml_data += '<para_name>' + para_name + '</para_name>';
-        xml_data += '<test_name>' + test_name + '</test_name>';
+        xml_data += '<soil_texture_class>' + soil_texture_class + '</soil_texture_class>';
 
-        xml_data += '<test_1st>' + test_1st + '</test_1st>';
-        xml_data += '<test_2nd>' + test_2nd + '</test_2nd>';
-        xml_data += '<test_3rd>' + test_3rd + '</test_3rd>';
-        xml_data += '<average>' + average + '</average>';
+        xml_data += '<sand>' + sand + '</sand>';
+        xml_data += '<slit>' + slit + '</slit>';
+        xml_data += '<clay>' + clay + '</clay>';
 
-        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+        xml_data += '<created_by>' + created_by + '</created_by>';
 
         xml_data += '</row>';
         
@@ -244,7 +241,7 @@ $(document).on('click', '#btn_store3', function () {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_water_test_report",
+        url: "/store_soil_texture_class",
         type: "POST",
         data: { '_token' : token, 'dataToSend' : xml_data },
         dataType: "JSON",
@@ -254,8 +251,8 @@ $(document).on('click', '#btn_store3', function () {
             if(data.status == 'SUCCESS'){
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-                $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
+                $('#my_table4 td input[type=text]').val('');
+                $('#my_table4 td').find('.resetSelect').prop("selectedIndex", 0);
                 // alert(data.message);
             }
             else{
