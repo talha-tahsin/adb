@@ -127,7 +127,6 @@ class WatershedHealthController extends Controller
                     'test_1st' => $value->test_1st,
                     'test_2nd' => $value->test_2nd,
                     'test_3rd' => $value->test_3rd,
-                    'test_3rd' => $value->test_3rd,
                     'average' => $value->average,
                     'created_by' => $value->created_by,
                     'created_at' => $created_at,
@@ -154,7 +153,6 @@ class WatershedHealthController extends Controller
             $validator = Validator::make($request->all(), [
                 'watershed_id' => 'required|string|max:255',
                 'watershed_name' => 'required',
-                'up_image' => 'required|image|mimes:jpeg,png,jpg',
             ], [],[]);
 
             if ($validator->fails()){
@@ -171,7 +169,8 @@ class WatershedHealthController extends Controller
                                 ->count();
 
             if($found > 0){
-                return response()->json([ 'status' => 'ERROR', 'message' => 'Data already exsits for this watershed and para, not possible to store...' ]);
+                $message = 'Data already exsits for this watershed and para, not possible to store...';
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
             }
 
             try 
@@ -185,7 +184,7 @@ class WatershedHealthController extends Controller
                     'para_name' => $request['para_name'],
                     'collection_date' => $request['collection_date'],           
                     'collection_time' => $request['collection_time'],            
-                    'farmar_name' => $request['farmer_name'],            
+                    'farmer_name' => $request['farmer_name'],            
                     'farmer_cell_no' => $request['farmer_cell_no'],                        
                     'soil_sample_id' => $request['soil_sample_id'],            
                     'longitude' => $request['longitude'],            
@@ -203,6 +202,77 @@ class WatershedHealthController extends Controller
                 );
 
                 DB::table('tbl_soil_sample_basic')->insert($store_data);
+                DB::commit();
+                
+                return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            }
+            catch (\Exception $e) 
+            {
+                DB::rollBack();
+                $message = "Opps!! Something is wrong, data not saved and rollback..";
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
+
+        }
+    }
+    public function store_soil_test_result(Request $request)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($request->all(), [
+                'watershed_id' => 'required|string|max:255',
+                'watershed_name' => 'required',
+            ], [],[]);
+
+            if ($validator->fails()){
+                return response()->json(['success' => false,'message' => strval(implode("<br>",$validator->errors()->all()))]);
+            }
+        
+            $timestamp = time();
+            $created_at = date("Y-m-d H:i:s", $timestamp);
+
+            // check dupliacte record in database ::
+            $found = DB::table('tbl_soil_test_result')->select('id')
+                                ->where('watershed_id',  $request['watershed_id'])
+                                ->where('para_id', $request['para_id'])
+                                ->count();
+
+            if($found > 0){
+                $message = 'Data already exsits for this watershed and para, not allow to store again...';
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
+
+            try 
+            {
+                DB::beginTransaction();
+
+                $store_data = array(
+                    'watershed_id' => $request['watershed_id'],
+                    'watershed_name' => $request['watershed_name'],
+                    'para_id' => $request['para_id'],
+                    'para_name' => $request['para_name'],
+                    'soil_reaction' => $request['soil_reaction'],           
+                    'organic_matter' => $request['organic_matter'],            
+                    'water_holding' => $request['water_holding'],            
+                    'percolation' => $request['percolation'],                        
+                    'nitrogen' => $request['nitrogen'],            
+                    'phosphorus' => $request['phosphorus'],            
+                    'potassium' => $request['potassium'],
+                    'sulphur' => $request['sulphur'],
+                    'calcium' => $request['calcium'],
+                    'magnesium' => $request['magnesium'],
+                    'iron' => $request['iron'],
+                    'manganese' => $request['manganese'],
+                    'copper' => $request['copper'],
+                    'molybdenum' => $request['molybdenum'],
+                    'zinc' => $request['zinc'],
+                    'boron' => $request['boron'],
+                    'cadmium' => $request['cadmium'],
+                    'lead' => $request['lead'],
+                    'created_by' => $request['created_by'],
+                    'created_at' => $created_at,
+                );
+
+                DB::table('tbl_soil_test_result')->insert($store_data);
                 DB::commit();
                 
                 return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);

@@ -71,9 +71,71 @@ $(document).on('click', '#btn_store', function (event) {
                 $('#success_msg').html(data.message);
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('.initialSelectBoxVal').val('').change();
-                $('#up_image').val('');
+                $('.initialVal').val('');
                 $('#my_table td input[type=text]').val('');
                 $('#any_remark').val();
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+
+
+});
+
+$(document).on('click', '#btn_store2', function (event) {
+
+    event.preventDefault();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var created_by = $('#userName').val();
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+
+    var form = $('#form2_body')[0];
+    var formdata = new FormData(form);
+    formdata.append( "_token", token);
+    formdata.append( "watershed_id", watershed_id);
+    formdata.append( "watershed_name", watershed_name);
+    formdata.append( "para_id", para_id);
+    formdata.append( "para_name", para_name);
+    formdata.append( "created_by", created_by);
+
+    console.log(formdata);
+    
+    // console.log(jsonObj);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_soil_test_result",
+        type: "POST",
+        enctype: 'multipart/form-data',
+        dataType: 'json',
+        data: formdata,
+        processData: false,  // Important when file upload!
+        contentType: false,
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('.initialSelectBoxVal').val('').change();
+                $('.initialVal').val('');
+                $('#my_table2 td input[type=text]').val('');
+                $('#my_table3 td input[type=text]').val('');
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
@@ -93,7 +155,7 @@ $(document).on('click', '#btn_store', function (event) {
 function insertTableRow(name) {
 
     var appendString = '';
-    var rowCount = $('#my_table3 > tbody > tr').length;
+    var rowCount = $('#my_table4 > tbody > tr').length;
     rowCount++;
 
     appendString += '<tr>';
@@ -118,12 +180,12 @@ function insertTableRow(name) {
     appendString += '</tr>';
 
 
-    $('#my_table3 > tbody:last-child').append(appendString);
+    $('#my_table4 > tbody:last-child').append(appendString);
     removeTableRow();
     // $("#voucher_table tr:last").scrollintoview();
 }
 
-$(document).on('click', '#btn_store2', function () {
+$(document).on('click', '#btn_store3', function () {
 
     var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
@@ -135,7 +197,7 @@ $(document).on('click', '#btn_store2', function () {
 
     xml_data = '<head>';
 
-    $('#my_table2 > tbody > tr').each(function () {
+    $('#my_table4 > tbody > tr').each(function () {
 
         // var tr_comnty_id = $(this).attr('comnty_id');
         // var tr_comnty_name = $(this).find('td:eq(1)').text(); 

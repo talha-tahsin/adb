@@ -117,12 +117,12 @@
                       <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                         <label class="control-label validate" for="jhum_male">
                         <span style="color: red;">★&nbsp;</span>Soil Depth (cm)</label>
-                        <input type="text" name="soil_depth" id="soil_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="Please fill up this field">
+                        <input type="text" name="soil_depth" id="soil_depth" class="form-control initialVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                       </div>
                       <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                         <label class="control-label validate" for="jhum_male">
                         <span style="color: red;">★&nbsp;</span>Inundation depth (cm)</label>
-                        <input type="text" name="inundation_depth" id="inundation_depth" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Write when normal flooding">
+                        <input type="text" name="inundation_depth" id="inundation_depth" class="form-control initialVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Write when normal flooding">
                       </div>
                       
                       <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
@@ -142,7 +142,7 @@
                       <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
                         <label class="control-label validate" for="jhum_male">
                         <span style="color: red;">★&nbsp;</span>Land Type (tbf by CEGIS)</label>
-                        <input type="text" name="land_type" id="land_type" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
+                        <input type="text" name="land_type" id="land_type" class="form-control initialVal" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" placeholder="Please fill up this field">
                       </div>
 
                       <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
@@ -186,15 +186,15 @@
               <tbody id="table_body">
 
                 <tr>
-                  <td style="text-align: center;width: 10%"><input type="text" id="collection_date" name="collection_date" class="form-control" placeholder="0"></td> 
-                  <td style="text-align: center;width: 10%"><input type="text" id="collection_time" name="collection_time" class="form-control" placeholder="0"></td> 
-                  <td style="text-align: center;width: 10%"><input type="text" id="farmar_name" name="farmar_name" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="sample_id" name="sample_id" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="approx_area" name="approx_area" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="longitude" name="longitude" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="latitude" name="latitude" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="dry_season" name="dry_season" class="form-control" placeholder="0"></td> 
-                  <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
+                  <td style="text-align: center;width: 10%"><input type="text" id="soil_reaction" name="soil_reaction" class="form-control" placeholder="0"></td> 
+                  <td style="text-align: center;width: 10%"><input type="text" id="organic_matter" name="organic_matter" class="form-control" placeholder="0"></td> 
+                  <td style="text-align: center;width: 10%"><input type="text" id="water_holding" name="water_holding" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="percolation" name="percolation" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="nitrogen" name="nitrogen" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="phosphorus" name="phosphorus" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="potassium" name="potassium" class="form-control" placeholder="0"></td>
+                  <td style="text-align: center;width: 10%"><input type="text" id="sulphur" name="sulphur" class="form-control" placeholder="0"></td> 
+                  <td style="text-align: center;width: 10%"><input type="text" id="calcium" name="calcium" class="form-control" placeholder="0"></td> 
                 </tr>
 
               </tbody>
@@ -202,7 +202,7 @@
             </table>
 
               <!-- table 2 : 2nd part -->
-              <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
+              <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
                 <thead>
                   <tr style="background-color: #8ed6f2;">
                     <th style="text-align: left;">Magnesium (Mg), mg/100g soil</th>
@@ -220,15 +220,15 @@
                 <tbody id="table_body">
 
                   <tr>
-                    <td style="text-align: center;width: 10%"><input type="text" id="collection_date" name="collection_date" class="form-control" placeholder="0"></td> 
-                    <td style="text-align: center;width: 10%"><input type="text" id="collection_time" name="collection_time" class="form-control" placeholder="0"></td> 
-                    <td style="text-align: center;width: 10%"><input type="text" id="farmar_name" name="farmar_name" class="form-control" placeholder="0"></td>
-                    <td style="text-align: center;width: 10%"><input type="text" id="sample_id" name="sample_id" class="form-control" placeholder="0"></td>
-                    <td style="text-align: center;width: 10%"><input type="text" id="approx_area" name="approx_area" class="form-control" placeholder="0"></td>
-                    <td style="text-align: center;width: 10%"><input type="text" id="longitude" name="longitude" class="form-control" placeholder="0"></td>
-                    <td style="text-align: center;width: 10%"><input type="text" id="latitude" name="latitude" class="form-control" placeholder="0"></td>
-                    <td style="text-align: center;width: 10%"><input type="text" id="dry_season" name="dry_season" class="form-control" placeholder="0"></td> 
-                    <td style="text-align: center;width: 10%"><input type="text" id="wet_season" name="wet_season" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="magnesium" name="magnesium" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="iron" name="iron" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="manganese" name="manganese" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="copper" name="copper" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="molybdenum" name="molybdenum" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="zinc" name="zinc" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="boron" name="boron" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="cadmium" name="cadmium" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="lead" name="lead" class="form-control" placeholder="0"></td> 
                   </tr>
 
                 </tbody>
@@ -252,7 +252,7 @@
 
           <div class="col-md-6" style="margin: 10px 0px 10px 0px;">
             <h5>(b) Soil Texture Class</h5>
-            <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
+            <table width="80%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table4">
               <thead>
                 <tr style="background-color: #8ed6f2;">
                   <th style="text-align: center;">Serial</th>
@@ -283,16 +283,16 @@
             <div class="row">
 
               <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                <a href="{{ route('VCF.Boundary.Dominant.Plant') }}" style="color: black;">
-                  <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 20px;">Previous : VCF Dominant Plants</button>
+                <a href="{{ route('Watershed.Sample.Quality') }}" style="color: black;">
+                  <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 20px;">Previous : Water Sample & Quality</button>
                 </a>
               </div>
 
               <div class="col-md-8"></div>
 
               <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                <a href="{{ route('Soil.Sample.Lab.Test') }}">
-                  <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 20px;">Next : Soil Sample & Lab Test</button>
+                <a href="{{ route('Population.Entry') }}">
+                  <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 20px;">Next : Societal Population</button>
                 </a>
               </div>
 

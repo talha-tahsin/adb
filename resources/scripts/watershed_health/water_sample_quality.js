@@ -200,9 +200,8 @@ $(document).on('click', '#btn_store2', function () {
             if(data.status == 'SUCCESS'){
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
-                $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
-                // alert(data.message);
+                $('#my_table2 td input[type=text]').val('');
+                $('#my_table2 td').find('.resetSelect').prop("selectedIndex", 0);
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
