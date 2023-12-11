@@ -93,7 +93,7 @@
                           <form id="form1_body" method="POST">
                             <div class="col-md-12" style="margin: 0px 0px 10px 0px;">
                               <label>(1) How many people (%) receive or have a tendency to receive ethno medicine? </label>
-                              <input type="text" id="tendency_of_medicine" name="tendency_of_medicine" class="form-control initialval" placeholder="Write with percentage (%)" style="border-radius: 5px;border:2px solid #898AEE;">
+                              <input type="text" id="tendency_of_medicine" name="tendency_of_medicine" class="form-control initialVal" placeholder="Write with percentage (%)" style="border-radius: 5px;border:2px solid #898AEE;">
                             </div>
                             <div class="col-md-12" style="margin: 0px 0px 10px 0px;">
                               <label>(2)	Do the community need any health or medical services nearby? Any other remarks?  </label>
@@ -132,7 +132,7 @@
                             </table>
                             <div class="col-md-12" style="margin: 0px 0px 10px 0px;">
                               <label>(1) Do the community need any electricity related services or solar energy facilities? </label>
-                              <input type="text" id="any_electricity_services" name="any_electricity_services" class="form-control" placeholder="Please write something relevent the question" style="border-radius: 5px;border:2px solid #898AEE;">
+                              <input type="text" id="any_electricity_services" name="any_electricity_services" class="form-control initialVal" placeholder="Please write something relevent the question" style="border-radius: 5px;border:2px solid #898AEE;">
                             </div>
                             <div class="row">
                               <div class="col-md-9"></div>
@@ -244,7 +244,7 @@
 
 <script>
 
-document.title = 'soil sample lab test';
+document.title = 'societal health';
 
 $(document).ready(function () {
 

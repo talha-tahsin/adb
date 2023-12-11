@@ -251,7 +251,6 @@ $(document).on('click', '#btn_store3', function () {
                 $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#my_table4 td input[type=text]').val('');
                 $('#my_table4 td').find('.resetSelect').prop("selectedIndex", 0);
-                // alert(data.message);
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});

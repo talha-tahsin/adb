@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.master')
+@extends('layouts.pages.master')
 
 @section('current_page_css')
 <!-- datepicker -->
@@ -18,7 +18,16 @@
           <div class="col-sm-6">
             <h1 class="m-0" style="font-family: Serif;">Education Entry : Part 2</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6"></div><!-- /.col -->
+          
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="margin-right: 5px;"> 
+                <h5><span>Go To : </span> <a href="{{ route('Data.Entry.Dashboard') }}" >Data Entry Dashboard</a> </h5>
+              </li>
+              <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
+            </ol>
+          </div>
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -33,7 +42,7 @@
               <div class="card card-primary card-outline card-tabs">
                   <div class="card-body">
                           
-                        <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
+                    <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
                         <div class="row"> 
                           <!-- <div class="col-md-1"></div>  -->
@@ -69,7 +78,7 @@
                         </div> 
                         <!-- end row -->
 
-                        <div class="form-group hide" id="table_div">
+                        <div class="form-group" id="table_div">
                           <div class="row">
                               <div class="col-md-12" style="margin: 20px 0px 10px 0px;">
                               
@@ -199,7 +208,7 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/societal_entry/education_part2_entry.js') }}"></script>
+<script src="{{ mix('resources/scripts/societal_entry/livelihood_training.js') }}"></script>
 <!-- datepicker -->
 <script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
 

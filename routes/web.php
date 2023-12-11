@@ -15,6 +15,7 @@ use App\Http\Controllers\Societal\LivelihoodController;
 use App\Http\Controllers\Societal\IncomeController;
 use App\Http\Controllers\Societal\ExpenditureController;
 use App\Http\Controllers\Societal\EconomicController;
+use App\Http\Controllers\Societal\LivelihoodTrainingController;
 use App\Http\Controllers\Societal\EducationController;
 use App\Http\Controllers\Societal\HealthController;
 use App\Http\Controllers\Societal\WaterController;
@@ -256,7 +257,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
 });
 
-/** Start :: Economic View Page Route */
+/** Start :: Economic Status View Page Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('economic', [SocietalViewController::class, 'view_economic_entry'])->name('View.Economic.Entry');
     //Route::get('view_economic_info', [SocietalViewController::class, 'view_economic_info'])->name('View.Economic.Info');
@@ -269,6 +270,20 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::post('/store_economic_info', [EconomicController::class, 'store_economic_info']);
     Route::post('/update_economic_info', [EconomicController::class, 'update_economic_info']);
     Route::post('/delete_economic_info', [EconomicController::class, 'delete_economic_info']);
+
+});
+
+/** Start :: Livelihoods Generation Training  Page Route */
+Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
+    Route::get('livelihood-generation-trainig', [LivelihoodTrainingController::class, 'show_livelihoods_generation_training'])->name('Livelihood.Training');
+    //Route::get('view_economic_info', [LivelihoodTrainingController::class, 'view_economic_info'])->name('View.Economic.Info');
+    
+    // GET Method Route 
+   
+
+    // POST Method Route
+    Route::post('/store_economic_info', [LivelihoodTrainingController::class, 'store_economic_info']);
+    
 
 });
 
@@ -298,10 +313,11 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('/get_health_info_edit', [HealthController::class, 'get_health_info_edit']);
 
     // POST Method Route
-    Route::post('/store_health_info', [HealthController::class, 'store_health_info']);
-    Route::post('/update_health_info', [HealthController::class, 'update_health_info']);
-    Route::post('/delete_health_info', [HealthController::class, 'delete_health_info']);
-
+    Route::post('/store_tendency_health_services', [HealthController::class, 'store_tendency_health_services']);
+    Route::post('/store_health_additional_info', [HealthController::class, 'store_health_additional_info']);
+    Route::post('/store_electricity_info', [HealthController::class, 'store_electricity_info']);
+    Route::post('/store_diseases_ranking_frequency', [HealthController::class, 'store_diseases_ranking_frequency']);
+   
 });
 
 /** Start :: Water View Page Route */

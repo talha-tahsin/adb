@@ -85,22 +85,23 @@ function insertTableRow(center_name, center_id) {
     // $("#voucher_table tr:last").scrollintoview();
 }
 
-$(document).on('click', '#btn_store', function () {
+$(document).on('click', '#btn_store1', function () {
 
     var created_by = $('#userName').val();
     var token = $("meta[name='csrf-token']").attr("content");
-    var watershed_id = $('#watershedId option:selected').val();
-    var paraId = $('#para_list option:selected').val();
-    var paraName = $('#para_list option:selected').text();
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
     var xml_data = '';
 
     xml_data = '<head>';
 
     $('#voucher_table > tbody > tr').each(function () {
 
-            
-        var center_id = $(this).attr('center_id');
-        var center_name = $(this).find('td:eq(0)').text(); //$(this).closest('tr').find('td:eq(1)').text();
+        // var center_id = $(this).attr('center_id');
+        // var center_name = $(this).find('td:eq(0)').text(); 
+        var health_center = $(this).closest('tr').find('td:eq(1)').text();
         
         var people_percentage = $(this).find('#people_percentage').val();
         var distance = $(this).find('#distance').val();
@@ -109,17 +110,17 @@ $(document).on('click', '#btn_store', function () {
         // first binding data as xml string
         xml_data += '<row>';
 
-        xml_data += '<WatershedId>' + watershed_id + '</WatershedId>';
-        xml_data += '<ParaId>' + paraId + '</ParaId>';
-        xml_data += '<paraName>' + paraName + '</paraName>';
-        xml_data += '<center_id>' + center_id + '</center_id>';
-        xml_data += '<center_name>' + center_name + '</center_name>';
+        xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+        xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
+        xml_data += '<para_id>' + para_id + '</para_id>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
 
+        xml_data += '<health_center>' + health_center + '</health_center>';
         xml_data += '<people_percentage>' + people_percentage + '</people_percentage>';
         xml_data += '<distance>' + distance + '</distance>';
         xml_data += '<service_reason>' + service_reason + '</service_reason>';
 
-        xml_data += '<CreatedBy>' + created_by + '</CreatedBy>';
+        xml_data += '<created_by>' + created_by + '</created_by>';
 
         xml_data += '</row>';
         
@@ -127,39 +128,6 @@ $(document).on('click', '#btn_store', function () {
     });
 
     xml_data += '</head>';
-
-    // var diseases_id = $('#diseases_table > tbody > tr').find('td:eq(0)').text();
-    // var diseases_name = $('#diseases_table > tbody > tr').find('td:eq(1)').text();
-
-    var diarrhoeal = $('#diseases_table > tbody > tr').find("#diarrhoeal").val();
-    var heat_stroke = $('#diseases_table > tbody > tr').find('#heat_stroke').val();
-    var malaria = $('#diseases_table > tbody > tr').find('#malaria').val();
-    var dengue = $('#diseases_table > tbody > tr').find('#dengue').val();
-
-    var typhoid = $('#diseases_table > tbody > tr').find('#typhoid').val();
-    var zika_fever = $('#diseases_table > tbody > tr').find('#zika_fever').val();
-    var skin_diseases = $('#diseases_table > tbody > tr').find('#skin_diseases').val();
-    var others = $('#diseases_table > tbody > tr').find('#others').val();
-
-    var taking_medicine = $('#tendency_of_medicine').val();
-
-    var row = {
-        'WatershedId' : watershed_id,
-        'ParaId' : paraId,
-        'ParaName' : paraName,
-        'diarrhoeal' : diarrhoeal,
-        'heat_stroke' : heat_stroke,
-        'malaria' : malaria,
-        'dengue' : dengue,
-        'typhoid' : typhoid,
-        'zika_fever' : zika_fever,
-        'skin_diseases' : skin_diseases,
-        'others' : others,
-        'taking_medicine' : taking_medicine,
-        'CreatedBy' : created_by
-
-    };
-
     
     console.log(xml_data);
 
@@ -168,27 +136,79 @@ $(document).on('click', '#btn_store', function () {
      $('#error_msg').html('');
 
     $.ajax({
-        url: "/store_health_info",
+        url: "/store_tendency_health_services",
         type: "POST",
-        data: { '_token' : token, 'xml_data' : xml_data, 'ranking' : JSON.stringify(row) },
+        data: { '_token' : token, 'dataToSend' : xml_data },
         dataType: "JSON",
         cache: false,
         success: function (data) {
             // console.log(data);
             if(data.status == 'SUCCESS'){
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: green;">Congratulation '+created_by+' ! Data store Succesfully.</span><p>'+ data.message+'</p>' );
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
                 $('#voucher_table td input[type=text]').val('');
-                $('#voucher_table td input[type=checkbox]').prop('checked', false);
-                // alert(data.message);
-            }
-            else if (data.status == 'EXIST'){
-                $('#myModal').modal({backdrop : 'static', keyboard : false});
-                $('#success_msg').html('<span style="color: red;">Sorry '+created_by+' ! Data not possible to store. </span><p>'+ data.message+'</p>' );
+                $('#voucher_table td').find('.resetSelect').prop("selectedIndex", 0);
             }
             else{
                 $('#myModal').modal({backdrop : 'static', keyboard : false});
                 $('#error_msg').html('<span style="color: red;">'+data.message+'</span>');
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+
+
+});
+
+$(document).on('click', '#btn_store2', function (event) {
+
+    event.preventDefault();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var created_by = $('#userName').val();
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+
+    var form = $('#form1_body')[0];
+    var formdata = new FormData(form);
+    formdata.append( "_token", token);
+    formdata.append( "watershed_id", watershed_id);
+    formdata.append( "watershed_name", watershed_name);
+    formdata.append( "para_id", para_id);
+    formdata.append( "para_name", para_name);
+    formdata.append( "created_by", created_by);
+
+    console.log(formdata);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_health_additional_info",
+        type: "POST",
+        enctype: 'multipart/form-data',
+        dataType: 'json',
+        data: formdata,
+        processData: false,  // Important when file upload!
+        contentType: false,
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#nearby_medical_services').val('');
+                $('.initialVal').val('');
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
             }
             
         },
@@ -197,6 +217,62 @@ $(document).on('click', '#btn_store', function () {
         }
     });
 
+
+});
+
+$(document).on('click', '#btn_store3', function (event) {
+
+    event.preventDefault();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var created_by = $('#userName').val();
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+
+    var form = $('#form2_body')[0];
+    var formdata = new FormData(form);
+    formdata.append( "_token", token);
+    formdata.append( "watershed_id", watershed_id);
+    formdata.append( "watershed_name", watershed_name);
+    formdata.append( "para_id", para_id);
+    formdata.append( "para_name", para_name);
+    formdata.append( "created_by", created_by);
+
+    console.log(formdata);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_electricity_info",
+        type: "POST",
+        enctype: 'multipart/form-data',
+        dataType: 'json',
+        data: formdata,
+        processData: false,  // Important when file upload!
+        contentType: false,
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html(data.message);
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#my_table2 td input[type=text]').val('');
+                $('.initialVal').val('');
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red">ERROR!! <p>'+data.message+'</p></span>');
+            }
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 
 
 });
@@ -213,19 +289,19 @@ function insertDiseasesTable(name) {
     appendString += '<td style="width: 300px;text-align: left;">' + name + '</td>';
 
     appendString += '<td>';
-    appendString += '<input type="text" id="sand" name="sand" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="ranking" name="ranking" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="slit" name="slit" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="once_in_year" name="once_in_year" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="clay" name="clay" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="twice_in_year" name="twice_in_year" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="clay" name="clay" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="once_in_2_3years" name="once_in_2_3years" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
     appendString += '<td>';
-    appendString += '<input type="text" id="clay" name="clay" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
+    appendString += '<input type="text" id="others" name="others" class="form-control" value="" style="width: 150px;text-align: center;" placeholder="0">';
     appendString += '</td>';
 
     //appendString += '<td style="text-align: center;">';
@@ -239,6 +315,89 @@ function insertDiseasesTable(name) {
     // $("#voucher_table tr:last").scrollintoview();
     removeTableRow();
 }
+
+$(document).on('click', '#btn_store4', function () {
+
+    var created_by = $('#userName').val();
+    var token = $("meta[name='csrf-token']").attr("content");
+    var watershed_id = $('#watershed_id').val();
+    var watershed_name = $('#watershed_name').val();
+    var para_id = $('#para_id').val();
+    var para_name = $('#para_name').val();
+    var xml_data = '';
+
+    xml_data = '<head>';
+
+    $('#diseases_table > tbody > tr').each(function () {
+
+        // var center_id = $(this).attr('center_id');
+        // var center_name = $(this).find('td:eq(0)').text(); 
+        var diseases_name = $(this).closest('tr').find('td:eq(1)').text();
+        
+        var ranking = $(this).find('#ranking').val();
+        var once_in_year = $(this).find('#once_in_year').val();
+        var twice_in_year = $(this).find('#twice_in_year').val();
+        var twice_in_year = $(this).find('#twice_in_year').val();
+        var once_in_2_3years = $(this).find('#once_in_2_3years').val();
+        var others = $(this).find('#others').val();
+
+        // first binding data as xml string
+        xml_data += '<row>';
+
+        xml_data += '<watershed_id>' + watershed_id + '</watershed_id>';
+        xml_data += '<watershed_name>' + watershed_name + '</watershed_name>';
+        xml_data += '<para_id>' + para_id + '</para_id>';
+        xml_data += '<para_name>' + para_name + '</para_name>';
+
+        xml_data += '<diseases_name>' + diseases_name + '</diseases_name>';
+        xml_data += '<ranking>' + ranking + '</ranking>';
+        xml_data += '<once_in_year>' + once_in_year + '</once_in_year>';
+        xml_data += '<twice_in_year>' + twice_in_year + '</twice_in_year>';
+        xml_data += '<once_in_2_3years>' + once_in_2_3years + '</once_in_2_3years>';
+        xml_data += '<others>' + others + '</others>';
+
+        xml_data += '<created_by>' + created_by + '</created_by>';
+
+        xml_data += '</row>';
+        
+
+    });
+
+    xml_data += '</head>';
+    
+    console.log(xml_data);
+
+     // clear model message value for every ajax call provide single accurate message
+     $('#success_msg').html('');
+     $('#error_msg').html('');
+
+    $.ajax({
+        url: "/store_diseases_ranking_frequency",
+        type: "POST",
+        data: { '_token' : token, 'dataToSend' : xml_data },
+        dataType: "JSON",
+        cache: false,
+        success: function (data) {
+            // console.log(data);
+            if(data.status == 'SUCCESS'){
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#success_msg').html('<span style="color: green;">SUCCESS !! <p>'+ data.message+'</p></span>' );
+                $('#diseases_table td input[type=text]').val('');
+                $('#diseases_table td').find('.resetSelect').prop("selectedIndex", 0);
+            }
+            else{
+                $('#myModal').modal({backdrop : 'static', keyboard : false});
+                $('#error_msg').html('<span style="color: red;">'+data.message+'</span>');
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+
+
+});
 
 $(document).on('change', '.m_num', function () {
 
@@ -336,69 +495,5 @@ function reOrderTable() {
     counter = sl - 1;
 }
 
-function gotoUrl(path, params, method, target = ''){
-
-    method = method || "post";
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-    form.setAttribute("target", target);
-    if (typeof params === 'string') {
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", 'data');
-        hiddenField.setAttribute("value", params);
-        form.appendChild(hiddenField);
-    }
-    else {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                var hiddenField = document.createElement("input");
-                hiddenField.setAttribute("type", "hidden");
-                hiddenField.setAttribute("name", key);
-                if(typeof params[key] === 'object'){
-                    hiddenField.setAttribute("value", JSON.stringify(params[key]));
-                }
-                else{
-                    hiddenField.setAttribute("value", params[key]);
-                }
-                form.appendChild(hiddenField);
-            }
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-}
-
-// Function to convert XML to JSON
-function xmlToJson(xml) {
-  try {
-    var obj = {};
-    if (xml.children.length > 0) {
-      for (var i = 0; i < xml.children.length; i++) {
-        var item = xml.children.item(i);
-        var nodeName = item.nodeName;
-
-        if (typeof (obj[nodeName]) == "undefined") {
-          obj[nodeName] = xml2json(item);
-        } else {
-          if (typeof (obj[nodeName].push) == "undefined") {
-            var old = obj[nodeName];
-
-            obj[nodeName] = [];
-            obj[nodeName].push(old);
-          }
-          obj[nodeName].push(xml2json(item));
-        }
-      }
-    } else {
-      obj = xml.textContent;
-    }
-    return obj;
-  } catch (e) {
-      console.log(e.message);
-  }
-}
 
 

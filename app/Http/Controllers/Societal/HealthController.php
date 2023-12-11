@@ -16,135 +16,209 @@ use App\Models\Health;
 class HealthController extends Controller
 {
     
-    public function store_health_info(Request $request)
+    public function store_tendency_health_services(Request $request)
     {
-        $xml = $request['xml_data'];
-        $xmlstr = simplexml_load_string($xml);
-
-        $json_data = $request['ranking'];
-        $val = json_decode($json_data);
-
-        // dd($value);
+        $receiveData = $request['dataToSend'];
+        $xmlstr = simplexml_load_string($receiveData);
+        // dd($xmlstr->row);
         
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
 
-        // try {
-                $dupCount = 0;
-                $newCount = 0;
-                $cname = '';
-                $dupCount2 = 0;
-                $successCount = 0;
+        try 
+        {
+            DB::beginTransaction();
 
+            foreach ($xmlstr->row as $value) 
+            {
+                $store_data = array(
+                    'watershed_id' => $value->watershed_id,
+                    'watershed_name' => $value->watershed_name,
+                    'para_id' => $value->para_id,
+                    'para_name' => $value->para_name,
+                    'health_center' => $value->health_center,
+                    'people_percentage' => $value->people_percentage,
+                    'distance' => $value->distance,
+                    'service_reason' => $value->service_reason,
+                    'created_by' => $value->created_by,
+                    'created_at' => $created_at,
+                );
+                
+                DB::table('tbl_tendency_health_services')->insert($store_data);
+                DB::commit();
+            }
+            
+            return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            
+        }
+        catch (\Exception $e) 
+        {
+            DB::rollBack();
+            $message = "Opps!! Something is wrong, data not saved and rollback..";
+            return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+        }     
+            
+    }
+    public function store_health_additional_info(Request $request)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($request->all(), [
+                'watershed_id' => 'required|string|max:255',
+                'watershed_name' => 'required',
+                'tendency_of_medicine' => 'required',
+            ], [],[]);
+
+            if ($validator->fails()){
+                return response()->json(['success' => false,'message' => strval(implode("<br>",$validator->errors()->all()))]);
+            }
+        
+            $timestamp = time();
+            $created_at = date("Y-m-d H:i:s", $timestamp);
+
+            // check dupliacte record in database ::
+            $found = DB::table('tbl_health_additional_info')->select('id')
+                                ->where('watershed_id',  $request['watershed_id'])
+                                ->where('para_id', $request['para_id'])
+                                ->count();
+
+            if($found > 0){
+                $message = 'Data already exsits for this watershed and para, not allow to store again...';
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
+
+            try 
+            {
                 DB::beginTransaction();
 
-                foreach ($xmlstr->row as $value) 
-                {
-                    $store_data1 = array(
-                        'watershed_id' => $value->WatershedId,
-                        'para_id' => $value->ParaId,
-                        'para_name' => $value->paraName,
-                        'center_id' => $value->center_id,
-                        'center_name' => $value->center_name,
-                        'people_percentage' => $value->people_percentage,
-                        'distance' => $value->distance,
-                        'service_reason' => $value->service_reason,
-                        'created_by' => $value->CreatedBy,
-                        'created_at' => $created_at,
-                    );
-
-                    // check duplicate record for community
-                    $exist_watershed_id = $value->WatershedId;
-                    $exist_para_id = $value->ParaId;
-                    $exist_center_id = $value->center_id;
-            
-                    $found = DB::table('tbl_health_services')->select('id')
-                                    ->where('watershed_id', $exist_watershed_id)
-                                    ->where('para_id', $exist_para_id)
-                                    ->where('center_id', $exist_center_id)
-                                    ->count();
-                    
-                    $get_community =json_encode($value->center_name);
-                    $jsonData = json_decode($get_community, TRUE);
-                    $tem_cname = $jsonData[0];
-                    
-
-                    if($found == 0){
-                        // $store = Economic::insert($store_data);
-                        DB::table('tbl_health_services')->insert($store_data1);
-                        $newCount++;
-                    }
-                    else
-                    {
-                        $dupCount++;
-
-                        if($cname == ''){
-                            $cname = $tem_cname;
-                        }
-                        else{
-                            $cname = $cname.', '.$tem_cname;
-                        }
-                        $found = 0;
-                    }
-                }
-
-                $store_data2 = array(
-                    'watershed_id' => $val->WatershedId,
-                    'para_id' => $val->ParaId,
-                    'para_name' => $val->ParaName,
-                    'diarrhoeal' => $val->diarrhoeal,
-                    'heat_stroke' => $val->heat_stroke,
-                    'malaria' => $val->malaria,
-                    'dengue' => $val->dengue,
-                    'typhoid' => $val->typhoid,
-                    'zika_fever' => $val->zika_fever,
-                    'skin_diseases' => $val->skin_diseases,
-                    'others' => $val->others,
-                    'created_by' => $val->CreatedBy,
+                $store_data = array(
+                    'watershed_id' => $request['watershed_id'],
+                    'watershed_name' => $request['watershed_name'],
+                    'para_id' => $request['para_id'],
+                    'para_name' => $request['para_name'],
+                    'tendency_of_medicine' => $request['tendency_of_medicine'],           
+                    'nearby_medical_services' => $request['nearby_medical_services'],          
+                    'created_by' => $request['created_by'],
                     'created_at' => $created_at,
                 );
 
-                // check duplicate record for community
-                $exist_watershed_id2 = $val->WatershedId;
-                $exist_para_id2 = $val->ParaId;
-        
-                $found2 = DB::table('tbl_diseases')->select('id')
-                                ->where('watershed_id', $exist_watershed_id2)
-                                ->where('para_id', $exist_para_id2)
-                                ->count();
-                
-                $tem_cname = $value->ParaName;
-
-                if($found2 == 0){
-                    // $store = Economic::insert($store_data);
-                    DB::table('tbl_diseases')->insert($store_data2);
-                    $successCount = 1;
-                }
-                else{
-                    $dupCount2 = 1;
-                }
-                    
-
+                DB::table('tbl_health_additional_info')->insert($store_data);
                 DB::commit();
+                
+                return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            }
+            catch (\Exception $e) 
+            {
+                DB::rollBack();
+                $message = "Opps!! Something is wrong, data not saved and rollback..";
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
 
-                if($dupCount > 0 && $newCount == 0){ 
-                    return response()->json([ 'status' => 'EXIST', 'message' => 'Becasue, ['.$cname.'] para has already exsits in the record...' ]);
-                }
-                else if ($dupCount > 0 && $newCount > 0 &&  $successCount == 1){
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'But ['.$cname.'] para already exsits and can not possible to store...' ]);
-                }
-                else{ 
-                    return response()->json([ 'status' => 'SUCCESS', 'message' => 'No Data found as duplicate...' ]);
-                }
-            // }
-            // catch (\Exception $e) 
-            // {
-            //     DB::rollBack();
-            //     $message = "Opps!! Something is wrong, data not saved and rollback..";
-            //     return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
-            // }       
+        }
+    }
+    public function store_electricity_info(Request $request)
+    {
+        if (request()->ajax()) {
+            $validator = Validator::make($request->all(), [
+                'watershed_id' => 'required|string|max:255',
+                'watershed_name' => 'required',
+                'national_power_grid' => 'required',
+            ], [],[]);
+
+            if ($validator->fails()){
+                return response()->json(['success' => false,'message' => strval(implode("<br>",$validator->errors()->all()))]);
+            }
+        
+            $timestamp = time();
+            $created_at = date("Y-m-d H:i:s", $timestamp);
+
+            // check dupliacte record in database ::
+            $found = DB::table('tbl_electricity_info')->select('id')
+                                ->where('watershed_id',  $request['watershed_id'])
+                                ->where('para_id', $request['para_id'])
+                                ->count();
+
+            if($found > 0){
+                $message = 'Data already exsits for this watershed and para, not allow to store again...';
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
+
+            try 
+            {
+                DB::beginTransaction();
+
+                $store_data = array(
+                    'watershed_id' => $request['watershed_id'],
+                    'watershed_name' => $request['watershed_name'],
+                    'para_id' => $request['para_id'],
+                    'para_name' => $request['para_name'],
+                    'national_power_grid' => $request['national_power_grid'],           
+                    'solar' => $request['solar'],          
+                    'generator' => $request['generator'],          
+                    'no_source' => $request['no_source'],          
+                    'others' => $request['others'],          
+                    'remarks' => $request['any_electricity_services'],          
+                    'created_by' => $request['created_by'],
+                    'created_at' => $created_at,
+                );
+
+                DB::table('tbl_electricity_info')->insert($store_data);
+                DB::commit();
+                
+                return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            }
+            catch (\Exception $e) 
+            {
+                DB::rollBack();
+                $message = "Opps!! Something is wrong, data not saved and rollback..";
+                return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+            }
+
+        }
+    }
+    public function store_diseases_ranking_frequency(Request $request)
+    {
+        $receiveData = $request['dataToSend'];
+        $xmlstr = simplexml_load_string($receiveData);
+        // dd($xmlstr->row);
+        
+        $timestamp = time();
+        $created_at = date("Y-m-d H:i:s", $timestamp);
+
+        try 
+        {
+            DB::beginTransaction();
+
+            foreach ($xmlstr->row as $value) 
+            {
+                $store_data = array(
+                    'watershed_id' => $value->watershed_id,
+                    'watershed_name' => $value->watershed_name,
+                    'para_id' => $value->para_id,
+                    'para_name' => $value->para_name,
+                    'diseases_name' => $value->diseases_name,
+                    'ranking' => $value->ranking,
+                    'once_in_year' => $value->once_in_year,
+                    'twice_in_year' => $value->twice_in_year,
+                    'once_in_2_3years' => $value->once_in_2_3years,
+                    'others' => $value->others,
+                    'created_by' => $value->created_by,
+                    'created_at' => $created_at,
+                );
+                
+                DB::table('tbl_diseases_ranking_frequency')->insert($store_data);
+                DB::commit();
+            }
+            
+            return response()->json([ 'status' => 'SUCCESS', 'message' => 'Data store successfully...' ]);
+            
+        }
+        catch (\Exception $e) 
+        {
+            DB::rollBack();
+            $message = "Opps!! Something is wrong, data not saved and rollback..";
+            return response()->json([ 'status' => 'ERROR', 'message' => $message ]);
+        }     
             
     }
-
 
 }
