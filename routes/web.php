@@ -274,7 +274,7 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
 
 /** Start :: Education View Page Route */
 Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
-    Route::get('education_part1_entry', [SocietalViewController::class, 'view_education_part1_entry'])->name('View.EducationPart1.Entry');
+    Route::get('education_entry', [SocietalViewController::class, 'view_education_part1_entry'])->name('View.EducationPart1.Entry');
     Route::get('education_part2_entry', [SocietalViewController::class, 'view_education_part2_entry'])->name('View.EducationPart2.Entry');
     //Route::get('view_education_info', [SocietalViewController::class, 'view_education_info'])->name('View.education.Info');
     // GET Method Route 
@@ -282,11 +282,11 @@ Route::group(['prefix' => '/',  'middleware' => 'User_Auth'], function(){
     Route::get('/get_education_info_edit', [EducationController::class, 'get_education_info_edit']);
 
     // POST Method Route
-    Route::post('/store_education_part1_info', [EducationController::class, 'store_education_part1_info']);
+    Route::post('/store_literacy_rate_level', [EducationController::class, 'store_literacy_rate_level']);
     Route::post('/update_education_info', [EducationController::class, 'update_education_info']);
     Route::post('/delete_education_info', [EducationController::class, 'delete_education_info']);
 
-    Route::post('/store_education_part2_info', [EducationController::class, 'store_education_part2_info']);
+    Route::post('/store_availability_education_institution', [EducationController::class, 'store_availability_education_institution']);
 });
 
 /** Start :: Health View Page Route */

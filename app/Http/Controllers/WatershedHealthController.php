@@ -295,8 +295,6 @@ class WatershedHealthController extends Controller
         $timestamp = time();
         $created_at = date("Y-m-d H:i:s", $timestamp);
 
-        
-
         try 
         {
             DB::beginTransaction();

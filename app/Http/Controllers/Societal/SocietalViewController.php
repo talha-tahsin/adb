@@ -58,7 +58,7 @@ class SocietalViewController extends Controller
 
     // Education
     public function view_education_part1_entry(){
-        return view('societal_entry.education_part1_entry');
+        return view('societal_entry.education_entry');
     }
 
     public function view_education_part2_entry(){

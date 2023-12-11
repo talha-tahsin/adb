@@ -73,24 +73,21 @@
                     <div class="row">
                         <div class="col-md-10" style="margin: 20px 0px 20px 0px;">
                           <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="voucher_table">
-
                             <thead>
-                                <tr style="background-color: #8ed6f2;">
-                                  <th rowspan="2" style="text-align:center;">Serial </th>
-                                  <th rowspan="2" style="text-align:left;">Name </th>
-                                  <th colspan="4" style="text-align:center;">Type of Household</th>
-                                  <th rowspan="2" style="text-align:center;">Number Of Household </th>
-                                  <th rowspan="2" style="text-align:center;">Action</th>
-                                </tr>
+                              <tr style="background-color: #8ed6f2;">
+                                <th rowspan="2" style="text-align:center;">Serial </th>
+                                <th rowspan="2" style="text-align:left;">Name </th>
+                                <th colspan="4" style="text-align:center;">Type of Household</th>
+                                <th rowspan="2" style="text-align:center;">Number Of Household </th>
+                                <th rowspan="2" style="text-align:center;">Action</th>
+                              </tr>
 
-                                <tr style="background-color: #99ccff;">
-                                    <th style="text-align:center;border-bottom: none;">Jhupri</th>
-                                    <th style="text-align:center;border-bottom: none;">Kacha</th>
-                                    <th style="text-align:center;border-bottom: none;">Semi Pacca</th>
-                                    <th style="text-align:center;border-bottom: none;">Pacca</th>
-                                </tr>
-                                
-                                
+                              <tr style="background-color: #99ccff;">
+                                <th style="text-align:center;border-bottom: none;">Jhupri</th>
+                                <th style="text-align:center;border-bottom: none;">Kacha</th>
+                                <th style="text-align:center;border-bottom: none;">Semi Pacca</th>
+                                <th style="text-align:center;border-bottom: none;">Pacca</th>
+                              </tr>
                             </thead>
 
                             <!-- <tfoot>

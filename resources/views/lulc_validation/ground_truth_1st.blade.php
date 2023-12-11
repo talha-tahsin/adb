@@ -110,7 +110,7 @@
                               <button type="submit" class="btn btn-primary" id="btn_store" style="width: 100%;border-radius: 5px;color: black;">Save Info Details</button>
                             </div>  
                           </div>
-</form>
+                        </form>
                       </div>
                       <!-- end div col-md -->
                     </div>

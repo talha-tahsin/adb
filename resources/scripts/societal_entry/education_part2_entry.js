@@ -90,6 +90,17 @@ $(document).on('click', '#get_communities', function () {
 
 });
 
+$('#radioDiv input[type=radio]').change(function(){
+    if($(this).val() == '0'){
+        $('#alt_income_training').prop('disabled', true);
+    }
+    else {
+        $('#alt_income_training').prop('disabled', false);
+    }
+
+});
+
+
 $(document).on('click', '#btn_store', function () {
 
     var created_by = $('#userName').val();

@@ -46,8 +46,6 @@
                   <input type="hidden" name="userName" id="userName" value="{{ Auth::user()->name }}"/>
 
                   <div class="row"> 
-                  <!-- <div class="col-md-1"></div>  -->
-
                     <div class="col-md-2" style="margin: 0px 0px 10px 0px;">
                       <label class="control-label validate" for="community_id"><span style="color: red;">★&nbsp;</span>Watershed Id</label> 
                       <input type="text" name="watershed_id" id="watershed_id" class="form-control" style="border-radius: 5px;border: 2px solid #898AEE;padding: 0px 15px 0px 15px;"  value="" disabled>
@@ -166,40 +164,40 @@
           <hr style="border-bottom: 2px solid black;">
           <div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 
-          <form id="form2_body" method="POST">
-            <h5>(a) Soil Test Result (tbf after lab test)</h5>
-            <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
-              <thead>
-                <tr style="background-color: #8ed6f2;">
-                  <th style="text-align: left;">Soil Reaction (pH)</th>
-                  <th style="text-align: left;">Organic Matter (OM), % </th>
-                  <th style="text-align: left;">Water Holding Capacity</th>
-                  <th style="text-align: center;">Percolation/Infiltration, ml/min</th>
-                  <th style="text-align: center;">Nitrogen (N), %</th>
-                  <th style="text-align: center;">Phosphorus (P), ppm</th>
-                  <th style="text-align: center;">Potassium (K), meq/100g soil</th>
-                  <th style="text-align: left;">Sulphur (S), ppm</th>
-                  <th style="text-align: left;">Calcium (Ca), ppm</th>
-                </tr>
-              </thead>
+            <form id="form2_body" method="POST">
+              <h5>(a) Soil Test Result (tbf after lab test)</h5>
+              <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table2">
+                <thead>
+                  <tr style="background-color: #8ed6f2;">
+                    <th style="text-align: left;">Soil Reaction (pH)</th>
+                    <th style="text-align: left;">Organic Matter (OM), % </th>
+                    <th style="text-align: left;">Water Holding Capacity</th>
+                    <th style="text-align: center;">Percolation/Infiltration, ml/min</th>
+                    <th style="text-align: center;">Nitrogen (N), %</th>
+                    <th style="text-align: center;">Phosphorus (P), ppm</th>
+                    <th style="text-align: center;">Potassium (K), meq/100g soil</th>
+                    <th style="text-align: left;">Sulphur (S), ppm</th>
+                    <th style="text-align: left;">Calcium (Ca), ppm</th>
+                  </tr>
+                </thead>
 
-              <tbody id="table_body">
+                <tbody id="table_body">
 
-                <tr>
-                  <td style="text-align: center;width: 10%"><input type="text" id="soil_reaction" name="soil_reaction" class="form-control" placeholder="0"></td> 
-                  <td style="text-align: center;width: 10%"><input type="text" id="organic_matter" name="organic_matter" class="form-control" placeholder="0"></td> 
-                  <td style="text-align: center;width: 10%"><input type="text" id="water_holding" name="water_holding" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="percolation" name="percolation" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="nitrogen" name="nitrogen" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="phosphorus" name="phosphorus" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="potassium" name="potassium" class="form-control" placeholder="0"></td>
-                  <td style="text-align: center;width: 10%"><input type="text" id="sulphur" name="sulphur" class="form-control" placeholder="0"></td> 
-                  <td style="text-align: center;width: 10%"><input type="text" id="calcium" name="calcium" class="form-control" placeholder="0"></td> 
-                </tr>
+                  <tr>
+                    <td style="text-align: center;width: 10%"><input type="text" id="soil_reaction" name="soil_reaction" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="organic_matter" name="organic_matter" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="water_holding" name="water_holding" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="percolation" name="percolation" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="nitrogen" name="nitrogen" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="phosphorus" name="phosphorus" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="potassium" name="potassium" class="form-control" placeholder="0"></td>
+                    <td style="text-align: center;width: 10%"><input type="text" id="sulphur" name="sulphur" class="form-control" placeholder="0"></td> 
+                    <td style="text-align: center;width: 10%"><input type="text" id="calcium" name="calcium" class="form-control" placeholder="0"></td> 
+                  </tr>
 
-              </tbody>
+                </tbody>
 
-            </table>
+              </table>
 
               <!-- table 2 : 2nd part -->
               <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="my_table3">
@@ -279,24 +277,20 @@
           </div>
 
           <hr style="border-bottom: 2px solid black;">
-
-            <div class="row">
-
-              <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                <a href="{{ route('Watershed.Sample.Quality') }}" style="color: black;">
-                  <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 20px;">Previous : Water Sample & Quality</button>
-                </a>
-              </div>
-
-              <div class="col-md-8"></div>
-
-              <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
-                <a href="{{ route('Population.Entry') }}">
-                  <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 20px;">Next : Societal Population</button>
-                </a>
-              </div>
-
+          <div class="row">
+            <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+              <a href="{{ route('Watershed.Sample.Quality') }}" style="color: black;">
+                <button type="submit" class="btn btn-info" style="width: 100%;border-radius: 20px;">Previous : Water Sample & Quality</button>
+              </a>
             </div>
+            <div class="col-md-8"></div>
+            <div class="col-md-2" style="margin: 10px 0px 10px 0px;">
+              <a href="{{ route('Population.Entry') }}">
+                <button type="submit" class="btn btn-info" style="color: black;width: 100%;border-radius: 20px;">Next : Societal Population</button>
+              </a>
+            </div>
+
+          </div>
 
     
       </div>  

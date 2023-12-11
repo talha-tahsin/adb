@@ -72,6 +72,7 @@
                         <div class="form-group hide" id="table_div">
                           <div class="row">
                               <div class="col-md-12" style="margin: 20px 0px 10px 0px;">
+                              
                                 <table width="100%" class="table table-bordered table-striped table-hover tableFixHead" id="training_table">
 
                                   <thead>
@@ -127,7 +128,34 @@
 
                         </div>
                         <!-- end main table div -->
-                         <!-- end form-group -->
+                         
+                        <div class="col-md-6" style="margin: 20px 0px 10px 0px;">
+                          <h4>(b) Any alternative income generation training program for women ? </h4>
+                          <div class="row">
+                            <!-- <div class="col-md-1"></div> -->
+                            <div class ="col-md-10" id="radioDiv" style="margin: 10px 0px 0px 0px;">
+                              <label class="control-label validate">if yes mention the Name ? &nbsp;&nbsp;</label>
+                              <label class="radio"><input type="radio" name="optradio" class="btn_radio" value="0" checked>&nbsp;No &nbsp;&nbsp;</label>
+                              <label class="radio"><input type="radio" name="optradio" class="btn_radio" value="1">&nbsp;Yes</label>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- <div class="col-md-1"></div> -->
+                            <div class ="col-md-12" id="radioDiv" style="margin: 10px 0px 0px 0px;">
+                              <textarea id="alt_income_training" class="form-control" rows="3" placeholder="Please write like : 1) Name 2) Name 3) Name " disabled></textarea>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <!-- <div class="col-md-10"></div> -->
+                            <div class="col-md-3" style="margin: 20px 0px 30px 0px;">
+                                <button type="submit" class="btn btn-primary" id="btn_store2" style="width: 100%;border-radius: 5px;color: black;">Save Info</button>
+                            </div>  
+                          </div>
+
+                        </div>
+                        <!-- end div col-6 -->
 
 
                   </div>
