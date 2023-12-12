@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 11:35 AM
+-- Generation Time: Dec 11, 2023 at 11:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -712,7 +712,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (65, '2023_12_10_030541_create_tbl_water_test_report_table', 58),
 (66, '2023_12_10_035031_create_tbl_soil_sample_basic_table', 59),
 (67, '2023_12_10_081640_create_tbl_soil_test_result_table', 60),
-(68, '2023_12_10_101905_create_tbl_soil_texture_class_table', 61);
+(68, '2023_12_10_101905_create_tbl_soil_texture_class_table', 61),
+(69, '2023_12_11_051948_create_tbl_availability_institution_table', 62),
+(70, '2023_12_11_075018_create_tbl_tendency_health_services_table', 63),
+(71, '2023_12_11_080108_create_tbl_health_additional_info_table', 64),
+(72, '2023_12_11_082033_create_tbl_electricity_info_table', 65),
+(73, '2023_12_11_091427_create_tbl_diseases_ranking_frequency_table', 66);
 
 -- --------------------------------------------------------
 
@@ -924,8 +929,41 @@ CREATE TABLE `tbl_active_watershed` (
 --
 
 INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'R99', 'Bhushan Chhara', '9931081068', 'test43', '1', '2023-12-10 00:27:34', NULL),
+(1, 'user1', 'R99', 'Bhushan Chhara', '9931081068', 'test43', '1', '2023-12-10 21:25:16', NULL),
 (2, 'user2', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-11-28 04:10:30', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_availability_institution`
+--
+
+CREATE TABLE `tbl_availability_institution` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `institution_name` varchar(50) DEFAULT NULL,
+  `no_of_institution` varchar(20) DEFAULT NULL,
+  `average_distance` varchar(20) DEFAULT NULL,
+  `average_time` varchar(20) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `updated_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_availability_institution`
+--
+
+INSERT INTO `tbl_availability_institution` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `institution_name`, `no_of_institution`, `average_distance`, `average_time`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Para learning centre', '2', '5', '5', 'user1', NULL, '2023-12-10 23:24:49', NULL),
+(2, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Primary school', '6', '3', '3', 'user1', NULL, '2023-12-10 23:24:49', NULL),
+(3, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'High School', '8', '5', '5', 'user1', NULL, '2023-12-10 23:24:49', NULL),
+(4, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'College', '6', '5', '5', 'user1', NULL, '2023-12-10 23:24:49', NULL),
+(5, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Others', '2', '5', '5', 'user1', NULL, '2023-12-10 23:24:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -1008,6 +1046,45 @@ INSERT INTO `tbl_diseases` (`id`, `watershed_id`, `para_id`, `para_name`, `diarr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_diseases_ranking_frequency`
+--
+
+CREATE TABLE `tbl_diseases_ranking_frequency` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `diseases_name` varchar(30) DEFAULT NULL,
+  `ranking` varchar(20) DEFAULT NULL,
+  `once_in_year` varchar(20) DEFAULT NULL,
+  `twice_in_year` varchar(20) DEFAULT NULL,
+  `once_in_2_3years` varchar(20) DEFAULT NULL,
+  `others` varchar(20) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` varchar(10) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_diseases_ranking_frequency`
+--
+
+INSERT INTO `tbl_diseases_ranking_frequency` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `diseases_name`, `ranking`, `once_in_year`, `twice_in_year`, `once_in_2_3years`, `others`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Diarrhoeal', '5', '5', '5', '5', '5', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(2, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Malaria', '6', '6', '6', '6', '6', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(3, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Dengue', '5', '4', '4', '4', '4', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(4, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Typhoid', '2', '5', '5', '5', '2', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(5, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Zika Fever', '1', '5', '2', '5', '5', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(6, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Skin Diseases', '1', '5', '1', '5', '1', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(7, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Heat Stroke', '5', '51', '41', '5', '8', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(8, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Mental diseases', '2', '52', '4', '5', '2', 'user1', '2023-12-11 03:19:46', NULL, NULL),
+(9, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Others', '12', '41', '54', '52', '2', 'user1', '2023-12-11 03:19:46', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_economic`
 --
 
@@ -1040,6 +1117,37 @@ CREATE TABLE `tbl_economic` (
 
 INSERT INTO `tbl_economic` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `community_id`, `community_name`, `very_poor`, `poor`, `middle_class`, `better_off`, `month_less3`, `month_3to6`, `month_6to9`, `month_9to12`, `month_up12`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (10, 'R114', 'Ghilachari', '6150455261', 'test4', '10010001', 'Chakma', 6, 6, 6, 2, 2, 8, 8, 8, 8, 'user1', '2023-12-06 03:02:23', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_electricity_info`
+--
+
+CREATE TABLE `tbl_electricity_info` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `national_power_grid` varchar(20) DEFAULT NULL,
+  `solar` varchar(20) DEFAULT NULL,
+  `generator` varchar(20) DEFAULT NULL,
+  `no_source` varchar(20) DEFAULT NULL,
+  `others` varchar(20) DEFAULT NULL,
+  `remarks` varchar(100) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_by` varchar(10) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_electricity_info`
+--
+
+INSERT INTO `tbl_electricity_info` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `national_power_grid`, `solar`, `generator`, `no_source`, `others`, `remarks`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'R99', 'Bhushan Chhara', '9931081068', 'test43', '5', '5', '6', '8', '5', 'CEGiS', 'user1', '2023-12-11 02:24:19', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1166,6 +1274,33 @@ INSERT INTO `tbl_future_conversation` (`id`, `watershed_id`, `watershed_name`, `
 (15, 'R114', 'Ghilachari', '3', '110', 'Type of Measure', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-06 03:19:15', NULL),
 (16, 'R114', 'Ghilachari', '3', '110', '% of Area to be Covered', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-06 03:19:15', NULL),
 (17, 'R114', 'Ghilachari', '3', '110', 'Length of Measures (km)', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'user1', '2023-12-06 03:19:15', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_health_additional_info`
+--
+
+CREATE TABLE `tbl_health_additional_info` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(30) DEFAULT NULL,
+  `tendency_of_medicine` varchar(20) DEFAULT NULL,
+  `nearby_medical_services` varchar(80) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `updated_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_health_additional_info`
+--
+
+INSERT INTO `tbl_health_additional_info` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `tendency_of_medicine`, `nearby_medical_services`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(2, 'R99', 'Bhushan Chhara', '9931081068', 'test43', '23%', 'asdrt', 'user1', NULL, '2023-12-11 02:06:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -1330,24 +1465,13 @@ CREATE TABLE `tbl_latrine_type` (
 
 CREATE TABLE `tbl_literacy` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `watershed_id` int(11) NOT NULL,
-  `para_id` int(11) NOT NULL,
+  `watershed_id` varchar(11) NOT NULL,
+  `watershed_name` varchar(20) DEFAULT NULL,
+  `para_id` varchar(11) DEFAULT NULL,
   `para_name` varchar(50) DEFAULT NULL,
-  `male_read_write` int(11) DEFAULT NULL,
-  `female_read_write` int(11) DEFAULT NULL,
-  `male_primary` int(11) DEFAULT NULL,
-  `female_primary` int(11) DEFAULT NULL,
-  `male_ssc` int(11) DEFAULT NULL,
-  `female_ssc` int(11) DEFAULT NULL,
-  `male_hsc` int(11) DEFAULT NULL,
-  `female_hsc` int(11) DEFAULT NULL,
-  `male_graduation` int(11) DEFAULT NULL,
-  `female_graduation` int(11) DEFAULT NULL,
-  `male_post` int(11) DEFAULT NULL,
-  `female_post` int(11) DEFAULT NULL,
-  `male_total` int(11) DEFAULT NULL,
-  `female_total` int(11) DEFAULT NULL,
-  `income_training` varchar(100) DEFAULT NULL,
+  `level_name` varchar(50) DEFAULT NULL,
+  `male` varchar(20) DEFAULT NULL,
+  `female` varchar(20) DEFAULT NULL,
   `created_by` varchar(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` varchar(10) DEFAULT NULL,
@@ -1358,10 +1482,13 @@ CREATE TABLE `tbl_literacy` (
 -- Dumping data for table `tbl_literacy`
 --
 
-INSERT INTO `tbl_literacy` (`id`, `watershed_id`, `para_id`, `para_name`, `male_read_write`, `female_read_write`, `male_primary`, `female_primary`, `male_ssc`, `female_ssc`, `male_hsc`, `female_hsc`, `male_graduation`, `female_graduation`, `male_post`, `female_post`, `male_total`, `female_total`, `income_training`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 100200, 20001, 'Dhanmondhi', 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 12, 18, NULL, 'alamin', '2023-10-30 07:09:17', NULL, NULL),
-(2, 100100, 10002, 'Kazipara', 3, 3, 4, 4, 3, 4, 3, 3, 4, 4, 3, 4, 20, 22, '1) Test 2) Test3 3) Test4', 'alamin', '2023-10-30 08:37:07', NULL, NULL),
-(3, 100300, 30001, 'House Building', 5, 6, 5, 5, 7, 4, 8, 4, 5, 9, 5, 8, 35, 36, '1) AB 2) CD 3) GHT', 'alamin', '2023-10-30 20:55:21', NULL, NULL);
+INSERT INTO `tbl_literacy` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `level_name`, `male`, `female`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(10, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Literate (can read and write)', '5', '5', 'user1', '2023-12-10 23:06:57', NULL, NULL),
+(11, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Primary', '6', '6', 'user1', '2023-12-10 23:06:57', NULL, NULL),
+(12, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Secondary (SSC)', '2', '2', 'user1', '2023-12-10 23:06:57', NULL, NULL),
+(13, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Higher secondary (HSC)', '8', '8', 'user1', '2023-12-10 23:06:57', NULL, NULL),
+(14, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Graduate', '9', '9', 'user1', '2023-12-10 23:06:57', NULL, NULL),
+(15, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Postgraduate', '5', '5', 'user1', '2023-12-10 23:06:57', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2023,6 +2150,40 @@ INSERT INTO `tbl_soil_texture_class` (`id`, `watershed_id`, `watershed_name`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_tendency_health_services`
+--
+
+CREATE TABLE `tbl_tendency_health_services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `watershed_id` varchar(10) NOT NULL,
+  `watershed_name` varchar(30) DEFAULT NULL,
+  `para_id` varchar(10) DEFAULT NULL,
+  `para_name` varchar(20) DEFAULT NULL,
+  `health_center` varchar(50) DEFAULT NULL,
+  `people_percentage` varchar(20) DEFAULT NULL,
+  `distance` varchar(20) DEFAULT NULL,
+  `service_reason` varchar(20) DEFAULT NULL,
+  `created_by` varchar(10) DEFAULT NULL,
+  `updated_by` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_tendency_health_services`
+--
+
+INSERT INTO `tbl_tendency_health_services` (`id`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `health_center`, `people_percentage`, `distance`, `service_reason`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Community Clinic (govt.)', '2', '2', '2', 'user1', NULL, '2023-12-11 01:53:17', NULL),
+(2, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'District Hospital', '2', '5', '5', 'user1', NULL, '2023-12-11 01:53:17', NULL),
+(3, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Health Centres', '5', '6', '6', 'user1', NULL, '2023-12-11 01:53:17', NULL),
+(4, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'NGO-Facilitated Center ', '6', '8', '8', 'user1', NULL, '2023-12-11 01:53:17', NULL),
+(5, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Private Hospital ', '3', '3', '5', 'user1', NULL, '2023-12-11 01:53:17', NULL),
+(6, 'R99', 'Bhushan Chhara', '9931081068', 'test43', 'Upazila Hospital', '5', '5', '5', 'user1', NULL, '2023-12-11 01:53:17', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_vcf_basic_info`
 --
 
@@ -2517,6 +2678,12 @@ ALTER TABLE `tbl_active_watershed`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_availability_institution`
+--
+ALTER TABLE `tbl_availability_institution`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_degradation_info`
 --
 ALTER TABLE `tbl_degradation_info`
@@ -2529,9 +2696,21 @@ ALTER TABLE `tbl_diseases`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_diseases_ranking_frequency`
+--
+ALTER TABLE `tbl_diseases_ranking_frequency`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_economic`
 --
 ALTER TABLE `tbl_economic`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_electricity_info`
+--
+ALTER TABLE `tbl_electricity_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2550,6 +2729,12 @@ ALTER TABLE `tbl_expenses`
 -- Indexes for table `tbl_future_conversation`
 --
 ALTER TABLE `tbl_future_conversation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_health_additional_info`
+--
+ALTER TABLE `tbl_health_additional_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2688,6 +2873,12 @@ ALTER TABLE `tbl_soil_test_result`
 -- Indexes for table `tbl_soil_texture_class`
 --
 ALTER TABLE `tbl_soil_texture_class`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_tendency_health_services`
+--
+ALTER TABLE `tbl_tendency_health_services`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2867,7 +3058,7 @@ ALTER TABLE `lookup_watershed`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2912,6 +3103,12 @@ ALTER TABLE `tbl_active_watershed`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_availability_institution`
+--
+ALTER TABLE `tbl_availability_institution`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tbl_degradation_info`
 --
 ALTER TABLE `tbl_degradation_info`
@@ -2924,10 +3121,22 @@ ALTER TABLE `tbl_diseases`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `tbl_diseases_ranking_frequency`
+--
+ALTER TABLE `tbl_diseases_ranking_frequency`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `tbl_economic`
 --
 ALTER TABLE `tbl_economic`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tbl_electricity_info`
+--
+ALTER TABLE `tbl_electricity_info`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_existing_conversation`
@@ -2946,6 +3155,12 @@ ALTER TABLE `tbl_expenses`
 --
 ALTER TABLE `tbl_future_conversation`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `tbl_health_additional_info`
+--
+ALTER TABLE `tbl_health_additional_info`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_health_services`
@@ -2981,7 +3196,7 @@ ALTER TABLE `tbl_latrine_type`
 -- AUTO_INCREMENT for table `tbl_literacy`
 --
 ALTER TABLE `tbl_literacy`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_livelihood`
@@ -3084,6 +3299,12 @@ ALTER TABLE `tbl_soil_test_result`
 --
 ALTER TABLE `tbl_soil_texture_class`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `tbl_tendency_health_services`
+--
+ALTER TABLE `tbl_tendency_health_services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_vcf_basic_info`

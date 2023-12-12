@@ -5,7 +5,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block">
-        <img src="{{ mix('resources/dist/img/cegis_namplate.png') }}" alt="Logo" class="elevation-3" height="35" width="220" style="opacity: .8;padding-top: 4px;">
+        <img src="{{ asset('dist/img/cegis_namplate.png') }}" alt="Logo" class="elevation-3" height="35" width="220" style="opacity: .8;padding-top: 4px;">
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -54,7 +54,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{ mix('resources/dist/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="{{ asset('dist/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -70,7 +70,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{ mix('resources/dist/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{ asset('dist/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -86,7 +86,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{ mix('resources/dist/img/user4-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{ asset('dist/img/user4-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -136,7 +136,7 @@
       <!-- Authentication Links -->
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              <img src="{{ mix('resources/dist/img/444.png') }}" alt="log_out" height="20" width="20">
+              <img src="{{ asset('dist/img/444.png') }}" alt="log_out" height="20" width="20">
               {{ Auth::user()->name }}
             </a>
 

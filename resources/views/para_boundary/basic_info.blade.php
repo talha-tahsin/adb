@@ -5,11 +5,11 @@
 
 @section('current_page_css')
 <!-- datepicker -->
-<link rel="stylesheet" href="{{ mix('resources/plugins/datepicker/css/jquery-ui-1.9.2.custom.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datepicker/css/jquery-ui-1.9.2.custom.min.css') }}">
 <!-- dataTables -->
-<link rel="stylesheet" href="{{ mix('resources/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ mix('resources/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ mix('resources/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
 
 @endsection
@@ -367,16 +367,16 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/para_boundary/basic_info.js') }}"></script>
+<script src="{{ asset('scripts/para_boundary/basic_info.js') }}"></script>
 <!-- datepicker -->
-<script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
+<script src="{{ asset('plugins/datepicker/jquery-ui.js') }}"></script>
 <!-- DataTables  & Plugins -->
-<script src="{{ mix('resources/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ mix('resources/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ mix('resources/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ mix('resources/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ mix('resources/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ mix('resources/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
 <script>
   $(document).ready(function () {
