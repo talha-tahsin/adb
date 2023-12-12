@@ -5,7 +5,7 @@
 
 @section('current_page_css')
 <!-- datepicker -->
-<link rel="stylesheet" href="{{ mix('resources/plugins/datepicker/css/jquery-ui-1.9.2.custom.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datepicker/css/jquery-ui-1.9.2.custom.min.css') }}">
 
 @endsection
 
@@ -304,8 +304,8 @@
 
 @section('current_page_js')
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/water_resources/water_resources_entry1.js') }}"></script>
+<script src="{{ asset('scripts/water_resources/water_resources_entry1.js') }}"></script>
 <!-- datepicker -->
-<script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
+<script src="{{ asset('plugins/datepicker/jquery-ui.js') }}"></script>
 
 @endsection

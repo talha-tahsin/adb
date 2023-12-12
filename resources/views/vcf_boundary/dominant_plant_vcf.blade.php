@@ -5,7 +5,7 @@
 
 @section('current_page_css')
 <!-- datepicker -->
-<link rel="stylesheet" href="{{ mix('resources/plugins/datepicker/css/jquery-ui-1.9.2.custom.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datepicker/css/jquery-ui-1.9.2.custom.min.css') }}">
 
 @endsection
 
@@ -298,7 +298,7 @@
 @section('current_page_js')
 
 <!-- datepicker -->
-<script src="{{ mix('resources/plugins/datepicker/jquery-ui.js') }}"></script>
+<script src="{{ asset('plugins/datepicker/jquery-ui.js') }}"></script>
 
 <script>
 
@@ -447,6 +447,6 @@ function insertTableRow3() {
 </script>
 
 <!-- this page js -->
-<script src="{{ mix('resources/scripts/vcf_boundary/dominant_plant_vcf.js') }}"></script>
+<script src="{{ asset('scripts/vcf_boundary/dominant_plant_vcf.js') }}"></script>
 
 @endsection

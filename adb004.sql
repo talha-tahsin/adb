@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 11:51 AM
+-- Generation Time: Dec 12, 2023 at 06:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -929,7 +929,7 @@ CREATE TABLE `tbl_active_watershed` (
 --
 
 INSERT INTO `tbl_active_watershed` (`id`, `user_name`, `watershed_id`, `watershed_name`, `para_id`, `para_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'R99', 'Bhushan Chhara', '9931081068', 'test43', '1', '2023-12-10 21:25:16', NULL),
+(1, 'user1', 'R99', 'Bhushan Chhara', '9931081068', 'test43', '1', '2023-12-11 22:35:42', NULL),
 (2, 'user2', 'R99', 'Bhushan Chhara', '4055461611', 'asd', '1', '2023-11-28 04:10:30', NULL);
 
 -- --------------------------------------------------------
